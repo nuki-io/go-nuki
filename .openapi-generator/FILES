@@ -19,7 +19,6 @@ api_smartlock_log.go
 api_subscription.go
 client.go
 configuration.go
-git_push.sh
 go.mod
 go.sum
 model_account.go
