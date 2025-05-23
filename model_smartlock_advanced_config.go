@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 0.0
+API version: 3.8.1
 Contact: contact@nuki.io
 */
 
@@ -54,6 +54,10 @@ type SmartlockAdvancedConfig struct {
 	AutoLockTimeout *int32 `json:"autoLockTimeout,omitempty"`
 	// Flag that indicates if available firmware updates for the deviceshould be installed automatically
 	AutoUpdateEnabled *bool `json:"autoUpdateEnabled,omitempty"`
+	// Field used for setting the motor speed. 0x00 ... standard, 0x01 ... fast, 0x02 ... slow
+	MotorSpeed *int32 `json:"motorSpeed,omitempty"`
+	// Flag indicating if the slow speed shall be applied during NightMode
+	EnableSlowSpeedDuringNightmode *bool `json:"enableSlowSpeedDuringNightmode,omitempty"`
 }
 
 type _SmartlockAdvancedConfig SmartlockAdvancedConfig
@@ -552,6 +556,70 @@ func (o *SmartlockAdvancedConfig) SetAutoUpdateEnabled(v bool) {
 	o.AutoUpdateEnabled = &v
 }
 
+// GetMotorSpeed returns the MotorSpeed field value if set, zero value otherwise.
+func (o *SmartlockAdvancedConfig) GetMotorSpeed() int32 {
+	if o == nil || IsNil(o.MotorSpeed) {
+		var ret int32
+		return ret
+	}
+	return *o.MotorSpeed
+}
+
+// GetMotorSpeedOk returns a tuple with the MotorSpeed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SmartlockAdvancedConfig) GetMotorSpeedOk() (*int32, bool) {
+	if o == nil || IsNil(o.MotorSpeed) {
+		return nil, false
+	}
+	return o.MotorSpeed, true
+}
+
+// HasMotorSpeed returns a boolean if a field has been set.
+func (o *SmartlockAdvancedConfig) HasMotorSpeed() bool {
+	if o != nil && !IsNil(o.MotorSpeed) {
+		return true
+	}
+
+	return false
+}
+
+// SetMotorSpeed gets a reference to the given int32 and assigns it to the MotorSpeed field.
+func (o *SmartlockAdvancedConfig) SetMotorSpeed(v int32) {
+	o.MotorSpeed = &v
+}
+
+// GetEnableSlowSpeedDuringNightmode returns the EnableSlowSpeedDuringNightmode field value if set, zero value otherwise.
+func (o *SmartlockAdvancedConfig) GetEnableSlowSpeedDuringNightmode() bool {
+	if o == nil || IsNil(o.EnableSlowSpeedDuringNightmode) {
+		var ret bool
+		return ret
+	}
+	return *o.EnableSlowSpeedDuringNightmode
+}
+
+// GetEnableSlowSpeedDuringNightmodeOk returns a tuple with the EnableSlowSpeedDuringNightmode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SmartlockAdvancedConfig) GetEnableSlowSpeedDuringNightmodeOk() (*bool, bool) {
+	if o == nil || IsNil(o.EnableSlowSpeedDuringNightmode) {
+		return nil, false
+	}
+	return o.EnableSlowSpeedDuringNightmode, true
+}
+
+// HasEnableSlowSpeedDuringNightmode returns a boolean if a field has been set.
+func (o *SmartlockAdvancedConfig) HasEnableSlowSpeedDuringNightmode() bool {
+	if o != nil && !IsNil(o.EnableSlowSpeedDuringNightmode) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableSlowSpeedDuringNightmode gets a reference to the given bool and assigns it to the EnableSlowSpeedDuringNightmode field.
+func (o *SmartlockAdvancedConfig) SetEnableSlowSpeedDuringNightmode(v bool) {
+	o.EnableSlowSpeedDuringNightmode = &v
+}
+
 func (o SmartlockAdvancedConfig) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -599,6 +667,12 @@ func (o SmartlockAdvancedConfig) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.AutoUpdateEnabled) {
 		toSerialize["autoUpdateEnabled"] = o.AutoUpdateEnabled
+	}
+	if !IsNil(o.MotorSpeed) {
+		toSerialize["motorSpeed"] = o.MotorSpeed
+	}
+	if !IsNil(o.EnableSlowSpeedDuringNightmode) {
+		toSerialize["enableSlowSpeedDuringNightmode"] = o.EnableSlowSpeedDuringNightmode
 	}
 	return toSerialize, nil
 }

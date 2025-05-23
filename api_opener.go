@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 0.0
+API version: 3.8.1
 Contact: contact@nuki.io
 */
 
@@ -24,25 +24,25 @@ import (
 // OpenerAPIService OpenerAPI service
 type OpenerAPIService service
 
-type ApiOpenerBrandResourceGetGetRequest struct {
+type ApiGetOpenerBrandRequest struct {
 	ctx context.Context
 	ApiService *OpenerAPIService
 	brandId int32
 }
 
-func (r ApiOpenerBrandResourceGetGetRequest) Execute() (*OpenerIntercomBrand, *http.Response, error) {
-	return r.ApiService.OpenerBrandResourceGetGetExecute(r)
+func (r ApiGetOpenerBrandRequest) Execute() (*OpenerIntercomBrand, *http.Response, error) {
+	return r.ApiService.GetOpenerBrandExecute(r)
 }
 
 /*
-OpenerBrandResourceGetGet Get an intercom brand
+GetOpenerBrand Get an intercom brand
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param brandId The brand ID
- @return ApiOpenerBrandResourceGetGetRequest
+ @return ApiGetOpenerBrandRequest
 */
-func (a *OpenerAPIService) OpenerBrandResourceGetGet(ctx context.Context, brandId int32) ApiOpenerBrandResourceGetGetRequest {
-	return ApiOpenerBrandResourceGetGetRequest{
+func (a *OpenerAPIService) GetOpenerBrand(ctx context.Context, brandId int32) ApiGetOpenerBrandRequest {
+	return ApiGetOpenerBrandRequest{
 		ApiService: a,
 		ctx: ctx,
 		brandId: brandId,
@@ -51,7 +51,7 @@ func (a *OpenerAPIService) OpenerBrandResourceGetGet(ctx context.Context, brandI
 
 // Execute executes the request
 //  @return OpenerIntercomBrand
-func (a *OpenerAPIService) OpenerBrandResourceGetGetExecute(r ApiOpenerBrandResourceGetGetRequest) (*OpenerIntercomBrand, *http.Response, error) {
+func (a *OpenerAPIService) GetOpenerBrandExecute(r ApiGetOpenerBrandRequest) (*OpenerIntercomBrand, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -59,7 +59,7 @@ func (a *OpenerAPIService) OpenerBrandResourceGetGetExecute(r ApiOpenerBrandReso
 		localVarReturnValue  *OpenerIntercomBrand
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpenerAPIService.OpenerBrandResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpenerAPIService.GetOpenerBrand")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -125,23 +125,23 @@ func (a *OpenerAPIService) OpenerBrandResourceGetGetExecute(r ApiOpenerBrandReso
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiOpenerBrandsResourceGetGetRequest struct {
+type ApiGetOpenerBrandsRequest struct {
 	ctx context.Context
 	ApiService *OpenerAPIService
 }
 
-func (r ApiOpenerBrandsResourceGetGetRequest) Execute() ([]OpenerIntercomBrand, *http.Response, error) {
-	return r.ApiService.OpenerBrandsResourceGetGetExecute(r)
+func (r ApiGetOpenerBrandsRequest) Execute() ([]OpenerIntercomBrand, *http.Response, error) {
+	return r.ApiService.GetOpenerBrandsExecute(r)
 }
 
 /*
-OpenerBrandsResourceGetGet Get all intercom brands
+GetOpenerBrands Get all intercom brands
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiOpenerBrandsResourceGetGetRequest
+ @return ApiGetOpenerBrandsRequest
 */
-func (a *OpenerAPIService) OpenerBrandsResourceGetGet(ctx context.Context) ApiOpenerBrandsResourceGetGetRequest {
-	return ApiOpenerBrandsResourceGetGetRequest{
+func (a *OpenerAPIService) GetOpenerBrands(ctx context.Context) ApiGetOpenerBrandsRequest {
+	return ApiGetOpenerBrandsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -149,7 +149,7 @@ func (a *OpenerAPIService) OpenerBrandsResourceGetGet(ctx context.Context) ApiOp
 
 // Execute executes the request
 //  @return []OpenerIntercomBrand
-func (a *OpenerAPIService) OpenerBrandsResourceGetGetExecute(r ApiOpenerBrandsResourceGetGetRequest) ([]OpenerIntercomBrand, *http.Response, error) {
+func (a *OpenerAPIService) GetOpenerBrandsExecute(r ApiGetOpenerBrandsRequest) ([]OpenerIntercomBrand, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -157,7 +157,7 @@ func (a *OpenerAPIService) OpenerBrandsResourceGetGetExecute(r ApiOpenerBrandsRe
 		localVarReturnValue  []OpenerIntercomBrand
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpenerAPIService.OpenerBrandsResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpenerAPIService.GetOpenerBrands")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -222,25 +222,25 @@ func (a *OpenerAPIService) OpenerBrandsResourceGetGetExecute(r ApiOpenerBrandsRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiOpenerIntercomResourceGetGetRequest struct {
+type ApiGetOpenerIntercomRequest struct {
 	ctx context.Context
 	ApiService *OpenerAPIService
 	intercomId int32
 }
 
-func (r ApiOpenerIntercomResourceGetGetRequest) Execute() (*OpenerIntercomModel, *http.Response, error) {
-	return r.ApiService.OpenerIntercomResourceGetGetExecute(r)
+func (r ApiGetOpenerIntercomRequest) Execute() (*OpenerIntercomModel, *http.Response, error) {
+	return r.ApiService.GetOpenerIntercomExecute(r)
 }
 
 /*
-OpenerIntercomResourceGetGet Get an intercom model
+GetOpenerIntercom Get an intercom model
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param intercomId The intercom ID
- @return ApiOpenerIntercomResourceGetGetRequest
+ @return ApiGetOpenerIntercomRequest
 */
-func (a *OpenerAPIService) OpenerIntercomResourceGetGet(ctx context.Context, intercomId int32) ApiOpenerIntercomResourceGetGetRequest {
-	return ApiOpenerIntercomResourceGetGetRequest{
+func (a *OpenerAPIService) GetOpenerIntercom(ctx context.Context, intercomId int32) ApiGetOpenerIntercomRequest {
+	return ApiGetOpenerIntercomRequest{
 		ApiService: a,
 		ctx: ctx,
 		intercomId: intercomId,
@@ -249,7 +249,7 @@ func (a *OpenerAPIService) OpenerIntercomResourceGetGet(ctx context.Context, int
 
 // Execute executes the request
 //  @return OpenerIntercomModel
-func (a *OpenerAPIService) OpenerIntercomResourceGetGetExecute(r ApiOpenerIntercomResourceGetGetRequest) (*OpenerIntercomModel, *http.Response, error) {
+func (a *OpenerAPIService) GetOpenerIntercomExecute(r ApiGetOpenerIntercomRequest) (*OpenerIntercomModel, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -257,7 +257,7 @@ func (a *OpenerAPIService) OpenerIntercomResourceGetGetExecute(r ApiOpenerInterc
 		localVarReturnValue  *OpenerIntercomModel
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpenerAPIService.OpenerIntercomResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpenerAPIService.GetOpenerIntercom")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -323,7 +323,7 @@ func (a *OpenerAPIService) OpenerIntercomResourceGetGetExecute(r ApiOpenerInterc
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiOpenerIntercomsResourceGetGetRequest struct {
+type ApiGetOpenerIntercomsRequest struct {
 	ctx context.Context
 	ApiService *OpenerAPIService
 	brandId *int32
@@ -332,35 +332,35 @@ type ApiOpenerIntercomsResourceGetGetRequest struct {
 }
 
 // Filter for brandId. Required if &#39;recentlyChanged&#39; is not set
-func (r ApiOpenerIntercomsResourceGetGetRequest) BrandId(brandId int32) ApiOpenerIntercomsResourceGetGetRequest {
+func (r ApiGetOpenerIntercomsRequest) BrandId(brandId int32) ApiGetOpenerIntercomsRequest {
 	r.brandId = &brandId
 	return r
 }
 
 // If true, return intercoms ignoring their verified value
-func (r ApiOpenerIntercomsResourceGetGetRequest) IgnoreVerified(ignoreVerified bool) ApiOpenerIntercomsResourceGetGetRequest {
+func (r ApiGetOpenerIntercomsRequest) IgnoreVerified(ignoreVerified bool) ApiGetOpenerIntercomsRequest {
 	r.ignoreVerified = &ignoreVerified
 	return r
 }
 
 // If true, return all intercoms which recently were updated
-func (r ApiOpenerIntercomsResourceGetGetRequest) RecentlyChanged(recentlyChanged bool) ApiOpenerIntercomsResourceGetGetRequest {
+func (r ApiGetOpenerIntercomsRequest) RecentlyChanged(recentlyChanged bool) ApiGetOpenerIntercomsRequest {
 	r.recentlyChanged = &recentlyChanged
 	return r
 }
 
-func (r ApiOpenerIntercomsResourceGetGetRequest) Execute() ([]OpenerIntercomModel, *http.Response, error) {
-	return r.ApiService.OpenerIntercomsResourceGetGetExecute(r)
+func (r ApiGetOpenerIntercomsRequest) Execute() ([]OpenerIntercomModel, *http.Response, error) {
+	return r.ApiService.GetOpenerIntercomsExecute(r)
 }
 
 /*
-OpenerIntercomsResourceGetGet Get a list of intercom models
+GetOpenerIntercoms Get a list of intercom models
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiOpenerIntercomsResourceGetGetRequest
+ @return ApiGetOpenerIntercomsRequest
 */
-func (a *OpenerAPIService) OpenerIntercomsResourceGetGet(ctx context.Context) ApiOpenerIntercomsResourceGetGetRequest {
-	return ApiOpenerIntercomsResourceGetGetRequest{
+func (a *OpenerAPIService) GetOpenerIntercoms(ctx context.Context) ApiGetOpenerIntercomsRequest {
+	return ApiGetOpenerIntercomsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -368,7 +368,7 @@ func (a *OpenerAPIService) OpenerIntercomsResourceGetGet(ctx context.Context) Ap
 
 // Execute executes the request
 //  @return []OpenerIntercomModel
-func (a *OpenerAPIService) OpenerIntercomsResourceGetGetExecute(r ApiOpenerIntercomsResourceGetGetRequest) ([]OpenerIntercomModel, *http.Response, error) {
+func (a *OpenerAPIService) GetOpenerIntercomsExecute(r ApiGetOpenerIntercomsRequest) ([]OpenerIntercomModel, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -376,7 +376,7 @@ func (a *OpenerAPIService) OpenerIntercomsResourceGetGetExecute(r ApiOpenerInter
 		localVarReturnValue  []OpenerIntercomModel
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpenerAPIService.OpenerIntercomsResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpenerAPIService.GetOpenerIntercoms")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

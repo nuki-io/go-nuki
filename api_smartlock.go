@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 0.0
+API version: 3.8.1
 Contact: contact@nuki.io
 */
 
@@ -24,825 +24,25 @@ import (
 // SmartlockAPIService SmartlockAPI service
 type SmartlockAPIService service
 
-type ApiSmartdoorAdvancedConfigResourcePostPostRequest struct {
-	ctx context.Context
-	ApiService *SmartlockAPIService
-	smartlockId int32
-	body *SmartlockSmartdoorAdvancedConfig
-}
-
-// Smartdoor advanced config update representation
-func (r ApiSmartdoorAdvancedConfigResourcePostPostRequest) Body(body SmartlockSmartdoorAdvancedConfig) ApiSmartdoorAdvancedConfigResourcePostPostRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiSmartdoorAdvancedConfigResourcePostPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SmartdoorAdvancedConfigResourcePostPostExecute(r)
-}
-
-/*
-SmartdoorAdvancedConfigResourcePostPost Updates a smartdoor advanced config
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartdoor id
- @return ApiSmartdoorAdvancedConfigResourcePostPostRequest
-*/
-func (a *SmartlockAPIService) SmartdoorAdvancedConfigResourcePostPost(ctx context.Context, smartlockId int32) ApiSmartdoorAdvancedConfigResourcePostPostRequest {
-	return ApiSmartdoorAdvancedConfigResourcePostPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		smartlockId: smartlockId,
-	}
-}
-
-// Execute executes the request
-func (a *SmartlockAPIService) SmartdoorAdvancedConfigResourcePostPostExecute(r ApiSmartdoorAdvancedConfigResourcePostPostRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.SmartdoorAdvancedConfigResourcePostPost")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/smartlock/{smartlockId}/advanced/smartdoorconfig"
-	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiSmartlockActionResourcePostPostRequest struct {
-	ctx context.Context
-	ApiService *SmartlockAPIService
-	smartlockId string
-	body *SmartlockAction
-}
-
-// Smartlock action representation
-func (r ApiSmartlockActionResourcePostPostRequest) Body(body SmartlockAction) ApiSmartlockActionResourcePostPostRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiSmartlockActionResourcePostPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SmartlockActionResourcePostPostExecute(r)
-}
-
-/*
-SmartlockActionResourcePostPost Lock & unlock a smartlock with options
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
- @return ApiSmartlockActionResourcePostPostRequest
-*/
-func (a *SmartlockAPIService) SmartlockActionResourcePostPost(ctx context.Context, smartlockId string) ApiSmartlockActionResourcePostPostRequest {
-	return ApiSmartlockActionResourcePostPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		smartlockId: smartlockId,
-	}
-}
-
-// Execute executes the request
-func (a *SmartlockAPIService) SmartlockActionResourcePostPostExecute(r ApiSmartlockActionResourcePostPostRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.SmartlockActionResourcePostPost")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/smartlock/{smartlockId}/action"
-	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiSmartlockAdminPinResourcePostPostRequest struct {
-	ctx context.Context
-	ApiService *SmartlockAPIService
-	smartlockId int32
-	body *SmartlockAdminPinUpdate
-}
-
-// Smartlock admin pin update representation
-func (r ApiSmartlockAdminPinResourcePostPostRequest) Body(body SmartlockAdminPinUpdate) ApiSmartlockAdminPinResourcePostPostRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiSmartlockAdminPinResourcePostPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SmartlockAdminPinResourcePostPostExecute(r)
-}
-
-/*
-SmartlockAdminPinResourcePostPost Updates a smartlock admin pin
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
- @return ApiSmartlockAdminPinResourcePostPostRequest
-*/
-func (a *SmartlockAPIService) SmartlockAdminPinResourcePostPost(ctx context.Context, smartlockId int32) ApiSmartlockAdminPinResourcePostPostRequest {
-	return ApiSmartlockAdminPinResourcePostPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		smartlockId: smartlockId,
-	}
-}
-
-// Execute executes the request
-func (a *SmartlockAPIService) SmartlockAdminPinResourcePostPostExecute(r ApiSmartlockAdminPinResourcePostPostRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.SmartlockAdminPinResourcePostPost")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/smartlock/{smartlockId}/admin/pin"
-	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiSmartlockAdvancedConfigResourcePostPostRequest struct {
-	ctx context.Context
-	ApiService *SmartlockAPIService
-	smartlockId int32
-	body *SmartlockAdvancedConfig
-}
-
-// Smartlock config update representation
-func (r ApiSmartlockAdvancedConfigResourcePostPostRequest) Body(body SmartlockAdvancedConfig) ApiSmartlockAdvancedConfigResourcePostPostRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiSmartlockAdvancedConfigResourcePostPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SmartlockAdvancedConfigResourcePostPostExecute(r)
-}
-
-/*
-SmartlockAdvancedConfigResourcePostPost Updates a smartlock advanced config
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
- @return ApiSmartlockAdvancedConfigResourcePostPostRequest
-*/
-func (a *SmartlockAPIService) SmartlockAdvancedConfigResourcePostPost(ctx context.Context, smartlockId int32) ApiSmartlockAdvancedConfigResourcePostPostRequest {
-	return ApiSmartlockAdvancedConfigResourcePostPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		smartlockId: smartlockId,
-	}
-}
-
-// Execute executes the request
-func (a *SmartlockAPIService) SmartlockAdvancedConfigResourcePostPostExecute(r ApiSmartlockAdvancedConfigResourcePostPostRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.SmartlockAdvancedConfigResourcePostPost")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/smartlock/{smartlockId}/advanced/config"
-	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiSmartlockBulkWebConfigResourcePostPostRequest struct {
-	ctx context.Context
-	ApiService *SmartlockAPIService
-	body *BulkWebConfigRequest
-}
-
-// Smartlocks web config update representation
-func (r ApiSmartlockBulkWebConfigResourcePostPostRequest) Body(body BulkWebConfigRequest) ApiSmartlockBulkWebConfigResourcePostPostRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiSmartlockBulkWebConfigResourcePostPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SmartlockBulkWebConfigResourcePostPostExecute(r)
-}
-
-/*
-SmartlockBulkWebConfigResourcePostPost Updates the web config for a group of smartlocks
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSmartlockBulkWebConfigResourcePostPostRequest
-*/
-func (a *SmartlockAPIService) SmartlockBulkWebConfigResourcePostPost(ctx context.Context) ApiSmartlockBulkWebConfigResourcePostPostRequest {
-	return ApiSmartlockBulkWebConfigResourcePostPostRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-func (a *SmartlockAPIService) SmartlockBulkWebConfigResourcePostPostExecute(r ApiSmartlockBulkWebConfigResourcePostPostRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.SmartlockBulkWebConfigResourcePostPost")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/bulk-web-config"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiSmartlockConfigResourcePostPostRequest struct {
-	ctx context.Context
-	ApiService *SmartlockAPIService
-	smartlockId int32
-	body *SmartlockConfig
-}
-
-// Smartlock config update representation
-func (r ApiSmartlockConfigResourcePostPostRequest) Body(body SmartlockConfig) ApiSmartlockConfigResourcePostPostRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiSmartlockConfigResourcePostPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SmartlockConfigResourcePostPostExecute(r)
-}
-
-/*
-SmartlockConfigResourcePostPost Updates a smartlock config
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
- @return ApiSmartlockConfigResourcePostPostRequest
-*/
-func (a *SmartlockAPIService) SmartlockConfigResourcePostPost(ctx context.Context, smartlockId int32) ApiSmartlockConfigResourcePostPostRequest {
-	return ApiSmartlockConfigResourcePostPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		smartlockId: smartlockId,
-	}
-}
-
-// Execute executes the request
-func (a *SmartlockAPIService) SmartlockConfigResourcePostPostExecute(r ApiSmartlockConfigResourcePostPostRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.SmartlockConfigResourcePostPost")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/smartlock/{smartlockId}/config"
-	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiSmartlockLockActionResourcePostLockPostRequest struct {
-	ctx context.Context
-	ApiService *SmartlockAPIService
-	smartlockId string
-}
-
-func (r ApiSmartlockLockActionResourcePostLockPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SmartlockLockActionResourcePostLockPostExecute(r)
-}
-
-/*
-SmartlockLockActionResourcePostLockPost Lock a smartlock
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
- @return ApiSmartlockLockActionResourcePostLockPostRequest
-*/
-func (a *SmartlockAPIService) SmartlockLockActionResourcePostLockPost(ctx context.Context, smartlockId string) ApiSmartlockLockActionResourcePostLockPostRequest {
-	return ApiSmartlockLockActionResourcePostLockPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		smartlockId: smartlockId,
-	}
-}
-
-// Execute executes the request
-func (a *SmartlockAPIService) SmartlockLockActionResourcePostLockPostExecute(r ApiSmartlockLockActionResourcePostLockPostRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.SmartlockLockActionResourcePostLockPost")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/smartlock/{smartlockId}/action/lock"
-	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiSmartlockOpenerAdvancedConfigResourcePostPostRequest struct {
-	ctx context.Context
-	ApiService *SmartlockAPIService
-	smartlockId int32
-	body *SmartlockOpenerAdvancedConfig
-}
-
-// Opener advanced config update representation
-func (r ApiSmartlockOpenerAdvancedConfigResourcePostPostRequest) Body(body SmartlockOpenerAdvancedConfig) ApiSmartlockOpenerAdvancedConfigResourcePostPostRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiSmartlockOpenerAdvancedConfigResourcePostPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SmartlockOpenerAdvancedConfigResourcePostPostExecute(r)
-}
-
-/*
-SmartlockOpenerAdvancedConfigResourcePostPost Updates an opener advanced config
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock (opener) id
- @return ApiSmartlockOpenerAdvancedConfigResourcePostPostRequest
-*/
-func (a *SmartlockAPIService) SmartlockOpenerAdvancedConfigResourcePostPost(ctx context.Context, smartlockId int32) ApiSmartlockOpenerAdvancedConfigResourcePostPostRequest {
-	return ApiSmartlockOpenerAdvancedConfigResourcePostPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		smartlockId: smartlockId,
-	}
-}
-
-// Execute executes the request
-func (a *SmartlockAPIService) SmartlockOpenerAdvancedConfigResourcePostPostExecute(r ApiSmartlockOpenerAdvancedConfigResourcePostPostRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.SmartlockOpenerAdvancedConfigResourcePostPost")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/smartlock/{smartlockId}/advanced/openerconfig"
-	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiSmartlockResourceDeleteDeleteRequest struct {
+type ApiDeleteSmartlockRequest struct {
 	ctx context.Context
 	ApiService *SmartlockAPIService
 	smartlockId int32
 }
 
-func (r ApiSmartlockResourceDeleteDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SmartlockResourceDeleteDeleteExecute(r)
+func (r ApiDeleteSmartlockRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteSmartlockExecute(r)
 }
 
 /*
-SmartlockResourceDeleteDelete Delete a smartlock
+DeleteSmartlock Delete a smartlock
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param smartlockId The smartlock id
- @return ApiSmartlockResourceDeleteDeleteRequest
+ @return ApiDeleteSmartlockRequest
 */
-func (a *SmartlockAPIService) SmartlockResourceDeleteDelete(ctx context.Context, smartlockId int32) ApiSmartlockResourceDeleteDeleteRequest {
-	return ApiSmartlockResourceDeleteDeleteRequest{
+func (a *SmartlockAPIService) DeleteSmartlock(ctx context.Context, smartlockId int32) ApiDeleteSmartlockRequest {
+	return ApiDeleteSmartlockRequest{
 		ApiService: a,
 		ctx: ctx,
 		smartlockId: smartlockId,
@@ -850,14 +50,14 @@ func (a *SmartlockAPIService) SmartlockResourceDeleteDelete(ctx context.Context,
 }
 
 // Execute executes the request
-func (a *SmartlockAPIService) SmartlockResourceDeleteDeleteExecute(r ApiSmartlockResourceDeleteDeleteRequest) (*http.Response, error) {
+func (a *SmartlockAPIService) DeleteSmartlockExecute(r ApiDeleteSmartlockRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.SmartlockResourceDeleteDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.DeleteSmartlock")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -914,25 +114,25 @@ func (a *SmartlockAPIService) SmartlockResourceDeleteDeleteExecute(r ApiSmartloc
 	return localVarHTTPResponse, nil
 }
 
-type ApiSmartlockResourceGetGetRequest struct {
+type ApiGetSmartlockRequest struct {
 	ctx context.Context
 	ApiService *SmartlockAPIService
 	smartlockId int32
 }
 
-func (r ApiSmartlockResourceGetGetRequest) Execute() (*Smartlock, *http.Response, error) {
-	return r.ApiService.SmartlockResourceGetGetExecute(r)
+func (r ApiGetSmartlockRequest) Execute() (*Smartlock, *http.Response, error) {
+	return r.ApiService.GetSmartlockExecute(r)
 }
 
 /*
-SmartlockResourceGetGet Get a smartlock
+GetSmartlock Get a smartlock
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param smartlockId The smartlock id
- @return ApiSmartlockResourceGetGetRequest
+ @return ApiGetSmartlockRequest
 */
-func (a *SmartlockAPIService) SmartlockResourceGetGet(ctx context.Context, smartlockId int32) ApiSmartlockResourceGetGetRequest {
-	return ApiSmartlockResourceGetGetRequest{
+func (a *SmartlockAPIService) GetSmartlock(ctx context.Context, smartlockId int32) ApiGetSmartlockRequest {
+	return ApiGetSmartlockRequest{
 		ApiService: a,
 		ctx: ctx,
 		smartlockId: smartlockId,
@@ -941,7 +141,7 @@ func (a *SmartlockAPIService) SmartlockResourceGetGet(ctx context.Context, smart
 
 // Execute executes the request
 //  @return Smartlock
-func (a *SmartlockAPIService) SmartlockResourceGetGetExecute(r ApiSmartlockResourceGetGetRequest) (*Smartlock, *http.Response, error) {
+func (a *SmartlockAPIService) GetSmartlockExecute(r ApiGetSmartlockRequest) (*Smartlock, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -949,7 +149,7 @@ func (a *SmartlockAPIService) SmartlockResourceGetGetExecute(r ApiSmartlockResou
 		localVarReturnValue  *Smartlock
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.SmartlockResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.GetSmartlock")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1015,391 +215,7 @@ func (a *SmartlockAPIService) SmartlockResourceGetGetExecute(r ApiSmartlockResou
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSmartlockResourcePostPostRequest struct {
-	ctx context.Context
-	ApiService *SmartlockAPIService
-	smartlockId int32
-	body *SmartlockUpdate
-}
-
-// Smartlock update representation
-func (r ApiSmartlockResourcePostPostRequest) Body(body SmartlockUpdate) ApiSmartlockResourcePostPostRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiSmartlockResourcePostPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SmartlockResourcePostPostExecute(r)
-}
-
-/*
-SmartlockResourcePostPost Update a smartlock
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
- @return ApiSmartlockResourcePostPostRequest
-*/
-func (a *SmartlockAPIService) SmartlockResourcePostPost(ctx context.Context, smartlockId int32) ApiSmartlockResourcePostPostRequest {
-	return ApiSmartlockResourcePostPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		smartlockId: smartlockId,
-	}
-}
-
-// Execute executes the request
-func (a *SmartlockAPIService) SmartlockResourcePostPostExecute(r ApiSmartlockResourcePostPostRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.SmartlockResourcePostPost")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/smartlock/{smartlockId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiSmartlockSyncResourcePostPostRequest struct {
-	ctx context.Context
-	ApiService *SmartlockAPIService
-	smartlockId string
-}
-
-func (r ApiSmartlockSyncResourcePostPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SmartlockSyncResourcePostPostExecute(r)
-}
-
-/*
-SmartlockSyncResourcePostPost Syncs a smartlock
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
- @return ApiSmartlockSyncResourcePostPostRequest
-*/
-func (a *SmartlockAPIService) SmartlockSyncResourcePostPost(ctx context.Context, smartlockId string) ApiSmartlockSyncResourcePostPostRequest {
-	return ApiSmartlockSyncResourcePostPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		smartlockId: smartlockId,
-	}
-}
-
-// Execute executes the request
-func (a *SmartlockAPIService) SmartlockSyncResourcePostPostExecute(r ApiSmartlockSyncResourcePostPostRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.SmartlockSyncResourcePostPost")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/smartlock/{smartlockId}/sync"
-	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiSmartlockUnlockActionResourcePostUnlockPostRequest struct {
-	ctx context.Context
-	ApiService *SmartlockAPIService
-	smartlockId string
-}
-
-func (r ApiSmartlockUnlockActionResourcePostUnlockPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SmartlockUnlockActionResourcePostUnlockPostExecute(r)
-}
-
-/*
-SmartlockUnlockActionResourcePostUnlockPost Unlock a smartlock
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
- @return ApiSmartlockUnlockActionResourcePostUnlockPostRequest
-*/
-func (a *SmartlockAPIService) SmartlockUnlockActionResourcePostUnlockPost(ctx context.Context, smartlockId string) ApiSmartlockUnlockActionResourcePostUnlockPostRequest {
-	return ApiSmartlockUnlockActionResourcePostUnlockPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		smartlockId: smartlockId,
-	}
-}
-
-// Execute executes the request
-func (a *SmartlockAPIService) SmartlockUnlockActionResourcePostUnlockPostExecute(r ApiSmartlockUnlockActionResourcePostUnlockPostRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.SmartlockUnlockActionResourcePostUnlockPost")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/smartlock/{smartlockId}/action/unlock"
-	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiSmartlockWebConfigResourcePostPostRequest struct {
-	ctx context.Context
-	ApiService *SmartlockAPIService
-	smartlockId int32
-	body *SmartlockWebConfig
-}
-
-// Smartlock web config update representation
-func (r ApiSmartlockWebConfigResourcePostPostRequest) Body(body SmartlockWebConfig) ApiSmartlockWebConfigResourcePostPostRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiSmartlockWebConfigResourcePostPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SmartlockWebConfigResourcePostPostExecute(r)
-}
-
-/*
-SmartlockWebConfigResourcePostPost Updates a smartlock web config
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
- @return ApiSmartlockWebConfigResourcePostPostRequest
-*/
-func (a *SmartlockAPIService) SmartlockWebConfigResourcePostPost(ctx context.Context, smartlockId int32) ApiSmartlockWebConfigResourcePostPostRequest {
-	return ApiSmartlockWebConfigResourcePostPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		smartlockId: smartlockId,
-	}
-}
-
-// Execute executes the request
-func (a *SmartlockAPIService) SmartlockWebConfigResourcePostPostExecute(r ApiSmartlockWebConfigResourcePostPostRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.SmartlockWebConfigResourcePostPost")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/smartlock/{smartlockId}/web/config"
-	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiSmartlocksResourceGetGetRequest struct {
+type ApiGetSmartlocksRequest struct {
 	ctx context.Context
 	ApiService *SmartlockAPIService
 	authId *int32
@@ -1407,29 +223,29 @@ type ApiSmartlocksResourceGetGetRequest struct {
 }
 
 // Filter for authId
-func (r ApiSmartlocksResourceGetGetRequest) AuthId(authId int32) ApiSmartlocksResourceGetGetRequest {
+func (r ApiGetSmartlocksRequest) AuthId(authId int32) ApiGetSmartlocksRequest {
 	r.authId = &authId
 	return r
 }
 
 // Filter for type
-func (r ApiSmartlocksResourceGetGetRequest) Type_(type_ int32) ApiSmartlocksResourceGetGetRequest {
+func (r ApiGetSmartlocksRequest) Type_(type_ int32) ApiGetSmartlocksRequest {
 	r.type_ = &type_
 	return r
 }
 
-func (r ApiSmartlocksResourceGetGetRequest) Execute() ([]Smartlock, *http.Response, error) {
-	return r.ApiService.SmartlocksResourceGetGetExecute(r)
+func (r ApiGetSmartlocksRequest) Execute() ([]Smartlock, *http.Response, error) {
+	return r.ApiService.GetSmartlocksExecute(r)
 }
 
 /*
-SmartlocksResourceGetGet Get a list of smartlocks
+GetSmartlocks Get a list of smartlocks
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSmartlocksResourceGetGetRequest
+ @return ApiGetSmartlocksRequest
 */
-func (a *SmartlockAPIService) SmartlocksResourceGetGet(ctx context.Context) ApiSmartlocksResourceGetGetRequest {
-	return ApiSmartlocksResourceGetGetRequest{
+func (a *SmartlockAPIService) GetSmartlocks(ctx context.Context) ApiGetSmartlocksRequest {
+	return ApiGetSmartlocksRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1437,7 +253,7 @@ func (a *SmartlockAPIService) SmartlocksResourceGetGet(ctx context.Context) ApiS
 
 // Execute executes the request
 //  @return []Smartlock
-func (a *SmartlockAPIService) SmartlocksResourceGetGetExecute(r ApiSmartlocksResourceGetGetRequest) ([]Smartlock, *http.Response, error) {
+func (a *SmartlockAPIService) GetSmartlocksExecute(r ApiGetSmartlocksRequest) ([]Smartlock, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1445,7 +261,7 @@ func (a *SmartlockAPIService) SmartlocksResourceGetGetExecute(r ApiSmartlocksRes
 		localVarReturnValue  []Smartlock
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.SmartlocksResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.GetSmartlocks")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1514,4 +330,1188 @@ func (a *SmartlockAPIService) SmartlocksResourceGetGetExecute(r ApiSmartlocksRes
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPostLockSmartlockLockActionRequest struct {
+	ctx context.Context
+	ApiService *SmartlockAPIService
+	smartlockId string
+}
+
+func (r ApiPostLockSmartlockLockActionRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostLockSmartlockLockActionExecute(r)
+}
+
+/*
+PostLockSmartlockLockAction Lock a smartlock
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param smartlockId The smartlock id
+ @return ApiPostLockSmartlockLockActionRequest
+*/
+func (a *SmartlockAPIService) PostLockSmartlockLockAction(ctx context.Context, smartlockId string) ApiPostLockSmartlockLockActionRequest {
+	return ApiPostLockSmartlockLockActionRequest{
+		ApiService: a,
+		ctx: ctx,
+		smartlockId: smartlockId,
+	}
+}
+
+// Execute executes the request
+func (a *SmartlockAPIService) PostLockSmartlockLockActionExecute(r ApiPostLockSmartlockLockActionRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.PostLockSmartlockLockAction")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/smartlock/{smartlockId}/action/lock"
+	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiPostSmartdoorAdvancedConfigRequest struct {
+	ctx context.Context
+	ApiService *SmartlockAPIService
+	smartlockId int32
+	body *SmartlockSmartdoorAdvancedConfig
+}
+
+// Smartdoor advanced config update representation
+func (r ApiPostSmartdoorAdvancedConfigRequest) Body(body SmartlockSmartdoorAdvancedConfig) ApiPostSmartdoorAdvancedConfigRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiPostSmartdoorAdvancedConfigRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostSmartdoorAdvancedConfigExecute(r)
+}
+
+/*
+PostSmartdoorAdvancedConfig Updates a smartdoor advanced config
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param smartlockId The smartdoor id
+ @return ApiPostSmartdoorAdvancedConfigRequest
+*/
+func (a *SmartlockAPIService) PostSmartdoorAdvancedConfig(ctx context.Context, smartlockId int32) ApiPostSmartdoorAdvancedConfigRequest {
+	return ApiPostSmartdoorAdvancedConfigRequest{
+		ApiService: a,
+		ctx: ctx,
+		smartlockId: smartlockId,
+	}
+}
+
+// Execute executes the request
+func (a *SmartlockAPIService) PostSmartdoorAdvancedConfigExecute(r ApiPostSmartdoorAdvancedConfigRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.PostSmartdoorAdvancedConfig")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/smartlock/{smartlockId}/advanced/smartdoorconfig"
+	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiPostSmartlockRequest struct {
+	ctx context.Context
+	ApiService *SmartlockAPIService
+	smartlockId int32
+	body *SmartlockUpdate
+}
+
+// Smartlock update representation
+func (r ApiPostSmartlockRequest) Body(body SmartlockUpdate) ApiPostSmartlockRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiPostSmartlockRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostSmartlockExecute(r)
+}
+
+/*
+PostSmartlock Update a smartlock
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param smartlockId The smartlock id
+ @return ApiPostSmartlockRequest
+*/
+func (a *SmartlockAPIService) PostSmartlock(ctx context.Context, smartlockId int32) ApiPostSmartlockRequest {
+	return ApiPostSmartlockRequest{
+		ApiService: a,
+		ctx: ctx,
+		smartlockId: smartlockId,
+	}
+}
+
+// Execute executes the request
+func (a *SmartlockAPIService) PostSmartlockExecute(r ApiPostSmartlockRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.PostSmartlock")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/smartlock/{smartlockId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiPostSmartlockActionRequest struct {
+	ctx context.Context
+	ApiService *SmartlockAPIService
+	smartlockId string
+	body *SmartlockAction
+}
+
+// Smartlock action representation
+func (r ApiPostSmartlockActionRequest) Body(body SmartlockAction) ApiPostSmartlockActionRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiPostSmartlockActionRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostSmartlockActionExecute(r)
+}
+
+/*
+PostSmartlockAction Lock & unlock a smartlock with options
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param smartlockId The smartlock id
+ @return ApiPostSmartlockActionRequest
+*/
+func (a *SmartlockAPIService) PostSmartlockAction(ctx context.Context, smartlockId string) ApiPostSmartlockActionRequest {
+	return ApiPostSmartlockActionRequest{
+		ApiService: a,
+		ctx: ctx,
+		smartlockId: smartlockId,
+	}
+}
+
+// Execute executes the request
+func (a *SmartlockAPIService) PostSmartlockActionExecute(r ApiPostSmartlockActionRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.PostSmartlockAction")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/smartlock/{smartlockId}/action"
+	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiPostSmartlockAdminPinRequest struct {
+	ctx context.Context
+	ApiService *SmartlockAPIService
+	smartlockId int32
+	body *SmartlockAdminPinUpdate
+}
+
+// Smartlock admin pin update representation
+func (r ApiPostSmartlockAdminPinRequest) Body(body SmartlockAdminPinUpdate) ApiPostSmartlockAdminPinRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiPostSmartlockAdminPinRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostSmartlockAdminPinExecute(r)
+}
+
+/*
+PostSmartlockAdminPin Updates a smartlock admin pin
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param smartlockId The smartlock id
+ @return ApiPostSmartlockAdminPinRequest
+*/
+func (a *SmartlockAPIService) PostSmartlockAdminPin(ctx context.Context, smartlockId int32) ApiPostSmartlockAdminPinRequest {
+	return ApiPostSmartlockAdminPinRequest{
+		ApiService: a,
+		ctx: ctx,
+		smartlockId: smartlockId,
+	}
+}
+
+// Execute executes the request
+func (a *SmartlockAPIService) PostSmartlockAdminPinExecute(r ApiPostSmartlockAdminPinRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.PostSmartlockAdminPin")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/smartlock/{smartlockId}/admin/pin"
+	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiPostSmartlockAdvancedConfigRequest struct {
+	ctx context.Context
+	ApiService *SmartlockAPIService
+	smartlockId int32
+	body *SmartlockAdvancedConfig
+}
+
+// Smartlock config update representation
+func (r ApiPostSmartlockAdvancedConfigRequest) Body(body SmartlockAdvancedConfig) ApiPostSmartlockAdvancedConfigRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiPostSmartlockAdvancedConfigRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostSmartlockAdvancedConfigExecute(r)
+}
+
+/*
+PostSmartlockAdvancedConfig Updates a smartlock advanced config
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param smartlockId The smartlock id
+ @return ApiPostSmartlockAdvancedConfigRequest
+*/
+func (a *SmartlockAPIService) PostSmartlockAdvancedConfig(ctx context.Context, smartlockId int32) ApiPostSmartlockAdvancedConfigRequest {
+	return ApiPostSmartlockAdvancedConfigRequest{
+		ApiService: a,
+		ctx: ctx,
+		smartlockId: smartlockId,
+	}
+}
+
+// Execute executes the request
+func (a *SmartlockAPIService) PostSmartlockAdvancedConfigExecute(r ApiPostSmartlockAdvancedConfigRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.PostSmartlockAdvancedConfig")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/smartlock/{smartlockId}/advanced/config"
+	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiPostSmartlockBulkWebConfigRequest struct {
+	ctx context.Context
+	ApiService *SmartlockAPIService
+	body *BulkWebConfigRequest
+}
+
+// Smartlocks web config update representation
+func (r ApiPostSmartlockBulkWebConfigRequest) Body(body BulkWebConfigRequest) ApiPostSmartlockBulkWebConfigRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiPostSmartlockBulkWebConfigRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostSmartlockBulkWebConfigExecute(r)
+}
+
+/*
+PostSmartlockBulkWebConfig Updates the web config for a group of smartlocks
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPostSmartlockBulkWebConfigRequest
+*/
+func (a *SmartlockAPIService) PostSmartlockBulkWebConfig(ctx context.Context) ApiPostSmartlockBulkWebConfigRequest {
+	return ApiPostSmartlockBulkWebConfigRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+func (a *SmartlockAPIService) PostSmartlockBulkWebConfigExecute(r ApiPostSmartlockBulkWebConfigRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.PostSmartlockBulkWebConfig")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/bulk-web-config"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiPostSmartlockConfigRequest struct {
+	ctx context.Context
+	ApiService *SmartlockAPIService
+	smartlockId int32
+	body *SmartlockConfig
+}
+
+// Smartlock config update representation
+func (r ApiPostSmartlockConfigRequest) Body(body SmartlockConfig) ApiPostSmartlockConfigRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiPostSmartlockConfigRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostSmartlockConfigExecute(r)
+}
+
+/*
+PostSmartlockConfig Updates a smartlock config
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param smartlockId The smartlock id
+ @return ApiPostSmartlockConfigRequest
+*/
+func (a *SmartlockAPIService) PostSmartlockConfig(ctx context.Context, smartlockId int32) ApiPostSmartlockConfigRequest {
+	return ApiPostSmartlockConfigRequest{
+		ApiService: a,
+		ctx: ctx,
+		smartlockId: smartlockId,
+	}
+}
+
+// Execute executes the request
+func (a *SmartlockAPIService) PostSmartlockConfigExecute(r ApiPostSmartlockConfigRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.PostSmartlockConfig")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/smartlock/{smartlockId}/config"
+	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiPostSmartlockOpenerAdvancedConfigRequest struct {
+	ctx context.Context
+	ApiService *SmartlockAPIService
+	smartlockId int32
+	body *SmartlockOpenerAdvancedConfig
+}
+
+// Opener advanced config update representation
+func (r ApiPostSmartlockOpenerAdvancedConfigRequest) Body(body SmartlockOpenerAdvancedConfig) ApiPostSmartlockOpenerAdvancedConfigRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiPostSmartlockOpenerAdvancedConfigRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostSmartlockOpenerAdvancedConfigExecute(r)
+}
+
+/*
+PostSmartlockOpenerAdvancedConfig Updates an opener advanced config
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param smartlockId The smartlock (opener) id
+ @return ApiPostSmartlockOpenerAdvancedConfigRequest
+*/
+func (a *SmartlockAPIService) PostSmartlockOpenerAdvancedConfig(ctx context.Context, smartlockId int32) ApiPostSmartlockOpenerAdvancedConfigRequest {
+	return ApiPostSmartlockOpenerAdvancedConfigRequest{
+		ApiService: a,
+		ctx: ctx,
+		smartlockId: smartlockId,
+	}
+}
+
+// Execute executes the request
+func (a *SmartlockAPIService) PostSmartlockOpenerAdvancedConfigExecute(r ApiPostSmartlockOpenerAdvancedConfigRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.PostSmartlockOpenerAdvancedConfig")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/smartlock/{smartlockId}/advanced/openerconfig"
+	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiPostSmartlockSyncRequest struct {
+	ctx context.Context
+	ApiService *SmartlockAPIService
+	smartlockId string
+}
+
+func (r ApiPostSmartlockSyncRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostSmartlockSyncExecute(r)
+}
+
+/*
+PostSmartlockSync Syncs a smartlock
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param smartlockId The smartlock id
+ @return ApiPostSmartlockSyncRequest
+*/
+func (a *SmartlockAPIService) PostSmartlockSync(ctx context.Context, smartlockId string) ApiPostSmartlockSyncRequest {
+	return ApiPostSmartlockSyncRequest{
+		ApiService: a,
+		ctx: ctx,
+		smartlockId: smartlockId,
+	}
+}
+
+// Execute executes the request
+func (a *SmartlockAPIService) PostSmartlockSyncExecute(r ApiPostSmartlockSyncRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.PostSmartlockSync")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/smartlock/{smartlockId}/sync"
+	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiPostSmartlockWebConfigRequest struct {
+	ctx context.Context
+	ApiService *SmartlockAPIService
+	smartlockId int32
+	body *SmartlockWebConfig
+}
+
+// Smartlock web config update representation
+func (r ApiPostSmartlockWebConfigRequest) Body(body SmartlockWebConfig) ApiPostSmartlockWebConfigRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiPostSmartlockWebConfigRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostSmartlockWebConfigExecute(r)
+}
+
+/*
+PostSmartlockWebConfig Updates a smartlock web config
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param smartlockId The smartlock id
+ @return ApiPostSmartlockWebConfigRequest
+*/
+func (a *SmartlockAPIService) PostSmartlockWebConfig(ctx context.Context, smartlockId int32) ApiPostSmartlockWebConfigRequest {
+	return ApiPostSmartlockWebConfigRequest{
+		ApiService: a,
+		ctx: ctx,
+		smartlockId: smartlockId,
+	}
+}
+
+// Execute executes the request
+func (a *SmartlockAPIService) PostSmartlockWebConfigExecute(r ApiPostSmartlockWebConfigRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.PostSmartlockWebConfig")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/smartlock/{smartlockId}/web/config"
+	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiPostUnlockSmartlockUnlockActionRequest struct {
+	ctx context.Context
+	ApiService *SmartlockAPIService
+	smartlockId string
+}
+
+func (r ApiPostUnlockSmartlockUnlockActionRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostUnlockSmartlockUnlockActionExecute(r)
+}
+
+/*
+PostUnlockSmartlockUnlockAction Unlock a smartlock
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param smartlockId The smartlock id
+ @return ApiPostUnlockSmartlockUnlockActionRequest
+*/
+func (a *SmartlockAPIService) PostUnlockSmartlockUnlockAction(ctx context.Context, smartlockId string) ApiPostUnlockSmartlockUnlockActionRequest {
+	return ApiPostUnlockSmartlockUnlockActionRequest{
+		ApiService: a,
+		ctx: ctx,
+		smartlockId: smartlockId,
+	}
+}
+
+// Execute executes the request
+func (a *SmartlockAPIService) PostUnlockSmartlockUnlockActionExecute(r ApiPostUnlockSmartlockUnlockActionRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAPIService.PostUnlockSmartlockUnlockAction")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/smartlock/{smartlockId}/action/unlock"
+	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }

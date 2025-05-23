@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 0.0
+API version: 3.8.1
 Contact: contact@nuki.io
 */
 
@@ -24,7 +24,7 @@ import (
 // SmartlockLogAPIService SmartlockLogAPI service
 type SmartlockLogAPIService service
 
-type ApiSmartlockLogsResourceGetGetRequest struct {
+type ApiGetSmartlockLogsRequest struct {
 	ctx context.Context
 	ApiService *SmartlockLogAPIService
 	smartlockId int32
@@ -38,60 +38,60 @@ type ApiSmartlockLogsResourceGetGetRequest struct {
 }
 
 // Filter for auths
-func (r ApiSmartlockLogsResourceGetGetRequest) AuthId(authId string) ApiSmartlockLogsResourceGetGetRequest {
+func (r ApiGetSmartlockLogsRequest) AuthId(authId string) ApiGetSmartlockLogsRequest {
 	r.authId = &authId
 	return r
 }
 
 // Filter for account users
-func (r ApiSmartlockLogsResourceGetGetRequest) AccountUserId(accountUserId int32) ApiSmartlockLogsResourceGetGetRequest {
+func (r ApiGetSmartlockLogsRequest) AccountUserId(accountUserId int32) ApiGetSmartlockLogsRequest {
 	r.accountUserId = &accountUserId
 	return r
 }
 
 // Filter for date (RFC3339)
-func (r ApiSmartlockLogsResourceGetGetRequest) FromDate(fromDate string) ApiSmartlockLogsResourceGetGetRequest {
+func (r ApiGetSmartlockLogsRequest) FromDate(fromDate string) ApiGetSmartlockLogsRequest {
 	r.fromDate = &fromDate
 	return r
 }
 
 // Filter for date (RFC3339)
-func (r ApiSmartlockLogsResourceGetGetRequest) ToDate(toDate string) ApiSmartlockLogsResourceGetGetRequest {
+func (r ApiGetSmartlockLogsRequest) ToDate(toDate string) ApiGetSmartlockLogsRequest {
 	r.toDate = &toDate
 	return r
 }
 
 // Filter for action
-func (r ApiSmartlockLogsResourceGetGetRequest) Action(action int32) ApiSmartlockLogsResourceGetGetRequest {
+func (r ApiGetSmartlockLogsRequest) Action(action int32) ApiGetSmartlockLogsRequest {
 	r.action = &action
 	return r
 }
 
 // Filter for older logs
-func (r ApiSmartlockLogsResourceGetGetRequest) Id(id string) ApiSmartlockLogsResourceGetGetRequest {
+func (r ApiGetSmartlockLogsRequest) Id(id string) ApiGetSmartlockLogsRequest {
 	r.id = &id
 	return r
 }
 
 // Amount of logs (max: 50)
-func (r ApiSmartlockLogsResourceGetGetRequest) Limit(limit int32) ApiSmartlockLogsResourceGetGetRequest {
+func (r ApiGetSmartlockLogsRequest) Limit(limit int32) ApiGetSmartlockLogsRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiSmartlockLogsResourceGetGetRequest) Execute() ([]SmartlockLog, *http.Response, error) {
-	return r.ApiService.SmartlockLogsResourceGetGetExecute(r)
+func (r ApiGetSmartlockLogsRequest) Execute() ([]SmartlockLog, *http.Response, error) {
+	return r.ApiService.GetSmartlockLogsExecute(r)
 }
 
 /*
-SmartlockLogsResourceGetGet Get a list of smartlock logs
+GetSmartlockLogs Get a list of smartlock logs
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param smartlockId The smartlock id
- @return ApiSmartlockLogsResourceGetGetRequest
+ @return ApiGetSmartlockLogsRequest
 */
-func (a *SmartlockLogAPIService) SmartlockLogsResourceGetGet(ctx context.Context, smartlockId int32) ApiSmartlockLogsResourceGetGetRequest {
-	return ApiSmartlockLogsResourceGetGetRequest{
+func (a *SmartlockLogAPIService) GetSmartlockLogs(ctx context.Context, smartlockId int32) ApiGetSmartlockLogsRequest {
+	return ApiGetSmartlockLogsRequest{
 		ApiService: a,
 		ctx: ctx,
 		smartlockId: smartlockId,
@@ -100,7 +100,7 @@ func (a *SmartlockLogAPIService) SmartlockLogsResourceGetGet(ctx context.Context
 
 // Execute executes the request
 //  @return []SmartlockLog
-func (a *SmartlockLogAPIService) SmartlockLogsResourceGetGetExecute(r ApiSmartlockLogsResourceGetGetRequest) ([]SmartlockLog, *http.Response, error) {
+func (a *SmartlockLogAPIService) GetSmartlockLogsExecute(r ApiGetSmartlockLogsRequest) ([]SmartlockLog, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -108,7 +108,7 @@ func (a *SmartlockLogAPIService) SmartlockLogsResourceGetGetExecute(r ApiSmartlo
 		localVarReturnValue  []SmartlockLog
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockLogAPIService.SmartlockLogsResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockLogAPIService.GetSmartlockLogs")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -198,7 +198,7 @@ func (a *SmartlockLogAPIService) SmartlockLogsResourceGetGetExecute(r ApiSmartlo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSmartlocksLogsResourceGetGetRequest struct {
+type ApiGetSmartlocksLogsRequest struct {
 	ctx context.Context
 	ApiService *SmartlockLogAPIService
 	accountUserId *int32
@@ -210,53 +210,53 @@ type ApiSmartlocksLogsResourceGetGetRequest struct {
 }
 
 // Filter for account users
-func (r ApiSmartlocksLogsResourceGetGetRequest) AccountUserId(accountUserId int32) ApiSmartlocksLogsResourceGetGetRequest {
+func (r ApiGetSmartlocksLogsRequest) AccountUserId(accountUserId int32) ApiGetSmartlocksLogsRequest {
 	r.accountUserId = &accountUserId
 	return r
 }
 
 // Filter for date (RFC3339)
-func (r ApiSmartlocksLogsResourceGetGetRequest) FromDate(fromDate string) ApiSmartlocksLogsResourceGetGetRequest {
+func (r ApiGetSmartlocksLogsRequest) FromDate(fromDate string) ApiGetSmartlocksLogsRequest {
 	r.fromDate = &fromDate
 	return r
 }
 
 // Filter for date (RFC3339)
-func (r ApiSmartlocksLogsResourceGetGetRequest) ToDate(toDate string) ApiSmartlocksLogsResourceGetGetRequest {
+func (r ApiGetSmartlocksLogsRequest) ToDate(toDate string) ApiGetSmartlocksLogsRequest {
 	r.toDate = &toDate
 	return r
 }
 
 // Filter for action
-func (r ApiSmartlocksLogsResourceGetGetRequest) Action(action int32) ApiSmartlocksLogsResourceGetGetRequest {
+func (r ApiGetSmartlocksLogsRequest) Action(action int32) ApiGetSmartlocksLogsRequest {
 	r.action = &action
 	return r
 }
 
 // Filter for older logs
-func (r ApiSmartlocksLogsResourceGetGetRequest) Id(id string) ApiSmartlocksLogsResourceGetGetRequest {
+func (r ApiGetSmartlocksLogsRequest) Id(id string) ApiGetSmartlocksLogsRequest {
 	r.id = &id
 	return r
 }
 
 // Amount of logs (max: 50)
-func (r ApiSmartlocksLogsResourceGetGetRequest) Limit(limit int32) ApiSmartlocksLogsResourceGetGetRequest {
+func (r ApiGetSmartlocksLogsRequest) Limit(limit int32) ApiGetSmartlocksLogsRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiSmartlocksLogsResourceGetGetRequest) Execute() ([]SmartlockLog, *http.Response, error) {
-	return r.ApiService.SmartlocksLogsResourceGetGetExecute(r)
+func (r ApiGetSmartlocksLogsRequest) Execute() ([]SmartlockLog, *http.Response, error) {
+	return r.ApiService.GetSmartlocksLogsExecute(r)
 }
 
 /*
-SmartlocksLogsResourceGetGet Get a list of smartlock logs for all of your smartlocks
+GetSmartlocksLogs Get a list of smartlock logs for all of your smartlocks
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSmartlocksLogsResourceGetGetRequest
+ @return ApiGetSmartlocksLogsRequest
 */
-func (a *SmartlockLogAPIService) SmartlocksLogsResourceGetGet(ctx context.Context) ApiSmartlocksLogsResourceGetGetRequest {
-	return ApiSmartlocksLogsResourceGetGetRequest{
+func (a *SmartlockLogAPIService) GetSmartlocksLogs(ctx context.Context) ApiGetSmartlocksLogsRequest {
+	return ApiGetSmartlocksLogsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -264,7 +264,7 @@ func (a *SmartlockLogAPIService) SmartlocksLogsResourceGetGet(ctx context.Contex
 
 // Execute executes the request
 //  @return []SmartlockLog
-func (a *SmartlockLogAPIService) SmartlocksLogsResourceGetGetExecute(r ApiSmartlocksLogsResourceGetGetRequest) ([]SmartlockLog, *http.Response, error) {
+func (a *SmartlockLogAPIService) GetSmartlocksLogsExecute(r ApiGetSmartlocksLogsRequest) ([]SmartlockLog, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -272,7 +272,7 @@ func (a *SmartlockLogAPIService) SmartlocksLogsResourceGetGetExecute(r ApiSmartl
 		localVarReturnValue  []SmartlockLog
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockLogAPIService.SmartlocksLogsResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockLogAPIService.GetSmartlocksLogs")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

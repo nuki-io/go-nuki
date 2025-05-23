@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 0.0
+API version: 3.8.1
 Contact: contact@nuki.io
 */
 
@@ -24,226 +24,25 @@ import (
 // AddressTokenAPIService AddressTokenAPI service
 type AddressTokenAPIService service
 
-type ApiAddressTokenRedeemResourceGetGetRequest struct {
+type ApiGetAddressTokenRequest struct {
 	ctx context.Context
 	ApiService *AddressTokenAPIService
 	id string
 }
 
-func (r ApiAddressTokenRedeemResourceGetGetRequest) Execute() (*AddressToken, *http.Response, error) {
-	return r.ApiService.AddressTokenRedeemResourceGetGetExecute(r)
+func (r ApiGetAddressTokenRequest) Execute() (*AddressTokenInfo, *http.Response, error) {
+	return r.ApiService.GetAddressTokenExecute(r)
 }
 
 /*
-AddressTokenRedeemResourceGetGet Gives an redeemed address token
+GetAddressToken Gives some info about address token
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The token id
- @return ApiAddressTokenRedeemResourceGetGetRequest
+ @return ApiGetAddressTokenRequest
 */
-func (a *AddressTokenAPIService) AddressTokenRedeemResourceGetGet(ctx context.Context, id string) ApiAddressTokenRedeemResourceGetGetRequest {
-	return ApiAddressTokenRedeemResourceGetGetRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-	}
-}
-
-// Execute executes the request
-//  @return AddressToken
-func (a *AddressTokenAPIService) AddressTokenRedeemResourceGetGetExecute(r ApiAddressTokenRedeemResourceGetGetRequest) (*AddressToken, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *AddressToken
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressTokenAPIService.AddressTokenRedeemResourceGetGet")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/address/token/{id}/redeem"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiAddressTokenRedeemResourcePostPostRequest struct {
-	ctx context.Context
-	ApiService *AddressTokenAPIService
-	id string
-	email *bool
-}
-
-// If false no email will be send
-func (r ApiAddressTokenRedeemResourcePostPostRequest) Email(email bool) ApiAddressTokenRedeemResourcePostPostRequest {
-	r.email = &email
-	return r
-}
-
-func (r ApiAddressTokenRedeemResourcePostPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AddressTokenRedeemResourcePostPostExecute(r)
-}
-
-/*
-AddressTokenRedeemResourcePostPost Redeems an address token
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The token id
- @return ApiAddressTokenRedeemResourcePostPostRequest
-*/
-func (a *AddressTokenAPIService) AddressTokenRedeemResourcePostPost(ctx context.Context, id string) ApiAddressTokenRedeemResourcePostPostRequest {
-	return ApiAddressTokenRedeemResourcePostPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-	}
-}
-
-// Execute executes the request
-func (a *AddressTokenAPIService) AddressTokenRedeemResourcePostPostExecute(r ApiAddressTokenRedeemResourcePostPostRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressTokenAPIService.AddressTokenRedeemResourcePostPost")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/address/token/{id}/redeem"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.email != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "email", r.email, "", "")
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiAddressTokenResourceGetGetRequest struct {
-	ctx context.Context
-	ApiService *AddressTokenAPIService
-	id string
-}
-
-func (r ApiAddressTokenResourceGetGetRequest) Execute() (*AddressTokenInfo, *http.Response, error) {
-	return r.ApiService.AddressTokenResourceGetGetExecute(r)
-}
-
-/*
-AddressTokenResourceGetGet Gives some info about address token
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The token id
- @return ApiAddressTokenResourceGetGetRequest
-*/
-func (a *AddressTokenAPIService) AddressTokenResourceGetGet(ctx context.Context, id string) ApiAddressTokenResourceGetGetRequest {
-	return ApiAddressTokenResourceGetGetRequest{
+func (a *AddressTokenAPIService) GetAddressToken(ctx context.Context, id string) ApiGetAddressTokenRequest {
+	return ApiGetAddressTokenRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -252,7 +51,7 @@ func (a *AddressTokenAPIService) AddressTokenResourceGetGet(ctx context.Context,
 
 // Execute executes the request
 //  @return AddressTokenInfo
-func (a *AddressTokenAPIService) AddressTokenResourceGetGetExecute(r ApiAddressTokenResourceGetGetRequest) (*AddressTokenInfo, *http.Response, error) {
+func (a *AddressTokenAPIService) GetAddressTokenExecute(r ApiGetAddressTokenRequest) (*AddressTokenInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -260,7 +59,7 @@ func (a *AddressTokenAPIService) AddressTokenResourceGetGetExecute(r ApiAddressT
 		localVarReturnValue  *AddressTokenInfo
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressTokenAPIService.AddressTokenResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressTokenAPIService.GetAddressToken")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -326,25 +125,126 @@ func (a *AddressTokenAPIService) AddressTokenResourceGetGetExecute(r ApiAddressT
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiAddressTokensResourceGetGetRequest struct {
+type ApiGetAddressTokenRedeemRequest struct {
+	ctx context.Context
+	ApiService *AddressTokenAPIService
+	id string
+}
+
+func (r ApiGetAddressTokenRedeemRequest) Execute() (*AddressToken, *http.Response, error) {
+	return r.ApiService.GetAddressTokenRedeemExecute(r)
+}
+
+/*
+GetAddressTokenRedeem Gives an redeemed address token
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id The token id
+ @return ApiGetAddressTokenRedeemRequest
+*/
+func (a *AddressTokenAPIService) GetAddressTokenRedeem(ctx context.Context, id string) ApiGetAddressTokenRedeemRequest {
+	return ApiGetAddressTokenRedeemRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return AddressToken
+func (a *AddressTokenAPIService) GetAddressTokenRedeemExecute(r ApiGetAddressTokenRedeemRequest) (*AddressToken, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AddressToken
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressTokenAPIService.GetAddressTokenRedeem")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/address/token/{id}/redeem"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetAddressTokensRequest struct {
 	ctx context.Context
 	ApiService *AddressTokenAPIService
 	addressId int32
 }
 
-func (r ApiAddressTokensResourceGetGetRequest) Execute() ([]AddressToken, *http.Response, error) {
-	return r.ApiService.AddressTokensResourceGetGetExecute(r)
+func (r ApiGetAddressTokensRequest) Execute() ([]AddressToken, *http.Response, error) {
+	return r.ApiService.GetAddressTokensExecute(r)
 }
 
 /*
-AddressTokensResourceGetGet Get a list of address tokens
+GetAddressTokens Get a list of address tokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param addressId The address id
- @return ApiAddressTokensResourceGetGetRequest
+ @return ApiGetAddressTokensRequest
 */
-func (a *AddressTokenAPIService) AddressTokensResourceGetGet(ctx context.Context, addressId int32) ApiAddressTokensResourceGetGetRequest {
-	return ApiAddressTokensResourceGetGetRequest{
+func (a *AddressTokenAPIService) GetAddressTokens(ctx context.Context, addressId int32) ApiGetAddressTokensRequest {
+	return ApiGetAddressTokensRequest{
 		ApiService: a,
 		ctx: ctx,
 		addressId: addressId,
@@ -353,7 +253,7 @@ func (a *AddressTokenAPIService) AddressTokensResourceGetGet(ctx context.Context
 
 // Execute executes the request
 //  @return []AddressToken
-func (a *AddressTokenAPIService) AddressTokensResourceGetGetExecute(r ApiAddressTokensResourceGetGetRequest) ([]AddressToken, *http.Response, error) {
+func (a *AddressTokenAPIService) GetAddressTokensExecute(r ApiGetAddressTokensRequest) ([]AddressToken, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -361,7 +261,7 @@ func (a *AddressTokenAPIService) AddressTokensResourceGetGetExecute(r ApiAddress
 		localVarReturnValue  []AddressToken
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressTokenAPIService.AddressTokensResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressTokenAPIService.GetAddressTokens")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -425,4 +325,104 @@ func (a *AddressTokenAPIService) AddressTokensResourceGetGetExecute(r ApiAddress
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPostAddressTokenRedeemRequest struct {
+	ctx context.Context
+	ApiService *AddressTokenAPIService
+	id string
+	email *bool
+}
+
+// If false no email will be send
+func (r ApiPostAddressTokenRedeemRequest) Email(email bool) ApiPostAddressTokenRedeemRequest {
+	r.email = &email
+	return r
+}
+
+func (r ApiPostAddressTokenRedeemRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostAddressTokenRedeemExecute(r)
+}
+
+/*
+PostAddressTokenRedeem Redeems an address token
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id The token id
+ @return ApiPostAddressTokenRedeemRequest
+*/
+func (a *AddressTokenAPIService) PostAddressTokenRedeem(ctx context.Context, id string) ApiPostAddressTokenRedeemRequest {
+	return ApiPostAddressTokenRedeemRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+func (a *AddressTokenAPIService) PostAddressTokenRedeemExecute(r ApiPostAddressTokenRedeemRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressTokenAPIService.PostAddressTokenRedeem")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/address/token/{id}/redeem"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.email != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "email", r.email, "", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }

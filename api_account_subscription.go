@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 0.0
+API version: 3.8.1
 Contact: contact@nuki.io
 */
 
@@ -24,25 +24,122 @@ import (
 // AccountSubscriptionAPIService AccountSubscriptionAPI service
 type AccountSubscriptionAPIService service
 
-type ApiAccountSubscriptionActivateResourcePostPostRequest struct {
+type ApiGetAccountSubscriptionsRequest struct {
+	ctx context.Context
+	ApiService *AccountSubscriptionAPIService
+}
+
+func (r ApiGetAccountSubscriptionsRequest) Execute() ([]AccountSubscription, *http.Response, error) {
+	return r.ApiService.GetAccountSubscriptionsExecute(r)
+}
+
+/*
+GetAccountSubscriptions Get a list of account subscriptions
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetAccountSubscriptionsRequest
+*/
+func (a *AccountSubscriptionAPIService) GetAccountSubscriptions(ctx context.Context) ApiGetAccountSubscriptionsRequest {
+	return ApiGetAccountSubscriptionsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return []AccountSubscription
+func (a *AccountSubscriptionAPIService) GetAccountSubscriptionsExecute(r ApiGetAccountSubscriptionsRequest) ([]AccountSubscription, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []AccountSubscription
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountSubscriptionAPIService.GetAccountSubscriptions")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/app/account/subscription"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPostAccountSubscriptionActivateRequest struct {
 	ctx context.Context
 	ApiService *AccountSubscriptionAPIService
 	id string
 }
 
-func (r ApiAccountSubscriptionActivateResourcePostPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AccountSubscriptionActivateResourcePostPostExecute(r)
+func (r ApiPostAccountSubscriptionActivateRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostAccountSubscriptionActivateExecute(r)
 }
 
 /*
-AccountSubscriptionActivateResourcePostPost Activates a previously terminated subscription
+PostAccountSubscriptionActivate Activates a previously terminated subscription
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The account subscription unique id
- @return ApiAccountSubscriptionActivateResourcePostPostRequest
+ @return ApiPostAccountSubscriptionActivateRequest
 */
-func (a *AccountSubscriptionAPIService) AccountSubscriptionActivateResourcePostPost(ctx context.Context, id string) ApiAccountSubscriptionActivateResourcePostPostRequest {
-	return ApiAccountSubscriptionActivateResourcePostPostRequest{
+func (a *AccountSubscriptionAPIService) PostAccountSubscriptionActivate(ctx context.Context, id string) ApiPostAccountSubscriptionActivateRequest {
+	return ApiPostAccountSubscriptionActivateRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -50,14 +147,14 @@ func (a *AccountSubscriptionAPIService) AccountSubscriptionActivateResourcePostP
 }
 
 // Execute executes the request
-func (a *AccountSubscriptionAPIService) AccountSubscriptionActivateResourcePostPostExecute(r ApiAccountSubscriptionActivateResourcePostPostRequest) (*http.Response, error) {
+func (a *AccountSubscriptionAPIService) PostAccountSubscriptionActivateExecute(r ApiPostAccountSubscriptionActivateRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountSubscriptionAPIService.AccountSubscriptionActivateResourcePostPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountSubscriptionAPIService.PostAccountSubscriptionActivate")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -114,23 +211,23 @@ func (a *AccountSubscriptionAPIService) AccountSubscriptionActivateResourcePostP
 	return localVarHTTPResponse, nil
 }
 
-type ApiAccountSubscriptionPayResourcePostPostRequest struct {
+type ApiPostAccountSubscriptionPayRequest struct {
 	ctx context.Context
 	ApiService *AccountSubscriptionAPIService
 }
 
-func (r ApiAccountSubscriptionPayResourcePostPostRequest) Execute() (string, *http.Response, error) {
-	return r.ApiService.AccountSubscriptionPayResourcePostPostExecute(r)
+func (r ApiPostAccountSubscriptionPayRequest) Execute() (string, *http.Response, error) {
+	return r.ApiService.PostAccountSubscriptionPayExecute(r)
 }
 
 /*
-AccountSubscriptionPayResourcePostPost Starts a payment for an account and returns a payment url
+PostAccountSubscriptionPay Starts a payment for an account and returns a payment url
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAccountSubscriptionPayResourcePostPostRequest
+ @return ApiPostAccountSubscriptionPayRequest
 */
-func (a *AccountSubscriptionAPIService) AccountSubscriptionPayResourcePostPost(ctx context.Context) ApiAccountSubscriptionPayResourcePostPostRequest {
-	return ApiAccountSubscriptionPayResourcePostPostRequest{
+func (a *AccountSubscriptionAPIService) PostAccountSubscriptionPay(ctx context.Context) ApiPostAccountSubscriptionPayRequest {
+	return ApiPostAccountSubscriptionPayRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -138,7 +235,7 @@ func (a *AccountSubscriptionAPIService) AccountSubscriptionPayResourcePostPost(c
 
 // Execute executes the request
 //  @return string
-func (a *AccountSubscriptionAPIService) AccountSubscriptionPayResourcePostPostExecute(r ApiAccountSubscriptionPayResourcePostPostRequest) (string, *http.Response, error) {
+func (a *AccountSubscriptionAPIService) PostAccountSubscriptionPayExecute(r ApiPostAccountSubscriptionPayRequest) (string, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -146,7 +243,7 @@ func (a *AccountSubscriptionAPIService) AccountSubscriptionPayResourcePostPostEx
 		localVarReturnValue  string
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountSubscriptionAPIService.AccountSubscriptionPayResourcePostPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountSubscriptionAPIService.PostAccountSubscriptionPay")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -211,25 +308,25 @@ func (a *AccountSubscriptionAPIService) AccountSubscriptionPayResourcePostPostEx
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiAccountSubscriptionTerminateResourcePostPostRequest struct {
+type ApiPostAccountSubscriptionTerminateRequest struct {
 	ctx context.Context
 	ApiService *AccountSubscriptionAPIService
 	id string
 }
 
-func (r ApiAccountSubscriptionTerminateResourcePostPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AccountSubscriptionTerminateResourcePostPostExecute(r)
+func (r ApiPostAccountSubscriptionTerminateRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostAccountSubscriptionTerminateExecute(r)
 }
 
 /*
-AccountSubscriptionTerminateResourcePostPost Terminates a running subscription
+PostAccountSubscriptionTerminate Terminates a running subscription
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The account subscription unique id
- @return ApiAccountSubscriptionTerminateResourcePostPostRequest
+ @return ApiPostAccountSubscriptionTerminateRequest
 */
-func (a *AccountSubscriptionAPIService) AccountSubscriptionTerminateResourcePostPost(ctx context.Context, id string) ApiAccountSubscriptionTerminateResourcePostPostRequest {
-	return ApiAccountSubscriptionTerminateResourcePostPostRequest{
+func (a *AccountSubscriptionAPIService) PostAccountSubscriptionTerminate(ctx context.Context, id string) ApiPostAccountSubscriptionTerminateRequest {
+	return ApiPostAccountSubscriptionTerminateRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -237,14 +334,14 @@ func (a *AccountSubscriptionAPIService) AccountSubscriptionTerminateResourcePost
 }
 
 // Execute executes the request
-func (a *AccountSubscriptionAPIService) AccountSubscriptionTerminateResourcePostPostExecute(r ApiAccountSubscriptionTerminateResourcePostPostRequest) (*http.Response, error) {
+func (a *AccountSubscriptionAPIService) PostAccountSubscriptionTerminateExecute(r ApiPostAccountSubscriptionTerminateRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountSubscriptionAPIService.AccountSubscriptionTerminateResourcePostPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountSubscriptionAPIService.PostAccountSubscriptionTerminate")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -299,101 +396,4 @@ func (a *AccountSubscriptionAPIService) AccountSubscriptionTerminateResourcePost
 	}
 
 	return localVarHTTPResponse, nil
-}
-
-type ApiAccountSubscriptionsResourceGetGetRequest struct {
-	ctx context.Context
-	ApiService *AccountSubscriptionAPIService
-}
-
-func (r ApiAccountSubscriptionsResourceGetGetRequest) Execute() ([]AccountSubscription, *http.Response, error) {
-	return r.ApiService.AccountSubscriptionsResourceGetGetExecute(r)
-}
-
-/*
-AccountSubscriptionsResourceGetGet Get a list of account subscriptions
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAccountSubscriptionsResourceGetGetRequest
-*/
-func (a *AccountSubscriptionAPIService) AccountSubscriptionsResourceGetGet(ctx context.Context) ApiAccountSubscriptionsResourceGetGetRequest {
-	return ApiAccountSubscriptionsResourceGetGetRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return []AccountSubscription
-func (a *AccountSubscriptionAPIService) AccountSubscriptionsResourceGetGetExecute(r ApiAccountSubscriptionsResourceGetGetRequest) ([]AccountSubscription, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []AccountSubscription
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountSubscriptionAPIService.AccountSubscriptionsResourceGetGet")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/app/account/subscription"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
 }

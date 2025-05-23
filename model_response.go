@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 0.0
+API version: 3.8.1
 Contact: contact@nuki.io
 */
 
@@ -53,8 +53,8 @@ type Response struct {
 	Provisional *bool `json:"provisional,omitempty"`
 	Final *bool `json:"final,omitempty"`
 	Headers []Header `json:"headers,omitempty"`
-	EntityAvailable *bool `json:"entityAvailable,omitempty"`
 	EntityAsText *string `json:"entityAsText,omitempty"`
+	EntityAvailable *bool `json:"entityAvailable,omitempty"`
 }
 
 // NewResponse instantiates a new Response object
@@ -1098,38 +1098,6 @@ func (o *Response) SetHeaders(v []Header) {
 	o.Headers = v
 }
 
-// GetEntityAvailable returns the EntityAvailable field value if set, zero value otherwise.
-func (o *Response) GetEntityAvailable() bool {
-	if o == nil || IsNil(o.EntityAvailable) {
-		var ret bool
-		return ret
-	}
-	return *o.EntityAvailable
-}
-
-// GetEntityAvailableOk returns a tuple with the EntityAvailable field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Response) GetEntityAvailableOk() (*bool, bool) {
-	if o == nil || IsNil(o.EntityAvailable) {
-		return nil, false
-	}
-	return o.EntityAvailable, true
-}
-
-// HasEntityAvailable returns a boolean if a field has been set.
-func (o *Response) HasEntityAvailable() bool {
-	if o != nil && !IsNil(o.EntityAvailable) {
-		return true
-	}
-
-	return false
-}
-
-// SetEntityAvailable gets a reference to the given bool and assigns it to the EntityAvailable field.
-func (o *Response) SetEntityAvailable(v bool) {
-	o.EntityAvailable = &v
-}
-
 // GetEntityAsText returns the EntityAsText field value if set, zero value otherwise.
 func (o *Response) GetEntityAsText() string {
 	if o == nil || IsNil(o.EntityAsText) {
@@ -1160,6 +1128,38 @@ func (o *Response) HasEntityAsText() bool {
 // SetEntityAsText gets a reference to the given string and assigns it to the EntityAsText field.
 func (o *Response) SetEntityAsText(v string) {
 	o.EntityAsText = &v
+}
+
+// GetEntityAvailable returns the EntityAvailable field value if set, zero value otherwise.
+func (o *Response) GetEntityAvailable() bool {
+	if o == nil || IsNil(o.EntityAvailable) {
+		var ret bool
+		return ret
+	}
+	return *o.EntityAvailable
+}
+
+// GetEntityAvailableOk returns a tuple with the EntityAvailable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Response) GetEntityAvailableOk() (*bool, bool) {
+	if o == nil || IsNil(o.EntityAvailable) {
+		return nil, false
+	}
+	return o.EntityAvailable, true
+}
+
+// HasEntityAvailable returns a boolean if a field has been set.
+func (o *Response) HasEntityAvailable() bool {
+	if o != nil && !IsNil(o.EntityAvailable) {
+		return true
+	}
+
+	return false
+}
+
+// SetEntityAvailable gets a reference to the given bool and assigns it to the EntityAvailable field.
+func (o *Response) SetEntityAvailable(v bool) {
+	o.EntityAvailable = &v
 }
 
 func (o Response) MarshalJSON() ([]byte, error) {
@@ -1268,11 +1268,11 @@ func (o Response) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Headers) {
 		toSerialize["headers"] = o.Headers
 	}
-	if !IsNil(o.EntityAvailable) {
-		toSerialize["entityAvailable"] = o.EntityAvailable
-	}
 	if !IsNil(o.EntityAsText) {
 		toSerialize["entityAsText"] = o.EntityAsText
+	}
+	if !IsNil(o.EntityAvailable) {
+		toSerialize["entityAvailable"] = o.EntityAvailable
 	}
 	return toSerialize, nil
 }

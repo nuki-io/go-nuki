@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 0.0
+API version: 3.8.1
 Contact: contact@nuki.io
 */
 
@@ -24,213 +24,25 @@ import (
 // AddressReservationAPIService AddressReservationAPI service
 type AddressReservationAPIService service
 
-type ApiAddressReservationIssueResourcePostPostRequest struct {
-	ctx context.Context
-	ApiService *AddressReservationAPIService
-	addressId int32
-	id string
-}
-
-func (r ApiAddressReservationIssueResourcePostPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AddressReservationIssueResourcePostPostExecute(r)
-}
-
-/*
-AddressReservationIssueResourcePostPost Issues authorizations for an address reservation
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param addressId The address id
- @param id The address reservation id
- @return ApiAddressReservationIssueResourcePostPostRequest
-*/
-func (a *AddressReservationAPIService) AddressReservationIssueResourcePostPost(ctx context.Context, addressId int32, id string) ApiAddressReservationIssueResourcePostPostRequest {
-	return ApiAddressReservationIssueResourcePostPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		addressId: addressId,
-		id: id,
-	}
-}
-
-// Execute executes the request
-func (a *AddressReservationAPIService) AddressReservationIssueResourcePostPostExecute(r ApiAddressReservationIssueResourcePostPostRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressReservationAPIService.AddressReservationIssueResourcePostPost")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/address/{addressId}/reservation/{id}/issue"
-	localVarPath = strings.Replace(localVarPath, "{"+"addressId"+"}", url.PathEscape(parameterValueToString(r.addressId, "addressId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiAddressReservationRevokeResourcePostPostRequest struct {
-	ctx context.Context
-	ApiService *AddressReservationAPIService
-	addressId int32
-	id string
-}
-
-func (r ApiAddressReservationRevokeResourcePostPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AddressReservationRevokeResourcePostPostExecute(r)
-}
-
-/*
-AddressReservationRevokeResourcePostPost Revoke authorizations for an address reservation
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param addressId The address id
- @param id The address reservation id
- @return ApiAddressReservationRevokeResourcePostPostRequest
-*/
-func (a *AddressReservationAPIService) AddressReservationRevokeResourcePostPost(ctx context.Context, addressId int32, id string) ApiAddressReservationRevokeResourcePostPostRequest {
-	return ApiAddressReservationRevokeResourcePostPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		addressId: addressId,
-		id: id,
-	}
-}
-
-// Execute executes the request
-func (a *AddressReservationAPIService) AddressReservationRevokeResourcePostPostExecute(r ApiAddressReservationRevokeResourcePostPostRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressReservationAPIService.AddressReservationRevokeResourcePostPost")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/address/{addressId}/reservation/{id}/revoke"
-	localVarPath = strings.Replace(localVarPath, "{"+"addressId"+"}", url.PathEscape(parameterValueToString(r.addressId, "addressId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiAddressReservationsResourceGetGetRequest struct {
+type ApiGetAddressReservationsRequest struct {
 	ctx context.Context
 	ApiService *AddressReservationAPIService
 	addressId int32
 }
 
-func (r ApiAddressReservationsResourceGetGetRequest) Execute() ([]AddressReservation, *http.Response, error) {
-	return r.ApiService.AddressReservationsResourceGetGetExecute(r)
+func (r ApiGetAddressReservationsRequest) Execute() ([]AddressReservation, *http.Response, error) {
+	return r.ApiService.GetAddressReservationsExecute(r)
 }
 
 /*
-AddressReservationsResourceGetGet Get a list of address reservations
+GetAddressReservations Get a list of address reservations
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param addressId The address id
- @return ApiAddressReservationsResourceGetGetRequest
+ @return ApiGetAddressReservationsRequest
 */
-func (a *AddressReservationAPIService) AddressReservationsResourceGetGet(ctx context.Context, addressId int32) ApiAddressReservationsResourceGetGetRequest {
-	return ApiAddressReservationsResourceGetGetRequest{
+func (a *AddressReservationAPIService) GetAddressReservations(ctx context.Context, addressId int32) ApiGetAddressReservationsRequest {
+	return ApiGetAddressReservationsRequest{
 		ApiService: a,
 		ctx: ctx,
 		addressId: addressId,
@@ -239,7 +51,7 @@ func (a *AddressReservationAPIService) AddressReservationsResourceGetGet(ctx con
 
 // Execute executes the request
 //  @return []AddressReservation
-func (a *AddressReservationAPIService) AddressReservationsResourceGetGetExecute(r ApiAddressReservationsResourceGetGetRequest) ([]AddressReservation, *http.Response, error) {
+func (a *AddressReservationAPIService) GetAddressReservationsExecute(r ApiGetAddressReservationsRequest) ([]AddressReservation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -247,7 +59,7 @@ func (a *AddressReservationAPIService) AddressReservationsResourceGetGetExecute(
 		localVarReturnValue  []AddressReservation
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressReservationAPIService.AddressReservationsResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressReservationAPIService.GetAddressReservations")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -313,34 +125,27 @@ func (a *AddressReservationAPIService) AddressReservationsResourceGetGetExecute(
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiReservationAccessTimesUpdateResourcePostPostRequest struct {
+type ApiPostAddressReservationIssueRequest struct {
 	ctx context.Context
 	ApiService *AddressReservationAPIService
 	addressId int32
 	id string
-	body *ReservationAccessTimesUpdate
 }
 
-// Reservation access times update representation
-func (r ApiReservationAccessTimesUpdateResourcePostPostRequest) Body(body ReservationAccessTimesUpdate) ApiReservationAccessTimesUpdateResourcePostPostRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiReservationAccessTimesUpdateResourcePostPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.ReservationAccessTimesUpdateResourcePostPostExecute(r)
+func (r ApiPostAddressReservationIssueRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostAddressReservationIssueExecute(r)
 }
 
 /*
-ReservationAccessTimesUpdateResourcePostPost Update access times of a reservation
+PostAddressReservationIssue Issues authorizations for an address reservation
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param addressId The address id
- @param id The reservation id
- @return ApiReservationAccessTimesUpdateResourcePostPostRequest
+ @param id The address reservation id
+ @return ApiPostAddressReservationIssueRequest
 */
-func (a *AddressReservationAPIService) ReservationAccessTimesUpdateResourcePostPost(ctx context.Context, addressId int32, id string) ApiReservationAccessTimesUpdateResourcePostPostRequest {
-	return ApiReservationAccessTimesUpdateResourcePostPostRequest{
+func (a *AddressReservationAPIService) PostAddressReservationIssue(ctx context.Context, addressId int32, id string) ApiPostAddressReservationIssueRequest {
+	return ApiPostAddressReservationIssueRequest{
 		ApiService: a,
 		ctx: ctx,
 		addressId: addressId,
@@ -349,14 +154,209 @@ func (a *AddressReservationAPIService) ReservationAccessTimesUpdateResourcePostP
 }
 
 // Execute executes the request
-func (a *AddressReservationAPIService) ReservationAccessTimesUpdateResourcePostPostExecute(r ApiReservationAccessTimesUpdateResourcePostPostRequest) (*http.Response, error) {
+func (a *AddressReservationAPIService) PostAddressReservationIssueExecute(r ApiPostAddressReservationIssueRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressReservationAPIService.ReservationAccessTimesUpdateResourcePostPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressReservationAPIService.PostAddressReservationIssue")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/address/{addressId}/reservation/{id}/issue"
+	localVarPath = strings.Replace(localVarPath, "{"+"addressId"+"}", url.PathEscape(parameterValueToString(r.addressId, "addressId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiPostAddressReservationRevokeRequest struct {
+	ctx context.Context
+	ApiService *AddressReservationAPIService
+	addressId int32
+	id string
+}
+
+func (r ApiPostAddressReservationRevokeRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostAddressReservationRevokeExecute(r)
+}
+
+/*
+PostAddressReservationRevoke Revoke authorizations for an address reservation
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param addressId The address id
+ @param id The address reservation id
+ @return ApiPostAddressReservationRevokeRequest
+*/
+func (a *AddressReservationAPIService) PostAddressReservationRevoke(ctx context.Context, addressId int32, id string) ApiPostAddressReservationRevokeRequest {
+	return ApiPostAddressReservationRevokeRequest{
+		ApiService: a,
+		ctx: ctx,
+		addressId: addressId,
+		id: id,
+	}
+}
+
+// Execute executes the request
+func (a *AddressReservationAPIService) PostAddressReservationRevokeExecute(r ApiPostAddressReservationRevokeRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressReservationAPIService.PostAddressReservationRevoke")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/address/{addressId}/reservation/{id}/revoke"
+	localVarPath = strings.Replace(localVarPath, "{"+"addressId"+"}", url.PathEscape(parameterValueToString(r.addressId, "addressId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiPostReservationAccessTimesUpdateRequest struct {
+	ctx context.Context
+	ApiService *AddressReservationAPIService
+	addressId int32
+	id string
+	body *ReservationAccessTimesUpdate
+}
+
+// Reservation access times update representation
+func (r ApiPostReservationAccessTimesUpdateRequest) Body(body ReservationAccessTimesUpdate) ApiPostReservationAccessTimesUpdateRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiPostReservationAccessTimesUpdateRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostReservationAccessTimesUpdateExecute(r)
+}
+
+/*
+PostReservationAccessTimesUpdate Update access times of a reservation
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param addressId The address id
+ @param id The reservation id
+ @return ApiPostReservationAccessTimesUpdateRequest
+*/
+func (a *AddressReservationAPIService) PostReservationAccessTimesUpdate(ctx context.Context, addressId int32, id string) ApiPostReservationAccessTimesUpdateRequest {
+	return ApiPostReservationAccessTimesUpdateRequest{
+		ApiService: a,
+		ctx: ctx,
+		addressId: addressId,
+		id: id,
+	}
+}
+
+// Execute executes the request
+func (a *AddressReservationAPIService) PostReservationAccessTimesUpdateExecute(r ApiPostReservationAccessTimesUpdateRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressReservationAPIService.PostReservationAccessTimesUpdate")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}

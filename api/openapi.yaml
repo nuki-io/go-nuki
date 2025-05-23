@@ -10,7 +10,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://nuki.io/en/service/nukis-terms-of-use-apis/
   title: Nuki API
-  version: "0.0"
+  version: 3.8.1
 servers:
 - url: /
 tags:
@@ -33,7 +33,7 @@ tags:
 paths:
   /account:
     delete:
-      operationId: AccountsResource_delete_delete
+      operationId: DeleteAccounts
       responses:
         "204":
           content: {}
@@ -48,7 +48,7 @@ paths:
       tags:
       - Account
     get:
-      operationId: AccountsResource_get_get
+      operationId: GetAccounts
       responses:
         "200":
           content:
@@ -66,7 +66,7 @@ paths:
       tags:
       - Account
     post:
-      operationId: AccountsResource_post_post
+      operationId: PostAccounts
       parameters:
       - description: If false existing API tokens are not deleted if the password
           is changed
@@ -104,7 +104,7 @@ paths:
       x-codegen-request-body-name: body
   /account/email/change:
     post:
-      operationId: AccountEmailChangeResource_post_post
+      operationId: PostAccountEmailChange
       requestBody:
         content:
           '*/*':
@@ -134,7 +134,7 @@ paths:
       x-codegen-request-body-name: body
   /account/email/verify:
     post:
-      operationId: AccountEmailVerifyResource_post_post
+      operationId: PostAccountEmailVerify
       responses:
         "204":
           content: {}
@@ -156,7 +156,7 @@ paths:
       - Account
   /account/integration:
     delete:
-      operationId: AccountIntegrationsResource_delete_delete
+      operationId: DeleteAccountIntegrations
       parameters:
       - description: The api key id to delete (this also removes all tokens if no
           specific tokenId is given)
@@ -184,7 +184,7 @@ paths:
       tags:
       - Account
     get:
-      operationId: AccountIntegrationsResource_get_get
+      operationId: GetAccountIntegrations
       responses:
         "200":
           content:
@@ -205,7 +205,7 @@ paths:
       - Account
   /account/otp:
     delete:
-      operationId: AccountOtpResource_delete_delete
+      operationId: DeleteAccountOtp
       responses:
         "204":
           content: {}
@@ -220,7 +220,7 @@ paths:
       tags:
       - Account
     post:
-      operationId: AccountOtpResource_post_post
+      operationId: PostAccountOtp
       requestBody:
         content:
           '*/*':
@@ -249,7 +249,7 @@ paths:
       - Account
       x-codegen-request-body-name: body
     put:
-      operationId: AccountOtpResource_put_put
+      operationId: PutAccountOtp
       responses:
         "200":
           content:
@@ -268,7 +268,7 @@ paths:
       - Account
   /account/password/reset:
     post:
-      operationId: AccountPasswordResetResource_post_post
+      operationId: PostAccountPasswordReset
       requestBody:
         content:
           '*/*':
@@ -291,7 +291,7 @@ paths:
       x-codegen-request-body-name: body
   /account/setting:
     delete:
-      operationId: AccountSettingResource_delete_delete
+      operationId: DeleteAccountSetting
       responses:
         "204":
           content: {}
@@ -309,7 +309,7 @@ paths:
       tags:
       - Account
     get:
-      operationId: AccountSettingResource_get_get
+      operationId: GetAccountSetting
       responses:
         "200":
           content:
@@ -333,7 +333,7 @@ paths:
       tags:
       - Account
     put:
-      operationId: AccountSettingResource_put_put
+      operationId: PutAccountSetting
       requestBody:
         content:
           '*/*':
@@ -363,7 +363,7 @@ paths:
       x-codegen-request-body-name: body
   /account/sub:
     get:
-      operationId: AccountSubsResource_get_get
+      operationId: GetAccountSubs
       parameters:
       - description: The optional email (regex)
         in: query
@@ -387,7 +387,7 @@ paths:
       tags:
       - Account
     put:
-      operationId: AccountSubsResource_put_put
+      operationId: PutAccountSubs
       requestBody:
         content:
           '*/*':
@@ -414,7 +414,7 @@ paths:
       x-codegen-request-body-name: body
   /account/sub/{accountId}:
     delete:
-      operationId: AccountSubResource_delete_delete
+      operationId: DeleteAccountSub
       parameters:
       - description: The account id
         in: path
@@ -436,7 +436,7 @@ paths:
       tags:
       - Account
     get:
-      operationId: AccountSubResource_get_get
+      operationId: GetAccountSub
       parameters:
       - description: The account id
         in: path
@@ -461,7 +461,7 @@ paths:
       tags:
       - Account
     post:
-      operationId: AccountSubResource_post_post
+      operationId: PostAccountSub
       parameters:
       - description: The account id
         in: path
@@ -498,7 +498,7 @@ paths:
       x-codegen-request-body-name: body
   /account/subscription/pay:
     post:
-      operationId: AccountSubscriptionPayResource_post_post
+      operationId: PostAccountSubscriptionPay
       responses:
         "200":
           content:
@@ -517,7 +517,7 @@ paths:
       - AccountSubscription
   /account/subscription/{id}/activate:
     post:
-      operationId: AccountSubscriptionActivateResource_post_post
+      operationId: PostAccountSubscriptionActivate
       parameters:
       - description: The account subscription unique id
         in: path
@@ -540,7 +540,7 @@ paths:
       - AccountSubscription
   /account/subscription/{id}/terminate:
     post:
-      operationId: AccountSubscriptionTerminateResource_post_post
+      operationId: PostAccountSubscriptionTerminate
       parameters:
       - description: The account subscription unique id
         in: path
@@ -563,7 +563,7 @@ paths:
       - AccountSubscription
   /account/user:
     get:
-      operationId: AccountUsersResource_get_get
+      operationId: GetAccountUsers
       parameters:
       - description: Filter for email
         in: query
@@ -599,7 +599,7 @@ paths:
       tags:
       - AccountUser
     put:
-      operationId: AccountUsersResource_put_put
+      operationId: PutAccountUsers
       requestBody:
         content:
           '*/*':
@@ -627,7 +627,7 @@ paths:
       x-codegen-request-body-name: body
   /account/user/{accountUserId}:
     delete:
-      operationId: AccountUserResource_delete_delete
+      operationId: DeleteAccountUser
       parameters:
       - description: The account user id
         in: path
@@ -653,7 +653,7 @@ paths:
       tags:
       - AccountUser
     get:
-      operationId: AccountUserResource_get_get
+      operationId: GetAccountUser
       parameters:
       - description: The account user id
         in: path
@@ -679,7 +679,7 @@ paths:
       tags:
       - AccountUser
     post:
-      operationId: AccountUserResource_post_post
+      operationId: PostAccountUser
       parameters:
       - description: The account user id
         in: path
@@ -723,7 +723,7 @@ paths:
       x-codegen-request-body-name: body
   /address:
     get:
-      operationId: AddressesResource_get_get
+      operationId: GetAddresses
       responses:
         "200":
           content:
@@ -743,7 +743,7 @@ paths:
       tags:
       - Address
     put:
-      operationId: AddressesResource_put_put
+      operationId: PutAddresses
       requestBody:
         content:
           '*/*':
@@ -770,7 +770,7 @@ paths:
       x-codegen-request-body-name: body
   /address/token/{id}:
     get:
-      operationId: AddressTokenResource_get_get
+      operationId: GetAddressToken
       parameters:
       - description: The token id
         in: path
@@ -798,7 +798,7 @@ paths:
       - AddressToken
   /address/token/{id}/redeem:
     get:
-      operationId: AddressTokenRedeemResource_get_get
+      operationId: GetAddressTokenRedeem
       parameters:
       - description: The token id
         in: path
@@ -826,7 +826,7 @@ paths:
       tags:
       - AddressToken
     post:
-      operationId: AddressTokenRedeemResource_post_post
+      operationId: PostAddressTokenRedeem
       parameters:
       - description: The token id
         in: path
@@ -860,7 +860,7 @@ paths:
       - AddressToken
   /address/{addressId}:
     delete:
-      operationId: AddressResource_delete_delete
+      operationId: DeleteAddress
       parameters:
       - description: The address id
         in: path
@@ -882,7 +882,7 @@ paths:
       tags:
       - Address
     post:
-      operationId: AddressResource_post_post
+      operationId: PostAddress
       parameters:
       - description: The address id
         in: path
@@ -919,7 +919,7 @@ paths:
       x-codegen-request-body-name: body
   /address/{addressId}/reservation:
     get:
-      operationId: AddressReservationsResource_get_get
+      operationId: GetAddressReservations
       parameters:
       - description: The address id
         in: path
@@ -947,7 +947,7 @@ paths:
       - AddressReservation
   /address/{addressId}/reservation/{id}/issue:
     post:
-      operationId: AddressReservationIssueResource_post_post
+      operationId: PostAddressReservationIssue
       parameters:
       - description: The address id
         in: path
@@ -979,7 +979,7 @@ paths:
       - AddressReservation
   /address/{addressId}/reservation/{id}/revoke:
     post:
-      operationId: AddressReservationRevokeResource_post_post
+      operationId: PostAddressReservationRevoke
       parameters:
       - description: The address id
         in: path
@@ -1011,7 +1011,7 @@ paths:
       - AddressReservation
   /address/{addressId}/reservation/{id}/update/accesstimes:
     post:
-      operationId: ReservationAccessTimesUpdateResource_post_post
+      operationId: PostReservationAccessTimesUpdate
       parameters:
       - description: The address id
         in: path
@@ -1051,7 +1051,7 @@ paths:
       x-codegen-request-body-name: body
   /address/{addressId}/token:
     get:
-      operationId: AddressTokensResource_get_get
+      operationId: GetAddressTokens
       parameters:
       - description: The address id
         in: path
@@ -1079,7 +1079,7 @@ paths:
       - AddressToken
   /address/{addressId}/unit:
     delete:
-      operationId: AddressUnitsResource_delete_delete
+      operationId: DeleteAddressUnits
       parameters:
       - description: The address id
         in: path
@@ -1123,7 +1123,7 @@ paths:
       - Address
       x-codegen-request-body-name: body
     get:
-      operationId: AddressUnitsResource_get_get
+      operationId: GetAddressUnits
       parameters:
       - description: The address id
         in: path
@@ -1153,7 +1153,7 @@ paths:
       tags:
       - Address
     put:
-      operationId: AddressUnitsResource_put_put
+      operationId: PutAddressUnits
       parameters:
       - description: The address id
         in: path
@@ -1193,7 +1193,7 @@ paths:
       x-codegen-request-body-name: body
   /address/{addressId}/unit/{id}:
     delete:
-      operationId: AddressUnitResource_delete_delete
+      operationId: DeleteAddressUnit
       parameters:
       - description: The address id
         in: path
@@ -1231,7 +1231,7 @@ paths:
       - Address
   /api/decentralWebhook:
     get:
-      operationId: DecentralWebhooksResource_get_get
+      operationId: GetDecentralWebhooks
       responses:
         "200":
           content:
@@ -1254,7 +1254,7 @@ paths:
       tags:
       - AdvancedApi
     put:
-      operationId: DecentralWebhooksResource_put_put
+      operationId: PutDecentralWebhooks
       requestBody:
         content:
           '*/*':
@@ -1287,7 +1287,7 @@ paths:
       x-codegen-request-body-name: body
   /api/decentralWebhook/{id}:
     delete:
-      operationId: DecentralWebhookResource_delete_delete
+      operationId: DeleteDecentralWebhook
       parameters:
       - description: The ID of the decentral webhook
         in: path
@@ -1313,7 +1313,7 @@ paths:
       - AdvancedApi
   /api/key:
     get:
-      operationId: ApiKeysResource_get_get
+      operationId: GetApiKeys
       responses:
         "200":
           content:
@@ -1333,7 +1333,7 @@ paths:
       tags:
       - ApiKey
     put:
-      operationId: ApiKeysResource_put_put
+      operationId: PutApiKeys
       requestBody:
         content:
           '*/*':
@@ -1363,7 +1363,7 @@ paths:
       x-codegen-request-body-name: body
   /api/key/{apiKeyId}:
     delete:
-      operationId: ApiKeyResource_delete_delete
+      operationId: DeleteApiKey
       parameters:
       - description: The api key id
         in: path
@@ -1385,7 +1385,7 @@ paths:
       tags:
       - ApiKey
     post:
-      operationId: ApiKeyResource_post_post
+      operationId: PostApiKey
       parameters:
       - description: The api key id
         in: path
@@ -1419,7 +1419,7 @@ paths:
       x-codegen-request-body-name: body
   /api/key/{apiKeyId}/advanced:
     delete:
-      operationId: ApiKeyAdvancedResource_delete_delete
+      operationId: DeleteApiKeyAdvanced
       parameters:
       - description: The api key id
         in: path
@@ -1441,7 +1441,7 @@ paths:
       tags:
       - ApiKey
     get:
-      operationId: ApiKeyAdvancedResource_get_get
+      operationId: GetApiKeyAdvanced
       parameters:
       - description: The api key id
         in: path
@@ -1472,7 +1472,7 @@ paths:
       tags:
       - ApiKey
     post:
-      operationId: ApiKeyAdvancedResource_post_post
+      operationId: PostApiKeyAdvanced
       parameters:
       - description: The api key id
         in: path
@@ -1505,7 +1505,7 @@ paths:
       - ApiKey
       x-codegen-request-body-name: body
     put:
-      operationId: ApiKeyAdvancedResource_put_put
+      operationId: PutApiKeyAdvanced
       parameters:
       - description: The api key id
         in: path
@@ -1539,7 +1539,7 @@ paths:
       x-codegen-request-body-name: body
   /api/key/{apiKeyId}/advanced/reactivate:
     post:
-      operationId: ApiKeyAdvancedReactivateResource_post_post
+      operationId: PostApiKeyAdvancedReactivate
       parameters:
       - description: The api key id
         in: path
@@ -1565,7 +1565,7 @@ paths:
       - ApiKey
   /api/key/{apiKeyId}/token:
     get:
-      operationId: ApiKeyTokensResource_get_get
+      operationId: GetApiKeyTokens
       parameters:
       - description: The api key id
         in: path
@@ -1592,7 +1592,7 @@ paths:
       tags:
       - ApiKey
     put:
-      operationId: ApiKeyTokensResource_put_put
+      operationId: PutApiKeyTokens
       parameters:
       - description: The api key id
         in: path
@@ -1629,7 +1629,7 @@ paths:
       x-codegen-request-body-name: body
   /api/key/{apiKeyId}/token/{id}:
     delete:
-      operationId: ApiKeyTokenResource_delete_delete
+      operationId: DeleteApiKeyToken
       parameters:
       - description: The api key id
         in: path
@@ -1657,7 +1657,7 @@ paths:
       tags:
       - ApiKey
     post:
-      operationId: ApiKeyTokenResource_post_post
+      operationId: PostApiKeyToken
       parameters:
       - description: The api key id
         in: path
@@ -1697,7 +1697,7 @@ paths:
       x-codegen-request-body-name: body
   /api/key/{apiKeyId}/webhook/logs:
     get:
-      operationId: WebhookLogsResource_get_get
+      operationId: GetWebhookLogs
       parameters:
       - description: The api key id
         in: path
@@ -1736,7 +1736,7 @@ paths:
       - AdvancedApi
   /app/account/subscription:
     get:
-      operationId: AccountSubscriptionsResource_get_get
+      operationId: GetAccountSubscriptions
       responses:
         "200":
           content:
@@ -1757,7 +1757,7 @@ paths:
       - AccountSubscription
   /bulk-web-config:
     post:
-      operationId: SmartlockBulkWebConfigResource_post_post
+      operationId: PostSmartlockBulkWebConfig
       requestBody:
         content:
           '*/*':
@@ -1784,7 +1784,7 @@ paths:
       x-codegen-request-body-name: body
   /company:
     get:
-      operationId: CompaniesResource_get_get
+      operationId: GetCompanies
       responses:
         "200":
           content:
@@ -1807,7 +1807,7 @@ paths:
       - Company
   /notification:
     get:
-      operationId: NotificationsResource_get_get
+      operationId: GetNotifications
       parameters:
       - description: The reference ID to the third party system
         in: query
@@ -1833,7 +1833,7 @@ paths:
       tags:
       - Notification
     put:
-      operationId: NotificationsResource_put_put
+      operationId: PutNotifications
       requestBody:
         content:
           '*/*':
@@ -1866,7 +1866,7 @@ paths:
       x-codegen-request-body-name: body
   /notification/{notificationId}:
     delete:
-      operationId: NotificationResource_delete_delete
+      operationId: DeleteNotification
       parameters:
       - description: The unique notification ID
         in: path
@@ -1894,7 +1894,7 @@ paths:
       tags:
       - Notification
     get:
-      operationId: NotificationResource_get_get
+      operationId: GetNotification
       parameters:
       - description: The unique notification ID
         in: path
@@ -1925,7 +1925,7 @@ paths:
       tags:
       - Notification
     post:
-      operationId: NotificationResource_post_post
+      operationId: PostNotification
       parameters:
       - description: The unique notification ID
         in: path
@@ -1965,7 +1965,7 @@ paths:
       x-codegen-request-body-name: body
   /opener/brand:
     get:
-      operationId: OpenerBrandsResource_get_get
+      operationId: GetOpenerBrands
       responses:
         "200":
           content:
@@ -1980,7 +1980,7 @@ paths:
       - Opener
   /opener/brand/{brandId}:
     get:
-      operationId: OpenerBrandResource_get_get
+      operationId: GetOpenerBrand
       parameters:
       - description: The brand ID
         in: path
@@ -2000,7 +2000,7 @@ paths:
       - Opener
   /opener/intercom:
     get:
-      operationId: OpenerIntercomsResource_get_get
+      operationId: GetOpenerIntercoms
       parameters:
       - description: Filter for brandId. Required if 'recentlyChanged' is not set
         in: query
@@ -2031,7 +2031,7 @@ paths:
       - Opener
   /opener/intercom/{intercomId}:
     get:
-      operationId: OpenerIntercomResource_get_get
+      operationId: GetOpenerIntercom
       parameters:
       - description: The intercom ID
         in: path
@@ -2051,7 +2051,7 @@ paths:
       - Opener
   /service:
     get:
-      operationId: ServicesResource_get_get
+      operationId: GetServices
       parameters:
       - description: "Filter for service IDs (comma-separated eg: airbnb,guesty,smoobu)"
         in: query
@@ -2078,7 +2078,7 @@ paths:
       - Service
   /service/{serviceId}:
     get:
-      operationId: ServiceResource_get_get
+      operationId: GetService
       parameters:
       - description: The service id
         in: path
@@ -2104,7 +2104,7 @@ paths:
       - Service
   /service/{serviceId}/link:
     post:
-      operationId: ServiceLinkResource_post_post
+      operationId: PostServiceLink
       parameters:
       - description: The service id
         in: path
@@ -2133,7 +2133,7 @@ paths:
       - Service
   /service/{serviceId}/sync:
     post:
-      operationId: ServiceSyncResource_post_post
+      operationId: PostServiceSync
       parameters:
       - description: The service id
         in: path
@@ -2159,7 +2159,7 @@ paths:
       - Service
   /service/{serviceId}/unlink:
     post:
-      operationId: ServiceUnlinkResource_post_post
+      operationId: PostServiceUnlink
       parameters:
       - description: The service id
         in: path
@@ -2185,7 +2185,7 @@ paths:
       - Service
   /smartlock:
     get:
-      operationId: SmartlocksResource_get_get
+      operationId: GetSmartlocks
       parameters:
       - description: Filter for authId
         in: query
@@ -2218,7 +2218,7 @@ paths:
       - Smartlock
   /smartlock/auth:
     delete:
-      operationId: SmartlocksAuthsResource_delete_delete
+      operationId: DeleteSmartlocksAuths
       requestBody:
         content:
           '*/*':
@@ -2252,7 +2252,7 @@ paths:
       - SmartlockAuth
       x-codegen-request-body-name: body
     get:
-      operationId: SmartlocksAuthsResource_get_get
+      operationId: GetSmartlocksAuths
       parameters:
       - description: "Filter for account users:  set to a positive number will filter\
           \ for authorizations with this specific accountUserId, set to a negative\
@@ -2285,7 +2285,7 @@ paths:
       tags:
       - SmartlockAuth
     post:
-      operationId: SmartlocksAuthsResource_post_post
+      operationId: PostSmartlocksAuths
       requestBody:
         content:
           '*/*':
@@ -2322,7 +2322,7 @@ paths:
       - SmartlockAuth
       x-codegen-request-body-name: body
     put:
-      operationId: SmartlocksAuthsResource_put_put
+      operationId: PutSmartlocksAuths
       requestBody:
         content:
           '*/*':
@@ -2355,7 +2355,7 @@ paths:
       x-codegen-request-body-name: body
   /smartlock/auth/advanced:
     put:
-      operationId: SmartlockAuthsAdvancedResource_put_put
+      operationId: PutSmartlockAuthsAdvanced
       requestBody:
         content:
           '*/*':
@@ -2391,7 +2391,7 @@ paths:
       x-codegen-request-body-name: body
   /smartlock/log:
     get:
-      operationId: SmartlocksLogsResource_get_get
+      operationId: GetSmartlocksLogs
       parameters:
       - description: Filter for account users
         in: query
@@ -2444,7 +2444,7 @@ paths:
       - SmartlockLog
   /smartlock/{smartlockId}:
     delete:
-      operationId: SmartlockResource_delete_delete
+      operationId: DeleteSmartlock
       parameters:
       - description: The smartlock id
         in: path
@@ -2472,7 +2472,7 @@ paths:
       tags:
       - Smartlock
     get:
-      operationId: SmartlockResource_get_get
+      operationId: GetSmartlock
       parameters:
       - description: The smartlock id
         in: path
@@ -2504,7 +2504,7 @@ paths:
       tags:
       - Smartlock
     post:
-      operationId: SmartlockResource_post_post
+      operationId: PostSmartlock
       parameters:
       - description: The smartlock id
         in: path
@@ -2541,7 +2541,7 @@ paths:
       x-codegen-request-body-name: body
   /smartlock/{smartlockId}/action:
     post:
-      operationId: SmartlockActionResource_post_post
+      operationId: PostSmartlockAction
       parameters:
       - description: The smartlock id
         in: path
@@ -2578,7 +2578,7 @@ paths:
       x-codegen-request-body-name: body
   /smartlock/{smartlockId}/action/advanced:
     post:
-      operationId: SmartlockActionAdvancedResource_action_post
+      operationId: ActionSmartlockActionAdvanced
       parameters:
       - description: The smartlock id
         in: path
@@ -2621,7 +2621,7 @@ paths:
       x-codegen-request-body-name: body
   /smartlock/{smartlockId}/action/lock:
     post:
-      operationId: SmartlockLockActionResource_postLock_post
+      operationId: PostLockSmartlockLockAction
       parameters:
       - description: The smartlock id
         in: path
@@ -2650,7 +2650,7 @@ paths:
       - Smartlock
   /smartlock/{smartlockId}/action/lock/advanced:
     post:
-      operationId: SmartlockLockActionAdvancedResource_postLock_post
+      operationId: PostLockSmartlockLockActionAdvanced
       parameters:
       - description: The smartlock id
         in: path
@@ -2682,7 +2682,7 @@ paths:
       - AdvancedApi
   /smartlock/{smartlockId}/action/unlock:
     post:
-      operationId: SmartlockUnlockActionResource_postUnlock_post
+      operationId: PostUnlockSmartlockUnlockAction
       parameters:
       - description: The smartlock id
         in: path
@@ -2711,7 +2711,7 @@ paths:
       - Smartlock
   /smartlock/{smartlockId}/action/unlock/advanced:
     post:
-      operationId: SmartlockUnlockActionAdvancedResource_postLock_post
+      operationId: PostLockSmartlockUnlockActionAdvanced
       parameters:
       - description: The smartlock id
         in: path
@@ -2743,7 +2743,7 @@ paths:
       - AdvancedApi
   /smartlock/{smartlockId}/admin/pin:
     post:
-      operationId: SmartlockAdminPinResource_post_post
+      operationId: PostSmartlockAdminPin
       parameters:
       - description: The smartlock id
         in: path
@@ -2777,7 +2777,7 @@ paths:
       x-codegen-request-body-name: body
   /smartlock/{smartlockId}/advanced/config:
     post:
-      operationId: SmartlockAdvancedConfigResource_post_post
+      operationId: PostSmartlockAdvancedConfig
       parameters:
       - description: The smartlock id
         in: path
@@ -2811,7 +2811,7 @@ paths:
       x-codegen-request-body-name: body
   /smartlock/{smartlockId}/advanced/openerconfig:
     post:
-      operationId: SmartlockOpenerAdvancedConfigResource_post_post
+      operationId: PostSmartlockOpenerAdvancedConfig
       parameters:
       - description: The smartlock (opener) id
         in: path
@@ -2845,7 +2845,7 @@ paths:
       x-codegen-request-body-name: body
   /smartlock/{smartlockId}/advanced/smartdoorconfig:
     post:
-      operationId: SmartdoorAdvancedConfigResource_post_post
+      operationId: PostSmartdoorAdvancedConfig
       parameters:
       - description: The smartdoor id
         in: path
@@ -2879,7 +2879,7 @@ paths:
       x-codegen-request-body-name: body
   /smartlock/{smartlockId}/auth:
     get:
-      operationId: SmartlockAuthsResource_get_get
+      operationId: GetSmartlockAuths
       parameters:
       - description: The smartlock id
         in: path
@@ -2915,7 +2915,7 @@ paths:
       tags:
       - SmartlockAuth
     put:
-      operationId: SmartlockAuthsResource_put_put
+      operationId: PutSmartlockAuths
       parameters:
       - description: The smartlock id
         in: path
@@ -2953,9 +2953,51 @@ paths:
       tags:
       - SmartlockAuth
       x-codegen-request-body-name: body
+  /smartlock/{smartlockId}/auth/advanced/sharedkey:
+    post:
+      operationId: PostSmartlockAuthWithSharedKey
+      parameters:
+      - description: The smartlock id
+        in: path
+        name: smartlockId
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/SmartlockAuthWithSharedKeyCreate'
+        description: Smartlock auth create with shared key
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/SmartlockAuth'
+                type: array
+          description: successful operation
+        "401":
+          content: {}
+          description: Not authorized
+        "403":
+          content: {}
+          description: Forbidden
+        "404":
+          content: {}
+          description: Id not found
+      security:
+      - oauth:
+        - smartlock.auth
+      summary: Generate a new smartlock auth with a shared key
+      tags:
+      - SmartlockAuth
+      x-codegen-request-body-name: body
   /smartlock/{smartlockId}/auth/{id}:
     delete:
-      operationId: SmartlockAuthResource_delete_delete
+      operationId: DeleteSmartlockAuth
       parameters:
       - description: The smartlock id
         in: path
@@ -2989,7 +3031,7 @@ paths:
       tags:
       - SmartlockAuth
     get:
-      operationId: SmartlockAuthResource_get_get
+      operationId: GetSmartlockAuth
       parameters:
       - description: The smartlock id
         in: path
@@ -3023,7 +3065,7 @@ paths:
       tags:
       - SmartlockAuth
     post:
-      operationId: SmartlockAuthResource_post_post
+      operationId: PostSmartlockAuth
       parameters:
       - description: The smartlock id
         in: path
@@ -3072,7 +3114,7 @@ paths:
       x-codegen-request-body-name: body
   /smartlock/{smartlockId}/config:
     post:
-      operationId: SmartlockConfigResource_post_post
+      operationId: PostSmartlockConfig
       parameters:
       - description: The smartlock id
         in: path
@@ -3106,7 +3148,7 @@ paths:
       x-codegen-request-body-name: body
   /smartlock/{smartlockId}/log:
     get:
-      operationId: SmartlockLogsResource_get_get
+      operationId: GetSmartlockLogs
       parameters:
       - description: The smartlock id
         in: path
@@ -3170,7 +3212,7 @@ paths:
       - SmartlockLog
   /smartlock/{smartlockId}/sync:
     post:
-      operationId: SmartlockSyncResource_post_post
+      operationId: PostSmartlockSync
       parameters:
       - description: The smartlock id
         in: path
@@ -3196,7 +3238,7 @@ paths:
       - Smartlock
   /smartlock/{smartlockId}/web/config:
     post:
-      operationId: SmartlockWebConfigResource_post_post
+      operationId: PostSmartlockWebConfig
       parameters:
       - description: The smartlock id
         in: path
@@ -3230,7 +3272,7 @@ paths:
       x-codegen-request-body-name: body
   /subscription:
     get:
-      operationId: SubscriptionsResource_get_get
+      operationId: GetSubscriptions
       responses:
         "200":
           content:
@@ -3251,7 +3293,7 @@ paths:
       - Subscription
   /subscription/{subscriptionId}:
     get:
-      operationId: SubscriptionResource_get_get
+      operationId: GetSubscription
       parameters:
       - description: The subscription id
         in: path
@@ -4914,11 +4956,11 @@ components:
               - extensionKeys
               displayScript: displayScript
           useParentHandlers: true
-          resourceBundleName: resourceBundleName
           level:
             localizedName: localizedName
             resourceBundleName: resourceBundleName
             name: name
+          resourceBundleName: resourceBundleName
           handlers:
           - filter: "{}"
             formatter: "{}"
@@ -5193,8 +5235,8 @@ components:
           corePoolSize: 1
           started: true
           enabled: true
-          terminated: true
           shutdown: true
+          terminated: true
           daemon: true
         connegService:
           stopped: true
@@ -5496,26 +5538,26 @@ components:
       type: object
     CompletableFuture:
       properties:
-        cancelled:
-          type: boolean
         completedExceptionally:
           type: boolean
         numberOfDependents:
           format: int32
           type: integer
         done:
+          type: boolean
+        cancelled:
           type: boolean
       type: object
     CompletableFutureListApiKey:
       properties:
-        cancelled:
-          type: boolean
         completedExceptionally:
           type: boolean
         numberOfDependents:
           format: int32
           type: integer
         done:
+          type: boolean
+        cancelled:
           type: boolean
       type: object
     Conditions:
@@ -5720,11 +5762,11 @@ components:
                   - extensionKeys
                   displayScript: displayScript
               useParentHandlers: true
-              resourceBundleName: resourceBundleName
               level:
                 localizedName: localizedName
                 resourceBundleName: resourceBundleName
                 name: name
+              resourceBundleName: resourceBundleName
               handlers:
               - filter: "{}"
                 formatter: "{}"
@@ -5999,8 +6041,8 @@ components:
               corePoolSize: 1
               started: true
               enabled: true
-              terminated: true
               shutdown: true
+              terminated: true
               daemon: true
             connegService:
               stopped: true
@@ -6037,11 +6079,11 @@ components:
                 - extensionKeys
                 displayScript: displayScript
             useParentHandlers: true
-            resourceBundleName: resourceBundleName
             level:
               localizedName: localizedName
               resourceBundleName: resourceBundleName
               name: name
+            resourceBundleName: resourceBundleName
             handlers:
             - filter: "{}"
               formatter: "{}"
@@ -6065,8 +6107,8 @@ components:
           description: description
           started: true
         executorService:
-          terminated: true
           shutdown: true
+          terminated: true
         clientDispatcher:
           owner: owner
           stopped: true
@@ -6172,11 +6214,11 @@ components:
                   - extensionKeys
                   displayScript: displayScript
               useParentHandlers: true
-              resourceBundleName: resourceBundleName
               level:
                 localizedName: localizedName
                 resourceBundleName: resourceBundleName
                 name: name
+              resourceBundleName: resourceBundleName
               handlers:
               - filter: "{}"
                 formatter: "{}"
@@ -6451,8 +6493,8 @@ components:
               corePoolSize: 1
               started: true
               enabled: true
-              terminated: true
               shutdown: true
+              terminated: true
               daemon: true
             connegService:
               stopped: true
@@ -6489,11 +6531,11 @@ components:
                 - extensionKeys
                 displayScript: displayScript
             useParentHandlers: true
-            resourceBundleName: resourceBundleName
             level:
               localizedName: localizedName
               resourceBundleName: resourceBundleName
               name: name
+            resourceBundleName: resourceBundleName
             handlers:
             - filter: "{}"
               formatter: "{}"
@@ -6544,11 +6586,11 @@ components:
               - extensionKeys
               displayScript: displayScript
           useParentHandlers: true
-          resourceBundleName: resourceBundleName
           level:
             localizedName: localizedName
             resourceBundleName: resourceBundleName
             name: name
+          resourceBundleName: resourceBundleName
           handlers:
           - filter: "{}"
             formatter: "{}"
@@ -7002,11 +7044,11 @@ components:
             - extensionKeys
             displayScript: displayScript
         useParentHandlers: true
-        resourceBundleName: resourceBundleName
         level:
           localizedName: localizedName
           resourceBundleName: resourceBundleName
           name: name
+        resourceBundleName: resourceBundleName
         handlers:
         - filter: "{}"
           formatter: "{}"
@@ -7038,12 +7080,12 @@ components:
           type: object
         parent:
           $ref: '#/components/schemas/Logger'
+        level:
+          $ref: '#/components/schemas/Level'
         resourceBundle:
           $ref: '#/components/schemas/ResourceBundle'
         resourceBundleName:
           type: string
-        level:
-          $ref: '#/components/schemas/Level'
       type: object
     MediaType:
       example:
@@ -7675,9 +7717,9 @@ components:
       type: object
     PublicKey:
       properties:
-        algorithm:
-          type: string
         format:
+          type: string
+        algorithm:
           type: string
         encoded:
           items:
@@ -7786,11 +7828,11 @@ components:
       properties:
         baseRef:
           $ref: '#/components/schemas/Reference'
-        identifier:
+        schemeSpecificPart:
           type: string
         relative:
           type: boolean
-        schemeSpecificPart:
+        identifier:
           type: string
         path:
           type: string
@@ -7895,14 +7937,14 @@ components:
           type: string
         reader:
           type: object
-        transient:
-          type: boolean
         availableSize:
           format: int64
           type: integer
         registration:
           $ref: '#/components/schemas/SelectionRegistration'
         selectable:
+          type: boolean
+        transient:
           type: boolean
         empty:
           type: boolean
@@ -8158,10 +8200,10 @@ components:
           items:
             $ref: '#/components/schemas/Header'
           type: array
-        entityAvailable:
-          type: boolean
         entityAsText:
           type: string
+        entityAvailable:
+          type: boolean
       type: object
     Restlet:
       example:
@@ -8269,11 +8311,11 @@ components:
                 - extensionKeys
                 displayScript: displayScript
             useParentHandlers: true
-            resourceBundleName: resourceBundleName
             level:
               localizedName: localizedName
               resourceBundleName: resourceBundleName
               name: name
+            resourceBundleName: resourceBundleName
             handlers:
             - filter: "{}"
               formatter: "{}"
@@ -8548,8 +8590,8 @@ components:
             corePoolSize: 1
             started: true
             enabled: true
-            terminated: true
             shutdown: true
+            terminated: true
             daemon: true
           connegService:
             stopped: true
@@ -8586,11 +8628,11 @@ components:
               - extensionKeys
               displayScript: displayScript
           useParentHandlers: true
-          resourceBundleName: resourceBundleName
           level:
             localizedName: localizedName
             resourceBundleName: resourceBundleName
             name: name
+          resourceBundleName: resourceBundleName
           handlers:
           - filter: "{}"
             formatter: "{}"
@@ -8655,12 +8697,12 @@ components:
       type: object
     ScheduledExecutorService:
       example:
-        terminated: true
         shutdown: true
+        terminated: true
       properties:
-        terminated:
-          type: boolean
         shutdown:
+          type: boolean
+        terminated:
           type: boolean
       type: object
     SelectableChannel:
@@ -8690,9 +8732,9 @@ components:
           $ref: '#/components/schemas/SelectableChannel'
         wakeupListener:
           type: object
-        writable:
-          type: boolean
         readable:
+          type: boolean
+        writable:
           type: boolean
         connectable:
           type: boolean
@@ -8820,11 +8862,11 @@ components:
                     - extensionKeys
                     displayScript: displayScript
                 useParentHandlers: true
-                resourceBundleName: resourceBundleName
                 level:
                   localizedName: localizedName
                   resourceBundleName: resourceBundleName
                   name: name
+                resourceBundleName: resourceBundleName
                 handlers:
                 - filter: "{}"
                   formatter: "{}"
@@ -9099,8 +9141,8 @@ components:
                 corePoolSize: 1
                 started: true
                 enabled: true
-                terminated: true
                 shutdown: true
+                terminated: true
                 daemon: true
               connegService:
                 stopped: true
@@ -9137,11 +9179,11 @@ components:
                   - extensionKeys
                   displayScript: displayScript
               useParentHandlers: true
-              resourceBundleName: resourceBundleName
               level:
                 localizedName: localizedName
                 resourceBundleName: resourceBundleName
                 name: name
+              resourceBundleName: resourceBundleName
               handlers:
               - filter: "{}"
                 formatter: "{}"
@@ -9165,8 +9207,8 @@ components:
             description: description
             started: true
           executorService:
-            terminated: true
             shutdown: true
+            terminated: true
           clientDispatcher:
             owner: owner
             stopped: true
@@ -9272,11 +9314,11 @@ components:
                     - extensionKeys
                     displayScript: displayScript
                 useParentHandlers: true
-                resourceBundleName: resourceBundleName
                 level:
                   localizedName: localizedName
                   resourceBundleName: resourceBundleName
                   name: name
+                resourceBundleName: resourceBundleName
                 handlers:
                 - filter: "{}"
                   formatter: "{}"
@@ -9551,8 +9593,8 @@ components:
                 corePoolSize: 1
                 started: true
                 enabled: true
-                terminated: true
                 shutdown: true
+                terminated: true
                 daemon: true
               connegService:
                 stopped: true
@@ -9589,11 +9631,11 @@ components:
                   - extensionKeys
                   displayScript: displayScript
               useParentHandlers: true
-              resourceBundleName: resourceBundleName
               level:
                 localizedName: localizedName
                 resourceBundleName: resourceBundleName
                 name: name
+              resourceBundleName: resourceBundleName
               handlers:
               - filter: "{}"
                 formatter: "{}"
@@ -9644,11 +9686,11 @@ components:
                 - extensionKeys
                 displayScript: displayScript
             useParentHandlers: true
-            resourceBundleName: resourceBundleName
             level:
               localizedName: localizedName
               resourceBundleName: resourceBundleName
               name: name
+            resourceBundleName: resourceBundleName
             handlers:
             - filter: "{}"
               formatter: "{}"
@@ -9745,46 +9787,46 @@ components:
         type: 1
         error: error
         authId: 5
-        serverState: 1
+        serverState: 0
         adminPinState: 0
         keyturner: true
         smartdoorAdvancedConfig:
-          unlatchDuration: 4
-          doubleButtonPressAction: 6
+          unlatchDuration: 1
+          doubleButtonPressAction: 4
           automaticBatteryTypeDetection: true
           autoLock: true
-          lngTimeout: 4
-          autoLockTimeout: 9
+          lngTimeout: 0
+          autoLockTimeout: 0
           operationId: operationId
-          buzzerVolume: 1
+          buzzerVolume: 4
           supportedBatteryTypes:
-          - 4
-          - 4
-          singleButtonPressAction: 0
-          batteryType: 7
+          - 7
+          - 7
+          singleButtonPressAction: 6
+          batteryType: 9
         operationId: operationId
-        hardwareVersion: 4
+        hardwareVersion: 3
         webConfig:
           dismissedLiftUpHandleWarning:
           - 6
           - 6
           batteryWarningPerMailEnabled: true
         state:
-          doorState: 124
-          ringToOpenTimer: 39805
+          doorState: 154
+          ringToOpenTimer: 54077
           keypadBatteryCritical: true
-          trigger: 0
+          trigger: 4
           ringToOpenEnd: 2000-01-23T04:56:07.000+00:00
           batteryCritical: true
-          mode: 0
-          lastAction: 3
-          batteryCharge: 55
+          mode: 3
+          lastAction: 2
+          batteryCharge: 48
           operationId: operationId
-          state: 247
+          state: 13
           doorsensorBatteryCritical: true
           batteryCharging: true
           nightMode: true
-        firmwareVersion: 8
+        firmwareVersion: 4
         previousSubscriptions:
         - updateDate: 2000-01-23T04:56:07.000+00:00
           shsSubscriptionType: BUSINESS
@@ -9805,28 +9847,28 @@ components:
           isInGracePeriod: true
           expirationDate: 2000-01-23T04:56:07.000+00:00
         openerAdvancedConfig:
-          soundRto: 8
-          electricStrikeDelay: 3
-          soundCm: 7
+          soundRto: 7
+          electricStrikeDelay: 7
+          soundCm: 3
           automaticBatteryTypeDetection: true
-          soundRing: 0
+          soundRing: 4
           autoUpdateEnabled: true
-          soundOpen: 4
+          soundOpen: 8
           disableRtoAfterRing: true
-          soundLevel: 3
-          busModeSwitch: 6
-          intercomId: 5
-          electricStrikeDuration: 7
-          rtoTimeout: 0
-          doubleButtonPressAction: 5
+          soundLevel: 7
+          busModeSwitch: 3
+          intercomId: 6
+          electricStrikeDuration: 0
+          rtoTimeout: 7
+          doubleButtonPressAction: 3
           operationId: operationId
-          doorbellSuppression: 7
-          doorbellSuppressionDuration: 6
+          doorbellSuppression: 6
+          doorbellSuppressionDuration: 0
           randomElectricStrikeDelay: true
           shortCircuitDuration: 3
           soundConfirmation: 3
-          singleButtonPressAction: 7
-          batteryType: 3
+          singleButtonPressAction: 5
+          batteryType: 4
         lmType: 5
         virtualDevice: true
         creationDate: 2000-01-23T04:56:07.000+00:00
@@ -9849,8 +9891,10 @@ components:
           unlatchDuration: 9
           unlockedToLockedTransitionOffsetDegrees: 6
           lockedPositionOffsetDegrees: 2
+          enableSlowSpeedDuringNightmode: true
           automaticBatteryTypeDetection: true
           autoLock: true
+          motorSpeed: 5
           autoUpdateEnabled: true
           unlockedPositionOffsetDegrees: 1
           doubleButtonPressAction: 8
@@ -9862,8 +9906,8 @@ components:
           singleButtonPressAction: 6
           batteryType: 6
         name: name
-        mountingVariant: 1
-        region: 2
+        mountingVariant: 8
+        region: 1
         favorite: true
         config:
           keypadPaired: true
@@ -10017,8 +10061,10 @@ components:
         unlatchDuration: 9
         unlockedToLockedTransitionOffsetDegrees: 6
         lockedPositionOffsetDegrees: 2
+        enableSlowSpeedDuringNightmode: true
         automaticBatteryTypeDetection: true
         autoLock: true
+        motorSpeed: 5
         autoUpdateEnabled: true
         unlockedPositionOffsetDegrees: 1
         doubleButtonPressAction: 8
@@ -10121,6 +10167,14 @@ components:
         autoUpdateEnabled:
           description: Flag that indicates if available firmware updates for the deviceshould
             be installed automatically
+          type: boolean
+        motorSpeed:
+          description: "Field used for setting the motor speed. 0x00 ... standard,\
+            \ 0x01 ... fast, 0x02 ... slow"
+          format: int32
+          type: integer
+        enableSlowSpeedDuringNightmode:
+          description: Flag indicating if the slow speed shall be applied during NightMode
           type: boolean
       required:
       - batteryType
@@ -10334,28 +10388,28 @@ components:
       type: object
     Smartlock.OpenerAdvancedConfig:
       example:
-        soundRto: 8
-        electricStrikeDelay: 3
-        soundCm: 7
+        soundRto: 7
+        electricStrikeDelay: 7
+        soundCm: 3
         automaticBatteryTypeDetection: true
-        soundRing: 0
+        soundRing: 4
         autoUpdateEnabled: true
-        soundOpen: 4
+        soundOpen: 8
         disableRtoAfterRing: true
-        soundLevel: 3
-        busModeSwitch: 6
-        intercomId: 5
-        electricStrikeDuration: 7
-        rtoTimeout: 0
-        doubleButtonPressAction: 5
+        soundLevel: 7
+        busModeSwitch: 3
+        intercomId: 6
+        electricStrikeDuration: 0
+        rtoTimeout: 7
+        doubleButtonPressAction: 3
         operationId: operationId
-        doorbellSuppression: 7
-        doorbellSuppressionDuration: 6
+        doorbellSuppression: 6
+        doorbellSuppressionDuration: 0
         randomElectricStrikeDelay: true
         shortCircuitDuration: 3
         soundConfirmation: 3
-        singleButtonPressAction: 7
-        batteryType: 3
+        singleButtonPressAction: 5
+        batteryType: 4
       properties:
         intercomId:
           description: The database ID of the connected intercom
@@ -10510,19 +10564,19 @@ components:
       type: object
     Smartlock.SmartdoorAdvancedConfig:
       example:
-        unlatchDuration: 4
-        doubleButtonPressAction: 6
+        unlatchDuration: 1
+        doubleButtonPressAction: 4
         automaticBatteryTypeDetection: true
         autoLock: true
-        lngTimeout: 4
-        autoLockTimeout: 9
+        lngTimeout: 0
+        autoLockTimeout: 0
         operationId: operationId
-        buzzerVolume: 1
+        buzzerVolume: 4
         supportedBatteryTypes:
-        - 4
-        - 4
-        singleButtonPressAction: 0
-        batteryType: 7
+        - 7
+        - 7
+        singleButtonPressAction: 6
+        batteryType: 9
       properties:
         lngTimeout:
           description: Timeout in seconds for lock ‘n’ go
@@ -10606,17 +10660,17 @@ components:
       type: object
     Smartlock.State:
       example:
-        doorState: 124
-        ringToOpenTimer: 39805
+        doorState: 154
+        ringToOpenTimer: 54077
         keypadBatteryCritical: true
-        trigger: 0
+        trigger: 4
         ringToOpenEnd: 2000-01-23T04:56:07.000+00:00
         batteryCritical: true
-        mode: 0
-        lastAction: 3
-        batteryCharge: 55
+        mode: 3
+        lastAction: 2
+        batteryCharge: 48
         operationId: operationId
-        state: 247
+        state: 13
         doorsensorBatteryCritical: true
         batteryCharging: true
         nightMode: true
@@ -11080,6 +11134,49 @@ components:
           type: boolean
         code:
           description: The code of the keypad authorization (only for keypad)
+          format: int32
+          type: integer
+      required:
+      - name
+      type: object
+    SmartlockAuthWithSharedKeyCreate:
+      example:
+        allowedUntilDate: 2000-01-23T04:56:07.000+00:00
+        name: name
+        allowedFromDate: 2000-01-23T04:56:07.000+00:00
+        allowedUntilTime: 1
+        allowedWeekDays: 10
+        allowedFromTime: 6
+        accountUserId: 5
+      properties:
+        name:
+          description: The name of the authorization (max 32 chars)
+          type: string
+        allowedFromDate:
+          description: The allowed from date
+          format: date-time
+          type: string
+        allowedUntilDate:
+          description: The allowed until date
+          format: date-time
+          type: string
+        allowedWeekDays:
+          description: "The allowed weekdays bitmask: 64 .. monday, 32 .. tuesday,\
+            \ 16 .. wednesday, 8 .. thursday, 4 .. friday, 2 .. saturday, 1 .. sunday"
+          format: int32
+          maximum: 127
+          minimum: 0
+          type: integer
+        allowedFromTime:
+          description: The allowed from time (in minutes from midnight)
+          format: int32
+          type: integer
+        allowedUntilTime:
+          description: The allowed until time (in minutes from midnight)
+          format: int32
+          type: integer
+        accountUserId:
+          description: The id of the linked account user
           format: int32
           type: integer
       required:
@@ -11662,8 +11759,8 @@ components:
         corePoolSize: 1
         started: true
         enabled: true
-        terminated: true
         shutdown: true
+        terminated: true
         daemon: true
       properties:
         context:
@@ -11679,9 +11776,9 @@ components:
           type: boolean
         shutdownAllowed:
           type: boolean
-        terminated:
-          type: boolean
         shutdown:
+          type: boolean
+        terminated:
           type: boolean
         stopped:
           type: boolean

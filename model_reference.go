@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 0.0
+API version: 3.8.1
 Contact: contact@nuki.io
 */
 
@@ -21,9 +21,9 @@ var _ MappedNullable = &Reference{}
 // Reference struct for Reference
 type Reference struct {
 	BaseRef *Reference `json:"baseRef,omitempty"`
-	Identifier *string `json:"identifier,omitempty"`
-	Relative *bool `json:"relative,omitempty"`
 	SchemeSpecificPart *string `json:"schemeSpecificPart,omitempty"`
+	Relative *bool `json:"relative,omitempty"`
+	Identifier *string `json:"identifier,omitempty"`
 	Path *string `json:"path,omitempty"`
 	Scheme *string `json:"scheme,omitempty"`
 	Fragment *string `json:"fragment,omitempty"`
@@ -101,36 +101,36 @@ func (o *Reference) SetBaseRef(v Reference) {
 	o.BaseRef = &v
 }
 
-// GetIdentifier returns the Identifier field value if set, zero value otherwise.
-func (o *Reference) GetIdentifier() string {
-	if o == nil || IsNil(o.Identifier) {
+// GetSchemeSpecificPart returns the SchemeSpecificPart field value if set, zero value otherwise.
+func (o *Reference) GetSchemeSpecificPart() string {
+	if o == nil || IsNil(o.SchemeSpecificPart) {
 		var ret string
 		return ret
 	}
-	return *o.Identifier
+	return *o.SchemeSpecificPart
 }
 
-// GetIdentifierOk returns a tuple with the Identifier field value if set, nil otherwise
+// GetSchemeSpecificPartOk returns a tuple with the SchemeSpecificPart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Reference) GetIdentifierOk() (*string, bool) {
-	if o == nil || IsNil(o.Identifier) {
+func (o *Reference) GetSchemeSpecificPartOk() (*string, bool) {
+	if o == nil || IsNil(o.SchemeSpecificPart) {
 		return nil, false
 	}
-	return o.Identifier, true
+	return o.SchemeSpecificPart, true
 }
 
-// HasIdentifier returns a boolean if a field has been set.
-func (o *Reference) HasIdentifier() bool {
-	if o != nil && !IsNil(o.Identifier) {
+// HasSchemeSpecificPart returns a boolean if a field has been set.
+func (o *Reference) HasSchemeSpecificPart() bool {
+	if o != nil && !IsNil(o.SchemeSpecificPart) {
 		return true
 	}
 
 	return false
 }
 
-// SetIdentifier gets a reference to the given string and assigns it to the Identifier field.
-func (o *Reference) SetIdentifier(v string) {
-	o.Identifier = &v
+// SetSchemeSpecificPart gets a reference to the given string and assigns it to the SchemeSpecificPart field.
+func (o *Reference) SetSchemeSpecificPart(v string) {
+	o.SchemeSpecificPart = &v
 }
 
 // GetRelative returns the Relative field value if set, zero value otherwise.
@@ -165,36 +165,36 @@ func (o *Reference) SetRelative(v bool) {
 	o.Relative = &v
 }
 
-// GetSchemeSpecificPart returns the SchemeSpecificPart field value if set, zero value otherwise.
-func (o *Reference) GetSchemeSpecificPart() string {
-	if o == nil || IsNil(o.SchemeSpecificPart) {
+// GetIdentifier returns the Identifier field value if set, zero value otherwise.
+func (o *Reference) GetIdentifier() string {
+	if o == nil || IsNil(o.Identifier) {
 		var ret string
 		return ret
 	}
-	return *o.SchemeSpecificPart
+	return *o.Identifier
 }
 
-// GetSchemeSpecificPartOk returns a tuple with the SchemeSpecificPart field value if set, nil otherwise
+// GetIdentifierOk returns a tuple with the Identifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Reference) GetSchemeSpecificPartOk() (*string, bool) {
-	if o == nil || IsNil(o.SchemeSpecificPart) {
+func (o *Reference) GetIdentifierOk() (*string, bool) {
+	if o == nil || IsNil(o.Identifier) {
 		return nil, false
 	}
-	return o.SchemeSpecificPart, true
+	return o.Identifier, true
 }
 
-// HasSchemeSpecificPart returns a boolean if a field has been set.
-func (o *Reference) HasSchemeSpecificPart() bool {
-	if o != nil && !IsNil(o.SchemeSpecificPart) {
+// HasIdentifier returns a boolean if a field has been set.
+func (o *Reference) HasIdentifier() bool {
+	if o != nil && !IsNil(o.Identifier) {
 		return true
 	}
 
 	return false
 }
 
-// SetSchemeSpecificPart gets a reference to the given string and assigns it to the SchemeSpecificPart field.
-func (o *Reference) SetSchemeSpecificPart(v string) {
-	o.SchemeSpecificPart = &v
+// SetIdentifier gets a reference to the given string and assigns it to the Identifier field.
+func (o *Reference) SetIdentifier(v string) {
+	o.Identifier = &v
 }
 
 // GetPath returns the Path field value if set, zero value otherwise.
@@ -1042,14 +1042,14 @@ func (o Reference) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.BaseRef) {
 		toSerialize["baseRef"] = o.BaseRef
 	}
-	if !IsNil(o.Identifier) {
-		toSerialize["identifier"] = o.Identifier
+	if !IsNil(o.SchemeSpecificPart) {
+		toSerialize["schemeSpecificPart"] = o.SchemeSpecificPart
 	}
 	if !IsNil(o.Relative) {
 		toSerialize["relative"] = o.Relative
 	}
-	if !IsNil(o.SchemeSpecificPart) {
-		toSerialize["schemeSpecificPart"] = o.SchemeSpecificPart
+	if !IsNil(o.Identifier) {
+		toSerialize["identifier"] = o.Identifier
 	}
 	if !IsNil(o.Path) {
 		toSerialize["path"] = o.Path

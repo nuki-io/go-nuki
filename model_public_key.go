@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 0.0
+API version: 3.8.1
 Contact: contact@nuki.io
 */
 
@@ -20,8 +20,8 @@ var _ MappedNullable = &PublicKey{}
 
 // PublicKey struct for PublicKey
 type PublicKey struct {
-	Algorithm *string `json:"algorithm,omitempty"`
 	Format *string `json:"format,omitempty"`
+	Algorithm *string `json:"algorithm,omitempty"`
 	Encoded []string `json:"encoded,omitempty"`
 }
 
@@ -40,38 +40,6 @@ func NewPublicKey() *PublicKey {
 func NewPublicKeyWithDefaults() *PublicKey {
 	this := PublicKey{}
 	return &this
-}
-
-// GetAlgorithm returns the Algorithm field value if set, zero value otherwise.
-func (o *PublicKey) GetAlgorithm() string {
-	if o == nil || IsNil(o.Algorithm) {
-		var ret string
-		return ret
-	}
-	return *o.Algorithm
-}
-
-// GetAlgorithmOk returns a tuple with the Algorithm field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PublicKey) GetAlgorithmOk() (*string, bool) {
-	if o == nil || IsNil(o.Algorithm) {
-		return nil, false
-	}
-	return o.Algorithm, true
-}
-
-// HasAlgorithm returns a boolean if a field has been set.
-func (o *PublicKey) HasAlgorithm() bool {
-	if o != nil && !IsNil(o.Algorithm) {
-		return true
-	}
-
-	return false
-}
-
-// SetAlgorithm gets a reference to the given string and assigns it to the Algorithm field.
-func (o *PublicKey) SetAlgorithm(v string) {
-	o.Algorithm = &v
 }
 
 // GetFormat returns the Format field value if set, zero value otherwise.
@@ -104,6 +72,38 @@ func (o *PublicKey) HasFormat() bool {
 // SetFormat gets a reference to the given string and assigns it to the Format field.
 func (o *PublicKey) SetFormat(v string) {
 	o.Format = &v
+}
+
+// GetAlgorithm returns the Algorithm field value if set, zero value otherwise.
+func (o *PublicKey) GetAlgorithm() string {
+	if o == nil || IsNil(o.Algorithm) {
+		var ret string
+		return ret
+	}
+	return *o.Algorithm
+}
+
+// GetAlgorithmOk returns a tuple with the Algorithm field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PublicKey) GetAlgorithmOk() (*string, bool) {
+	if o == nil || IsNil(o.Algorithm) {
+		return nil, false
+	}
+	return o.Algorithm, true
+}
+
+// HasAlgorithm returns a boolean if a field has been set.
+func (o *PublicKey) HasAlgorithm() bool {
+	if o != nil && !IsNil(o.Algorithm) {
+		return true
+	}
+
+	return false
+}
+
+// SetAlgorithm gets a reference to the given string and assigns it to the Algorithm field.
+func (o *PublicKey) SetAlgorithm(v string) {
+	o.Algorithm = &v
 }
 
 // GetEncoded returns the Encoded field value if set, zero value otherwise.
@@ -148,11 +148,11 @@ func (o PublicKey) MarshalJSON() ([]byte, error) {
 
 func (o PublicKey) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Algorithm) {
-		toSerialize["algorithm"] = o.Algorithm
-	}
 	if !IsNil(o.Format) {
 		toSerialize["format"] = o.Format
+	}
+	if !IsNil(o.Algorithm) {
+		toSerialize["algorithm"] = o.Algorithm
 	}
 	if !IsNil(o.Encoded) {
 		toSerialize["encoded"] = o.Encoded

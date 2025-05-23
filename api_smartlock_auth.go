@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 0.0
+API version: 3.8.1
 Contact: contact@nuki.io
 */
 
@@ -24,27 +24,27 @@ import (
 // SmartlockAuthAPIService SmartlockAuthAPI service
 type SmartlockAuthAPIService service
 
-type ApiSmartlockAuthResourceDeleteDeleteRequest struct {
+type ApiDeleteSmartlockAuthRequest struct {
 	ctx context.Context
 	ApiService *SmartlockAuthAPIService
 	smartlockId int32
 	id string
 }
 
-func (r ApiSmartlockAuthResourceDeleteDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SmartlockAuthResourceDeleteDeleteExecute(r)
+func (r ApiDeleteSmartlockAuthRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteSmartlockAuthExecute(r)
 }
 
 /*
-SmartlockAuthResourceDeleteDelete Deletes asynchronous a smartlock authorization
+DeleteSmartlockAuth Deletes asynchronous a smartlock authorization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param smartlockId The smartlock id
  @param id The smartlock authorization unique id
- @return ApiSmartlockAuthResourceDeleteDeleteRequest
+ @return ApiDeleteSmartlockAuthRequest
 */
-func (a *SmartlockAuthAPIService) SmartlockAuthResourceDeleteDelete(ctx context.Context, smartlockId int32, id string) ApiSmartlockAuthResourceDeleteDeleteRequest {
-	return ApiSmartlockAuthResourceDeleteDeleteRequest{
+func (a *SmartlockAuthAPIService) DeleteSmartlockAuth(ctx context.Context, smartlockId int32, id string) ApiDeleteSmartlockAuthRequest {
+	return ApiDeleteSmartlockAuthRequest{
 		ApiService: a,
 		ctx: ctx,
 		smartlockId: smartlockId,
@@ -53,14 +53,14 @@ func (a *SmartlockAuthAPIService) SmartlockAuthResourceDeleteDelete(ctx context.
 }
 
 // Execute executes the request
-func (a *SmartlockAuthAPIService) SmartlockAuthResourceDeleteDeleteExecute(r ApiSmartlockAuthResourceDeleteDeleteRequest) (*http.Response, error) {
+func (a *SmartlockAuthAPIService) DeleteSmartlockAuthExecute(r ApiDeleteSmartlockAuthRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAuthAPIService.SmartlockAuthResourceDeleteDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAuthAPIService.DeleteSmartlockAuth")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -118,27 +118,125 @@ func (a *SmartlockAuthAPIService) SmartlockAuthResourceDeleteDeleteExecute(r Api
 	return localVarHTTPResponse, nil
 }
 
-type ApiSmartlockAuthResourceGetGetRequest struct {
+type ApiDeleteSmartlocksAuthsRequest struct {
+	ctx context.Context
+	ApiService *SmartlockAuthAPIService
+	body *[]string
+}
+
+// Smartlock authorization IDs to delete
+func (r ApiDeleteSmartlocksAuthsRequest) Body(body []string) ApiDeleteSmartlocksAuthsRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiDeleteSmartlocksAuthsRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteSmartlocksAuthsExecute(r)
+}
+
+/*
+DeleteSmartlocksAuths Deletes smartlock authorizations asynchronously
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiDeleteSmartlocksAuthsRequest
+*/
+func (a *SmartlockAuthAPIService) DeleteSmartlocksAuths(ctx context.Context) ApiDeleteSmartlocksAuthsRequest {
+	return ApiDeleteSmartlocksAuthsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+func (a *SmartlockAuthAPIService) DeleteSmartlocksAuthsExecute(r ApiDeleteSmartlocksAuthsRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAuthAPIService.DeleteSmartlocksAuths")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/smartlock/auth"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiGetSmartlockAuthRequest struct {
 	ctx context.Context
 	ApiService *SmartlockAuthAPIService
 	smartlockId int32
 	id string
 }
 
-func (r ApiSmartlockAuthResourceGetGetRequest) Execute() (*SmartlockAuth, *http.Response, error) {
-	return r.ApiService.SmartlockAuthResourceGetGetExecute(r)
+func (r ApiGetSmartlockAuthRequest) Execute() (*SmartlockAuth, *http.Response, error) {
+	return r.ApiService.GetSmartlockAuthExecute(r)
 }
 
 /*
-SmartlockAuthResourceGetGet Get a smartlock authorization
+GetSmartlockAuth Get a smartlock authorization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param smartlockId The smartlock id
  @param id The smartlock auth unique id
- @return ApiSmartlockAuthResourceGetGetRequest
+ @return ApiGetSmartlockAuthRequest
 */
-func (a *SmartlockAuthAPIService) SmartlockAuthResourceGetGet(ctx context.Context, smartlockId int32, id string) ApiSmartlockAuthResourceGetGetRequest {
-	return ApiSmartlockAuthResourceGetGetRequest{
+func (a *SmartlockAuthAPIService) GetSmartlockAuth(ctx context.Context, smartlockId int32, id string) ApiGetSmartlockAuthRequest {
+	return ApiGetSmartlockAuthRequest{
 		ApiService: a,
 		ctx: ctx,
 		smartlockId: smartlockId,
@@ -148,7 +246,7 @@ func (a *SmartlockAuthAPIService) SmartlockAuthResourceGetGet(ctx context.Contex
 
 // Execute executes the request
 //  @return SmartlockAuth
-func (a *SmartlockAuthAPIService) SmartlockAuthResourceGetGetExecute(r ApiSmartlockAuthResourceGetGetRequest) (*SmartlockAuth, *http.Response, error) {
+func (a *SmartlockAuthAPIService) GetSmartlockAuthExecute(r ApiGetSmartlockAuthRequest) (*SmartlockAuth, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -156,7 +254,7 @@ func (a *SmartlockAuthAPIService) SmartlockAuthResourceGetGetExecute(r ApiSmartl
 		localVarReturnValue  *SmartlockAuth
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAuthAPIService.SmartlockAuthResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAuthAPIService.GetSmartlockAuth")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -223,113 +321,7 @@ func (a *SmartlockAuthAPIService) SmartlockAuthResourceGetGetExecute(r ApiSmartl
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSmartlockAuthResourcePostPostRequest struct {
-	ctx context.Context
-	ApiService *SmartlockAuthAPIService
-	smartlockId int32
-	id string
-	body *SmartlockAuthUpdate
-}
-
-// Smartlock authorization update representation
-func (r ApiSmartlockAuthResourcePostPostRequest) Body(body SmartlockAuthUpdate) ApiSmartlockAuthResourcePostPostRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiSmartlockAuthResourcePostPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SmartlockAuthResourcePostPostExecute(r)
-}
-
-/*
-SmartlockAuthResourcePostPost Updates asynchronous a smartlock authorization
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
- @param id The smartlock authorization unique id
- @return ApiSmartlockAuthResourcePostPostRequest
-*/
-func (a *SmartlockAuthAPIService) SmartlockAuthResourcePostPost(ctx context.Context, smartlockId int32, id string) ApiSmartlockAuthResourcePostPostRequest {
-	return ApiSmartlockAuthResourcePostPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		smartlockId: smartlockId,
-		id: id,
-	}
-}
-
-// Execute executes the request
-func (a *SmartlockAuthAPIService) SmartlockAuthResourcePostPostExecute(r ApiSmartlockAuthResourcePostPostRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAuthAPIService.SmartlockAuthResourcePostPost")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/smartlock/{smartlockId}/auth/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiSmartlockAuthsResourceGetGetRequest struct {
+type ApiGetSmartlockAuthsRequest struct {
 	ctx context.Context
 	ApiService *SmartlockAuthAPIService
 	smartlockId int32
@@ -337,24 +329,24 @@ type ApiSmartlockAuthsResourceGetGetRequest struct {
 }
 
 // Filter for smartlock authorization&#39;s types (comma-separated eg: 0,2,3)
-func (r ApiSmartlockAuthsResourceGetGetRequest) Types(types string) ApiSmartlockAuthsResourceGetGetRequest {
+func (r ApiGetSmartlockAuthsRequest) Types(types string) ApiGetSmartlockAuthsRequest {
 	r.types = &types
 	return r
 }
 
-func (r ApiSmartlockAuthsResourceGetGetRequest) Execute() ([]SmartlockAuth, *http.Response, error) {
-	return r.ApiService.SmartlockAuthsResourceGetGetExecute(r)
+func (r ApiGetSmartlockAuthsRequest) Execute() ([]SmartlockAuth, *http.Response, error) {
+	return r.ApiService.GetSmartlockAuthsExecute(r)
 }
 
 /*
-SmartlockAuthsResourceGetGet Get a list of smartlock authorizations
+GetSmartlockAuths Get a list of smartlock authorizations
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param smartlockId The smartlock id
- @return ApiSmartlockAuthsResourceGetGetRequest
+ @return ApiGetSmartlockAuthsRequest
 */
-func (a *SmartlockAuthAPIService) SmartlockAuthsResourceGetGet(ctx context.Context, smartlockId int32) ApiSmartlockAuthsResourceGetGetRequest {
-	return ApiSmartlockAuthsResourceGetGetRequest{
+func (a *SmartlockAuthAPIService) GetSmartlockAuths(ctx context.Context, smartlockId int32) ApiGetSmartlockAuthsRequest {
+	return ApiGetSmartlockAuthsRequest{
 		ApiService: a,
 		ctx: ctx,
 		smartlockId: smartlockId,
@@ -363,7 +355,7 @@ func (a *SmartlockAuthAPIService) SmartlockAuthsResourceGetGet(ctx context.Conte
 
 // Execute executes the request
 //  @return []SmartlockAuth
-func (a *SmartlockAuthAPIService) SmartlockAuthsResourceGetGetExecute(r ApiSmartlockAuthsResourceGetGetRequest) ([]SmartlockAuth, *http.Response, error) {
+func (a *SmartlockAuthAPIService) GetSmartlockAuthsExecute(r ApiGetSmartlockAuthsRequest) ([]SmartlockAuth, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -371,7 +363,7 @@ func (a *SmartlockAuthAPIService) SmartlockAuthsResourceGetGetExecute(r ApiSmart
 		localVarReturnValue  []SmartlockAuth
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAuthAPIService.SmartlockAuthsResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAuthAPIService.GetSmartlockAuths")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -440,207 +432,7 @@ func (a *SmartlockAuthAPIService) SmartlockAuthsResourceGetGetExecute(r ApiSmart
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSmartlockAuthsResourcePutPutRequest struct {
-	ctx context.Context
-	ApiService *SmartlockAuthAPIService
-	smartlockId int32
-	body *SmartlockAuthCreate
-}
-
-// Smartlock authorization create representation
-func (r ApiSmartlockAuthsResourcePutPutRequest) Body(body SmartlockAuthCreate) ApiSmartlockAuthsResourcePutPutRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiSmartlockAuthsResourcePutPutRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SmartlockAuthsResourcePutPutExecute(r)
-}
-
-/*
-SmartlockAuthsResourcePutPut Creates asynchronous a smartlock authorization
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
- @return ApiSmartlockAuthsResourcePutPutRequest
-*/
-func (a *SmartlockAuthAPIService) SmartlockAuthsResourcePutPut(ctx context.Context, smartlockId int32) ApiSmartlockAuthsResourcePutPutRequest {
-	return ApiSmartlockAuthsResourcePutPutRequest{
-		ApiService: a,
-		ctx: ctx,
-		smartlockId: smartlockId,
-	}
-}
-
-// Execute executes the request
-func (a *SmartlockAuthAPIService) SmartlockAuthsResourcePutPutExecute(r ApiSmartlockAuthsResourcePutPutRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAuthAPIService.SmartlockAuthsResourcePutPut")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/smartlock/{smartlockId}/auth"
-	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiSmartlocksAuthsResourceDeleteDeleteRequest struct {
-	ctx context.Context
-	ApiService *SmartlockAuthAPIService
-	body *[]string
-}
-
-// Smartlock authorization IDs to delete
-func (r ApiSmartlocksAuthsResourceDeleteDeleteRequest) Body(body []string) ApiSmartlocksAuthsResourceDeleteDeleteRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiSmartlocksAuthsResourceDeleteDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SmartlocksAuthsResourceDeleteDeleteExecute(r)
-}
-
-/*
-SmartlocksAuthsResourceDeleteDelete Deletes smartlock authorizations asynchronously
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSmartlocksAuthsResourceDeleteDeleteRequest
-*/
-func (a *SmartlockAuthAPIService) SmartlocksAuthsResourceDeleteDelete(ctx context.Context) ApiSmartlocksAuthsResourceDeleteDeleteRequest {
-	return ApiSmartlocksAuthsResourceDeleteDeleteRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-func (a *SmartlockAuthAPIService) SmartlocksAuthsResourceDeleteDeleteExecute(r ApiSmartlocksAuthsResourceDeleteDeleteRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAuthAPIService.SmartlocksAuthsResourceDeleteDelete")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/smartlock/auth"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiSmartlocksAuthsResourceGetGetRequest struct {
+type ApiGetSmartlocksAuthsRequest struct {
 	ctx context.Context
 	ApiService *SmartlockAuthAPIService
 	accountUserId *int32
@@ -648,29 +440,29 @@ type ApiSmartlocksAuthsResourceGetGetRequest struct {
 }
 
 // Filter for account users:  set to a positive number will filter for authorizations with this specific accountUserId, set to a negative number will filter without set accountUserId
-func (r ApiSmartlocksAuthsResourceGetGetRequest) AccountUserId(accountUserId int32) ApiSmartlocksAuthsResourceGetGetRequest {
+func (r ApiGetSmartlocksAuthsRequest) AccountUserId(accountUserId int32) ApiGetSmartlocksAuthsRequest {
 	r.accountUserId = &accountUserId
 	return r
 }
 
 // Filter for authorization&#39;s types (comma-separated eg: 0,2,3)
-func (r ApiSmartlocksAuthsResourceGetGetRequest) Types(types string) ApiSmartlocksAuthsResourceGetGetRequest {
+func (r ApiGetSmartlocksAuthsRequest) Types(types string) ApiGetSmartlocksAuthsRequest {
 	r.types = &types
 	return r
 }
 
-func (r ApiSmartlocksAuthsResourceGetGetRequest) Execute() ([]SmartlockAuth, *http.Response, error) {
-	return r.ApiService.SmartlocksAuthsResourceGetGetExecute(r)
+func (r ApiGetSmartlocksAuthsRequest) Execute() ([]SmartlockAuth, *http.Response, error) {
+	return r.ApiService.GetSmartlocksAuthsExecute(r)
 }
 
 /*
-SmartlocksAuthsResourceGetGet Get a list of smartlock authorizations for your smartlocks
+GetSmartlocksAuths Get a list of smartlock authorizations for your smartlocks
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSmartlocksAuthsResourceGetGetRequest
+ @return ApiGetSmartlocksAuthsRequest
 */
-func (a *SmartlockAuthAPIService) SmartlocksAuthsResourceGetGet(ctx context.Context) ApiSmartlocksAuthsResourceGetGetRequest {
-	return ApiSmartlocksAuthsResourceGetGetRequest{
+func (a *SmartlockAuthAPIService) GetSmartlocksAuths(ctx context.Context) ApiGetSmartlocksAuthsRequest {
+	return ApiGetSmartlocksAuthsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -678,7 +470,7 @@ func (a *SmartlockAuthAPIService) SmartlocksAuthsResourceGetGet(ctx context.Cont
 
 // Execute executes the request
 //  @return []SmartlockAuth
-func (a *SmartlockAuthAPIService) SmartlocksAuthsResourceGetGetExecute(r ApiSmartlocksAuthsResourceGetGetRequest) ([]SmartlockAuth, *http.Response, error) {
+func (a *SmartlockAuthAPIService) GetSmartlocksAuthsExecute(r ApiGetSmartlocksAuthsRequest) ([]SmartlockAuth, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -686,7 +478,7 @@ func (a *SmartlockAuthAPIService) SmartlocksAuthsResourceGetGetExecute(r ApiSmar
 		localVarReturnValue  []SmartlockAuth
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAuthAPIService.SmartlocksAuthsResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAuthAPIService.GetSmartlocksAuths")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -757,44 +549,263 @@ func (a *SmartlockAuthAPIService) SmartlocksAuthsResourceGetGetExecute(r ApiSmar
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSmartlocksAuthsResourcePostPostRequest struct {
+type ApiPostSmartlockAuthRequest struct {
 	ctx context.Context
 	ApiService *SmartlockAuthAPIService
-	body *[]SmartlockAuthMultiUpdate
+	smartlockId int32
+	id string
+	body *SmartlockAuthUpdate
 }
 
-// Smartlock authorization update representations
-func (r ApiSmartlocksAuthsResourcePostPostRequest) Body(body []SmartlockAuthMultiUpdate) ApiSmartlocksAuthsResourcePostPostRequest {
+// Smartlock authorization update representation
+func (r ApiPostSmartlockAuthRequest) Body(body SmartlockAuthUpdate) ApiPostSmartlockAuthRequest {
 	r.body = &body
 	return r
 }
 
-func (r ApiSmartlocksAuthsResourcePostPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SmartlocksAuthsResourcePostPostExecute(r)
+func (r ApiPostSmartlockAuthRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostSmartlockAuthExecute(r)
 }
 
 /*
-SmartlocksAuthsResourcePostPost Updates smartlock authorizations asynchronously
+PostSmartlockAuth Updates asynchronous a smartlock authorization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSmartlocksAuthsResourcePostPostRequest
+ @param smartlockId The smartlock id
+ @param id The smartlock authorization unique id
+ @return ApiPostSmartlockAuthRequest
 */
-func (a *SmartlockAuthAPIService) SmartlocksAuthsResourcePostPost(ctx context.Context) ApiSmartlocksAuthsResourcePostPostRequest {
-	return ApiSmartlocksAuthsResourcePostPostRequest{
+func (a *SmartlockAuthAPIService) PostSmartlockAuth(ctx context.Context, smartlockId int32, id string) ApiPostSmartlockAuthRequest {
+	return ApiPostSmartlockAuthRequest{
 		ApiService: a,
 		ctx: ctx,
+		smartlockId: smartlockId,
+		id: id,
 	}
 }
 
 // Execute executes the request
-func (a *SmartlockAuthAPIService) SmartlocksAuthsResourcePostPostExecute(r ApiSmartlocksAuthsResourcePostPostRequest) (*http.Response, error) {
+func (a *SmartlockAuthAPIService) PostSmartlockAuthExecute(r ApiPostSmartlockAuthRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAuthAPIService.SmartlocksAuthsResourcePostPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAuthAPIService.PostSmartlockAuth")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/smartlock/{smartlockId}/auth/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiPostSmartlockAuthWithSharedKeyRequest struct {
+	ctx context.Context
+	ApiService *SmartlockAuthAPIService
+	smartlockId int32
+	body *SmartlockAuthWithSharedKeyCreate
+}
+
+// Smartlock auth create with shared key
+func (r ApiPostSmartlockAuthWithSharedKeyRequest) Body(body SmartlockAuthWithSharedKeyCreate) ApiPostSmartlockAuthWithSharedKeyRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiPostSmartlockAuthWithSharedKeyRequest) Execute() ([]SmartlockAuth, *http.Response, error) {
+	return r.ApiService.PostSmartlockAuthWithSharedKeyExecute(r)
+}
+
+/*
+PostSmartlockAuthWithSharedKey Generate a new smartlock auth with a shared key
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param smartlockId The smartlock id
+ @return ApiPostSmartlockAuthWithSharedKeyRequest
+*/
+func (a *SmartlockAuthAPIService) PostSmartlockAuthWithSharedKey(ctx context.Context, smartlockId int32) ApiPostSmartlockAuthWithSharedKeyRequest {
+	return ApiPostSmartlockAuthWithSharedKeyRequest{
+		ApiService: a,
+		ctx: ctx,
+		smartlockId: smartlockId,
+	}
+}
+
+// Execute executes the request
+//  @return []SmartlockAuth
+func (a *SmartlockAuthAPIService) PostSmartlockAuthWithSharedKeyExecute(r ApiPostSmartlockAuthWithSharedKeyRequest) ([]SmartlockAuth, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []SmartlockAuth
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAuthAPIService.PostSmartlockAuthWithSharedKey")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/smartlock/{smartlockId}/auth/advanced/sharedkey"
+	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPostSmartlocksAuthsRequest struct {
+	ctx context.Context
+	ApiService *SmartlockAuthAPIService
+	body *[]SmartlockAuthMultiUpdate
+}
+
+// Smartlock authorization update representations
+func (r ApiPostSmartlocksAuthsRequest) Body(body []SmartlockAuthMultiUpdate) ApiPostSmartlocksAuthsRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiPostSmartlocksAuthsRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostSmartlocksAuthsExecute(r)
+}
+
+/*
+PostSmartlocksAuths Updates smartlock authorizations asynchronously
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPostSmartlocksAuthsRequest
+*/
+func (a *SmartlockAuthAPIService) PostSmartlocksAuths(ctx context.Context) ApiPostSmartlocksAuthsRequest {
+	return ApiPostSmartlocksAuthsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+func (a *SmartlockAuthAPIService) PostSmartlocksAuthsExecute(r ApiPostSmartlocksAuthsRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAuthAPIService.PostSmartlocksAuths")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -855,44 +866,146 @@ func (a *SmartlockAuthAPIService) SmartlocksAuthsResourcePostPostExecute(r ApiSm
 	return localVarHTTPResponse, nil
 }
 
-type ApiSmartlocksAuthsResourcePutPutRequest struct {
+type ApiPutSmartlockAuthsRequest struct {
 	ctx context.Context
 	ApiService *SmartlockAuthAPIService
-	body *SmartlocksAuthCreate
+	smartlockId int32
+	body *SmartlockAuthCreate
 }
 
 // Smartlock authorization create representation
-func (r ApiSmartlocksAuthsResourcePutPutRequest) Body(body SmartlocksAuthCreate) ApiSmartlocksAuthsResourcePutPutRequest {
+func (r ApiPutSmartlockAuthsRequest) Body(body SmartlockAuthCreate) ApiPutSmartlockAuthsRequest {
 	r.body = &body
 	return r
 }
 
-func (r ApiSmartlocksAuthsResourcePutPutRequest) Execute() (*http.Response, error) {
-	return r.ApiService.SmartlocksAuthsResourcePutPutExecute(r)
+func (r ApiPutSmartlockAuthsRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PutSmartlockAuthsExecute(r)
 }
 
 /*
-SmartlocksAuthsResourcePutPut Creates asynchronous smartlock authorizations
+PutSmartlockAuths Creates asynchronous a smartlock authorization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSmartlocksAuthsResourcePutPutRequest
+ @param smartlockId The smartlock id
+ @return ApiPutSmartlockAuthsRequest
 */
-func (a *SmartlockAuthAPIService) SmartlocksAuthsResourcePutPut(ctx context.Context) ApiSmartlocksAuthsResourcePutPutRequest {
-	return ApiSmartlocksAuthsResourcePutPutRequest{
+func (a *SmartlockAuthAPIService) PutSmartlockAuths(ctx context.Context, smartlockId int32) ApiPutSmartlockAuthsRequest {
+	return ApiPutSmartlockAuthsRequest{
 		ApiService: a,
 		ctx: ctx,
+		smartlockId: smartlockId,
 	}
 }
 
 // Execute executes the request
-func (a *SmartlockAuthAPIService) SmartlocksAuthsResourcePutPutExecute(r ApiSmartlocksAuthsResourcePutPutRequest) (*http.Response, error) {
+func (a *SmartlockAuthAPIService) PutSmartlockAuthsExecute(r ApiPutSmartlockAuthsRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAuthAPIService.SmartlocksAuthsResourcePutPut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAuthAPIService.PutSmartlockAuths")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/smartlock/{smartlockId}/auth"
+	localVarPath = strings.Replace(localVarPath, "{"+"smartlockId"+"}", url.PathEscape(parameterValueToString(r.smartlockId, "smartlockId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiPutSmartlocksAuthsRequest struct {
+	ctx context.Context
+	ApiService *SmartlockAuthAPIService
+	body *SmartlocksAuthCreate
+}
+
+// Smartlock authorization create representation
+func (r ApiPutSmartlocksAuthsRequest) Body(body SmartlocksAuthCreate) ApiPutSmartlocksAuthsRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiPutSmartlocksAuthsRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PutSmartlocksAuthsExecute(r)
+}
+
+/*
+PutSmartlocksAuths Creates asynchronous smartlock authorizations
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPutSmartlocksAuthsRequest
+*/
+func (a *SmartlockAuthAPIService) PutSmartlocksAuths(ctx context.Context) ApiPutSmartlocksAuthsRequest {
+	return ApiPutSmartlocksAuthsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+func (a *SmartlockAuthAPIService) PutSmartlocksAuthsExecute(r ApiPutSmartlocksAuthsRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAuthAPIService.PutSmartlocksAuths")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}

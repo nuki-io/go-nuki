@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 0.0
+API version: 3.8.1
 Contact: contact@nuki.io
 */
 
@@ -37,10 +37,10 @@ type Representation struct {
 	Stream map[string]interface{} `json:"stream,omitempty"`
 	Text *string `json:"text,omitempty"`
 	Reader map[string]interface{} `json:"reader,omitempty"`
-	Transient *bool `json:"transient,omitempty"`
 	AvailableSize *int64 `json:"availableSize,omitempty"`
 	Registration *SelectionRegistration `json:"registration,omitempty"`
 	Selectable *bool `json:"selectable,omitempty"`
+	Transient *bool `json:"transient,omitempty"`
 	Empty *bool `json:"empty,omitempty"`
 	Channel *ReadableByteChannel `json:"channel,omitempty"`
 }
@@ -574,38 +574,6 @@ func (o *Representation) SetReader(v map[string]interface{}) {
 	o.Reader = v
 }
 
-// GetTransient returns the Transient field value if set, zero value otherwise.
-func (o *Representation) GetTransient() bool {
-	if o == nil || IsNil(o.Transient) {
-		var ret bool
-		return ret
-	}
-	return *o.Transient
-}
-
-// GetTransientOk returns a tuple with the Transient field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Representation) GetTransientOk() (*bool, bool) {
-	if o == nil || IsNil(o.Transient) {
-		return nil, false
-	}
-	return o.Transient, true
-}
-
-// HasTransient returns a boolean if a field has been set.
-func (o *Representation) HasTransient() bool {
-	if o != nil && !IsNil(o.Transient) {
-		return true
-	}
-
-	return false
-}
-
-// SetTransient gets a reference to the given bool and assigns it to the Transient field.
-func (o *Representation) SetTransient(v bool) {
-	o.Transient = &v
-}
-
 // GetAvailableSize returns the AvailableSize field value if set, zero value otherwise.
 func (o *Representation) GetAvailableSize() int64 {
 	if o == nil || IsNil(o.AvailableSize) {
@@ -700,6 +668,38 @@ func (o *Representation) HasSelectable() bool {
 // SetSelectable gets a reference to the given bool and assigns it to the Selectable field.
 func (o *Representation) SetSelectable(v bool) {
 	o.Selectable = &v
+}
+
+// GetTransient returns the Transient field value if set, zero value otherwise.
+func (o *Representation) GetTransient() bool {
+	if o == nil || IsNil(o.Transient) {
+		var ret bool
+		return ret
+	}
+	return *o.Transient
+}
+
+// GetTransientOk returns a tuple with the Transient field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Representation) GetTransientOk() (*bool, bool) {
+	if o == nil || IsNil(o.Transient) {
+		return nil, false
+	}
+	return o.Transient, true
+}
+
+// HasTransient returns a boolean if a field has been set.
+func (o *Representation) HasTransient() bool {
+	if o != nil && !IsNil(o.Transient) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransient gets a reference to the given bool and assigns it to the Transient field.
+func (o *Representation) SetTransient(v bool) {
+	o.Transient = &v
 }
 
 // GetEmpty returns the Empty field value if set, zero value otherwise.
@@ -824,9 +824,6 @@ func (o Representation) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Reader) {
 		toSerialize["reader"] = o.Reader
 	}
-	if !IsNil(o.Transient) {
-		toSerialize["transient"] = o.Transient
-	}
 	if !IsNil(o.AvailableSize) {
 		toSerialize["availableSize"] = o.AvailableSize
 	}
@@ -835,6 +832,9 @@ func (o Representation) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Selectable) {
 		toSerialize["selectable"] = o.Selectable
+	}
+	if !IsNil(o.Transient) {
+		toSerialize["transient"] = o.Transient
 	}
 	if !IsNil(o.Empty) {
 		toSerialize["empty"] = o.Empty

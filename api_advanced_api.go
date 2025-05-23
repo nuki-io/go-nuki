@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 0.0
+API version: 3.8.1
 Contact: contact@nuki.io
 */
 
@@ -24,303 +24,7 @@ import (
 // AdvancedApiAPIService AdvancedApiAPI service
 type AdvancedApiAPIService service
 
-type ApiDecentralWebhookResourceDeleteDeleteRequest struct {
-	ctx context.Context
-	ApiService *AdvancedApiAPIService
-	id int32
-}
-
-func (r ApiDecentralWebhookResourceDeleteDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DecentralWebhookResourceDeleteDeleteExecute(r)
-}
-
-/*
-DecentralWebhookResourceDeleteDelete Unregister a decentral webhook
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ID of the decentral webhook
- @return ApiDecentralWebhookResourceDeleteDeleteRequest
-*/
-func (a *AdvancedApiAPIService) DecentralWebhookResourceDeleteDelete(ctx context.Context, id int32) ApiDecentralWebhookResourceDeleteDeleteRequest {
-	return ApiDecentralWebhookResourceDeleteDeleteRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-	}
-}
-
-// Execute executes the request
-func (a *AdvancedApiAPIService) DecentralWebhookResourceDeleteDeleteExecute(r ApiDecentralWebhookResourceDeleteDeleteRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdvancedApiAPIService.DecentralWebhookResourceDeleteDelete")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/decentralWebhook/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiDecentralWebhooksResourceGetGetRequest struct {
-	ctx context.Context
-	ApiService *AdvancedApiAPIService
-}
-
-func (r ApiDecentralWebhooksResourceGetGetRequest) Execute() ([]DecentralWebhook, *http.Response, error) {
-	return r.ApiService.DecentralWebhooksResourceGetGetExecute(r)
-}
-
-/*
-DecentralWebhooksResourceGetGet Get all registered decentral webhooks
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDecentralWebhooksResourceGetGetRequest
-*/
-func (a *AdvancedApiAPIService) DecentralWebhooksResourceGetGet(ctx context.Context) ApiDecentralWebhooksResourceGetGetRequest {
-	return ApiDecentralWebhooksResourceGetGetRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return []DecentralWebhook
-func (a *AdvancedApiAPIService) DecentralWebhooksResourceGetGetExecute(r ApiDecentralWebhooksResourceGetGetRequest) ([]DecentralWebhook, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []DecentralWebhook
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdvancedApiAPIService.DecentralWebhooksResourceGetGet")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/decentralWebhook"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiDecentralWebhooksResourcePutPutRequest struct {
-	ctx context.Context
-	ApiService *AdvancedApiAPIService
-	body *DecentralWebhook
-}
-
-// Decentral webhook representation
-func (r ApiDecentralWebhooksResourcePutPutRequest) Body(body DecentralWebhook) ApiDecentralWebhooksResourcePutPutRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiDecentralWebhooksResourcePutPutRequest) Execute() (*DecentralWebhook, *http.Response, error) {
-	return r.ApiService.DecentralWebhooksResourcePutPutExecute(r)
-}
-
-/*
-DecentralWebhooksResourcePutPut Create decentral webhook
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDecentralWebhooksResourcePutPutRequest
-*/
-func (a *AdvancedApiAPIService) DecentralWebhooksResourcePutPut(ctx context.Context) ApiDecentralWebhooksResourcePutPutRequest {
-	return ApiDecentralWebhooksResourcePutPutRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return DecentralWebhook
-func (a *AdvancedApiAPIService) DecentralWebhooksResourcePutPutExecute(r ApiDecentralWebhooksResourcePutPutRequest) (*DecentralWebhook, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *DecentralWebhook
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdvancedApiAPIService.DecentralWebhooksResourcePutPut")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/decentralWebhook"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiSmartlockActionAdvancedResourceActionPostRequest struct {
+type ApiActionSmartlockActionAdvancedRequest struct {
 	ctx context.Context
 	ApiService *AdvancedApiAPIService
 	smartlockId string
@@ -328,24 +32,24 @@ type ApiSmartlockActionAdvancedResourceActionPostRequest struct {
 }
 
 // Smartlock action representation
-func (r ApiSmartlockActionAdvancedResourceActionPostRequest) Body(body SmartlockAction) ApiSmartlockActionAdvancedResourceActionPostRequest {
+func (r ApiActionSmartlockActionAdvancedRequest) Body(body SmartlockAction) ApiActionSmartlockActionAdvancedRequest {
 	r.body = &body
 	return r
 }
 
-func (r ApiSmartlockActionAdvancedResourceActionPostRequest) Execute() (*AdvancedConfirmationResponse, *http.Response, error) {
-	return r.ApiService.SmartlockActionAdvancedResourceActionPostExecute(r)
+func (r ApiActionSmartlockActionAdvancedRequest) Execute() (*AdvancedConfirmationResponse, *http.Response, error) {
+	return r.ApiService.ActionSmartlockActionAdvancedExecute(r)
 }
 
 /*
-SmartlockActionAdvancedResourceActionPost Smartlock Action with Callback
+ActionSmartlockActionAdvanced Smartlock Action with Callback
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param smartlockId The smartlock id
- @return ApiSmartlockActionAdvancedResourceActionPostRequest
+ @return ApiActionSmartlockActionAdvancedRequest
 */
-func (a *AdvancedApiAPIService) SmartlockActionAdvancedResourceActionPost(ctx context.Context, smartlockId string) ApiSmartlockActionAdvancedResourceActionPostRequest {
-	return ApiSmartlockActionAdvancedResourceActionPostRequest{
+func (a *AdvancedApiAPIService) ActionSmartlockActionAdvanced(ctx context.Context, smartlockId string) ApiActionSmartlockActionAdvancedRequest {
+	return ApiActionSmartlockActionAdvancedRequest{
 		ApiService: a,
 		ctx: ctx,
 		smartlockId: smartlockId,
@@ -354,7 +58,7 @@ func (a *AdvancedApiAPIService) SmartlockActionAdvancedResourceActionPost(ctx co
 
 // Execute executes the request
 //  @return AdvancedConfirmationResponse
-func (a *AdvancedApiAPIService) SmartlockActionAdvancedResourceActionPostExecute(r ApiSmartlockActionAdvancedResourceActionPostRequest) (*AdvancedConfirmationResponse, *http.Response, error) {
+func (a *AdvancedApiAPIService) ActionSmartlockActionAdvancedExecute(r ApiActionSmartlockActionAdvancedRequest) (*AdvancedConfirmationResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -362,7 +66,7 @@ func (a *AdvancedApiAPIService) SmartlockActionAdvancedResourceActionPostExecute
 		localVarReturnValue  *AdvancedConfirmationResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdvancedApiAPIService.SmartlockActionAdvancedResourceActionPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdvancedApiAPIService.ActionSmartlockActionAdvanced")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -433,58 +137,138 @@ func (a *AdvancedApiAPIService) SmartlockActionAdvancedResourceActionPostExecute
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSmartlockAuthsAdvancedResourcePutPutRequest struct {
+type ApiDeleteDecentralWebhookRequest struct {
 	ctx context.Context
 	ApiService *AdvancedApiAPIService
-	body *SmartlocksAuthAdvancedCreate
+	id int32
 }
 
-// Smartlock authorization create representation
-func (r ApiSmartlockAuthsAdvancedResourcePutPutRequest) Body(body SmartlocksAuthAdvancedCreate) ApiSmartlockAuthsAdvancedResourcePutPutRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiSmartlockAuthsAdvancedResourcePutPutRequest) Execute() (*AdvancedConfirmationResponse, *http.Response, error) {
-	return r.ApiService.SmartlockAuthsAdvancedResourcePutPutExecute(r)
+func (r ApiDeleteDecentralWebhookRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteDecentralWebhookExecute(r)
 }
 
 /*
-SmartlockAuthsAdvancedResourcePutPut Creates asynchronous smartlock authorizations
+DeleteDecentralWebhook Unregister a decentral webhook
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSmartlockAuthsAdvancedResourcePutPutRequest
+ @param id The ID of the decentral webhook
+ @return ApiDeleteDecentralWebhookRequest
 */
-func (a *AdvancedApiAPIService) SmartlockAuthsAdvancedResourcePutPut(ctx context.Context) ApiSmartlockAuthsAdvancedResourcePutPutRequest {
-	return ApiSmartlockAuthsAdvancedResourcePutPutRequest{
+func (a *AdvancedApiAPIService) DeleteDecentralWebhook(ctx context.Context, id int32) ApiDeleteDecentralWebhookRequest {
+	return ApiDeleteDecentralWebhookRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+func (a *AdvancedApiAPIService) DeleteDecentralWebhookExecute(r ApiDeleteDecentralWebhookRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdvancedApiAPIService.DeleteDecentralWebhook")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/decentralWebhook/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiGetDecentralWebhooksRequest struct {
+	ctx context.Context
+	ApiService *AdvancedApiAPIService
+}
+
+func (r ApiGetDecentralWebhooksRequest) Execute() ([]DecentralWebhook, *http.Response, error) {
+	return r.ApiService.GetDecentralWebhooksExecute(r)
+}
+
+/*
+GetDecentralWebhooks Get all registered decentral webhooks
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetDecentralWebhooksRequest
+*/
+func (a *AdvancedApiAPIService) GetDecentralWebhooks(ctx context.Context) ApiGetDecentralWebhooksRequest {
+	return ApiGetDecentralWebhooksRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return AdvancedConfirmationResponse
-func (a *AdvancedApiAPIService) SmartlockAuthsAdvancedResourcePutPutExecute(r ApiSmartlockAuthsAdvancedResourcePutPutRequest) (*AdvancedConfirmationResponse, *http.Response, error) {
+//  @return []DecentralWebhook
+func (a *AdvancedApiAPIService) GetDecentralWebhooksExecute(r ApiGetDecentralWebhooksRequest) ([]DecentralWebhook, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AdvancedConfirmationResponse
+		localVarReturnValue  []DecentralWebhook
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdvancedApiAPIService.SmartlockAuthsAdvancedResourcePutPut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdvancedApiAPIService.GetDecentralWebhooks")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/smartlock/auth/advanced"
+	localVarPath := localBasePath + "/api/decentralWebhook"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -503,8 +287,6 @@ func (a *AdvancedApiAPIService) SmartlockAuthsAdvancedResourcePutPutExecute(r Ap
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.body
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -542,25 +324,149 @@ func (a *AdvancedApiAPIService) SmartlockAuthsAdvancedResourcePutPutExecute(r Ap
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSmartlockLockActionAdvancedResourcePostLockPostRequest struct {
+type ApiGetWebhookLogsRequest struct {
+	ctx context.Context
+	ApiService *AdvancedApiAPIService
+	apiKeyId int32
+	id *string
+	limit *int32
+}
+
+// Optionally filter for older logs
+func (r ApiGetWebhookLogsRequest) Id(id string) ApiGetWebhookLogsRequest {
+	r.id = &id
+	return r
+}
+
+// Amount of logs (max: 100)
+func (r ApiGetWebhookLogsRequest) Limit(limit int32) ApiGetWebhookLogsRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiGetWebhookLogsRequest) Execute() ([]WebhookLog, *http.Response, error) {
+	return r.ApiService.GetWebhookLogsExecute(r)
+}
+
+/*
+GetWebhookLogs Get a list of webhook logs (descending)
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param apiKeyId The api key id
+ @return ApiGetWebhookLogsRequest
+*/
+func (a *AdvancedApiAPIService) GetWebhookLogs(ctx context.Context, apiKeyId int32) ApiGetWebhookLogsRequest {
+	return ApiGetWebhookLogsRequest{
+		ApiService: a,
+		ctx: ctx,
+		apiKeyId: apiKeyId,
+	}
+}
+
+// Execute executes the request
+//  @return []WebhookLog
+func (a *AdvancedApiAPIService) GetWebhookLogsExecute(r ApiGetWebhookLogsRequest) ([]WebhookLog, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []WebhookLog
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdvancedApiAPIService.GetWebhookLogs")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/key/{apiKeyId}/webhook/logs"
+	localVarPath = strings.Replace(localVarPath, "{"+"apiKeyId"+"}", url.PathEscape(parameterValueToString(r.apiKeyId, "apiKeyId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
+	} else {
+		var defaultValue int32 = 50
+		r.limit = &defaultValue
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPostLockSmartlockLockActionAdvancedRequest struct {
 	ctx context.Context
 	ApiService *AdvancedApiAPIService
 	smartlockId string
 }
 
-func (r ApiSmartlockLockActionAdvancedResourcePostLockPostRequest) Execute() (*AdvancedConfirmationResponse, *http.Response, error) {
-	return r.ApiService.SmartlockLockActionAdvancedResourcePostLockPostExecute(r)
+func (r ApiPostLockSmartlockLockActionAdvancedRequest) Execute() (*AdvancedConfirmationResponse, *http.Response, error) {
+	return r.ApiService.PostLockSmartlockLockActionAdvancedExecute(r)
 }
 
 /*
-SmartlockLockActionAdvancedResourcePostLockPost Lock a smartlock
+PostLockSmartlockLockActionAdvanced Lock a smartlock
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param smartlockId The smartlock id
- @return ApiSmartlockLockActionAdvancedResourcePostLockPostRequest
+ @return ApiPostLockSmartlockLockActionAdvancedRequest
 */
-func (a *AdvancedApiAPIService) SmartlockLockActionAdvancedResourcePostLockPost(ctx context.Context, smartlockId string) ApiSmartlockLockActionAdvancedResourcePostLockPostRequest {
-	return ApiSmartlockLockActionAdvancedResourcePostLockPostRequest{
+func (a *AdvancedApiAPIService) PostLockSmartlockLockActionAdvanced(ctx context.Context, smartlockId string) ApiPostLockSmartlockLockActionAdvancedRequest {
+	return ApiPostLockSmartlockLockActionAdvancedRequest{
 		ApiService: a,
 		ctx: ctx,
 		smartlockId: smartlockId,
@@ -569,7 +475,7 @@ func (a *AdvancedApiAPIService) SmartlockLockActionAdvancedResourcePostLockPost(
 
 // Execute executes the request
 //  @return AdvancedConfirmationResponse
-func (a *AdvancedApiAPIService) SmartlockLockActionAdvancedResourcePostLockPostExecute(r ApiSmartlockLockActionAdvancedResourcePostLockPostRequest) (*AdvancedConfirmationResponse, *http.Response, error) {
+func (a *AdvancedApiAPIService) PostLockSmartlockLockActionAdvancedExecute(r ApiPostLockSmartlockLockActionAdvancedRequest) (*AdvancedConfirmationResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -577,7 +483,7 @@ func (a *AdvancedApiAPIService) SmartlockLockActionAdvancedResourcePostLockPostE
 		localVarReturnValue  *AdvancedConfirmationResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdvancedApiAPIService.SmartlockLockActionAdvancedResourcePostLockPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdvancedApiAPIService.PostLockSmartlockLockActionAdvanced")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -643,25 +549,25 @@ func (a *AdvancedApiAPIService) SmartlockLockActionAdvancedResourcePostLockPostE
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSmartlockUnlockActionAdvancedResourcePostLockPostRequest struct {
+type ApiPostLockSmartlockUnlockActionAdvancedRequest struct {
 	ctx context.Context
 	ApiService *AdvancedApiAPIService
 	smartlockId string
 }
 
-func (r ApiSmartlockUnlockActionAdvancedResourcePostLockPostRequest) Execute() (*AdvancedConfirmationResponse, *http.Response, error) {
-	return r.ApiService.SmartlockUnlockActionAdvancedResourcePostLockPostExecute(r)
+func (r ApiPostLockSmartlockUnlockActionAdvancedRequest) Execute() (*AdvancedConfirmationResponse, *http.Response, error) {
+	return r.ApiService.PostLockSmartlockUnlockActionAdvancedExecute(r)
 }
 
 /*
-SmartlockUnlockActionAdvancedResourcePostLockPost Unlock a smartlock
+PostLockSmartlockUnlockActionAdvanced Unlock a smartlock
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param smartlockId The smartlock id
- @return ApiSmartlockUnlockActionAdvancedResourcePostLockPostRequest
+ @return ApiPostLockSmartlockUnlockActionAdvancedRequest
 */
-func (a *AdvancedApiAPIService) SmartlockUnlockActionAdvancedResourcePostLockPost(ctx context.Context, smartlockId string) ApiSmartlockUnlockActionAdvancedResourcePostLockPostRequest {
-	return ApiSmartlockUnlockActionAdvancedResourcePostLockPostRequest{
+func (a *AdvancedApiAPIService) PostLockSmartlockUnlockActionAdvanced(ctx context.Context, smartlockId string) ApiPostLockSmartlockUnlockActionAdvancedRequest {
+	return ApiPostLockSmartlockUnlockActionAdvancedRequest{
 		ApiService: a,
 		ctx: ctx,
 		smartlockId: smartlockId,
@@ -670,7 +576,7 @@ func (a *AdvancedApiAPIService) SmartlockUnlockActionAdvancedResourcePostLockPos
 
 // Execute executes the request
 //  @return AdvancedConfirmationResponse
-func (a *AdvancedApiAPIService) SmartlockUnlockActionAdvancedResourcePostLockPostExecute(r ApiSmartlockUnlockActionAdvancedResourcePostLockPostRequest) (*AdvancedConfirmationResponse, *http.Response, error) {
+func (a *AdvancedApiAPIService) PostLockSmartlockUnlockActionAdvancedExecute(r ApiPostLockSmartlockUnlockActionAdvancedRequest) (*AdvancedConfirmationResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -678,7 +584,7 @@ func (a *AdvancedApiAPIService) SmartlockUnlockActionAdvancedResourcePostLockPos
 		localVarReturnValue  *AdvancedConfirmationResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdvancedApiAPIService.SmartlockUnlockActionAdvancedResourcePostLockPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdvancedApiAPIService.PostLockSmartlockUnlockActionAdvanced")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -744,76 +650,59 @@ func (a *AdvancedApiAPIService) SmartlockUnlockActionAdvancedResourcePostLockPos
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiWebhookLogsResourceGetGetRequest struct {
+type ApiPutDecentralWebhooksRequest struct {
 	ctx context.Context
 	ApiService *AdvancedApiAPIService
-	apiKeyId int32
-	id *string
-	limit *int32
+	body *DecentralWebhook
 }
 
-// Optionally filter for older logs
-func (r ApiWebhookLogsResourceGetGetRequest) Id(id string) ApiWebhookLogsResourceGetGetRequest {
-	r.id = &id
+// Decentral webhook representation
+func (r ApiPutDecentralWebhooksRequest) Body(body DecentralWebhook) ApiPutDecentralWebhooksRequest {
+	r.body = &body
 	return r
 }
 
-// Amount of logs (max: 100)
-func (r ApiWebhookLogsResourceGetGetRequest) Limit(limit int32) ApiWebhookLogsResourceGetGetRequest {
-	r.limit = &limit
-	return r
-}
-
-func (r ApiWebhookLogsResourceGetGetRequest) Execute() ([]WebhookLog, *http.Response, error) {
-	return r.ApiService.WebhookLogsResourceGetGetExecute(r)
+func (r ApiPutDecentralWebhooksRequest) Execute() (*DecentralWebhook, *http.Response, error) {
+	return r.ApiService.PutDecentralWebhooksExecute(r)
 }
 
 /*
-WebhookLogsResourceGetGet Get a list of webhook logs (descending)
+PutDecentralWebhooks Create decentral webhook
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param apiKeyId The api key id
- @return ApiWebhookLogsResourceGetGetRequest
+ @return ApiPutDecentralWebhooksRequest
 */
-func (a *AdvancedApiAPIService) WebhookLogsResourceGetGet(ctx context.Context, apiKeyId int32) ApiWebhookLogsResourceGetGetRequest {
-	return ApiWebhookLogsResourceGetGetRequest{
+func (a *AdvancedApiAPIService) PutDecentralWebhooks(ctx context.Context) ApiPutDecentralWebhooksRequest {
+	return ApiPutDecentralWebhooksRequest{
 		ApiService: a,
 		ctx: ctx,
-		apiKeyId: apiKeyId,
 	}
 }
 
 // Execute executes the request
-//  @return []WebhookLog
-func (a *AdvancedApiAPIService) WebhookLogsResourceGetGetExecute(r ApiWebhookLogsResourceGetGetRequest) ([]WebhookLog, *http.Response, error) {
+//  @return DecentralWebhook
+func (a *AdvancedApiAPIService) PutDecentralWebhooksExecute(r ApiPutDecentralWebhooksRequest) (*DecentralWebhook, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []WebhookLog
+		localVarReturnValue  *DecentralWebhook
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdvancedApiAPIService.WebhookLogsResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdvancedApiAPIService.PutDecentralWebhooks")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/key/{apiKeyId}/webhook/logs"
-	localVarPath = strings.Replace(localVarPath, "{"+"apiKeyId"+"}", url.PathEscape(parameterValueToString(r.apiKeyId, "apiKeyId")), -1)
+	localVarPath := localBasePath + "/api/decentralWebhook"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
 
-	if r.id != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "", "")
-	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
-	} else {
-		var defaultValue int32 = 50
-		r.limit = &defaultValue
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -831,6 +720,117 @@ func (a *AdvancedApiAPIService) WebhookLogsResourceGetGetExecute(r ApiWebhookLog
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPutSmartlockAuthsAdvancedRequest struct {
+	ctx context.Context
+	ApiService *AdvancedApiAPIService
+	body *SmartlocksAuthAdvancedCreate
+}
+
+// Smartlock authorization create representation
+func (r ApiPutSmartlockAuthsAdvancedRequest) Body(body SmartlocksAuthAdvancedCreate) ApiPutSmartlockAuthsAdvancedRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiPutSmartlockAuthsAdvancedRequest) Execute() (*AdvancedConfirmationResponse, *http.Response, error) {
+	return r.ApiService.PutSmartlockAuthsAdvancedExecute(r)
+}
+
+/*
+PutSmartlockAuthsAdvanced Creates asynchronous smartlock authorizations
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPutSmartlockAuthsAdvancedRequest
+*/
+func (a *AdvancedApiAPIService) PutSmartlockAuthsAdvanced(ctx context.Context) ApiPutSmartlockAuthsAdvancedRequest {
+	return ApiPutSmartlockAuthsAdvancedRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return AdvancedConfirmationResponse
+func (a *AdvancedApiAPIService) PutSmartlockAuthsAdvancedExecute(r ApiPutSmartlockAuthsAdvancedRequest) (*AdvancedConfirmationResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AdvancedConfirmationResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdvancedApiAPIService.PutSmartlockAuthsAdvanced")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/smartlock/auth/advanced"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 0.0
+API version: 3.8.1
 Contact: contact@nuki.io
 */
 
@@ -24,25 +24,25 @@ import (
 // SubscriptionAPIService SubscriptionAPI service
 type SubscriptionAPIService service
 
-type ApiSubscriptionResourceGetGetRequest struct {
+type ApiGetSubscriptionRequest struct {
 	ctx context.Context
 	ApiService *SubscriptionAPIService
 	subscriptionId int32
 }
 
-func (r ApiSubscriptionResourceGetGetRequest) Execute() (*Subscription, *http.Response, error) {
-	return r.ApiService.SubscriptionResourceGetGetExecute(r)
+func (r ApiGetSubscriptionRequest) Execute() (*Subscription, *http.Response, error) {
+	return r.ApiService.GetSubscriptionExecute(r)
 }
 
 /*
-SubscriptionResourceGetGet Get a subscription
+GetSubscription Get a subscription
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param subscriptionId The subscription id
- @return ApiSubscriptionResourceGetGetRequest
+ @return ApiGetSubscriptionRequest
 */
-func (a *SubscriptionAPIService) SubscriptionResourceGetGet(ctx context.Context, subscriptionId int32) ApiSubscriptionResourceGetGetRequest {
-	return ApiSubscriptionResourceGetGetRequest{
+func (a *SubscriptionAPIService) GetSubscription(ctx context.Context, subscriptionId int32) ApiGetSubscriptionRequest {
+	return ApiGetSubscriptionRequest{
 		ApiService: a,
 		ctx: ctx,
 		subscriptionId: subscriptionId,
@@ -51,7 +51,7 @@ func (a *SubscriptionAPIService) SubscriptionResourceGetGet(ctx context.Context,
 
 // Execute executes the request
 //  @return Subscription
-func (a *SubscriptionAPIService) SubscriptionResourceGetGetExecute(r ApiSubscriptionResourceGetGetRequest) (*Subscription, *http.Response, error) {
+func (a *SubscriptionAPIService) GetSubscriptionExecute(r ApiGetSubscriptionRequest) (*Subscription, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -59,7 +59,7 @@ func (a *SubscriptionAPIService) SubscriptionResourceGetGetExecute(r ApiSubscrip
 		localVarReturnValue  *Subscription
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionAPIService.SubscriptionResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionAPIService.GetSubscription")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -125,23 +125,23 @@ func (a *SubscriptionAPIService) SubscriptionResourceGetGetExecute(r ApiSubscrip
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSubscriptionsResourceGetGetRequest struct {
+type ApiGetSubscriptionsRequest struct {
 	ctx context.Context
 	ApiService *SubscriptionAPIService
 }
 
-func (r ApiSubscriptionsResourceGetGetRequest) Execute() ([]Subscription, *http.Response, error) {
-	return r.ApiService.SubscriptionsResourceGetGetExecute(r)
+func (r ApiGetSubscriptionsRequest) Execute() ([]Subscription, *http.Response, error) {
+	return r.ApiService.GetSubscriptionsExecute(r)
 }
 
 /*
-SubscriptionsResourceGetGet Get a list of subscriptions
+GetSubscriptions Get a list of subscriptions
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSubscriptionsResourceGetGetRequest
+ @return ApiGetSubscriptionsRequest
 */
-func (a *SubscriptionAPIService) SubscriptionsResourceGetGet(ctx context.Context) ApiSubscriptionsResourceGetGetRequest {
-	return ApiSubscriptionsResourceGetGetRequest{
+func (a *SubscriptionAPIService) GetSubscriptions(ctx context.Context) ApiGetSubscriptionsRequest {
+	return ApiGetSubscriptionsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -149,7 +149,7 @@ func (a *SubscriptionAPIService) SubscriptionsResourceGetGet(ctx context.Context
 
 // Execute executes the request
 //  @return []Subscription
-func (a *SubscriptionAPIService) SubscriptionsResourceGetGetExecute(r ApiSubscriptionsResourceGetGetRequest) ([]Subscription, *http.Response, error) {
+func (a *SubscriptionAPIService) GetSubscriptionsExecute(r ApiGetSubscriptionsRequest) ([]Subscription, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -157,7 +157,7 @@ func (a *SubscriptionAPIService) SubscriptionsResourceGetGetExecute(r ApiSubscri
 		localVarReturnValue  []Subscription
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionAPIService.SubscriptionsResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionAPIService.GetSubscriptions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

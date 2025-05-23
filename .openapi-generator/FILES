@@ -140,6 +140,7 @@ model_smartlock_auth.go
 model_smartlock_auth_create.go
 model_smartlock_auth_multi_update.go
 model_smartlock_auth_update.go
+model_smartlock_auth_with_shared_key_create.go
 model_smartlock_config.go
 model_smartlock_log.go
 model_smartlock_log_opener_log.go

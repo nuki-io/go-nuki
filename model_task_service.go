@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 0.0
+API version: 3.8.1
 Contact: contact@nuki.io
 */
 
@@ -26,8 +26,8 @@ type TaskService struct {
 	CorePoolSize *int32 `json:"corePoolSize,omitempty"`
 	Daemon *bool `json:"daemon,omitempty"`
 	ShutdownAllowed *bool `json:"shutdownAllowed,omitempty"`
-	Terminated *bool `json:"terminated,omitempty"`
 	Shutdown *bool `json:"shutdown,omitempty"`
+	Terminated *bool `json:"terminated,omitempty"`
 	Stopped *bool `json:"stopped,omitempty"`
 }
 
@@ -240,38 +240,6 @@ func (o *TaskService) SetShutdownAllowed(v bool) {
 	o.ShutdownAllowed = &v
 }
 
-// GetTerminated returns the Terminated field value if set, zero value otherwise.
-func (o *TaskService) GetTerminated() bool {
-	if o == nil || IsNil(o.Terminated) {
-		var ret bool
-		return ret
-	}
-	return *o.Terminated
-}
-
-// GetTerminatedOk returns a tuple with the Terminated field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TaskService) GetTerminatedOk() (*bool, bool) {
-	if o == nil || IsNil(o.Terminated) {
-		return nil, false
-	}
-	return o.Terminated, true
-}
-
-// HasTerminated returns a boolean if a field has been set.
-func (o *TaskService) HasTerminated() bool {
-	if o != nil && !IsNil(o.Terminated) {
-		return true
-	}
-
-	return false
-}
-
-// SetTerminated gets a reference to the given bool and assigns it to the Terminated field.
-func (o *TaskService) SetTerminated(v bool) {
-	o.Terminated = &v
-}
-
 // GetShutdown returns the Shutdown field value if set, zero value otherwise.
 func (o *TaskService) GetShutdown() bool {
 	if o == nil || IsNil(o.Shutdown) {
@@ -302,6 +270,38 @@ func (o *TaskService) HasShutdown() bool {
 // SetShutdown gets a reference to the given bool and assigns it to the Shutdown field.
 func (o *TaskService) SetShutdown(v bool) {
 	o.Shutdown = &v
+}
+
+// GetTerminated returns the Terminated field value if set, zero value otherwise.
+func (o *TaskService) GetTerminated() bool {
+	if o == nil || IsNil(o.Terminated) {
+		var ret bool
+		return ret
+	}
+	return *o.Terminated
+}
+
+// GetTerminatedOk returns a tuple with the Terminated field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TaskService) GetTerminatedOk() (*bool, bool) {
+	if o == nil || IsNil(o.Terminated) {
+		return nil, false
+	}
+	return o.Terminated, true
+}
+
+// HasTerminated returns a boolean if a field has been set.
+func (o *TaskService) HasTerminated() bool {
+	if o != nil && !IsNil(o.Terminated) {
+		return true
+	}
+
+	return false
+}
+
+// SetTerminated gets a reference to the given bool and assigns it to the Terminated field.
+func (o *TaskService) SetTerminated(v bool) {
+	o.Terminated = &v
 }
 
 // GetStopped returns the Stopped field value if set, zero value otherwise.
@@ -364,11 +364,11 @@ func (o TaskService) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ShutdownAllowed) {
 		toSerialize["shutdownAllowed"] = o.ShutdownAllowed
 	}
-	if !IsNil(o.Terminated) {
-		toSerialize["terminated"] = o.Terminated
-	}
 	if !IsNil(o.Shutdown) {
 		toSerialize["shutdown"] = o.Shutdown
+	}
+	if !IsNil(o.Terminated) {
+		toSerialize["terminated"] = o.Terminated
 	}
 	if !IsNil(o.Stopped) {
 		toSerialize["stopped"] = o.Stopped

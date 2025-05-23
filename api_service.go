@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 0.0
+API version: 3.8.1
 Contact: contact@nuki.io
 */
 
@@ -24,126 +24,25 @@ import (
 // ServiceAPIService ServiceAPI service
 type ServiceAPIService service
 
-type ApiServiceLinkResourcePostPostRequest struct {
+type ApiGetServiceRequest struct {
 	ctx context.Context
 	ApiService *ServiceAPIService
 	serviceId string
 }
 
-func (r ApiServiceLinkResourcePostPostRequest) Execute() (string, *http.Response, error) {
-	return r.ApiService.ServiceLinkResourcePostPostExecute(r)
+func (r ApiGetServiceRequest) Execute() (*Service, *http.Response, error) {
+	return r.ApiService.GetServiceExecute(r)
 }
 
 /*
-ServiceLinkResourcePostPost Links a service
+GetService Get a service
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param serviceId The service id
- @return ApiServiceLinkResourcePostPostRequest
+ @return ApiGetServiceRequest
 */
-func (a *ServiceAPIService) ServiceLinkResourcePostPost(ctx context.Context, serviceId string) ApiServiceLinkResourcePostPostRequest {
-	return ApiServiceLinkResourcePostPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		serviceId: serviceId,
-	}
-}
-
-// Execute executes the request
-//  @return string
-func (a *ServiceAPIService) ServiceLinkResourcePostPostExecute(r ApiServiceLinkResourcePostPostRequest) (string, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  string
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceAPIService.ServiceLinkResourcePostPost")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/service/{serviceId}/link"
-	localVarPath = strings.Replace(localVarPath, "{"+"serviceId"+"}", url.PathEscape(parameterValueToString(r.serviceId, "serviceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiServiceResourceGetGetRequest struct {
-	ctx context.Context
-	ApiService *ServiceAPIService
-	serviceId string
-}
-
-func (r ApiServiceResourceGetGetRequest) Execute() (*Service, *http.Response, error) {
-	return r.ApiService.ServiceResourceGetGetExecute(r)
-}
-
-/*
-ServiceResourceGetGet Get a service
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param serviceId The service id
- @return ApiServiceResourceGetGetRequest
-*/
-func (a *ServiceAPIService) ServiceResourceGetGet(ctx context.Context, serviceId string) ApiServiceResourceGetGetRequest {
-	return ApiServiceResourceGetGetRequest{
+func (a *ServiceAPIService) GetService(ctx context.Context, serviceId string) ApiGetServiceRequest {
+	return ApiGetServiceRequest{
 		ApiService: a,
 		ctx: ctx,
 		serviceId: serviceId,
@@ -152,7 +51,7 @@ func (a *ServiceAPIService) ServiceResourceGetGet(ctx context.Context, serviceId
 
 // Execute executes the request
 //  @return Service
-func (a *ServiceAPIService) ServiceResourceGetGetExecute(r ApiServiceResourceGetGetRequest) (*Service, *http.Response, error) {
+func (a *ServiceAPIService) GetServiceExecute(r ApiGetServiceRequest) (*Service, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -160,7 +59,7 @@ func (a *ServiceAPIService) ServiceResourceGetGetExecute(r ApiServiceResourceGet
 		localVarReturnValue  *Service
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceAPIService.ServiceResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceAPIService.GetService")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -226,210 +125,30 @@ func (a *ServiceAPIService) ServiceResourceGetGetExecute(r ApiServiceResourceGet
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiServiceSyncResourcePostPostRequest struct {
-	ctx context.Context
-	ApiService *ServiceAPIService
-	serviceId string
-}
-
-func (r ApiServiceSyncResourcePostPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.ServiceSyncResourcePostPostExecute(r)
-}
-
-/*
-ServiceSyncResourcePostPost Syncs a service
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param serviceId The service id
- @return ApiServiceSyncResourcePostPostRequest
-*/
-func (a *ServiceAPIService) ServiceSyncResourcePostPost(ctx context.Context, serviceId string) ApiServiceSyncResourcePostPostRequest {
-	return ApiServiceSyncResourcePostPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		serviceId: serviceId,
-	}
-}
-
-// Execute executes the request
-func (a *ServiceAPIService) ServiceSyncResourcePostPostExecute(r ApiServiceSyncResourcePostPostRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceAPIService.ServiceSyncResourcePostPost")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/service/{serviceId}/sync"
-	localVarPath = strings.Replace(localVarPath, "{"+"serviceId"+"}", url.PathEscape(parameterValueToString(r.serviceId, "serviceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiServiceUnlinkResourcePostPostRequest struct {
-	ctx context.Context
-	ApiService *ServiceAPIService
-	serviceId string
-}
-
-func (r ApiServiceUnlinkResourcePostPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.ServiceUnlinkResourcePostPostExecute(r)
-}
-
-/*
-ServiceUnlinkResourcePostPost Unlinks a service
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param serviceId The service id
- @return ApiServiceUnlinkResourcePostPostRequest
-*/
-func (a *ServiceAPIService) ServiceUnlinkResourcePostPost(ctx context.Context, serviceId string) ApiServiceUnlinkResourcePostPostRequest {
-	return ApiServiceUnlinkResourcePostPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		serviceId: serviceId,
-	}
-}
-
-// Execute executes the request
-func (a *ServiceAPIService) ServiceUnlinkResourcePostPostExecute(r ApiServiceUnlinkResourcePostPostRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceAPIService.ServiceUnlinkResourcePostPost")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/service/{serviceId}/unlink"
-	localVarPath = strings.Replace(localVarPath, "{"+"serviceId"+"}", url.PathEscape(parameterValueToString(r.serviceId, "serviceId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiServicesResourceGetGetRequest struct {
+type ApiGetServicesRequest struct {
 	ctx context.Context
 	ApiService *ServiceAPIService
 	serviceIds *string
 }
 
 // Filter for service IDs (comma-separated eg: airbnb,guesty,smoobu)
-func (r ApiServicesResourceGetGetRequest) ServiceIds(serviceIds string) ApiServicesResourceGetGetRequest {
+func (r ApiGetServicesRequest) ServiceIds(serviceIds string) ApiGetServicesRequest {
 	r.serviceIds = &serviceIds
 	return r
 }
 
-func (r ApiServicesResourceGetGetRequest) Execute() ([]Service, *http.Response, error) {
-	return r.ApiService.ServicesResourceGetGetExecute(r)
+func (r ApiGetServicesRequest) Execute() ([]Service, *http.Response, error) {
+	return r.ApiService.GetServicesExecute(r)
 }
 
 /*
-ServicesResourceGetGet Get a list of services
+GetServices Get a list of services
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiServicesResourceGetGetRequest
+ @return ApiGetServicesRequest
 */
-func (a *ServiceAPIService) ServicesResourceGetGet(ctx context.Context) ApiServicesResourceGetGetRequest {
-	return ApiServicesResourceGetGetRequest{
+func (a *ServiceAPIService) GetServices(ctx context.Context) ApiGetServicesRequest {
+	return ApiGetServicesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -437,7 +156,7 @@ func (a *ServiceAPIService) ServicesResourceGetGet(ctx context.Context) ApiServi
 
 // Execute executes the request
 //  @return []Service
-func (a *ServiceAPIService) ServicesResourceGetGetExecute(r ApiServicesResourceGetGetRequest) ([]Service, *http.Response, error) {
+func (a *ServiceAPIService) GetServicesExecute(r ApiGetServicesRequest) ([]Service, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -445,7 +164,7 @@ func (a *ServiceAPIService) ServicesResourceGetGetExecute(r ApiServicesResourceG
 		localVarReturnValue  []Service
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceAPIService.ServicesResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceAPIService.GetServices")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -511,4 +230,285 @@ func (a *ServiceAPIService) ServicesResourceGetGetExecute(r ApiServicesResourceG
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPostServiceLinkRequest struct {
+	ctx context.Context
+	ApiService *ServiceAPIService
+	serviceId string
+}
+
+func (r ApiPostServiceLinkRequest) Execute() (string, *http.Response, error) {
+	return r.ApiService.PostServiceLinkExecute(r)
+}
+
+/*
+PostServiceLink Links a service
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serviceId The service id
+ @return ApiPostServiceLinkRequest
+*/
+func (a *ServiceAPIService) PostServiceLink(ctx context.Context, serviceId string) ApiPostServiceLinkRequest {
+	return ApiPostServiceLinkRequest{
+		ApiService: a,
+		ctx: ctx,
+		serviceId: serviceId,
+	}
+}
+
+// Execute executes the request
+//  @return string
+func (a *ServiceAPIService) PostServiceLinkExecute(r ApiPostServiceLinkRequest) (string, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  string
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceAPIService.PostServiceLink")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/service/{serviceId}/link"
+	localVarPath = strings.Replace(localVarPath, "{"+"serviceId"+"}", url.PathEscape(parameterValueToString(r.serviceId, "serviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPostServiceSyncRequest struct {
+	ctx context.Context
+	ApiService *ServiceAPIService
+	serviceId string
+}
+
+func (r ApiPostServiceSyncRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostServiceSyncExecute(r)
+}
+
+/*
+PostServiceSync Syncs a service
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serviceId The service id
+ @return ApiPostServiceSyncRequest
+*/
+func (a *ServiceAPIService) PostServiceSync(ctx context.Context, serviceId string) ApiPostServiceSyncRequest {
+	return ApiPostServiceSyncRequest{
+		ApiService: a,
+		ctx: ctx,
+		serviceId: serviceId,
+	}
+}
+
+// Execute executes the request
+func (a *ServiceAPIService) PostServiceSyncExecute(r ApiPostServiceSyncRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceAPIService.PostServiceSync")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/service/{serviceId}/sync"
+	localVarPath = strings.Replace(localVarPath, "{"+"serviceId"+"}", url.PathEscape(parameterValueToString(r.serviceId, "serviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiPostServiceUnlinkRequest struct {
+	ctx context.Context
+	ApiService *ServiceAPIService
+	serviceId string
+}
+
+func (r ApiPostServiceUnlinkRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostServiceUnlinkExecute(r)
+}
+
+/*
+PostServiceUnlink Unlinks a service
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param serviceId The service id
+ @return ApiPostServiceUnlinkRequest
+*/
+func (a *ServiceAPIService) PostServiceUnlink(ctx context.Context, serviceId string) ApiPostServiceUnlinkRequest {
+	return ApiPostServiceUnlinkRequest{
+		ApiService: a,
+		ctx: ctx,
+		serviceId: serviceId,
+	}
+}
+
+// Execute executes the request
+func (a *ServiceAPIService) PostServiceUnlinkExecute(r ApiPostServiceUnlinkRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceAPIService.PostServiceUnlink")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/service/{serviceId}/unlink"
+	localVarPath = strings.Replace(localVarPath, "{"+"serviceId"+"}", url.PathEscape(parameterValueToString(r.serviceId, "serviceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }

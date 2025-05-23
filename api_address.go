@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 0.0
+API version: 3.8.1
 Contact: contact@nuki.io
 */
 
@@ -24,25 +24,25 @@ import (
 // AddressAPIService AddressAPI service
 type AddressAPIService service
 
-type ApiAddressResourceDeleteDeleteRequest struct {
+type ApiDeleteAddressRequest struct {
 	ctx context.Context
 	ApiService *AddressAPIService
 	addressId int32
 }
 
-func (r ApiAddressResourceDeleteDeleteRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AddressResourceDeleteDeleteExecute(r)
+func (r ApiDeleteAddressRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteAddressExecute(r)
 }
 
 /*
-AddressResourceDeleteDelete Delete an address
+DeleteAddress Delete an address
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param addressId The address id
- @return ApiAddressResourceDeleteDeleteRequest
+ @return ApiDeleteAddressRequest
 */
-func (a *AddressAPIService) AddressResourceDeleteDelete(ctx context.Context, addressId int32) ApiAddressResourceDeleteDeleteRequest {
-	return ApiAddressResourceDeleteDeleteRequest{
+func (a *AddressAPIService) DeleteAddress(ctx context.Context, addressId int32) ApiDeleteAddressRequest {
+	return ApiDeleteAddressRequest{
 		ApiService: a,
 		ctx: ctx,
 		addressId: addressId,
@@ -50,14 +50,14 @@ func (a *AddressAPIService) AddressResourceDeleteDelete(ctx context.Context, add
 }
 
 // Execute executes the request
-func (a *AddressAPIService) AddressResourceDeleteDeleteExecute(r ApiAddressResourceDeleteDeleteRequest) (*http.Response, error) {
+func (a *AddressAPIService) DeleteAddressExecute(r ApiDeleteAddressRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressAPIService.AddressResourceDeleteDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressAPIService.DeleteAddress")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -114,129 +114,27 @@ func (a *AddressAPIService) AddressResourceDeleteDeleteExecute(r ApiAddressResou
 	return localVarHTTPResponse, nil
 }
 
-type ApiAddressResourcePostPostRequest struct {
-	ctx context.Context
-	ApiService *AddressAPIService
-	addressId int32
-	body *AddressUpdate
-}
-
-// Address update representation
-func (r ApiAddressResourcePostPostRequest) Body(body AddressUpdate) ApiAddressResourcePostPostRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiAddressResourcePostPostRequest) Execute() (*http.Response, error) {
-	return r.ApiService.AddressResourcePostPostExecute(r)
-}
-
-/*
-AddressResourcePostPost Update an address
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param addressId The address id
- @return ApiAddressResourcePostPostRequest
-*/
-func (a *AddressAPIService) AddressResourcePostPost(ctx context.Context, addressId int32) ApiAddressResourcePostPostRequest {
-	return ApiAddressResourcePostPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		addressId: addressId,
-	}
-}
-
-// Execute executes the request
-func (a *AddressAPIService) AddressResourcePostPostExecute(r ApiAddressResourcePostPostRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressAPIService.AddressResourcePostPost")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/address/{addressId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"addressId"+"}", url.PathEscape(parameterValueToString(r.addressId, "addressId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiAddressUnitResourceDeleteDeleteRequest struct {
+type ApiDeleteAddressUnitRequest struct {
 	ctx context.Context
 	ApiService *AddressAPIService
 	addressId int32
 	id string
 }
 
-func (r ApiAddressUnitResourceDeleteDeleteRequest) Execute() (*AdvancedConfirmationResponse, *http.Response, error) {
-	return r.ApiService.AddressUnitResourceDeleteDeleteExecute(r)
+func (r ApiDeleteAddressUnitRequest) Execute() (*AdvancedConfirmationResponse, *http.Response, error) {
+	return r.ApiService.DeleteAddressUnitExecute(r)
 }
 
 /*
-AddressUnitResourceDeleteDelete Delete an address unit
+DeleteAddressUnit Delete an address unit
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param addressId The address id
  @param id The address unit id
- @return ApiAddressUnitResourceDeleteDeleteRequest
+ @return ApiDeleteAddressUnitRequest
 */
-func (a *AddressAPIService) AddressUnitResourceDeleteDelete(ctx context.Context, addressId int32, id string) ApiAddressUnitResourceDeleteDeleteRequest {
-	return ApiAddressUnitResourceDeleteDeleteRequest{
+func (a *AddressAPIService) DeleteAddressUnit(ctx context.Context, addressId int32, id string) ApiDeleteAddressUnitRequest {
+	return ApiDeleteAddressUnitRequest{
 		ApiService: a,
 		ctx: ctx,
 		addressId: addressId,
@@ -246,7 +144,7 @@ func (a *AddressAPIService) AddressUnitResourceDeleteDelete(ctx context.Context,
 
 // Execute executes the request
 //  @return AdvancedConfirmationResponse
-func (a *AddressAPIService) AddressUnitResourceDeleteDeleteExecute(r ApiAddressUnitResourceDeleteDeleteRequest) (*AdvancedConfirmationResponse, *http.Response, error) {
+func (a *AddressAPIService) DeleteAddressUnitExecute(r ApiDeleteAddressUnitRequest) (*AdvancedConfirmationResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -254,7 +152,7 @@ func (a *AddressAPIService) AddressUnitResourceDeleteDeleteExecute(r ApiAddressU
 		localVarReturnValue  *AdvancedConfirmationResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressAPIService.AddressUnitResourceDeleteDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressAPIService.DeleteAddressUnit")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -321,7 +219,7 @@ func (a *AddressAPIService) AddressUnitResourceDeleteDeleteExecute(r ApiAddressU
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiAddressUnitsResourceDeleteDeleteRequest struct {
+type ApiDeleteAddressUnitsRequest struct {
 	ctx context.Context
 	ApiService *AddressAPIService
 	addressId int32
@@ -329,24 +227,24 @@ type ApiAddressUnitsResourceDeleteDeleteRequest struct {
 }
 
 // Address unit IDs to delete
-func (r ApiAddressUnitsResourceDeleteDeleteRequest) Body(body []string) ApiAddressUnitsResourceDeleteDeleteRequest {
+func (r ApiDeleteAddressUnitsRequest) Body(body []string) ApiDeleteAddressUnitsRequest {
 	r.body = &body
 	return r
 }
 
-func (r ApiAddressUnitsResourceDeleteDeleteRequest) Execute() (*AdvancedConfirmationResponse, *http.Response, error) {
-	return r.ApiService.AddressUnitsResourceDeleteDeleteExecute(r)
+func (r ApiDeleteAddressUnitsRequest) Execute() (*AdvancedConfirmationResponse, *http.Response, error) {
+	return r.ApiService.DeleteAddressUnitsExecute(r)
 }
 
 /*
-AddressUnitsResourceDeleteDelete Deletes address units asynchronously
+DeleteAddressUnits Deletes address units asynchronously
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param addressId The address id
- @return ApiAddressUnitsResourceDeleteDeleteRequest
+ @return ApiDeleteAddressUnitsRequest
 */
-func (a *AddressAPIService) AddressUnitsResourceDeleteDelete(ctx context.Context, addressId int32) ApiAddressUnitsResourceDeleteDeleteRequest {
-	return ApiAddressUnitsResourceDeleteDeleteRequest{
+func (a *AddressAPIService) DeleteAddressUnits(ctx context.Context, addressId int32) ApiDeleteAddressUnitsRequest {
+	return ApiDeleteAddressUnitsRequest{
 		ApiService: a,
 		ctx: ctx,
 		addressId: addressId,
@@ -355,7 +253,7 @@ func (a *AddressAPIService) AddressUnitsResourceDeleteDelete(ctx context.Context
 
 // Execute executes the request
 //  @return AdvancedConfirmationResponse
-func (a *AddressAPIService) AddressUnitsResourceDeleteDeleteExecute(r ApiAddressUnitsResourceDeleteDeleteRequest) (*AdvancedConfirmationResponse, *http.Response, error) {
+func (a *AddressAPIService) DeleteAddressUnitsExecute(r ApiDeleteAddressUnitsRequest) (*AdvancedConfirmationResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -363,7 +261,7 @@ func (a *AddressAPIService) AddressUnitsResourceDeleteDeleteExecute(r ApiAddress
 		localVarReturnValue  *AdvancedConfirmationResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressAPIService.AddressUnitsResourceDeleteDelete")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressAPIService.DeleteAddressUnits")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -434,25 +332,25 @@ func (a *AddressAPIService) AddressUnitsResourceDeleteDeleteExecute(r ApiAddress
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiAddressUnitsResourceGetGetRequest struct {
+type ApiGetAddressUnitsRequest struct {
 	ctx context.Context
 	ApiService *AddressAPIService
 	addressId int32
 }
 
-func (r ApiAddressUnitsResourceGetGetRequest) Execute() ([]AddressUnitResponse, *http.Response, error) {
-	return r.ApiService.AddressUnitsResourceGetGetExecute(r)
+func (r ApiGetAddressUnitsRequest) Execute() ([]AddressUnitResponse, *http.Response, error) {
+	return r.ApiService.GetAddressUnitsExecute(r)
 }
 
 /*
-AddressUnitsResourceGetGet Get a list of address units
+GetAddressUnits Get a list of address units
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param addressId The address id
- @return ApiAddressUnitsResourceGetGetRequest
+ @return ApiGetAddressUnitsRequest
 */
-func (a *AddressAPIService) AddressUnitsResourceGetGet(ctx context.Context, addressId int32) ApiAddressUnitsResourceGetGetRequest {
-	return ApiAddressUnitsResourceGetGetRequest{
+func (a *AddressAPIService) GetAddressUnits(ctx context.Context, addressId int32) ApiGetAddressUnitsRequest {
+	return ApiGetAddressUnitsRequest{
 		ApiService: a,
 		ctx: ctx,
 		addressId: addressId,
@@ -461,7 +359,7 @@ func (a *AddressAPIService) AddressUnitsResourceGetGet(ctx context.Context, addr
 
 // Execute executes the request
 //  @return []AddressUnitResponse
-func (a *AddressAPIService) AddressUnitsResourceGetGetExecute(r ApiAddressUnitsResourceGetGetRequest) ([]AddressUnitResponse, *http.Response, error) {
+func (a *AddressAPIService) GetAddressUnitsExecute(r ApiGetAddressUnitsRequest) ([]AddressUnitResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -469,7 +367,7 @@ func (a *AddressAPIService) AddressUnitsResourceGetGetExecute(r ApiAddressUnitsR
 		localVarReturnValue  []AddressUnitResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressAPIService.AddressUnitsResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressAPIService.GetAddressUnits")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -535,136 +433,23 @@ func (a *AddressAPIService) AddressUnitsResourceGetGetExecute(r ApiAddressUnitsR
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiAddressUnitsResourcePutPutRequest struct {
-	ctx context.Context
-	ApiService *AddressAPIService
-	addressId int32
-	body *AddressUnit
-}
-
-// Address unit representation
-func (r ApiAddressUnitsResourcePutPutRequest) Body(body AddressUnit) ApiAddressUnitsResourcePutPutRequest {
-	r.body = &body
-	return r
-}
-
-func (r ApiAddressUnitsResourcePutPutRequest) Execute() (*AddressUnitResponse, *http.Response, error) {
-	return r.ApiService.AddressUnitsResourcePutPutExecute(r)
-}
-
-/*
-AddressUnitsResourcePutPut Create an address unit
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param addressId The address id
- @return ApiAddressUnitsResourcePutPutRequest
-*/
-func (a *AddressAPIService) AddressUnitsResourcePutPut(ctx context.Context, addressId int32) ApiAddressUnitsResourcePutPutRequest {
-	return ApiAddressUnitsResourcePutPutRequest{
-		ApiService: a,
-		ctx: ctx,
-		addressId: addressId,
-	}
-}
-
-// Execute executes the request
-//  @return AddressUnitResponse
-func (a *AddressAPIService) AddressUnitsResourcePutPutExecute(r ApiAddressUnitsResourcePutPutRequest) (*AddressUnitResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *AddressUnitResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressAPIService.AddressUnitsResourcePutPut")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/address/{addressId}/unit"
-	localVarPath = strings.Replace(localVarPath, "{"+"addressId"+"}", url.PathEscape(parameterValueToString(r.addressId, "addressId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiAddressesResourceGetGetRequest struct {
+type ApiGetAddressesRequest struct {
 	ctx context.Context
 	ApiService *AddressAPIService
 }
 
-func (r ApiAddressesResourceGetGetRequest) Execute() ([]Address, *http.Response, error) {
-	return r.ApiService.AddressesResourceGetGetExecute(r)
+func (r ApiGetAddressesRequest) Execute() ([]Address, *http.Response, error) {
+	return r.ApiService.GetAddressesExecute(r)
 }
 
 /*
-AddressesResourceGetGet Get a list of addresses
+GetAddresses Get a list of addresses
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAddressesResourceGetGetRequest
+ @return ApiGetAddressesRequest
 */
-func (a *AddressAPIService) AddressesResourceGetGet(ctx context.Context) ApiAddressesResourceGetGetRequest {
-	return ApiAddressesResourceGetGetRequest{
+func (a *AddressAPIService) GetAddresses(ctx context.Context) ApiGetAddressesRequest {
+	return ApiGetAddressesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -672,7 +457,7 @@ func (a *AddressAPIService) AddressesResourceGetGet(ctx context.Context) ApiAddr
 
 // Execute executes the request
 //  @return []Address
-func (a *AddressAPIService) AddressesResourceGetGetExecute(r ApiAddressesResourceGetGetRequest) ([]Address, *http.Response, error) {
+func (a *AddressAPIService) GetAddressesExecute(r ApiGetAddressesRequest) ([]Address, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -680,7 +465,7 @@ func (a *AddressAPIService) AddressesResourceGetGetExecute(r ApiAddressesResourc
 		localVarReturnValue  []Address
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressAPIService.AddressesResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressAPIService.GetAddresses")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -745,30 +530,245 @@ func (a *AddressAPIService) AddressesResourceGetGetExecute(r ApiAddressesResourc
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiAddressesResourcePutPutRequest struct {
+type ApiPostAddressRequest struct {
+	ctx context.Context
+	ApiService *AddressAPIService
+	addressId int32
+	body *AddressUpdate
+}
+
+// Address update representation
+func (r ApiPostAddressRequest) Body(body AddressUpdate) ApiPostAddressRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiPostAddressRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostAddressExecute(r)
+}
+
+/*
+PostAddress Update an address
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param addressId The address id
+ @return ApiPostAddressRequest
+*/
+func (a *AddressAPIService) PostAddress(ctx context.Context, addressId int32) ApiPostAddressRequest {
+	return ApiPostAddressRequest{
+		ApiService: a,
+		ctx: ctx,
+		addressId: addressId,
+	}
+}
+
+// Execute executes the request
+func (a *AddressAPIService) PostAddressExecute(r ApiPostAddressRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressAPIService.PostAddress")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/address/{addressId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"addressId"+"}", url.PathEscape(parameterValueToString(r.addressId, "addressId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiPutAddressUnitsRequest struct {
+	ctx context.Context
+	ApiService *AddressAPIService
+	addressId int32
+	body *AddressUnit
+}
+
+// Address unit representation
+func (r ApiPutAddressUnitsRequest) Body(body AddressUnit) ApiPutAddressUnitsRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiPutAddressUnitsRequest) Execute() (*AddressUnitResponse, *http.Response, error) {
+	return r.ApiService.PutAddressUnitsExecute(r)
+}
+
+/*
+PutAddressUnits Create an address unit
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param addressId The address id
+ @return ApiPutAddressUnitsRequest
+*/
+func (a *AddressAPIService) PutAddressUnits(ctx context.Context, addressId int32) ApiPutAddressUnitsRequest {
+	return ApiPutAddressUnitsRequest{
+		ApiService: a,
+		ctx: ctx,
+		addressId: addressId,
+	}
+}
+
+// Execute executes the request
+//  @return AddressUnitResponse
+func (a *AddressAPIService) PutAddressUnitsExecute(r ApiPutAddressUnitsRequest) (*AddressUnitResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AddressUnitResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressAPIService.PutAddressUnits")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/address/{addressId}/unit"
+	localVarPath = strings.Replace(localVarPath, "{"+"addressId"+"}", url.PathEscape(parameterValueToString(r.addressId, "addressId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPutAddressesRequest struct {
 	ctx context.Context
 	ApiService *AddressAPIService
 	body *AddressCreate
 }
 
 // Address create representation
-func (r ApiAddressesResourcePutPutRequest) Body(body AddressCreate) ApiAddressesResourcePutPutRequest {
+func (r ApiPutAddressesRequest) Body(body AddressCreate) ApiPutAddressesRequest {
 	r.body = &body
 	return r
 }
 
-func (r ApiAddressesResourcePutPutRequest) Execute() (*Address, *http.Response, error) {
-	return r.ApiService.AddressesResourcePutPutExecute(r)
+func (r ApiPutAddressesRequest) Execute() (*Address, *http.Response, error) {
+	return r.ApiService.PutAddressesExecute(r)
 }
 
 /*
-AddressesResourcePutPut Create an address
+PutAddresses Create an address
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAddressesResourcePutPutRequest
+ @return ApiPutAddressesRequest
 */
-func (a *AddressAPIService) AddressesResourcePutPut(ctx context.Context) ApiAddressesResourcePutPutRequest {
-	return ApiAddressesResourcePutPutRequest{
+func (a *AddressAPIService) PutAddresses(ctx context.Context) ApiPutAddressesRequest {
+	return ApiPutAddressesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -776,7 +776,7 @@ func (a *AddressAPIService) AddressesResourcePutPut(ctx context.Context) ApiAddr
 
 // Execute executes the request
 //  @return Address
-func (a *AddressAPIService) AddressesResourcePutPutExecute(r ApiAddressesResourcePutPutRequest) (*Address, *http.Response, error) {
+func (a *AddressAPIService) PutAddressesExecute(r ApiPutAddressesRequest) (*Address, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -784,7 +784,7 @@ func (a *AddressAPIService) AddressesResourcePutPutExecute(r ApiAddressesResourc
 		localVarReturnValue  *Address
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressAPIService.AddressesResourcePutPut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressAPIService.PutAddresses")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

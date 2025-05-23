@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 0.0
+API version: 3.8.1
 Contact: contact@nuki.io
 */
 
@@ -23,23 +23,23 @@ import (
 // CompanyAPIService CompanyAPI service
 type CompanyAPIService service
 
-type ApiCompaniesResourceGetGetRequest struct {
+type ApiGetCompaniesRequest struct {
 	ctx context.Context
 	ApiService *CompanyAPIService
 }
 
-func (r ApiCompaniesResourceGetGetRequest) Execute() ([]Company, *http.Response, error) {
-	return r.ApiService.CompaniesResourceGetGetExecute(r)
+func (r ApiGetCompaniesRequest) Execute() ([]Company, *http.Response, error) {
+	return r.ApiService.GetCompaniesExecute(r)
 }
 
 /*
-CompaniesResourceGetGet Get an list of companies
+GetCompanies Get an list of companies
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCompaniesResourceGetGetRequest
+ @return ApiGetCompaniesRequest
 */
-func (a *CompanyAPIService) CompaniesResourceGetGet(ctx context.Context) ApiCompaniesResourceGetGetRequest {
-	return ApiCompaniesResourceGetGetRequest{
+func (a *CompanyAPIService) GetCompanies(ctx context.Context) ApiGetCompaniesRequest {
+	return ApiGetCompaniesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -47,7 +47,7 @@ func (a *CompanyAPIService) CompaniesResourceGetGet(ctx context.Context) ApiComp
 
 // Execute executes the request
 //  @return []Company
-func (a *CompanyAPIService) CompaniesResourceGetGetExecute(r ApiCompaniesResourceGetGetRequest) ([]Company, *http.Response, error) {
+func (a *CompanyAPIService) GetCompaniesExecute(r ApiGetCompaniesRequest) ([]Company, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -55,7 +55,7 @@ func (a *CompanyAPIService) CompaniesResourceGetGetExecute(r ApiCompaniesResourc
 		localVarReturnValue  []Company
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CompanyAPIService.CompaniesResourceGetGet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CompanyAPIService.GetCompanies")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

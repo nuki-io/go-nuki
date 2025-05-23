@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 0.0
+API version: 3.8.1
 Contact: contact@nuki.io
 */
 
@@ -26,8 +26,8 @@ type SelectionRegistration struct {
 	ReadyOperations *int32 `json:"readyOperations,omitempty"`
 	SelectableChannel *SelectableChannel `json:"selectableChannel,omitempty"`
 	WakeupListener map[string]interface{} `json:"wakeupListener,omitempty"`
-	Writable *bool `json:"writable,omitempty"`
 	Readable *bool `json:"readable,omitempty"`
+	Writable *bool `json:"writable,omitempty"`
 	Connectable *bool `json:"connectable,omitempty"`
 	InterestReady *bool `json:"interestReady,omitempty"`
 }
@@ -241,38 +241,6 @@ func (o *SelectionRegistration) SetWakeupListener(v map[string]interface{}) {
 	o.WakeupListener = v
 }
 
-// GetWritable returns the Writable field value if set, zero value otherwise.
-func (o *SelectionRegistration) GetWritable() bool {
-	if o == nil || IsNil(o.Writable) {
-		var ret bool
-		return ret
-	}
-	return *o.Writable
-}
-
-// GetWritableOk returns a tuple with the Writable field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SelectionRegistration) GetWritableOk() (*bool, bool) {
-	if o == nil || IsNil(o.Writable) {
-		return nil, false
-	}
-	return o.Writable, true
-}
-
-// HasWritable returns a boolean if a field has been set.
-func (o *SelectionRegistration) HasWritable() bool {
-	if o != nil && !IsNil(o.Writable) {
-		return true
-	}
-
-	return false
-}
-
-// SetWritable gets a reference to the given bool and assigns it to the Writable field.
-func (o *SelectionRegistration) SetWritable(v bool) {
-	o.Writable = &v
-}
-
 // GetReadable returns the Readable field value if set, zero value otherwise.
 func (o *SelectionRegistration) GetReadable() bool {
 	if o == nil || IsNil(o.Readable) {
@@ -303,6 +271,38 @@ func (o *SelectionRegistration) HasReadable() bool {
 // SetReadable gets a reference to the given bool and assigns it to the Readable field.
 func (o *SelectionRegistration) SetReadable(v bool) {
 	o.Readable = &v
+}
+
+// GetWritable returns the Writable field value if set, zero value otherwise.
+func (o *SelectionRegistration) GetWritable() bool {
+	if o == nil || IsNil(o.Writable) {
+		var ret bool
+		return ret
+	}
+	return *o.Writable
+}
+
+// GetWritableOk returns a tuple with the Writable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SelectionRegistration) GetWritableOk() (*bool, bool) {
+	if o == nil || IsNil(o.Writable) {
+		return nil, false
+	}
+	return o.Writable, true
+}
+
+// HasWritable returns a boolean if a field has been set.
+func (o *SelectionRegistration) HasWritable() bool {
+	if o != nil && !IsNil(o.Writable) {
+		return true
+	}
+
+	return false
+}
+
+// SetWritable gets a reference to the given bool and assigns it to the Writable field.
+func (o *SelectionRegistration) SetWritable(v bool) {
+	o.Writable = &v
 }
 
 // GetConnectable returns the Connectable field value if set, zero value otherwise.
@@ -397,11 +397,11 @@ func (o SelectionRegistration) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.WakeupListener) {
 		toSerialize["wakeupListener"] = o.WakeupListener
 	}
-	if !IsNil(o.Writable) {
-		toSerialize["writable"] = o.Writable
-	}
 	if !IsNil(o.Readable) {
 		toSerialize["readable"] = o.Readable
+	}
+	if !IsNil(o.Writable) {
+		toSerialize["writable"] = o.Writable
 	}
 	if !IsNil(o.Connectable) {
 		toSerialize["connectable"] = o.Connectable
