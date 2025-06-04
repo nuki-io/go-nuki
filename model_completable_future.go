@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.8.1
+API version: 3.9.0
 Contact: contact@nuki.io
 */
 
@@ -20,10 +20,10 @@ var _ MappedNullable = &CompletableFuture{}
 
 // CompletableFuture struct for CompletableFuture
 type CompletableFuture struct {
-	CompletedExceptionally *bool `json:"completedExceptionally,omitempty"`
-	NumberOfDependents *int32 `json:"numberOfDependents,omitempty"`
 	Done *bool `json:"done,omitempty"`
 	Cancelled *bool `json:"cancelled,omitempty"`
+	CompletedExceptionally *bool `json:"completedExceptionally,omitempty"`
+	NumberOfDependents *int32 `json:"numberOfDependents,omitempty"`
 }
 
 // NewCompletableFuture instantiates a new CompletableFuture object
@@ -41,70 +41,6 @@ func NewCompletableFuture() *CompletableFuture {
 func NewCompletableFutureWithDefaults() *CompletableFuture {
 	this := CompletableFuture{}
 	return &this
-}
-
-// GetCompletedExceptionally returns the CompletedExceptionally field value if set, zero value otherwise.
-func (o *CompletableFuture) GetCompletedExceptionally() bool {
-	if o == nil || IsNil(o.CompletedExceptionally) {
-		var ret bool
-		return ret
-	}
-	return *o.CompletedExceptionally
-}
-
-// GetCompletedExceptionallyOk returns a tuple with the CompletedExceptionally field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CompletableFuture) GetCompletedExceptionallyOk() (*bool, bool) {
-	if o == nil || IsNil(o.CompletedExceptionally) {
-		return nil, false
-	}
-	return o.CompletedExceptionally, true
-}
-
-// HasCompletedExceptionally returns a boolean if a field has been set.
-func (o *CompletableFuture) HasCompletedExceptionally() bool {
-	if o != nil && !IsNil(o.CompletedExceptionally) {
-		return true
-	}
-
-	return false
-}
-
-// SetCompletedExceptionally gets a reference to the given bool and assigns it to the CompletedExceptionally field.
-func (o *CompletableFuture) SetCompletedExceptionally(v bool) {
-	o.CompletedExceptionally = &v
-}
-
-// GetNumberOfDependents returns the NumberOfDependents field value if set, zero value otherwise.
-func (o *CompletableFuture) GetNumberOfDependents() int32 {
-	if o == nil || IsNil(o.NumberOfDependents) {
-		var ret int32
-		return ret
-	}
-	return *o.NumberOfDependents
-}
-
-// GetNumberOfDependentsOk returns a tuple with the NumberOfDependents field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CompletableFuture) GetNumberOfDependentsOk() (*int32, bool) {
-	if o == nil || IsNil(o.NumberOfDependents) {
-		return nil, false
-	}
-	return o.NumberOfDependents, true
-}
-
-// HasNumberOfDependents returns a boolean if a field has been set.
-func (o *CompletableFuture) HasNumberOfDependents() bool {
-	if o != nil && !IsNil(o.NumberOfDependents) {
-		return true
-	}
-
-	return false
-}
-
-// SetNumberOfDependents gets a reference to the given int32 and assigns it to the NumberOfDependents field.
-func (o *CompletableFuture) SetNumberOfDependents(v int32) {
-	o.NumberOfDependents = &v
 }
 
 // GetDone returns the Done field value if set, zero value otherwise.
@@ -171,6 +107,70 @@ func (o *CompletableFuture) SetCancelled(v bool) {
 	o.Cancelled = &v
 }
 
+// GetCompletedExceptionally returns the CompletedExceptionally field value if set, zero value otherwise.
+func (o *CompletableFuture) GetCompletedExceptionally() bool {
+	if o == nil || IsNil(o.CompletedExceptionally) {
+		var ret bool
+		return ret
+	}
+	return *o.CompletedExceptionally
+}
+
+// GetCompletedExceptionallyOk returns a tuple with the CompletedExceptionally field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompletableFuture) GetCompletedExceptionallyOk() (*bool, bool) {
+	if o == nil || IsNil(o.CompletedExceptionally) {
+		return nil, false
+	}
+	return o.CompletedExceptionally, true
+}
+
+// HasCompletedExceptionally returns a boolean if a field has been set.
+func (o *CompletableFuture) HasCompletedExceptionally() bool {
+	if o != nil && !IsNil(o.CompletedExceptionally) {
+		return true
+	}
+
+	return false
+}
+
+// SetCompletedExceptionally gets a reference to the given bool and assigns it to the CompletedExceptionally field.
+func (o *CompletableFuture) SetCompletedExceptionally(v bool) {
+	o.CompletedExceptionally = &v
+}
+
+// GetNumberOfDependents returns the NumberOfDependents field value if set, zero value otherwise.
+func (o *CompletableFuture) GetNumberOfDependents() int32 {
+	if o == nil || IsNil(o.NumberOfDependents) {
+		var ret int32
+		return ret
+	}
+	return *o.NumberOfDependents
+}
+
+// GetNumberOfDependentsOk returns a tuple with the NumberOfDependents field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompletableFuture) GetNumberOfDependentsOk() (*int32, bool) {
+	if o == nil || IsNil(o.NumberOfDependents) {
+		return nil, false
+	}
+	return o.NumberOfDependents, true
+}
+
+// HasNumberOfDependents returns a boolean if a field has been set.
+func (o *CompletableFuture) HasNumberOfDependents() bool {
+	if o != nil && !IsNil(o.NumberOfDependents) {
+		return true
+	}
+
+	return false
+}
+
+// SetNumberOfDependents gets a reference to the given int32 and assigns it to the NumberOfDependents field.
+func (o *CompletableFuture) SetNumberOfDependents(v int32) {
+	o.NumberOfDependents = &v
+}
+
 func (o CompletableFuture) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -181,17 +181,17 @@ func (o CompletableFuture) MarshalJSON() ([]byte, error) {
 
 func (o CompletableFuture) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CompletedExceptionally) {
-		toSerialize["completedExceptionally"] = o.CompletedExceptionally
-	}
-	if !IsNil(o.NumberOfDependents) {
-		toSerialize["numberOfDependents"] = o.NumberOfDependents
-	}
 	if !IsNil(o.Done) {
 		toSerialize["done"] = o.Done
 	}
 	if !IsNil(o.Cancelled) {
 		toSerialize["cancelled"] = o.Cancelled
+	}
+	if !IsNil(o.CompletedExceptionally) {
+		toSerialize["completedExceptionally"] = o.CompletedExceptionally
+	}
+	if !IsNil(o.NumberOfDependents) {
+		toSerialize["numberOfDependents"] = o.NumberOfDependents
 	}
 	return toSerialize, nil
 }

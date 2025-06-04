@@ -10,7 +10,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://nuki.io/en/service/nukis-terms-of-use-apis/
   title: Nuki API
-  version: 3.8.1
+  version: 3.9.0
 servers:
 - url: /
 tags:
@@ -4956,11 +4956,11 @@ components:
               - extensionKeys
               displayScript: displayScript
           useParentHandlers: true
+          resourceBundleName: resourceBundleName
           level:
             localizedName: localizedName
             resourceBundleName: resourceBundleName
             name: name
-          resourceBundleName: resourceBundleName
           handlers:
           - filter: "{}"
             formatter: "{}"
@@ -5279,6 +5279,8 @@ components:
           $ref: '#/components/schemas/MetadataService'
         converterService:
           $ref: '#/components/schemas/ConverterService'
+        rangeService:
+          $ref: '#/components/schemas/RangeService'
         taskService:
           $ref: '#/components/schemas/TaskService'
         connectorService:
@@ -5289,8 +5291,6 @@ components:
           $ref: '#/components/schemas/EncoderService'
         tunnelService:
           $ref: '#/components/schemas/TunnelService'
-        rangeService:
-          $ref: '#/components/schemas/RangeService'
         logger:
           $ref: '#/components/schemas/Logger'
         application:
@@ -5538,27 +5538,27 @@ components:
       type: object
     CompletableFuture:
       properties:
+        done:
+          type: boolean
+        cancelled:
+          type: boolean
         completedExceptionally:
           type: boolean
         numberOfDependents:
           format: int32
           type: integer
-        done:
-          type: boolean
-        cancelled:
-          type: boolean
       type: object
     CompletableFutureListApiKey:
       properties:
+        done:
+          type: boolean
+        cancelled:
+          type: boolean
         completedExceptionally:
           type: boolean
         numberOfDependents:
           format: int32
           type: integer
-        done:
-          type: boolean
-        cancelled:
-          type: boolean
       type: object
     Conditions:
       properties:
@@ -5762,11 +5762,11 @@ components:
                   - extensionKeys
                   displayScript: displayScript
               useParentHandlers: true
+              resourceBundleName: resourceBundleName
               level:
                 localizedName: localizedName
                 resourceBundleName: resourceBundleName
                 name: name
-              resourceBundleName: resourceBundleName
               handlers:
               - filter: "{}"
                 formatter: "{}"
@@ -6079,11 +6079,11 @@ components:
                 - extensionKeys
                 displayScript: displayScript
             useParentHandlers: true
+            resourceBundleName: resourceBundleName
             level:
               localizedName: localizedName
               resourceBundleName: resourceBundleName
               name: name
-            resourceBundleName: resourceBundleName
             handlers:
             - filter: "{}"
               formatter: "{}"
@@ -6214,11 +6214,11 @@ components:
                   - extensionKeys
                   displayScript: displayScript
               useParentHandlers: true
+              resourceBundleName: resourceBundleName
               level:
                 localizedName: localizedName
                 resourceBundleName: resourceBundleName
                 name: name
-              resourceBundleName: resourceBundleName
               handlers:
               - filter: "{}"
                 formatter: "{}"
@@ -6531,11 +6531,11 @@ components:
                 - extensionKeys
                 displayScript: displayScript
             useParentHandlers: true
+            resourceBundleName: resourceBundleName
             level:
               localizedName: localizedName
               resourceBundleName: resourceBundleName
               name: name
-            resourceBundleName: resourceBundleName
             handlers:
             - filter: "{}"
               formatter: "{}"
@@ -6586,11 +6586,11 @@ components:
               - extensionKeys
               displayScript: displayScript
           useParentHandlers: true
+          resourceBundleName: resourceBundleName
           level:
             localizedName: localizedName
             resourceBundleName: resourceBundleName
             name: name
-          resourceBundleName: resourceBundleName
           handlers:
           - filter: "{}"
             formatter: "{}"
@@ -7044,11 +7044,11 @@ components:
             - extensionKeys
             displayScript: displayScript
         useParentHandlers: true
+        resourceBundleName: resourceBundleName
         level:
           localizedName: localizedName
           resourceBundleName: resourceBundleName
           name: name
-        resourceBundleName: resourceBundleName
         handlers:
         - filter: "{}"
           formatter: "{}"
@@ -7080,12 +7080,12 @@ components:
           type: object
         parent:
           $ref: '#/components/schemas/Logger'
-        level:
-          $ref: '#/components/schemas/Level'
         resourceBundle:
           $ref: '#/components/schemas/ResourceBundle'
         resourceBundleName:
           type: string
+        level:
+          $ref: '#/components/schemas/Level'
       type: object
     MediaType:
       example:
@@ -7201,6 +7201,10 @@ components:
           $ref: '#/components/schemas/Language'
         defaultMediaType:
           $ref: '#/components/schemas/MediaType'
+        allMediaTypeExtensionNames:
+          items:
+            type: string
+          type: array
         allCharacterSetExtensionNames:
           items:
             type: string
@@ -7214,10 +7218,6 @@ components:
             type: string
           type: array
         allLanguageExtensionNames:
-          items:
-            type: string
-          type: array
-        allMediaTypeExtensionNames:
           items:
             type: string
           type: array
@@ -7828,12 +7828,12 @@ components:
       properties:
         baseRef:
           $ref: '#/components/schemas/Reference'
+        identifier:
+          type: string
         schemeSpecificPart:
           type: string
         relative:
           type: boolean
-        identifier:
-          type: string
         path:
           type: string
         scheme:
@@ -7937,15 +7937,15 @@ components:
           type: string
         reader:
           type: object
-        availableSize:
-          format: int64
-          type: integer
         registration:
           $ref: '#/components/schemas/SelectionRegistration'
         selectable:
           type: boolean
         transient:
           type: boolean
+        availableSize:
+          format: int64
+          type: integer
         empty:
           type: boolean
         channel:
@@ -8311,11 +8311,11 @@ components:
                 - extensionKeys
                 displayScript: displayScript
             useParentHandlers: true
+            resourceBundleName: resourceBundleName
             level:
               localizedName: localizedName
               resourceBundleName: resourceBundleName
               name: name
-            resourceBundleName: resourceBundleName
             handlers:
             - filter: "{}"
               formatter: "{}"
@@ -8628,11 +8628,11 @@ components:
               - extensionKeys
               displayScript: displayScript
           useParentHandlers: true
+          resourceBundleName: resourceBundleName
           level:
             localizedName: localizedName
             resourceBundleName: resourceBundleName
             name: name
-          resourceBundleName: resourceBundleName
           handlers:
           - filter: "{}"
             formatter: "{}"
@@ -8862,11 +8862,11 @@ components:
                     - extensionKeys
                     displayScript: displayScript
                 useParentHandlers: true
+                resourceBundleName: resourceBundleName
                 level:
                   localizedName: localizedName
                   resourceBundleName: resourceBundleName
                   name: name
-                resourceBundleName: resourceBundleName
                 handlers:
                 - filter: "{}"
                   formatter: "{}"
@@ -9179,11 +9179,11 @@ components:
                   - extensionKeys
                   displayScript: displayScript
               useParentHandlers: true
+              resourceBundleName: resourceBundleName
               level:
                 localizedName: localizedName
                 resourceBundleName: resourceBundleName
                 name: name
-              resourceBundleName: resourceBundleName
               handlers:
               - filter: "{}"
                 formatter: "{}"
@@ -9314,11 +9314,11 @@ components:
                     - extensionKeys
                     displayScript: displayScript
                 useParentHandlers: true
+                resourceBundleName: resourceBundleName
                 level:
                   localizedName: localizedName
                   resourceBundleName: resourceBundleName
                   name: name
-                resourceBundleName: resourceBundleName
                 handlers:
                 - filter: "{}"
                   formatter: "{}"
@@ -9631,11 +9631,11 @@ components:
                   - extensionKeys
                   displayScript: displayScript
               useParentHandlers: true
+              resourceBundleName: resourceBundleName
               level:
                 localizedName: localizedName
                 resourceBundleName: resourceBundleName
                 name: name
-              resourceBundleName: resourceBundleName
               handlers:
               - filter: "{}"
                 formatter: "{}"
@@ -9686,11 +9686,11 @@ components:
                 - extensionKeys
                 displayScript: displayScript
             useParentHandlers: true
+            resourceBundleName: resourceBundleName
             level:
               localizedName: localizedName
               resourceBundleName: resourceBundleName
               name: name
-            resourceBundleName: resourceBundleName
             handlers:
             - filter: "{}"
               formatter: "{}"

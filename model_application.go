@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.8.1
+API version: 3.9.0
 Contact: contact@nuki.io
 */
 
@@ -35,12 +35,12 @@ type Application struct {
 	ConnegService *ConnegService `json:"connegService,omitempty"`
 	MetadataService *MetadataService `json:"metadataService,omitempty"`
 	ConverterService *ConverterService `json:"converterService,omitempty"`
+	RangeService *RangeService `json:"rangeService,omitempty"`
 	TaskService *TaskService `json:"taskService,omitempty"`
 	ConnectorService *ConnectorService `json:"connectorService,omitempty"`
 	DecoderService *DecoderService `json:"decoderService,omitempty"`
 	EncoderService *EncoderService `json:"encoderService,omitempty"`
 	TunnelService *TunnelService `json:"tunnelService,omitempty"`
-	RangeService *RangeService `json:"rangeService,omitempty"`
 	Logger *Logger `json:"logger,omitempty"`
 	Application *Application `json:"application,omitempty"`
 	Stopped *bool `json:"stopped,omitempty"`
@@ -543,6 +543,38 @@ func (o *Application) SetConverterService(v ConverterService) {
 	o.ConverterService = &v
 }
 
+// GetRangeService returns the RangeService field value if set, zero value otherwise.
+func (o *Application) GetRangeService() RangeService {
+	if o == nil || IsNil(o.RangeService) {
+		var ret RangeService
+		return ret
+	}
+	return *o.RangeService
+}
+
+// GetRangeServiceOk returns a tuple with the RangeService field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Application) GetRangeServiceOk() (*RangeService, bool) {
+	if o == nil || IsNil(o.RangeService) {
+		return nil, false
+	}
+	return o.RangeService, true
+}
+
+// HasRangeService returns a boolean if a field has been set.
+func (o *Application) HasRangeService() bool {
+	if o != nil && !IsNil(o.RangeService) {
+		return true
+	}
+
+	return false
+}
+
+// SetRangeService gets a reference to the given RangeService and assigns it to the RangeService field.
+func (o *Application) SetRangeService(v RangeService) {
+	o.RangeService = &v
+}
+
 // GetTaskService returns the TaskService field value if set, zero value otherwise.
 func (o *Application) GetTaskService() TaskService {
 	if o == nil || IsNil(o.TaskService) {
@@ -703,38 +735,6 @@ func (o *Application) SetTunnelService(v TunnelService) {
 	o.TunnelService = &v
 }
 
-// GetRangeService returns the RangeService field value if set, zero value otherwise.
-func (o *Application) GetRangeService() RangeService {
-	if o == nil || IsNil(o.RangeService) {
-		var ret RangeService
-		return ret
-	}
-	return *o.RangeService
-}
-
-// GetRangeServiceOk returns a tuple with the RangeService field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Application) GetRangeServiceOk() (*RangeService, bool) {
-	if o == nil || IsNil(o.RangeService) {
-		return nil, false
-	}
-	return o.RangeService, true
-}
-
-// HasRangeService returns a boolean if a field has been set.
-func (o *Application) HasRangeService() bool {
-	if o != nil && !IsNil(o.RangeService) {
-		return true
-	}
-
-	return false
-}
-
-// SetRangeService gets a reference to the given RangeService and assigns it to the RangeService field.
-func (o *Application) SetRangeService(v RangeService) {
-	o.RangeService = &v
-}
-
 // GetLogger returns the Logger field value if set, zero value otherwise.
 func (o *Application) GetLogger() Logger {
 	if o == nil || IsNil(o.Logger) {
@@ -886,6 +886,9 @@ func (o Application) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ConverterService) {
 		toSerialize["converterService"] = o.ConverterService
 	}
+	if !IsNil(o.RangeService) {
+		toSerialize["rangeService"] = o.RangeService
+	}
 	if !IsNil(o.TaskService) {
 		toSerialize["taskService"] = o.TaskService
 	}
@@ -900,9 +903,6 @@ func (o Application) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.TunnelService) {
 		toSerialize["tunnelService"] = o.TunnelService
-	}
-	if !IsNil(o.RangeService) {
-		toSerialize["rangeService"] = o.RangeService
 	}
 	if !IsNil(o.Logger) {
 		toSerialize["logger"] = o.Logger
