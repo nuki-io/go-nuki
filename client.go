@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.9.0
+API version: 3.10.1
 Contact: contact@nuki.io
 */
 
@@ -43,7 +43,7 @@ var (
 	queryDescape    = strings.NewReplacer( "%5B", "[", "%5D", "]" )
 )
 
-// APIClient manages communication with the Nuki API API v3.9.0
+// APIClient manages communication with the Nuki API API v3.10.1
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -52,8 +52,6 @@ type APIClient struct {
 	// API Services
 
 	AccountAPI *AccountAPIService
-
-	AccountSubscriptionAPI *AccountSubscriptionAPIService
 
 	AccountUserAPI *AccountUserAPIService
 
@@ -80,8 +78,6 @@ type APIClient struct {
 	SmartlockAuthAPI *SmartlockAuthAPIService
 
 	SmartlockLogAPI *SmartlockLogAPIService
-
-	SubscriptionAPI *SubscriptionAPIService
 }
 
 type service struct {
@@ -101,7 +97,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.AccountAPI = (*AccountAPIService)(&c.common)
-	c.AccountSubscriptionAPI = (*AccountSubscriptionAPIService)(&c.common)
 	c.AccountUserAPI = (*AccountUserAPIService)(&c.common)
 	c.AddressAPI = (*AddressAPIService)(&c.common)
 	c.AddressReservationAPI = (*AddressReservationAPIService)(&c.common)
@@ -115,7 +110,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.SmartlockAPI = (*SmartlockAPIService)(&c.common)
 	c.SmartlockAuthAPI = (*SmartlockAuthAPIService)(&c.common)
 	c.SmartlockLogAPI = (*SmartlockLogAPIService)(&c.common)
-	c.SubscriptionAPI = (*SubscriptionAPIService)(&c.common)
 
 	return c
 }

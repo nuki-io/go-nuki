@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.9.0
+API version: 3.10.1
 Contact: contact@nuki.io
 */
 
@@ -53,8 +53,8 @@ type Response struct {
 	Provisional *bool `json:"provisional,omitempty"`
 	Final *bool `json:"final,omitempty"`
 	Headers []Header `json:"headers,omitempty"`
-	EntityAsText *string `json:"entityAsText,omitempty"`
 	EntityAvailable *bool `json:"entityAvailable,omitempty"`
+	EntityAsText *string `json:"entityAsText,omitempty"`
 }
 
 // NewResponse instantiates a new Response object
@@ -1098,38 +1098,6 @@ func (o *Response) SetHeaders(v []Header) {
 	o.Headers = v
 }
 
-// GetEntityAsText returns the EntityAsText field value if set, zero value otherwise.
-func (o *Response) GetEntityAsText() string {
-	if o == nil || IsNil(o.EntityAsText) {
-		var ret string
-		return ret
-	}
-	return *o.EntityAsText
-}
-
-// GetEntityAsTextOk returns a tuple with the EntityAsText field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Response) GetEntityAsTextOk() (*string, bool) {
-	if o == nil || IsNil(o.EntityAsText) {
-		return nil, false
-	}
-	return o.EntityAsText, true
-}
-
-// HasEntityAsText returns a boolean if a field has been set.
-func (o *Response) HasEntityAsText() bool {
-	if o != nil && !IsNil(o.EntityAsText) {
-		return true
-	}
-
-	return false
-}
-
-// SetEntityAsText gets a reference to the given string and assigns it to the EntityAsText field.
-func (o *Response) SetEntityAsText(v string) {
-	o.EntityAsText = &v
-}
-
 // GetEntityAvailable returns the EntityAvailable field value if set, zero value otherwise.
 func (o *Response) GetEntityAvailable() bool {
 	if o == nil || IsNil(o.EntityAvailable) {
@@ -1160,6 +1128,38 @@ func (o *Response) HasEntityAvailable() bool {
 // SetEntityAvailable gets a reference to the given bool and assigns it to the EntityAvailable field.
 func (o *Response) SetEntityAvailable(v bool) {
 	o.EntityAvailable = &v
+}
+
+// GetEntityAsText returns the EntityAsText field value if set, zero value otherwise.
+func (o *Response) GetEntityAsText() string {
+	if o == nil || IsNil(o.EntityAsText) {
+		var ret string
+		return ret
+	}
+	return *o.EntityAsText
+}
+
+// GetEntityAsTextOk returns a tuple with the EntityAsText field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Response) GetEntityAsTextOk() (*string, bool) {
+	if o == nil || IsNil(o.EntityAsText) {
+		return nil, false
+	}
+	return o.EntityAsText, true
+}
+
+// HasEntityAsText returns a boolean if a field has been set.
+func (o *Response) HasEntityAsText() bool {
+	if o != nil && !IsNil(o.EntityAsText) {
+		return true
+	}
+
+	return false
+}
+
+// SetEntityAsText gets a reference to the given string and assigns it to the EntityAsText field.
+func (o *Response) SetEntityAsText(v string) {
+	o.EntityAsText = &v
 }
 
 func (o Response) MarshalJSON() ([]byte, error) {
@@ -1268,11 +1268,11 @@ func (o Response) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Headers) {
 		toSerialize["headers"] = o.Headers
 	}
-	if !IsNil(o.EntityAsText) {
-		toSerialize["entityAsText"] = o.EntityAsText
-	}
 	if !IsNil(o.EntityAvailable) {
 		toSerialize["entityAvailable"] = o.EntityAvailable
+	}
+	if !IsNil(o.EntityAsText) {
+		toSerialize["entityAsText"] = o.EntityAsText
 	}
 	return toSerialize, nil
 }

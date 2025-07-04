@@ -2,7 +2,6 @@
 README.md
 api/openapi.yaml
 api_account.go
-api_account_subscription.go
 api_account_user.go
 api_address.go
 api_address_reservation.go
@@ -16,7 +15,6 @@ api_service.go
 api_smartlock.go
 api_smartlock_auth.go
 api_smartlock_log.go
-api_subscription.go
 client.go
 configuration.go
 go.mod
@@ -33,7 +31,6 @@ model_account_setting.go
 model_account_setting_web.go
 model_account_sub_create.go
 model_account_sub_update.go
-model_account_subscription.go
 model_account_update.go
 model_account_user.go
 model_account_user_create.go
@@ -154,7 +151,6 @@ model_stack_trace_element.go
 model_stale_device.go
 model_status.go
 model_status_service.go
-model_subscription.go
 model_tag.go
 model_task_service.go
 model_terms_of_use.go

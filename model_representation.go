@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.9.0
+API version: 3.10.1
 Contact: contact@nuki.io
 */
 
@@ -37,10 +37,10 @@ type Representation struct {
 	Stream map[string]interface{} `json:"stream,omitempty"`
 	Text *string `json:"text,omitempty"`
 	Reader map[string]interface{} `json:"reader,omitempty"`
+	AvailableSize *int64 `json:"availableSize,omitempty"`
 	Registration *SelectionRegistration `json:"registration,omitempty"`
 	Selectable *bool `json:"selectable,omitempty"`
 	Transient *bool `json:"transient,omitempty"`
-	AvailableSize *int64 `json:"availableSize,omitempty"`
 	Empty *bool `json:"empty,omitempty"`
 	Channel *ReadableByteChannel `json:"channel,omitempty"`
 }
@@ -574,6 +574,38 @@ func (o *Representation) SetReader(v map[string]interface{}) {
 	o.Reader = v
 }
 
+// GetAvailableSize returns the AvailableSize field value if set, zero value otherwise.
+func (o *Representation) GetAvailableSize() int64 {
+	if o == nil || IsNil(o.AvailableSize) {
+		var ret int64
+		return ret
+	}
+	return *o.AvailableSize
+}
+
+// GetAvailableSizeOk returns a tuple with the AvailableSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Representation) GetAvailableSizeOk() (*int64, bool) {
+	if o == nil || IsNil(o.AvailableSize) {
+		return nil, false
+	}
+	return o.AvailableSize, true
+}
+
+// HasAvailableSize returns a boolean if a field has been set.
+func (o *Representation) HasAvailableSize() bool {
+	if o != nil && !IsNil(o.AvailableSize) {
+		return true
+	}
+
+	return false
+}
+
+// SetAvailableSize gets a reference to the given int64 and assigns it to the AvailableSize field.
+func (o *Representation) SetAvailableSize(v int64) {
+	o.AvailableSize = &v
+}
+
 // GetRegistration returns the Registration field value if set, zero value otherwise.
 func (o *Representation) GetRegistration() SelectionRegistration {
 	if o == nil || IsNil(o.Registration) {
@@ -668,38 +700,6 @@ func (o *Representation) HasTransient() bool {
 // SetTransient gets a reference to the given bool and assigns it to the Transient field.
 func (o *Representation) SetTransient(v bool) {
 	o.Transient = &v
-}
-
-// GetAvailableSize returns the AvailableSize field value if set, zero value otherwise.
-func (o *Representation) GetAvailableSize() int64 {
-	if o == nil || IsNil(o.AvailableSize) {
-		var ret int64
-		return ret
-	}
-	return *o.AvailableSize
-}
-
-// GetAvailableSizeOk returns a tuple with the AvailableSize field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Representation) GetAvailableSizeOk() (*int64, bool) {
-	if o == nil || IsNil(o.AvailableSize) {
-		return nil, false
-	}
-	return o.AvailableSize, true
-}
-
-// HasAvailableSize returns a boolean if a field has been set.
-func (o *Representation) HasAvailableSize() bool {
-	if o != nil && !IsNil(o.AvailableSize) {
-		return true
-	}
-
-	return false
-}
-
-// SetAvailableSize gets a reference to the given int64 and assigns it to the AvailableSize field.
-func (o *Representation) SetAvailableSize(v int64) {
-	o.AvailableSize = &v
 }
 
 // GetEmpty returns the Empty field value if set, zero value otherwise.
@@ -824,6 +824,9 @@ func (o Representation) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Reader) {
 		toSerialize["reader"] = o.Reader
 	}
+	if !IsNil(o.AvailableSize) {
+		toSerialize["availableSize"] = o.AvailableSize
+	}
 	if !IsNil(o.Registration) {
 		toSerialize["registration"] = o.Registration
 	}
@@ -832,9 +835,6 @@ func (o Representation) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Transient) {
 		toSerialize["transient"] = o.Transient
-	}
-	if !IsNil(o.AvailableSize) {
-		toSerialize["availableSize"] = o.AvailableSize
 	}
 	if !IsNil(o.Empty) {
 		toSerialize["empty"] = o.Empty

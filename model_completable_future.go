@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.9.0
+API version: 3.10.1
 Contact: contact@nuki.io
 */
 
@@ -20,10 +20,10 @@ var _ MappedNullable = &CompletableFuture{}
 
 // CompletableFuture struct for CompletableFuture
 type CompletableFuture struct {
-	Done *bool `json:"done,omitempty"`
 	Cancelled *bool `json:"cancelled,omitempty"`
 	CompletedExceptionally *bool `json:"completedExceptionally,omitempty"`
 	NumberOfDependents *int32 `json:"numberOfDependents,omitempty"`
+	Done *bool `json:"done,omitempty"`
 }
 
 // NewCompletableFuture instantiates a new CompletableFuture object
@@ -41,38 +41,6 @@ func NewCompletableFuture() *CompletableFuture {
 func NewCompletableFutureWithDefaults() *CompletableFuture {
 	this := CompletableFuture{}
 	return &this
-}
-
-// GetDone returns the Done field value if set, zero value otherwise.
-func (o *CompletableFuture) GetDone() bool {
-	if o == nil || IsNil(o.Done) {
-		var ret bool
-		return ret
-	}
-	return *o.Done
-}
-
-// GetDoneOk returns a tuple with the Done field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CompletableFuture) GetDoneOk() (*bool, bool) {
-	if o == nil || IsNil(o.Done) {
-		return nil, false
-	}
-	return o.Done, true
-}
-
-// HasDone returns a boolean if a field has been set.
-func (o *CompletableFuture) HasDone() bool {
-	if o != nil && !IsNil(o.Done) {
-		return true
-	}
-
-	return false
-}
-
-// SetDone gets a reference to the given bool and assigns it to the Done field.
-func (o *CompletableFuture) SetDone(v bool) {
-	o.Done = &v
 }
 
 // GetCancelled returns the Cancelled field value if set, zero value otherwise.
@@ -171,6 +139,38 @@ func (o *CompletableFuture) SetNumberOfDependents(v int32) {
 	o.NumberOfDependents = &v
 }
 
+// GetDone returns the Done field value if set, zero value otherwise.
+func (o *CompletableFuture) GetDone() bool {
+	if o == nil || IsNil(o.Done) {
+		var ret bool
+		return ret
+	}
+	return *o.Done
+}
+
+// GetDoneOk returns a tuple with the Done field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompletableFuture) GetDoneOk() (*bool, bool) {
+	if o == nil || IsNil(o.Done) {
+		return nil, false
+	}
+	return o.Done, true
+}
+
+// HasDone returns a boolean if a field has been set.
+func (o *CompletableFuture) HasDone() bool {
+	if o != nil && !IsNil(o.Done) {
+		return true
+	}
+
+	return false
+}
+
+// SetDone gets a reference to the given bool and assigns it to the Done field.
+func (o *CompletableFuture) SetDone(v bool) {
+	o.Done = &v
+}
+
 func (o CompletableFuture) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -181,9 +181,6 @@ func (o CompletableFuture) MarshalJSON() ([]byte, error) {
 
 func (o CompletableFuture) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Done) {
-		toSerialize["done"] = o.Done
-	}
 	if !IsNil(o.Cancelled) {
 		toSerialize["cancelled"] = o.Cancelled
 	}
@@ -192,6 +189,9 @@ func (o CompletableFuture) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.NumberOfDependents) {
 		toSerialize["numberOfDependents"] = o.NumberOfDependents
+	}
+	if !IsNil(o.Done) {
+		toSerialize["done"] = o.Done
 	}
 	return toSerialize, nil
 }
