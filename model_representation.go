@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.10.1
+API version: 3.10.2
 Contact: contact@nuki.io
 */
 
@@ -36,10 +36,10 @@ type Representation struct {
 	Size *int64 `json:"size,omitempty"`
 	Stream map[string]interface{} `json:"stream,omitempty"`
 	Text *string `json:"text,omitempty"`
+	Selectable *bool `json:"selectable,omitempty"`
+	Registration *SelectionRegistration `json:"registration,omitempty"`
 	Reader map[string]interface{} `json:"reader,omitempty"`
 	AvailableSize *int64 `json:"availableSize,omitempty"`
-	Registration *SelectionRegistration `json:"registration,omitempty"`
-	Selectable *bool `json:"selectable,omitempty"`
 	Transient *bool `json:"transient,omitempty"`
 	Empty *bool `json:"empty,omitempty"`
 	Channel *ReadableByteChannel `json:"channel,omitempty"`
@@ -542,6 +542,70 @@ func (o *Representation) SetText(v string) {
 	o.Text = &v
 }
 
+// GetSelectable returns the Selectable field value if set, zero value otherwise.
+func (o *Representation) GetSelectable() bool {
+	if o == nil || IsNil(o.Selectable) {
+		var ret bool
+		return ret
+	}
+	return *o.Selectable
+}
+
+// GetSelectableOk returns a tuple with the Selectable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Representation) GetSelectableOk() (*bool, bool) {
+	if o == nil || IsNil(o.Selectable) {
+		return nil, false
+	}
+	return o.Selectable, true
+}
+
+// HasSelectable returns a boolean if a field has been set.
+func (o *Representation) HasSelectable() bool {
+	if o != nil && !IsNil(o.Selectable) {
+		return true
+	}
+
+	return false
+}
+
+// SetSelectable gets a reference to the given bool and assigns it to the Selectable field.
+func (o *Representation) SetSelectable(v bool) {
+	o.Selectable = &v
+}
+
+// GetRegistration returns the Registration field value if set, zero value otherwise.
+func (o *Representation) GetRegistration() SelectionRegistration {
+	if o == nil || IsNil(o.Registration) {
+		var ret SelectionRegistration
+		return ret
+	}
+	return *o.Registration
+}
+
+// GetRegistrationOk returns a tuple with the Registration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Representation) GetRegistrationOk() (*SelectionRegistration, bool) {
+	if o == nil || IsNil(o.Registration) {
+		return nil, false
+	}
+	return o.Registration, true
+}
+
+// HasRegistration returns a boolean if a field has been set.
+func (o *Representation) HasRegistration() bool {
+	if o != nil && !IsNil(o.Registration) {
+		return true
+	}
+
+	return false
+}
+
+// SetRegistration gets a reference to the given SelectionRegistration and assigns it to the Registration field.
+func (o *Representation) SetRegistration(v SelectionRegistration) {
+	o.Registration = &v
+}
+
 // GetReader returns the Reader field value if set, zero value otherwise.
 func (o *Representation) GetReader() map[string]interface{} {
 	if o == nil || IsNil(o.Reader) {
@@ -604,70 +668,6 @@ func (o *Representation) HasAvailableSize() bool {
 // SetAvailableSize gets a reference to the given int64 and assigns it to the AvailableSize field.
 func (o *Representation) SetAvailableSize(v int64) {
 	o.AvailableSize = &v
-}
-
-// GetRegistration returns the Registration field value if set, zero value otherwise.
-func (o *Representation) GetRegistration() SelectionRegistration {
-	if o == nil || IsNil(o.Registration) {
-		var ret SelectionRegistration
-		return ret
-	}
-	return *o.Registration
-}
-
-// GetRegistrationOk returns a tuple with the Registration field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Representation) GetRegistrationOk() (*SelectionRegistration, bool) {
-	if o == nil || IsNil(o.Registration) {
-		return nil, false
-	}
-	return o.Registration, true
-}
-
-// HasRegistration returns a boolean if a field has been set.
-func (o *Representation) HasRegistration() bool {
-	if o != nil && !IsNil(o.Registration) {
-		return true
-	}
-
-	return false
-}
-
-// SetRegistration gets a reference to the given SelectionRegistration and assigns it to the Registration field.
-func (o *Representation) SetRegistration(v SelectionRegistration) {
-	o.Registration = &v
-}
-
-// GetSelectable returns the Selectable field value if set, zero value otherwise.
-func (o *Representation) GetSelectable() bool {
-	if o == nil || IsNil(o.Selectable) {
-		var ret bool
-		return ret
-	}
-	return *o.Selectable
-}
-
-// GetSelectableOk returns a tuple with the Selectable field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Representation) GetSelectableOk() (*bool, bool) {
-	if o == nil || IsNil(o.Selectable) {
-		return nil, false
-	}
-	return o.Selectable, true
-}
-
-// HasSelectable returns a boolean if a field has been set.
-func (o *Representation) HasSelectable() bool {
-	if o != nil && !IsNil(o.Selectable) {
-		return true
-	}
-
-	return false
-}
-
-// SetSelectable gets a reference to the given bool and assigns it to the Selectable field.
-func (o *Representation) SetSelectable(v bool) {
-	o.Selectable = &v
 }
 
 // GetTransient returns the Transient field value if set, zero value otherwise.
@@ -821,17 +821,17 @@ func (o Representation) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Text) {
 		toSerialize["text"] = o.Text
 	}
+	if !IsNil(o.Selectable) {
+		toSerialize["selectable"] = o.Selectable
+	}
+	if !IsNil(o.Registration) {
+		toSerialize["registration"] = o.Registration
+	}
 	if !IsNil(o.Reader) {
 		toSerialize["reader"] = o.Reader
 	}
 	if !IsNil(o.AvailableSize) {
 		toSerialize["availableSize"] = o.AvailableSize
-	}
-	if !IsNil(o.Registration) {
-		toSerialize["registration"] = o.Registration
-	}
-	if !IsNil(o.Selectable) {
-		toSerialize["selectable"] = o.Selectable
 	}
 	if !IsNil(o.Transient) {
 		toSerialize["transient"] = o.Transient

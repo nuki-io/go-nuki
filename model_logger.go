@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.10.1
+API version: 3.10.2
 Contact: contact@nuki.io
 */
 
@@ -25,9 +25,9 @@ type Logger struct {
 	UseParentHandlers *bool `json:"useParentHandlers,omitempty"`
 	Filter map[string]interface{} `json:"filter,omitempty"`
 	Parent *Logger `json:"parent,omitempty"`
+	Level *Level `json:"level,omitempty"`
 	ResourceBundle *ResourceBundle `json:"resourceBundle,omitempty"`
 	ResourceBundleName *string `json:"resourceBundleName,omitempty"`
-	Level *Level `json:"level,omitempty"`
 }
 
 // NewLogger instantiates a new Logger object
@@ -207,6 +207,38 @@ func (o *Logger) SetParent(v Logger) {
 	o.Parent = &v
 }
 
+// GetLevel returns the Level field value if set, zero value otherwise.
+func (o *Logger) GetLevel() Level {
+	if o == nil || IsNil(o.Level) {
+		var ret Level
+		return ret
+	}
+	return *o.Level
+}
+
+// GetLevelOk returns a tuple with the Level field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Logger) GetLevelOk() (*Level, bool) {
+	if o == nil || IsNil(o.Level) {
+		return nil, false
+	}
+	return o.Level, true
+}
+
+// HasLevel returns a boolean if a field has been set.
+func (o *Logger) HasLevel() bool {
+	if o != nil && !IsNil(o.Level) {
+		return true
+	}
+
+	return false
+}
+
+// SetLevel gets a reference to the given Level and assigns it to the Level field.
+func (o *Logger) SetLevel(v Level) {
+	o.Level = &v
+}
+
 // GetResourceBundle returns the ResourceBundle field value if set, zero value otherwise.
 func (o *Logger) GetResourceBundle() ResourceBundle {
 	if o == nil || IsNil(o.ResourceBundle) {
@@ -271,38 +303,6 @@ func (o *Logger) SetResourceBundleName(v string) {
 	o.ResourceBundleName = &v
 }
 
-// GetLevel returns the Level field value if set, zero value otherwise.
-func (o *Logger) GetLevel() Level {
-	if o == nil || IsNil(o.Level) {
-		var ret Level
-		return ret
-	}
-	return *o.Level
-}
-
-// GetLevelOk returns a tuple with the Level field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Logger) GetLevelOk() (*Level, bool) {
-	if o == nil || IsNil(o.Level) {
-		return nil, false
-	}
-	return o.Level, true
-}
-
-// HasLevel returns a boolean if a field has been set.
-func (o *Logger) HasLevel() bool {
-	if o != nil && !IsNil(o.Level) {
-		return true
-	}
-
-	return false
-}
-
-// SetLevel gets a reference to the given Level and assigns it to the Level field.
-func (o *Logger) SetLevel(v Level) {
-	o.Level = &v
-}
-
 func (o Logger) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -328,14 +328,14 @@ func (o Logger) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Parent) {
 		toSerialize["parent"] = o.Parent
 	}
+	if !IsNil(o.Level) {
+		toSerialize["level"] = o.Level
+	}
 	if !IsNil(o.ResourceBundle) {
 		toSerialize["resourceBundle"] = o.ResourceBundle
 	}
 	if !IsNil(o.ResourceBundleName) {
 		toSerialize["resourceBundleName"] = o.ResourceBundleName
-	}
-	if !IsNil(o.Level) {
-		toSerialize["level"] = o.Level
 	}
 	return toSerialize, nil
 }

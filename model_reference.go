@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.10.1
+API version: 3.10.2
 Contact: contact@nuki.io
 */
 
@@ -22,8 +22,8 @@ var _ MappedNullable = &Reference{}
 type Reference struct {
 	BaseRef *Reference `json:"baseRef,omitempty"`
 	SchemeSpecificPart *string `json:"schemeSpecificPart,omitempty"`
-	Identifier *string `json:"identifier,omitempty"`
 	Relative *bool `json:"relative,omitempty"`
+	Identifier *string `json:"identifier,omitempty"`
 	Path *string `json:"path,omitempty"`
 	Scheme *string `json:"scheme,omitempty"`
 	Fragment *string `json:"fragment,omitempty"`
@@ -133,38 +133,6 @@ func (o *Reference) SetSchemeSpecificPart(v string) {
 	o.SchemeSpecificPart = &v
 }
 
-// GetIdentifier returns the Identifier field value if set, zero value otherwise.
-func (o *Reference) GetIdentifier() string {
-	if o == nil || IsNil(o.Identifier) {
-		var ret string
-		return ret
-	}
-	return *o.Identifier
-}
-
-// GetIdentifierOk returns a tuple with the Identifier field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Reference) GetIdentifierOk() (*string, bool) {
-	if o == nil || IsNil(o.Identifier) {
-		return nil, false
-	}
-	return o.Identifier, true
-}
-
-// HasIdentifier returns a boolean if a field has been set.
-func (o *Reference) HasIdentifier() bool {
-	if o != nil && !IsNil(o.Identifier) {
-		return true
-	}
-
-	return false
-}
-
-// SetIdentifier gets a reference to the given string and assigns it to the Identifier field.
-func (o *Reference) SetIdentifier(v string) {
-	o.Identifier = &v
-}
-
 // GetRelative returns the Relative field value if set, zero value otherwise.
 func (o *Reference) GetRelative() bool {
 	if o == nil || IsNil(o.Relative) {
@@ -195,6 +163,38 @@ func (o *Reference) HasRelative() bool {
 // SetRelative gets a reference to the given bool and assigns it to the Relative field.
 func (o *Reference) SetRelative(v bool) {
 	o.Relative = &v
+}
+
+// GetIdentifier returns the Identifier field value if set, zero value otherwise.
+func (o *Reference) GetIdentifier() string {
+	if o == nil || IsNil(o.Identifier) {
+		var ret string
+		return ret
+	}
+	return *o.Identifier
+}
+
+// GetIdentifierOk returns a tuple with the Identifier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Reference) GetIdentifierOk() (*string, bool) {
+	if o == nil || IsNil(o.Identifier) {
+		return nil, false
+	}
+	return o.Identifier, true
+}
+
+// HasIdentifier returns a boolean if a field has been set.
+func (o *Reference) HasIdentifier() bool {
+	if o != nil && !IsNil(o.Identifier) {
+		return true
+	}
+
+	return false
+}
+
+// SetIdentifier gets a reference to the given string and assigns it to the Identifier field.
+func (o *Reference) SetIdentifier(v string) {
+	o.Identifier = &v
 }
 
 // GetPath returns the Path field value if set, zero value otherwise.
@@ -1045,11 +1045,11 @@ func (o Reference) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SchemeSpecificPart) {
 		toSerialize["schemeSpecificPart"] = o.SchemeSpecificPart
 	}
-	if !IsNil(o.Identifier) {
-		toSerialize["identifier"] = o.Identifier
-	}
 	if !IsNil(o.Relative) {
 		toSerialize["relative"] = o.Relative
+	}
+	if !IsNil(o.Identifier) {
+		toSerialize["identifier"] = o.Identifier
 	}
 	if !IsNil(o.Path) {
 		toSerialize["path"] = o.Path
