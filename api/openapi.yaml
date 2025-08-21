@@ -10,7 +10,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://nuki.io/en/service/nukis-terms-of-use-apis/
   title: Nuki API
-  version: 3.10.2
+  version: 3.13.0
 servers:
 - url: /
 tags:
@@ -2301,6 +2301,50 @@ paths:
       tags:
       - AdvancedApi
       x-codegen-request-body-name: body
+  /smartlock/auth/paged:
+    get:
+      operationId: GetSmartlocksAuthsPaginated
+      parameters:
+      - description: "The page number, starting from 0"
+        in: query
+        name: page
+        schema:
+          default: 0
+          type: integer
+      - description: The number of items in one page
+        in: query
+        name: size
+        schema:
+          default: 100
+          type: integer
+      - description: "Filter for account users:  set to a positive number will filter\
+          \ for authorizations with this specific accountUserId, set to a negative\
+          \ number will filter without set accountUserId"
+        in: query
+        name: accountUserId
+        schema:
+          type: integer
+      - description: "Filter for authorization's types (comma-separated eg: 0,2,3)"
+        in: query
+        name: types
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PaginatedResponse'
+          description: successful operation
+        "401":
+          content: {}
+          description: Not authorized
+      security:
+      - oauth:
+        - smartlock.auth
+      summary: Get a paginated list of smartlock authorizations for your smartlocks
+      tags:
+      - SmartlockAuth
   /smartlock/log:
     get:
       operationId: GetSmartlocksLogs
@@ -4674,7 +4718,7 @@ components:
             - name: name
               value: value
           stopped: true
-          minimumSize: 5
+          minimumSize: 1
           context: null
           started: true
           ignoredMediaTypes:
@@ -4743,11 +4787,11 @@ components:
               - extensionKeys
               displayScript: displayScript
           useParentHandlers: true
+          resourceBundleName: resourceBundleName
           level:
             localizedName: localizedName
             resourceBundleName: resourceBundleName
             name: name
-          resourceBundleName: resourceBundleName
           handlers:
           - filter: "{}"
             formatter: "{}"
@@ -4989,8 +5033,8 @@ components:
             hostPort: 0
             identifier: identifier
             targetRef: null
-            remainingPart: remainingPart
             opaque: true
+            remainingPart: remainingPart
             query: query
             schemeSpecificPart: schemeSpecificPart
             hierarchicalPart: hierarchicalPart
@@ -5019,7 +5063,7 @@ components:
           shutdownAllowed: true
           stopped: true
           context: null
-          corePoolSize: 1
+          corePoolSize: 5
           started: true
           enabled: true
           shutdown: true
@@ -5068,14 +5112,14 @@ components:
           $ref: '#/components/schemas/ConverterService'
         rangeService:
           $ref: '#/components/schemas/RangeService'
-        taskService:
-          $ref: '#/components/schemas/TaskService'
         connectorService:
           $ref: '#/components/schemas/ConnectorService'
         decoderService:
           $ref: '#/components/schemas/DecoderService'
         encoderService:
           $ref: '#/components/schemas/EncoderService'
+        taskService:
+          $ref: '#/components/schemas/TaskService'
         tunnelService:
           $ref: '#/components/schemas/TunnelService'
         logger:
@@ -5325,25 +5369,25 @@ components:
       type: object
     CompletableFuture:
       properties:
+        done:
+          type: boolean
         completedExceptionally:
           type: boolean
         numberOfDependents:
           format: int32
           type: integer
-        done:
-          type: boolean
         cancelled:
           type: boolean
       type: object
     CompletableFutureListApiKey:
       properties:
+        done:
+          type: boolean
         completedExceptionally:
           type: boolean
         numberOfDependents:
           format: int32
           type: integer
-        done:
-          type: boolean
         cancelled:
           type: boolean
       type: object
@@ -5480,7 +5524,7 @@ components:
                 - name: name
                   value: value
               stopped: true
-              minimumSize: 5
+              minimumSize: 1
               context: null
               started: true
               ignoredMediaTypes:
@@ -5549,11 +5593,11 @@ components:
                   - extensionKeys
                   displayScript: displayScript
               useParentHandlers: true
+              resourceBundleName: resourceBundleName
               level:
                 localizedName: localizedName
                 resourceBundleName: resourceBundleName
                 name: name
-              resourceBundleName: resourceBundleName
               handlers:
               - filter: "{}"
                 formatter: "{}"
@@ -5795,8 +5839,8 @@ components:
                 hostPort: 0
                 identifier: identifier
                 targetRef: null
-                remainingPart: remainingPart
                 opaque: true
+                remainingPart: remainingPart
                 query: query
                 schemeSpecificPart: schemeSpecificPart
                 hierarchicalPart: hierarchicalPart
@@ -5825,7 +5869,7 @@ components:
               shutdownAllowed: true
               stopped: true
               context: null
-              corePoolSize: 1
+              corePoolSize: 5
               started: true
               enabled: true
               shutdown: true
@@ -5866,11 +5910,11 @@ components:
                 - extensionKeys
                 displayScript: displayScript
             useParentHandlers: true
+            resourceBundleName: resourceBundleName
             level:
               localizedName: localizedName
               resourceBundleName: resourceBundleName
               name: name
-            resourceBundleName: resourceBundleName
             handlers:
             - filter: "{}"
               formatter: "{}"
@@ -5932,7 +5976,7 @@ components:
                 - name: name
                   value: value
               stopped: true
-              minimumSize: 5
+              minimumSize: 1
               context: null
               started: true
               ignoredMediaTypes:
@@ -6001,11 +6045,11 @@ components:
                   - extensionKeys
                   displayScript: displayScript
               useParentHandlers: true
+              resourceBundleName: resourceBundleName
               level:
                 localizedName: localizedName
                 resourceBundleName: resourceBundleName
                 name: name
-              resourceBundleName: resourceBundleName
               handlers:
               - filter: "{}"
                 formatter: "{}"
@@ -6247,8 +6291,8 @@ components:
                 hostPort: 0
                 identifier: identifier
                 targetRef: null
-                remainingPart: remainingPart
                 opaque: true
+                remainingPart: remainingPart
                 query: query
                 schemeSpecificPart: schemeSpecificPart
                 hierarchicalPart: hierarchicalPart
@@ -6277,7 +6321,7 @@ components:
               shutdownAllowed: true
               stopped: true
               context: null
-              corePoolSize: 1
+              corePoolSize: 5
               started: true
               enabled: true
               shutdown: true
@@ -6318,11 +6362,11 @@ components:
                 - extensionKeys
                 displayScript: displayScript
             useParentHandlers: true
+            resourceBundleName: resourceBundleName
             level:
               localizedName: localizedName
               resourceBundleName: resourceBundleName
               name: name
-            resourceBundleName: resourceBundleName
             handlers:
             - filter: "{}"
               formatter: "{}"
@@ -6373,11 +6417,11 @@ components:
               - extensionKeys
               displayScript: displayScript
           useParentHandlers: true
+          resourceBundleName: resourceBundleName
           level:
             localizedName: localizedName
             resourceBundleName: resourceBundleName
             name: name
-          resourceBundleName: resourceBundleName
           handlers:
           - filter: "{}"
             formatter: "{}"
@@ -6587,7 +6631,7 @@ components:
           - name: name
             value: value
         stopped: true
-        minimumSize: 5
+        minimumSize: 1
         context: null
         started: true
         ignoredMediaTypes:
@@ -6723,10 +6767,10 @@ components:
           items:
             type: string
           type: array
-        primaryTag:
-          type: string
         parent:
           $ref: '#/components/schemas/Language'
+        primaryTag:
+          type: string
       type: object
     Level:
       example:
@@ -6831,11 +6875,11 @@ components:
             - extensionKeys
             displayScript: displayScript
         useParentHandlers: true
+        resourceBundleName: resourceBundleName
         level:
           localizedName: localizedName
           resourceBundleName: resourceBundleName
           name: name
-        resourceBundleName: resourceBundleName
         handlers:
         - filter: "{}"
           formatter: "{}"
@@ -6867,12 +6911,12 @@ components:
           type: object
         parent:
           $ref: '#/components/schemas/Logger'
-        level:
-          $ref: '#/components/schemas/Level'
         resourceBundle:
           $ref: '#/components/schemas/ResourceBundle'
         resourceBundleName:
           type: string
+        level:
+          $ref: '#/components/schemas/Level'
       type: object
     MediaType:
       example:
@@ -6896,14 +6940,14 @@ components:
           items:
             $ref: '#/components/schemas/Parameter'
           type: array
+        parent:
+          $ref: '#/components/schemas/MediaType'
         concrete:
           type: boolean
         mainType:
           type: string
         subType:
           type: string
-        parent:
-          $ref: '#/components/schemas/MediaType'
       type: object
     Metadata:
       example:
@@ -6988,10 +7032,6 @@ components:
           $ref: '#/components/schemas/Language'
         defaultMediaType:
           $ref: '#/components/schemas/MediaType'
-        allCharacterSetExtensionNames:
-          items:
-            type: string
-          type: array
         allEncodingExtensionNames:
           items:
             type: string
@@ -7005,6 +7045,10 @@ components:
             type: string
           type: array
         allMediaTypeExtensionNames:
+          items:
+            type: string
+          type: array
+        allCharacterSetExtensionNames:
           items:
             type: string
           type: array
@@ -7392,6 +7436,53 @@ components:
       - type
       - verified
       type: object
+    PaginatedResponse:
+      example:
+        pagination:
+          totalItems: 0
+          nextPage: nextPage
+          totalPages: 6
+          pageSize: 5
+          prevPage: prevPage
+          currentPage: 1
+        results:
+        - "{}"
+        - "{}"
+      properties:
+        results:
+          items:
+            properties: {}
+            type: object
+          type: array
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      type: object
+    Pagination:
+      example:
+        totalItems: 0
+        nextPage: nextPage
+        totalPages: 6
+        pageSize: 5
+        prevPage: prevPage
+        currentPage: 1
+      properties:
+        totalItems:
+          format: int64
+          type: integer
+        totalPages:
+          format: int32
+          type: integer
+        currentPage:
+          format: int32
+          type: integer
+        nextPage:
+          type: string
+        prevPage:
+          type: string
+        pageSize:
+          format: int32
+          type: integer
+      type: object
     Parameter:
       example:
         name: name
@@ -7600,8 +7691,8 @@ components:
         hostPort: 0
         identifier: identifier
         targetRef: null
-        remainingPart: remainingPart
         opaque: true
+        remainingPart: remainingPart
         query: query
         schemeSpecificPart: schemeSpecificPart
         hierarchicalPart: hierarchicalPart
@@ -7619,17 +7710,25 @@ components:
           type: string
         relative:
           type: boolean
-        identifier:
-          type: string
+        absolute:
+          type: boolean
         path:
           type: string
+        opaque:
+          type: boolean
         scheme:
+          type: string
+        authority:
           type: string
         fragment:
           type: string
+        query:
+          type: string
         userInfo:
           type: string
-        query:
+        extensions:
+          type: string
+        identifier:
           type: string
         matrix:
           type: string
@@ -7674,14 +7773,6 @@ components:
           $ref: '#/components/schemas/Reference'
         hierarchical:
           type: boolean
-        authority:
-          type: string
-        absolute:
-          type: boolean
-        opaque:
-          type: boolean
-        extensions:
-          type: string
       type: object
     Representation:
       properties:
@@ -7720,23 +7811,23 @@ components:
           type: integer
         stream:
           type: object
+        empty:
+          type: boolean
+        transient:
+          type: boolean
+        channel:
+          $ref: '#/components/schemas/ReadableByteChannel'
         text:
           type: string
-        selectable:
-          type: boolean
-        registration:
-          $ref: '#/components/schemas/SelectionRegistration'
         reader:
           type: object
         availableSize:
           format: int64
           type: integer
-        transient:
+        registration:
+          $ref: '#/components/schemas/SelectionRegistration'
+        selectable:
           type: boolean
-        empty:
-          type: boolean
-        channel:
-          $ref: '#/components/schemas/ReadableByteChannel'
       type: object
     Request:
       properties:
@@ -7977,11 +8068,11 @@ components:
           $ref: '#/components/schemas/ServerInfo'
         status:
           $ref: '#/components/schemas/Status'
+        final:
+          type: boolean
         confidential:
           type: boolean
         provisional:
-          type: boolean
-        final:
           type: boolean
         headers:
           items:
@@ -8029,7 +8120,7 @@ components:
               - name: name
                 value: value
             stopped: true
-            minimumSize: 5
+            minimumSize: 1
             context: null
             started: true
             ignoredMediaTypes:
@@ -8098,11 +8189,11 @@ components:
                 - extensionKeys
                 displayScript: displayScript
             useParentHandlers: true
+            resourceBundleName: resourceBundleName
             level:
               localizedName: localizedName
               resourceBundleName: resourceBundleName
               name: name
-            resourceBundleName: resourceBundleName
             handlers:
             - filter: "{}"
               formatter: "{}"
@@ -8344,8 +8435,8 @@ components:
               hostPort: 0
               identifier: identifier
               targetRef: null
-              remainingPart: remainingPart
               opaque: true
+              remainingPart: remainingPart
               query: query
               schemeSpecificPart: schemeSpecificPart
               hierarchicalPart: hierarchicalPart
@@ -8374,7 +8465,7 @@ components:
             shutdownAllowed: true
             stopped: true
             context: null
-            corePoolSize: 1
+            corePoolSize: 5
             started: true
             enabled: true
             shutdown: true
@@ -8415,11 +8506,11 @@ components:
               - extensionKeys
               displayScript: displayScript
           useParentHandlers: true
+          resourceBundleName: resourceBundleName
           level:
             localizedName: localizedName
             resourceBundleName: resourceBundleName
             name: name
-          resourceBundleName: resourceBundleName
           handlers:
           - filter: "{}"
             formatter: "{}"
@@ -8580,7 +8671,7 @@ components:
                   - name: name
                     value: value
                 stopped: true
-                minimumSize: 5
+                minimumSize: 1
                 context: null
                 started: true
                 ignoredMediaTypes:
@@ -8649,11 +8740,11 @@ components:
                     - extensionKeys
                     displayScript: displayScript
                 useParentHandlers: true
+                resourceBundleName: resourceBundleName
                 level:
                   localizedName: localizedName
                   resourceBundleName: resourceBundleName
                   name: name
-                resourceBundleName: resourceBundleName
                 handlers:
                 - filter: "{}"
                   formatter: "{}"
@@ -8895,8 +8986,8 @@ components:
                   hostPort: 0
                   identifier: identifier
                   targetRef: null
-                  remainingPart: remainingPart
                   opaque: true
+                  remainingPart: remainingPart
                   query: query
                   schemeSpecificPart: schemeSpecificPart
                   hierarchicalPart: hierarchicalPart
@@ -8925,7 +9016,7 @@ components:
                 shutdownAllowed: true
                 stopped: true
                 context: null
-                corePoolSize: 1
+                corePoolSize: 5
                 started: true
                 enabled: true
                 shutdown: true
@@ -8966,11 +9057,11 @@ components:
                   - extensionKeys
                   displayScript: displayScript
               useParentHandlers: true
+              resourceBundleName: resourceBundleName
               level:
                 localizedName: localizedName
                 resourceBundleName: resourceBundleName
                 name: name
-              resourceBundleName: resourceBundleName
               handlers:
               - filter: "{}"
                 formatter: "{}"
@@ -9032,7 +9123,7 @@ components:
                   - name: name
                     value: value
                 stopped: true
-                minimumSize: 5
+                minimumSize: 1
                 context: null
                 started: true
                 ignoredMediaTypes:
@@ -9101,11 +9192,11 @@ components:
                     - extensionKeys
                     displayScript: displayScript
                 useParentHandlers: true
+                resourceBundleName: resourceBundleName
                 level:
                   localizedName: localizedName
                   resourceBundleName: resourceBundleName
                   name: name
-                resourceBundleName: resourceBundleName
                 handlers:
                 - filter: "{}"
                   formatter: "{}"
@@ -9347,8 +9438,8 @@ components:
                   hostPort: 0
                   identifier: identifier
                   targetRef: null
-                  remainingPart: remainingPart
                   opaque: true
+                  remainingPart: remainingPart
                   query: query
                   schemeSpecificPart: schemeSpecificPart
                   hierarchicalPart: hierarchicalPart
@@ -9377,7 +9468,7 @@ components:
                 shutdownAllowed: true
                 stopped: true
                 context: null
-                corePoolSize: 1
+                corePoolSize: 5
                 started: true
                 enabled: true
                 shutdown: true
@@ -9418,11 +9509,11 @@ components:
                   - extensionKeys
                   displayScript: displayScript
               useParentHandlers: true
+              resourceBundleName: resourceBundleName
               level:
                 localizedName: localizedName
                 resourceBundleName: resourceBundleName
                 name: name
-              resourceBundleName: resourceBundleName
               handlers:
               - filter: "{}"
                 formatter: "{}"
@@ -9473,11 +9564,11 @@ components:
                 - extensionKeys
                 displayScript: displayScript
             useParentHandlers: true
+            resourceBundleName: resourceBundleName
             level:
               localizedName: localizedName
               resourceBundleName: resourceBundleName
               name: name
-            resourceBundleName: resourceBundleName
             handlers:
             - filter: "{}"
               formatter: "{}"
@@ -11042,7 +11133,8 @@ components:
           description: "The completion state: 0 .. Success, 1 .. Motor blocked, 2\
             \ .. Canceled, 3 .. Too recent, 4 .. Busy, 5 .. Low motor voltage, 6 ..\
             \ Clutch failure, 7 .. Motor power failure, 8 .. Incomplete, 9 .. Rejected,\
-            \ 10 .. Rejected night mode, 254 .. Other error, 255 .. Unknown error"
+            \ 10 .. Rejected night mode, 224 .. Invalid Code, 225 .. Invalid Fingerprint,\
+            \ 226 .. Invalid NFC Tag, 254 .. Other error, 255 .. Unknown error"
           format: int32
           maximum: 255
           minimum: 1
@@ -11063,7 +11155,7 @@ components:
           type: integer
         source:
           description: "The source of action: 1 .. Keypad code, 2 .. Fingerprint,\
-            \ 0 .. Default"
+            \ 3 .. Tap to Unlock, 0 .. Default"
           format: int32
           type: integer
         error:
@@ -11309,6 +11401,8 @@ components:
           $ref: '#/components/schemas/Throwable'
         uri:
           type: string
+        error:
+          type: boolean
         success:
           type: boolean
         serverError:
@@ -11324,8 +11418,6 @@ components:
         redirection:
           type: boolean
         recoverableError:
-          type: boolean
-        error:
           type: boolean
       type: object
     StatusService:
@@ -11429,8 +11521,8 @@ components:
           hostPort: 0
           identifier: identifier
           targetRef: null
-          remainingPart: remainingPart
           opaque: true
+          remainingPart: remainingPart
           query: query
           schemeSpecificPart: schemeSpecificPart
           hierarchicalPart: hierarchicalPart
@@ -11485,7 +11577,7 @@ components:
         shutdownAllowed: true
         stopped: true
         context: null
-        corePoolSize: 1
+        corePoolSize: 5
         started: true
         enabled: true
         shutdown: true

@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.10.2
+API version: 3.13.0
 Contact: contact@nuki.io
 */
 
@@ -49,9 +49,9 @@ type Response struct {
 	RetryAfter *time.Time `json:"retryAfter,omitempty"`
 	ServerInfo *ServerInfo `json:"serverInfo,omitempty"`
 	Status *Status `json:"status,omitempty"`
+	Final *bool `json:"final,omitempty"`
 	Confidential *bool `json:"confidential,omitempty"`
 	Provisional *bool `json:"provisional,omitempty"`
-	Final *bool `json:"final,omitempty"`
 	Headers []Header `json:"headers,omitempty"`
 	EntityAsText *string `json:"entityAsText,omitempty"`
 	EntityAvailable *bool `json:"entityAvailable,omitempty"`
@@ -970,6 +970,38 @@ func (o *Response) SetStatus(v Status) {
 	o.Status = &v
 }
 
+// GetFinal returns the Final field value if set, zero value otherwise.
+func (o *Response) GetFinal() bool {
+	if o == nil || IsNil(o.Final) {
+		var ret bool
+		return ret
+	}
+	return *o.Final
+}
+
+// GetFinalOk returns a tuple with the Final field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Response) GetFinalOk() (*bool, bool) {
+	if o == nil || IsNil(o.Final) {
+		return nil, false
+	}
+	return o.Final, true
+}
+
+// HasFinal returns a boolean if a field has been set.
+func (o *Response) HasFinal() bool {
+	if o != nil && !IsNil(o.Final) {
+		return true
+	}
+
+	return false
+}
+
+// SetFinal gets a reference to the given bool and assigns it to the Final field.
+func (o *Response) SetFinal(v bool) {
+	o.Final = &v
+}
+
 // GetConfidential returns the Confidential field value if set, zero value otherwise.
 func (o *Response) GetConfidential() bool {
 	if o == nil || IsNil(o.Confidential) {
@@ -1032,38 +1064,6 @@ func (o *Response) HasProvisional() bool {
 // SetProvisional gets a reference to the given bool and assigns it to the Provisional field.
 func (o *Response) SetProvisional(v bool) {
 	o.Provisional = &v
-}
-
-// GetFinal returns the Final field value if set, zero value otherwise.
-func (o *Response) GetFinal() bool {
-	if o == nil || IsNil(o.Final) {
-		var ret bool
-		return ret
-	}
-	return *o.Final
-}
-
-// GetFinalOk returns a tuple with the Final field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Response) GetFinalOk() (*bool, bool) {
-	if o == nil || IsNil(o.Final) {
-		return nil, false
-	}
-	return o.Final, true
-}
-
-// HasFinal returns a boolean if a field has been set.
-func (o *Response) HasFinal() bool {
-	if o != nil && !IsNil(o.Final) {
-		return true
-	}
-
-	return false
-}
-
-// SetFinal gets a reference to the given bool and assigns it to the Final field.
-func (o *Response) SetFinal(v bool) {
-	o.Final = &v
 }
 
 // GetHeaders returns the Headers field value if set, zero value otherwise.
@@ -1256,14 +1256,14 @@ func (o Response) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+	if !IsNil(o.Final) {
+		toSerialize["final"] = o.Final
+	}
 	if !IsNil(o.Confidential) {
 		toSerialize["confidential"] = o.Confidential
 	}
 	if !IsNil(o.Provisional) {
 		toSerialize["provisional"] = o.Provisional
-	}
-	if !IsNil(o.Final) {
-		toSerialize["final"] = o.Final
 	}
 	if !IsNil(o.Headers) {
 		toSerialize["headers"] = o.Headers

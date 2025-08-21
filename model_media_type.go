@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.10.2
+API version: 3.13.0
 Contact: contact@nuki.io
 */
 
@@ -23,10 +23,10 @@ type MediaType struct {
 	Description *string `json:"description,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Parameters []Parameter `json:"parameters,omitempty"`
+	Parent *MediaType `json:"parent,omitempty"`
 	Concrete *bool `json:"concrete,omitempty"`
 	MainType *string `json:"mainType,omitempty"`
 	SubType *string `json:"subType,omitempty"`
-	Parent *MediaType `json:"parent,omitempty"`
 }
 
 // NewMediaType instantiates a new MediaType object
@@ -142,6 +142,38 @@ func (o *MediaType) SetParameters(v []Parameter) {
 	o.Parameters = v
 }
 
+// GetParent returns the Parent field value if set, zero value otherwise.
+func (o *MediaType) GetParent() MediaType {
+	if o == nil || IsNil(o.Parent) {
+		var ret MediaType
+		return ret
+	}
+	return *o.Parent
+}
+
+// GetParentOk returns a tuple with the Parent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MediaType) GetParentOk() (*MediaType, bool) {
+	if o == nil || IsNil(o.Parent) {
+		return nil, false
+	}
+	return o.Parent, true
+}
+
+// HasParent returns a boolean if a field has been set.
+func (o *MediaType) HasParent() bool {
+	if o != nil && !IsNil(o.Parent) {
+		return true
+	}
+
+	return false
+}
+
+// SetParent gets a reference to the given MediaType and assigns it to the Parent field.
+func (o *MediaType) SetParent(v MediaType) {
+	o.Parent = &v
+}
+
 // GetConcrete returns the Concrete field value if set, zero value otherwise.
 func (o *MediaType) GetConcrete() bool {
 	if o == nil || IsNil(o.Concrete) {
@@ -238,38 +270,6 @@ func (o *MediaType) SetSubType(v string) {
 	o.SubType = &v
 }
 
-// GetParent returns the Parent field value if set, zero value otherwise.
-func (o *MediaType) GetParent() MediaType {
-	if o == nil || IsNil(o.Parent) {
-		var ret MediaType
-		return ret
-	}
-	return *o.Parent
-}
-
-// GetParentOk returns a tuple with the Parent field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MediaType) GetParentOk() (*MediaType, bool) {
-	if o == nil || IsNil(o.Parent) {
-		return nil, false
-	}
-	return o.Parent, true
-}
-
-// HasParent returns a boolean if a field has been set.
-func (o *MediaType) HasParent() bool {
-	if o != nil && !IsNil(o.Parent) {
-		return true
-	}
-
-	return false
-}
-
-// SetParent gets a reference to the given MediaType and assigns it to the Parent field.
-func (o *MediaType) SetParent(v MediaType) {
-	o.Parent = &v
-}
-
 func (o MediaType) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -289,6 +289,9 @@ func (o MediaType) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Parameters) {
 		toSerialize["parameters"] = o.Parameters
 	}
+	if !IsNil(o.Parent) {
+		toSerialize["parent"] = o.Parent
+	}
 	if !IsNil(o.Concrete) {
 		toSerialize["concrete"] = o.Concrete
 	}
@@ -297,9 +300,6 @@ func (o MediaType) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.SubType) {
 		toSerialize["subType"] = o.SubType
-	}
-	if !IsNil(o.Parent) {
-		toSerialize["parent"] = o.Parent
 	}
 	return toSerialize, nil
 }

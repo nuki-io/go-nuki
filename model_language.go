@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.10.2
+API version: 3.13.0
 Contact: contact@nuki.io
 */
 
@@ -23,8 +23,8 @@ type Language struct {
 	Description *string `json:"description,omitempty"`
 	Name *string `json:"name,omitempty"`
 	SubTags []string `json:"subTags,omitempty"`
-	PrimaryTag *string `json:"primaryTag,omitempty"`
 	Parent *Language `json:"parent,omitempty"`
+	PrimaryTag *string `json:"primaryTag,omitempty"`
 }
 
 // NewLanguage instantiates a new Language object
@@ -140,38 +140,6 @@ func (o *Language) SetSubTags(v []string) {
 	o.SubTags = v
 }
 
-// GetPrimaryTag returns the PrimaryTag field value if set, zero value otherwise.
-func (o *Language) GetPrimaryTag() string {
-	if o == nil || IsNil(o.PrimaryTag) {
-		var ret string
-		return ret
-	}
-	return *o.PrimaryTag
-}
-
-// GetPrimaryTagOk returns a tuple with the PrimaryTag field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Language) GetPrimaryTagOk() (*string, bool) {
-	if o == nil || IsNil(o.PrimaryTag) {
-		return nil, false
-	}
-	return o.PrimaryTag, true
-}
-
-// HasPrimaryTag returns a boolean if a field has been set.
-func (o *Language) HasPrimaryTag() bool {
-	if o != nil && !IsNil(o.PrimaryTag) {
-		return true
-	}
-
-	return false
-}
-
-// SetPrimaryTag gets a reference to the given string and assigns it to the PrimaryTag field.
-func (o *Language) SetPrimaryTag(v string) {
-	o.PrimaryTag = &v
-}
-
 // GetParent returns the Parent field value if set, zero value otherwise.
 func (o *Language) GetParent() Language {
 	if o == nil || IsNil(o.Parent) {
@@ -204,6 +172,38 @@ func (o *Language) SetParent(v Language) {
 	o.Parent = &v
 }
 
+// GetPrimaryTag returns the PrimaryTag field value if set, zero value otherwise.
+func (o *Language) GetPrimaryTag() string {
+	if o == nil || IsNil(o.PrimaryTag) {
+		var ret string
+		return ret
+	}
+	return *o.PrimaryTag
+}
+
+// GetPrimaryTagOk returns a tuple with the PrimaryTag field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Language) GetPrimaryTagOk() (*string, bool) {
+	if o == nil || IsNil(o.PrimaryTag) {
+		return nil, false
+	}
+	return o.PrimaryTag, true
+}
+
+// HasPrimaryTag returns a boolean if a field has been set.
+func (o *Language) HasPrimaryTag() bool {
+	if o != nil && !IsNil(o.PrimaryTag) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrimaryTag gets a reference to the given string and assigns it to the PrimaryTag field.
+func (o *Language) SetPrimaryTag(v string) {
+	o.PrimaryTag = &v
+}
+
 func (o Language) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -223,11 +223,11 @@ func (o Language) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SubTags) {
 		toSerialize["subTags"] = o.SubTags
 	}
-	if !IsNil(o.PrimaryTag) {
-		toSerialize["primaryTag"] = o.PrimaryTag
-	}
 	if !IsNil(o.Parent) {
 		toSerialize["parent"] = o.Parent
+	}
+	if !IsNil(o.PrimaryTag) {
+		toSerialize["primaryTag"] = o.PrimaryTag
 	}
 	return toSerialize, nil
 }

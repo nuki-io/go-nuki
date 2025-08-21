@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.10.2
+API version: 3.13.0
 Contact: contact@nuki.io
 */
 
@@ -489,6 +489,149 @@ func (a *SmartlockAuthAPIService) GetSmartlocksAuthsExecute(r ApiGetSmartlocksAu
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.accountUserId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "accountUserId", r.accountUserId, "", "")
+	}
+	if r.types != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "types", r.types, "", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetSmartlocksAuthsPaginatedRequest struct {
+	ctx context.Context
+	ApiService *SmartlockAuthAPIService
+	page *int32
+	size *int32
+	accountUserId *int32
+	types *string
+}
+
+// The page number, starting from 0
+func (r ApiGetSmartlocksAuthsPaginatedRequest) Page(page int32) ApiGetSmartlocksAuthsPaginatedRequest {
+	r.page = &page
+	return r
+}
+
+// The number of items in one page
+func (r ApiGetSmartlocksAuthsPaginatedRequest) Size(size int32) ApiGetSmartlocksAuthsPaginatedRequest {
+	r.size = &size
+	return r
+}
+
+// Filter for account users:  set to a positive number will filter for authorizations with this specific accountUserId, set to a negative number will filter without set accountUserId
+func (r ApiGetSmartlocksAuthsPaginatedRequest) AccountUserId(accountUserId int32) ApiGetSmartlocksAuthsPaginatedRequest {
+	r.accountUserId = &accountUserId
+	return r
+}
+
+// Filter for authorization&#39;s types (comma-separated eg: 0,2,3)
+func (r ApiGetSmartlocksAuthsPaginatedRequest) Types(types string) ApiGetSmartlocksAuthsPaginatedRequest {
+	r.types = &types
+	return r
+}
+
+func (r ApiGetSmartlocksAuthsPaginatedRequest) Execute() (*PaginatedResponse, *http.Response, error) {
+	return r.ApiService.GetSmartlocksAuthsPaginatedExecute(r)
+}
+
+/*
+GetSmartlocksAuthsPaginated Get a paginated list of smartlock authorizations for your smartlocks
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetSmartlocksAuthsPaginatedRequest
+*/
+func (a *SmartlockAuthAPIService) GetSmartlocksAuthsPaginated(ctx context.Context) ApiGetSmartlocksAuthsPaginatedRequest {
+	return ApiGetSmartlocksAuthsPaginatedRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return PaginatedResponse
+func (a *SmartlockAuthAPIService) GetSmartlocksAuthsPaginatedExecute(r ApiGetSmartlocksAuthsPaginatedRequest) (*PaginatedResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PaginatedResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SmartlockAuthAPIService.GetSmartlocksAuthsPaginated")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/smartlock/auth/paged"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "", "")
+	} else {
+		var defaultValue int32 = 0
+		r.page = &defaultValue
+	}
+	if r.size != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "", "")
+	} else {
+		var defaultValue int32 = 100
+		r.size = &defaultValue
+	}
 	if r.accountUserId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "accountUserId", r.accountUserId, "", "")
 	}

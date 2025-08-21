@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.10.2
+API version: 3.13.0
 Contact: contact@nuki.io
 */
 
@@ -23,12 +23,16 @@ type Reference struct {
 	BaseRef *Reference `json:"baseRef,omitempty"`
 	SchemeSpecificPart *string `json:"schemeSpecificPart,omitempty"`
 	Relative *bool `json:"relative,omitempty"`
-	Identifier *string `json:"identifier,omitempty"`
+	Absolute *bool `json:"absolute,omitempty"`
 	Path *string `json:"path,omitempty"`
+	Opaque *bool `json:"opaque,omitempty"`
 	Scheme *string `json:"scheme,omitempty"`
+	Authority *string `json:"authority,omitempty"`
 	Fragment *string `json:"fragment,omitempty"`
-	UserInfo *string `json:"userInfo,omitempty"`
 	Query *string `json:"query,omitempty"`
+	UserInfo *string `json:"userInfo,omitempty"`
+	Extensions *string `json:"extensions,omitempty"`
+	Identifier *string `json:"identifier,omitempty"`
 	Matrix *string `json:"matrix,omitempty"`
 	MatrixAsForm []Parameter `json:"matrixAsForm,omitempty"`
 	QueryAsForm []Parameter `json:"queryAsForm,omitempty"`
@@ -46,10 +50,6 @@ type Reference struct {
 	Segments []string `json:"segments,omitempty"`
 	TargetRef *Reference `json:"targetRef,omitempty"`
 	Hierarchical *bool `json:"hierarchical,omitempty"`
-	Authority *string `json:"authority,omitempty"`
-	Absolute *bool `json:"absolute,omitempty"`
-	Opaque *bool `json:"opaque,omitempty"`
-	Extensions *string `json:"extensions,omitempty"`
 }
 
 // NewReference instantiates a new Reference object
@@ -165,36 +165,36 @@ func (o *Reference) SetRelative(v bool) {
 	o.Relative = &v
 }
 
-// GetIdentifier returns the Identifier field value if set, zero value otherwise.
-func (o *Reference) GetIdentifier() string {
-	if o == nil || IsNil(o.Identifier) {
-		var ret string
+// GetAbsolute returns the Absolute field value if set, zero value otherwise.
+func (o *Reference) GetAbsolute() bool {
+	if o == nil || IsNil(o.Absolute) {
+		var ret bool
 		return ret
 	}
-	return *o.Identifier
+	return *o.Absolute
 }
 
-// GetIdentifierOk returns a tuple with the Identifier field value if set, nil otherwise
+// GetAbsoluteOk returns a tuple with the Absolute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Reference) GetIdentifierOk() (*string, bool) {
-	if o == nil || IsNil(o.Identifier) {
+func (o *Reference) GetAbsoluteOk() (*bool, bool) {
+	if o == nil || IsNil(o.Absolute) {
 		return nil, false
 	}
-	return o.Identifier, true
+	return o.Absolute, true
 }
 
-// HasIdentifier returns a boolean if a field has been set.
-func (o *Reference) HasIdentifier() bool {
-	if o != nil && !IsNil(o.Identifier) {
+// HasAbsolute returns a boolean if a field has been set.
+func (o *Reference) HasAbsolute() bool {
+	if o != nil && !IsNil(o.Absolute) {
 		return true
 	}
 
 	return false
 }
 
-// SetIdentifier gets a reference to the given string and assigns it to the Identifier field.
-func (o *Reference) SetIdentifier(v string) {
-	o.Identifier = &v
+// SetAbsolute gets a reference to the given bool and assigns it to the Absolute field.
+func (o *Reference) SetAbsolute(v bool) {
+	o.Absolute = &v
 }
 
 // GetPath returns the Path field value if set, zero value otherwise.
@@ -229,6 +229,38 @@ func (o *Reference) SetPath(v string) {
 	o.Path = &v
 }
 
+// GetOpaque returns the Opaque field value if set, zero value otherwise.
+func (o *Reference) GetOpaque() bool {
+	if o == nil || IsNil(o.Opaque) {
+		var ret bool
+		return ret
+	}
+	return *o.Opaque
+}
+
+// GetOpaqueOk returns a tuple with the Opaque field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Reference) GetOpaqueOk() (*bool, bool) {
+	if o == nil || IsNil(o.Opaque) {
+		return nil, false
+	}
+	return o.Opaque, true
+}
+
+// HasOpaque returns a boolean if a field has been set.
+func (o *Reference) HasOpaque() bool {
+	if o != nil && !IsNil(o.Opaque) {
+		return true
+	}
+
+	return false
+}
+
+// SetOpaque gets a reference to the given bool and assigns it to the Opaque field.
+func (o *Reference) SetOpaque(v bool) {
+	o.Opaque = &v
+}
+
 // GetScheme returns the Scheme field value if set, zero value otherwise.
 func (o *Reference) GetScheme() string {
 	if o == nil || IsNil(o.Scheme) {
@@ -259,6 +291,38 @@ func (o *Reference) HasScheme() bool {
 // SetScheme gets a reference to the given string and assigns it to the Scheme field.
 func (o *Reference) SetScheme(v string) {
 	o.Scheme = &v
+}
+
+// GetAuthority returns the Authority field value if set, zero value otherwise.
+func (o *Reference) GetAuthority() string {
+	if o == nil || IsNil(o.Authority) {
+		var ret string
+		return ret
+	}
+	return *o.Authority
+}
+
+// GetAuthorityOk returns a tuple with the Authority field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Reference) GetAuthorityOk() (*string, bool) {
+	if o == nil || IsNil(o.Authority) {
+		return nil, false
+	}
+	return o.Authority, true
+}
+
+// HasAuthority returns a boolean if a field has been set.
+func (o *Reference) HasAuthority() bool {
+	if o != nil && !IsNil(o.Authority) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthority gets a reference to the given string and assigns it to the Authority field.
+func (o *Reference) SetAuthority(v string) {
+	o.Authority = &v
 }
 
 // GetFragment returns the Fragment field value if set, zero value otherwise.
@@ -293,6 +357,38 @@ func (o *Reference) SetFragment(v string) {
 	o.Fragment = &v
 }
 
+// GetQuery returns the Query field value if set, zero value otherwise.
+func (o *Reference) GetQuery() string {
+	if o == nil || IsNil(o.Query) {
+		var ret string
+		return ret
+	}
+	return *o.Query
+}
+
+// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Reference) GetQueryOk() (*string, bool) {
+	if o == nil || IsNil(o.Query) {
+		return nil, false
+	}
+	return o.Query, true
+}
+
+// HasQuery returns a boolean if a field has been set.
+func (o *Reference) HasQuery() bool {
+	if o != nil && !IsNil(o.Query) {
+		return true
+	}
+
+	return false
+}
+
+// SetQuery gets a reference to the given string and assigns it to the Query field.
+func (o *Reference) SetQuery(v string) {
+	o.Query = &v
+}
+
 // GetUserInfo returns the UserInfo field value if set, zero value otherwise.
 func (o *Reference) GetUserInfo() string {
 	if o == nil || IsNil(o.UserInfo) {
@@ -325,36 +421,68 @@ func (o *Reference) SetUserInfo(v string) {
 	o.UserInfo = &v
 }
 
-// GetQuery returns the Query field value if set, zero value otherwise.
-func (o *Reference) GetQuery() string {
-	if o == nil || IsNil(o.Query) {
+// GetExtensions returns the Extensions field value if set, zero value otherwise.
+func (o *Reference) GetExtensions() string {
+	if o == nil || IsNil(o.Extensions) {
 		var ret string
 		return ret
 	}
-	return *o.Query
+	return *o.Extensions
 }
 
-// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
+// GetExtensionsOk returns a tuple with the Extensions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Reference) GetQueryOk() (*string, bool) {
-	if o == nil || IsNil(o.Query) {
+func (o *Reference) GetExtensionsOk() (*string, bool) {
+	if o == nil || IsNil(o.Extensions) {
 		return nil, false
 	}
-	return o.Query, true
+	return o.Extensions, true
 }
 
-// HasQuery returns a boolean if a field has been set.
-func (o *Reference) HasQuery() bool {
-	if o != nil && !IsNil(o.Query) {
+// HasExtensions returns a boolean if a field has been set.
+func (o *Reference) HasExtensions() bool {
+	if o != nil && !IsNil(o.Extensions) {
 		return true
 	}
 
 	return false
 }
 
-// SetQuery gets a reference to the given string and assigns it to the Query field.
-func (o *Reference) SetQuery(v string) {
-	o.Query = &v
+// SetExtensions gets a reference to the given string and assigns it to the Extensions field.
+func (o *Reference) SetExtensions(v string) {
+	o.Extensions = &v
+}
+
+// GetIdentifier returns the Identifier field value if set, zero value otherwise.
+func (o *Reference) GetIdentifier() string {
+	if o == nil || IsNil(o.Identifier) {
+		var ret string
+		return ret
+	}
+	return *o.Identifier
+}
+
+// GetIdentifierOk returns a tuple with the Identifier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Reference) GetIdentifierOk() (*string, bool) {
+	if o == nil || IsNil(o.Identifier) {
+		return nil, false
+	}
+	return o.Identifier, true
+}
+
+// HasIdentifier returns a boolean if a field has been set.
+func (o *Reference) HasIdentifier() bool {
+	if o != nil && !IsNil(o.Identifier) {
+		return true
+	}
+
+	return false
+}
+
+// SetIdentifier gets a reference to the given string and assigns it to the Identifier field.
+func (o *Reference) SetIdentifier(v string) {
+	o.Identifier = &v
 }
 
 // GetMatrix returns the Matrix field value if set, zero value otherwise.
@@ -901,134 +1029,6 @@ func (o *Reference) SetHierarchical(v bool) {
 	o.Hierarchical = &v
 }
 
-// GetAuthority returns the Authority field value if set, zero value otherwise.
-func (o *Reference) GetAuthority() string {
-	if o == nil || IsNil(o.Authority) {
-		var ret string
-		return ret
-	}
-	return *o.Authority
-}
-
-// GetAuthorityOk returns a tuple with the Authority field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Reference) GetAuthorityOk() (*string, bool) {
-	if o == nil || IsNil(o.Authority) {
-		return nil, false
-	}
-	return o.Authority, true
-}
-
-// HasAuthority returns a boolean if a field has been set.
-func (o *Reference) HasAuthority() bool {
-	if o != nil && !IsNil(o.Authority) {
-		return true
-	}
-
-	return false
-}
-
-// SetAuthority gets a reference to the given string and assigns it to the Authority field.
-func (o *Reference) SetAuthority(v string) {
-	o.Authority = &v
-}
-
-// GetAbsolute returns the Absolute field value if set, zero value otherwise.
-func (o *Reference) GetAbsolute() bool {
-	if o == nil || IsNil(o.Absolute) {
-		var ret bool
-		return ret
-	}
-	return *o.Absolute
-}
-
-// GetAbsoluteOk returns a tuple with the Absolute field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Reference) GetAbsoluteOk() (*bool, bool) {
-	if o == nil || IsNil(o.Absolute) {
-		return nil, false
-	}
-	return o.Absolute, true
-}
-
-// HasAbsolute returns a boolean if a field has been set.
-func (o *Reference) HasAbsolute() bool {
-	if o != nil && !IsNil(o.Absolute) {
-		return true
-	}
-
-	return false
-}
-
-// SetAbsolute gets a reference to the given bool and assigns it to the Absolute field.
-func (o *Reference) SetAbsolute(v bool) {
-	o.Absolute = &v
-}
-
-// GetOpaque returns the Opaque field value if set, zero value otherwise.
-func (o *Reference) GetOpaque() bool {
-	if o == nil || IsNil(o.Opaque) {
-		var ret bool
-		return ret
-	}
-	return *o.Opaque
-}
-
-// GetOpaqueOk returns a tuple with the Opaque field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Reference) GetOpaqueOk() (*bool, bool) {
-	if o == nil || IsNil(o.Opaque) {
-		return nil, false
-	}
-	return o.Opaque, true
-}
-
-// HasOpaque returns a boolean if a field has been set.
-func (o *Reference) HasOpaque() bool {
-	if o != nil && !IsNil(o.Opaque) {
-		return true
-	}
-
-	return false
-}
-
-// SetOpaque gets a reference to the given bool and assigns it to the Opaque field.
-func (o *Reference) SetOpaque(v bool) {
-	o.Opaque = &v
-}
-
-// GetExtensions returns the Extensions field value if set, zero value otherwise.
-func (o *Reference) GetExtensions() string {
-	if o == nil || IsNil(o.Extensions) {
-		var ret string
-		return ret
-	}
-	return *o.Extensions
-}
-
-// GetExtensionsOk returns a tuple with the Extensions field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Reference) GetExtensionsOk() (*string, bool) {
-	if o == nil || IsNil(o.Extensions) {
-		return nil, false
-	}
-	return o.Extensions, true
-}
-
-// HasExtensions returns a boolean if a field has been set.
-func (o *Reference) HasExtensions() bool {
-	if o != nil && !IsNil(o.Extensions) {
-		return true
-	}
-
-	return false
-}
-
-// SetExtensions gets a reference to the given string and assigns it to the Extensions field.
-func (o *Reference) SetExtensions(v string) {
-	o.Extensions = &v
-}
-
 func (o Reference) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1048,23 +1048,35 @@ func (o Reference) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Relative) {
 		toSerialize["relative"] = o.Relative
 	}
-	if !IsNil(o.Identifier) {
-		toSerialize["identifier"] = o.Identifier
+	if !IsNil(o.Absolute) {
+		toSerialize["absolute"] = o.Absolute
 	}
 	if !IsNil(o.Path) {
 		toSerialize["path"] = o.Path
 	}
+	if !IsNil(o.Opaque) {
+		toSerialize["opaque"] = o.Opaque
+	}
 	if !IsNil(o.Scheme) {
 		toSerialize["scheme"] = o.Scheme
+	}
+	if !IsNil(o.Authority) {
+		toSerialize["authority"] = o.Authority
 	}
 	if !IsNil(o.Fragment) {
 		toSerialize["fragment"] = o.Fragment
 	}
+	if !IsNil(o.Query) {
+		toSerialize["query"] = o.Query
+	}
 	if !IsNil(o.UserInfo) {
 		toSerialize["userInfo"] = o.UserInfo
 	}
-	if !IsNil(o.Query) {
-		toSerialize["query"] = o.Query
+	if !IsNil(o.Extensions) {
+		toSerialize["extensions"] = o.Extensions
+	}
+	if !IsNil(o.Identifier) {
+		toSerialize["identifier"] = o.Identifier
 	}
 	if !IsNil(o.Matrix) {
 		toSerialize["matrix"] = o.Matrix
@@ -1116,18 +1128,6 @@ func (o Reference) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Hierarchical) {
 		toSerialize["hierarchical"] = o.Hierarchical
-	}
-	if !IsNil(o.Authority) {
-		toSerialize["authority"] = o.Authority
-	}
-	if !IsNil(o.Absolute) {
-		toSerialize["absolute"] = o.Absolute
-	}
-	if !IsNil(o.Opaque) {
-		toSerialize["opaque"] = o.Opaque
-	}
-	if !IsNil(o.Extensions) {
-		toSerialize["extensions"] = o.Extensions
 	}
 	return toSerialize, nil
 }

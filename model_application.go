@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.10.2
+API version: 3.13.0
 Contact: contact@nuki.io
 */
 
@@ -36,10 +36,10 @@ type Application struct {
 	MetadataService *MetadataService `json:"metadataService,omitempty"`
 	ConverterService *ConverterService `json:"converterService,omitempty"`
 	RangeService *RangeService `json:"rangeService,omitempty"`
-	TaskService *TaskService `json:"taskService,omitempty"`
 	ConnectorService *ConnectorService `json:"connectorService,omitempty"`
 	DecoderService *DecoderService `json:"decoderService,omitempty"`
 	EncoderService *EncoderService `json:"encoderService,omitempty"`
+	TaskService *TaskService `json:"taskService,omitempty"`
 	TunnelService *TunnelService `json:"tunnelService,omitempty"`
 	Logger *Logger `json:"logger,omitempty"`
 	Application *Application `json:"application,omitempty"`
@@ -575,38 +575,6 @@ func (o *Application) SetRangeService(v RangeService) {
 	o.RangeService = &v
 }
 
-// GetTaskService returns the TaskService field value if set, zero value otherwise.
-func (o *Application) GetTaskService() TaskService {
-	if o == nil || IsNil(o.TaskService) {
-		var ret TaskService
-		return ret
-	}
-	return *o.TaskService
-}
-
-// GetTaskServiceOk returns a tuple with the TaskService field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Application) GetTaskServiceOk() (*TaskService, bool) {
-	if o == nil || IsNil(o.TaskService) {
-		return nil, false
-	}
-	return o.TaskService, true
-}
-
-// HasTaskService returns a boolean if a field has been set.
-func (o *Application) HasTaskService() bool {
-	if o != nil && !IsNil(o.TaskService) {
-		return true
-	}
-
-	return false
-}
-
-// SetTaskService gets a reference to the given TaskService and assigns it to the TaskService field.
-func (o *Application) SetTaskService(v TaskService) {
-	o.TaskService = &v
-}
-
 // GetConnectorService returns the ConnectorService field value if set, zero value otherwise.
 func (o *Application) GetConnectorService() ConnectorService {
 	if o == nil || IsNil(o.ConnectorService) {
@@ -701,6 +669,38 @@ func (o *Application) HasEncoderService() bool {
 // SetEncoderService gets a reference to the given EncoderService and assigns it to the EncoderService field.
 func (o *Application) SetEncoderService(v EncoderService) {
 	o.EncoderService = &v
+}
+
+// GetTaskService returns the TaskService field value if set, zero value otherwise.
+func (o *Application) GetTaskService() TaskService {
+	if o == nil || IsNil(o.TaskService) {
+		var ret TaskService
+		return ret
+	}
+	return *o.TaskService
+}
+
+// GetTaskServiceOk returns a tuple with the TaskService field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Application) GetTaskServiceOk() (*TaskService, bool) {
+	if o == nil || IsNil(o.TaskService) {
+		return nil, false
+	}
+	return o.TaskService, true
+}
+
+// HasTaskService returns a boolean if a field has been set.
+func (o *Application) HasTaskService() bool {
+	if o != nil && !IsNil(o.TaskService) {
+		return true
+	}
+
+	return false
+}
+
+// SetTaskService gets a reference to the given TaskService and assigns it to the TaskService field.
+func (o *Application) SetTaskService(v TaskService) {
+	o.TaskService = &v
 }
 
 // GetTunnelService returns the TunnelService field value if set, zero value otherwise.
@@ -889,9 +889,6 @@ func (o Application) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RangeService) {
 		toSerialize["rangeService"] = o.RangeService
 	}
-	if !IsNil(o.TaskService) {
-		toSerialize["taskService"] = o.TaskService
-	}
 	if !IsNil(o.ConnectorService) {
 		toSerialize["connectorService"] = o.ConnectorService
 	}
@@ -900,6 +897,9 @@ func (o Application) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.EncoderService) {
 		toSerialize["encoderService"] = o.EncoderService
+	}
+	if !IsNil(o.TaskService) {
+		toSerialize["taskService"] = o.TaskService
 	}
 	if !IsNil(o.TunnelService) {
 		toSerialize["tunnelService"] = o.TunnelService

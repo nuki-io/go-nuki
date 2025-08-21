@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.10.2
+API version: 3.13.0
 Contact: contact@nuki.io
 */
 
@@ -25,6 +25,7 @@ type Status struct {
 	ReasonPhrase *string `json:"reasonPhrase,omitempty"`
 	Throwable *Throwable `json:"throwable,omitempty"`
 	Uri *string `json:"uri,omitempty"`
+	Error *bool `json:"error,omitempty"`
 	Success *bool `json:"success,omitempty"`
 	ServerError *bool `json:"serverError,omitempty"`
 	ConnectorError *bool `json:"connectorError,omitempty"`
@@ -33,7 +34,6 @@ type Status struct {
 	Informational *bool `json:"informational,omitempty"`
 	Redirection *bool `json:"redirection,omitempty"`
 	RecoverableError *bool `json:"recoverableError,omitempty"`
-	Error *bool `json:"error,omitempty"`
 }
 
 // NewStatus instantiates a new Status object
@@ -211,6 +211,38 @@ func (o *Status) HasUri() bool {
 // SetUri gets a reference to the given string and assigns it to the Uri field.
 func (o *Status) SetUri(v string) {
 	o.Uri = &v
+}
+
+// GetError returns the Error field value if set, zero value otherwise.
+func (o *Status) GetError() bool {
+	if o == nil || IsNil(o.Error) {
+		var ret bool
+		return ret
+	}
+	return *o.Error
+}
+
+// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Status) GetErrorOk() (*bool, bool) {
+	if o == nil || IsNil(o.Error) {
+		return nil, false
+	}
+	return o.Error, true
+}
+
+// HasError returns a boolean if a field has been set.
+func (o *Status) HasError() bool {
+	if o != nil && !IsNil(o.Error) {
+		return true
+	}
+
+	return false
+}
+
+// SetError gets a reference to the given bool and assigns it to the Error field.
+func (o *Status) SetError(v bool) {
+	o.Error = &v
 }
 
 // GetSuccess returns the Success field value if set, zero value otherwise.
@@ -469,38 +501,6 @@ func (o *Status) SetRecoverableError(v bool) {
 	o.RecoverableError = &v
 }
 
-// GetError returns the Error field value if set, zero value otherwise.
-func (o *Status) GetError() bool {
-	if o == nil || IsNil(o.Error) {
-		var ret bool
-		return ret
-	}
-	return *o.Error
-}
-
-// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Status) GetErrorOk() (*bool, bool) {
-	if o == nil || IsNil(o.Error) {
-		return nil, false
-	}
-	return o.Error, true
-}
-
-// HasError returns a boolean if a field has been set.
-func (o *Status) HasError() bool {
-	if o != nil && !IsNil(o.Error) {
-		return true
-	}
-
-	return false
-}
-
-// SetError gets a reference to the given bool and assigns it to the Error field.
-func (o *Status) SetError(v bool) {
-	o.Error = &v
-}
-
 func (o Status) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -526,6 +526,9 @@ func (o Status) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Uri) {
 		toSerialize["uri"] = o.Uri
 	}
+	if !IsNil(o.Error) {
+		toSerialize["error"] = o.Error
+	}
 	if !IsNil(o.Success) {
 		toSerialize["success"] = o.Success
 	}
@@ -549,9 +552,6 @@ func (o Status) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.RecoverableError) {
 		toSerialize["recoverableError"] = o.RecoverableError
-	}
-	if !IsNil(o.Error) {
-		toSerialize["error"] = o.Error
 	}
 	return toSerialize, nil
 }

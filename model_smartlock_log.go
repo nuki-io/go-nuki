@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.10.2
+API version: 3.13.0
 Contact: contact@nuki.io
 */
 
@@ -39,7 +39,7 @@ type SmartlockLog struct {
 	Action int32 `json:"action"`
 	// The trigger: 0 .. system, 1 .. manual, 2 .. button, 3 .. automatic, 4 .. web, 5 .. app, 6 .. auto lock, 7 .. accessory, 255 .. keypad
 	Trigger int32 `json:"trigger"`
-	// The completion state: 0 .. Success, 1 .. Motor blocked, 2 .. Canceled, 3 .. Too recent, 4 .. Busy, 5 .. Low motor voltage, 6 .. Clutch failure, 7 .. Motor power failure, 8 .. Incomplete, 9 .. Rejected, 10 .. Rejected night mode, 254 .. Other error, 255 .. Unknown error
+	// The completion state: 0 .. Success, 1 .. Motor blocked, 2 .. Canceled, 3 .. Too recent, 4 .. Busy, 5 .. Low motor voltage, 6 .. Clutch failure, 7 .. Motor power failure, 8 .. Incomplete, 9 .. Rejected, 10 .. Rejected night mode, 224 .. Invalid Code, 225 .. Invalid Fingerprint, 226 .. Invalid NFC Tag, 254 .. Other error, 255 .. Unknown error
 	State int32 `json:"state"`
 	// True if it was an auto unlock
 	AutoUnlock bool `json:"autoUnlock"`
@@ -48,7 +48,7 @@ type SmartlockLog struct {
 	OpenerLog *SmartlockLogOpenerLog `json:"openerLog,omitempty"`
 	// The door sensor warning ajar timeout (in minutes, only for action = 208)
 	AjarTimeout *int32 `json:"ajarTimeout,omitempty"`
-	// The source of action: 1 .. Keypad code, 2 .. Fingerprint, 0 .. Default
+	// The source of action: 1 .. Keypad code, 2 .. Fingerprint, 3 .. Tap to Unlock, 0 .. Default
 	Source *int32 `json:"source,omitempty"`
 	// In case of any error, it contains the error message
 	Error *string `json:"error,omitempty"`
