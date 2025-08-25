@@ -10,7 +10,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://nuki.io/en/service/nukis-terms-of-use-apis/
   title: Nuki API
-  version: 3.13.0
+  version: 3.13.1
 servers:
 - url: /
 tags:
@@ -5110,14 +5110,14 @@ components:
           $ref: '#/components/schemas/MetadataService'
         converterService:
           $ref: '#/components/schemas/ConverterService'
-        rangeService:
-          $ref: '#/components/schemas/RangeService'
         connectorService:
           $ref: '#/components/schemas/ConnectorService'
         decoderService:
           $ref: '#/components/schemas/DecoderService'
         encoderService:
           $ref: '#/components/schemas/EncoderService'
+        rangeService:
+          $ref: '#/components/schemas/RangeService'
         taskService:
           $ref: '#/components/schemas/TaskService'
         tunnelService:
@@ -5371,25 +5371,25 @@ components:
       properties:
         done:
           type: boolean
+        cancelled:
+          type: boolean
         completedExceptionally:
           type: boolean
         numberOfDependents:
           format: int32
           type: integer
-        cancelled:
-          type: boolean
       type: object
     CompletableFutureListApiKey:
       properties:
         done:
           type: boolean
+        cancelled:
+          type: boolean
         completedExceptionally:
           type: boolean
         numberOfDependents:
           format: int32
           type: integer
-        cancelled:
-          type: boolean
       type: object
     Conditions:
       properties:
@@ -7032,6 +7032,10 @@ components:
           $ref: '#/components/schemas/Language'
         defaultMediaType:
           $ref: '#/components/schemas/MediaType'
+        allCharacterSetExtensionNames:
+          items:
+            type: string
+          type: array
         allEncodingExtensionNames:
           items:
             type: string
@@ -7045,10 +7049,6 @@ components:
             type: string
           type: array
         allMediaTypeExtensionNames:
-          items:
-            type: string
-          type: array
-        allCharacterSetExtensionNames:
           items:
             type: string
           type: array
@@ -7595,9 +7595,9 @@ components:
       type: object
     PublicKey:
       properties:
-        algorithm:
-          type: string
         format:
+          type: string
+        algorithm:
           type: string
         encoded:
           items:
@@ -7708,8 +7708,8 @@ components:
           $ref: '#/components/schemas/Reference'
         schemeSpecificPart:
           type: string
-        relative:
-          type: boolean
+        identifier:
+          type: string
         absolute:
           type: boolean
         path:
@@ -7728,8 +7728,8 @@ components:
           type: string
         extensions:
           type: string
-        identifier:
-          type: string
+        relative:
+          type: boolean
         matrix:
           type: string
         matrixAsForm:
@@ -7817,17 +7817,17 @@ components:
           type: boolean
         channel:
           $ref: '#/components/schemas/ReadableByteChannel'
-        text:
-          type: string
         reader:
           type: object
-        availableSize:
-          format: int64
-          type: integer
+        text:
+          type: string
         registration:
           $ref: '#/components/schemas/SelectionRegistration'
         selectable:
           type: boolean
+        availableSize:
+          format: int64
+          type: integer
       type: object
     Request:
       properties:

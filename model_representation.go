@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.13.0
+API version: 3.13.1
 Contact: contact@nuki.io
 */
 
@@ -38,11 +38,11 @@ type Representation struct {
 	Empty *bool `json:"empty,omitempty"`
 	Transient *bool `json:"transient,omitempty"`
 	Channel *ReadableByteChannel `json:"channel,omitempty"`
-	Text *string `json:"text,omitempty"`
 	Reader map[string]interface{} `json:"reader,omitempty"`
-	AvailableSize *int64 `json:"availableSize,omitempty"`
+	Text *string `json:"text,omitempty"`
 	Registration *SelectionRegistration `json:"registration,omitempty"`
 	Selectable *bool `json:"selectable,omitempty"`
+	AvailableSize *int64 `json:"availableSize,omitempty"`
 }
 
 // NewRepresentation instantiates a new Representation object
@@ -606,38 +606,6 @@ func (o *Representation) SetChannel(v ReadableByteChannel) {
 	o.Channel = &v
 }
 
-// GetText returns the Text field value if set, zero value otherwise.
-func (o *Representation) GetText() string {
-	if o == nil || IsNil(o.Text) {
-		var ret string
-		return ret
-	}
-	return *o.Text
-}
-
-// GetTextOk returns a tuple with the Text field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Representation) GetTextOk() (*string, bool) {
-	if o == nil || IsNil(o.Text) {
-		return nil, false
-	}
-	return o.Text, true
-}
-
-// HasText returns a boolean if a field has been set.
-func (o *Representation) HasText() bool {
-	if o != nil && !IsNil(o.Text) {
-		return true
-	}
-
-	return false
-}
-
-// SetText gets a reference to the given string and assigns it to the Text field.
-func (o *Representation) SetText(v string) {
-	o.Text = &v
-}
-
 // GetReader returns the Reader field value if set, zero value otherwise.
 func (o *Representation) GetReader() map[string]interface{} {
 	if o == nil || IsNil(o.Reader) {
@@ -670,36 +638,36 @@ func (o *Representation) SetReader(v map[string]interface{}) {
 	o.Reader = v
 }
 
-// GetAvailableSize returns the AvailableSize field value if set, zero value otherwise.
-func (o *Representation) GetAvailableSize() int64 {
-	if o == nil || IsNil(o.AvailableSize) {
-		var ret int64
+// GetText returns the Text field value if set, zero value otherwise.
+func (o *Representation) GetText() string {
+	if o == nil || IsNil(o.Text) {
+		var ret string
 		return ret
 	}
-	return *o.AvailableSize
+	return *o.Text
 }
 
-// GetAvailableSizeOk returns a tuple with the AvailableSize field value if set, nil otherwise
+// GetTextOk returns a tuple with the Text field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Representation) GetAvailableSizeOk() (*int64, bool) {
-	if o == nil || IsNil(o.AvailableSize) {
+func (o *Representation) GetTextOk() (*string, bool) {
+	if o == nil || IsNil(o.Text) {
 		return nil, false
 	}
-	return o.AvailableSize, true
+	return o.Text, true
 }
 
-// HasAvailableSize returns a boolean if a field has been set.
-func (o *Representation) HasAvailableSize() bool {
-	if o != nil && !IsNil(o.AvailableSize) {
+// HasText returns a boolean if a field has been set.
+func (o *Representation) HasText() bool {
+	if o != nil && !IsNil(o.Text) {
 		return true
 	}
 
 	return false
 }
 
-// SetAvailableSize gets a reference to the given int64 and assigns it to the AvailableSize field.
-func (o *Representation) SetAvailableSize(v int64) {
-	o.AvailableSize = &v
+// SetText gets a reference to the given string and assigns it to the Text field.
+func (o *Representation) SetText(v string) {
+	o.Text = &v
 }
 
 // GetRegistration returns the Registration field value if set, zero value otherwise.
@@ -766,6 +734,38 @@ func (o *Representation) SetSelectable(v bool) {
 	o.Selectable = &v
 }
 
+// GetAvailableSize returns the AvailableSize field value if set, zero value otherwise.
+func (o *Representation) GetAvailableSize() int64 {
+	if o == nil || IsNil(o.AvailableSize) {
+		var ret int64
+		return ret
+	}
+	return *o.AvailableSize
+}
+
+// GetAvailableSizeOk returns a tuple with the AvailableSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Representation) GetAvailableSizeOk() (*int64, bool) {
+	if o == nil || IsNil(o.AvailableSize) {
+		return nil, false
+	}
+	return o.AvailableSize, true
+}
+
+// HasAvailableSize returns a boolean if a field has been set.
+func (o *Representation) HasAvailableSize() bool {
+	if o != nil && !IsNil(o.AvailableSize) {
+		return true
+	}
+
+	return false
+}
+
+// SetAvailableSize gets a reference to the given int64 and assigns it to the AvailableSize field.
+func (o *Representation) SetAvailableSize(v int64) {
+	o.AvailableSize = &v
+}
+
 func (o Representation) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -827,20 +827,20 @@ func (o Representation) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Channel) {
 		toSerialize["channel"] = o.Channel
 	}
-	if !IsNil(o.Text) {
-		toSerialize["text"] = o.Text
-	}
 	if !IsNil(o.Reader) {
 		toSerialize["reader"] = o.Reader
 	}
-	if !IsNil(o.AvailableSize) {
-		toSerialize["availableSize"] = o.AvailableSize
+	if !IsNil(o.Text) {
+		toSerialize["text"] = o.Text
 	}
 	if !IsNil(o.Registration) {
 		toSerialize["registration"] = o.Registration
 	}
 	if !IsNil(o.Selectable) {
 		toSerialize["selectable"] = o.Selectable
+	}
+	if !IsNil(o.AvailableSize) {
+		toSerialize["availableSize"] = o.AvailableSize
 	}
 	return toSerialize, nil
 }

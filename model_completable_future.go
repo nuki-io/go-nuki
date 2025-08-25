@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.13.0
+API version: 3.13.1
 Contact: contact@nuki.io
 */
 
@@ -21,9 +21,9 @@ var _ MappedNullable = &CompletableFuture{}
 // CompletableFuture struct for CompletableFuture
 type CompletableFuture struct {
 	Done *bool `json:"done,omitempty"`
+	Cancelled *bool `json:"cancelled,omitempty"`
 	CompletedExceptionally *bool `json:"completedExceptionally,omitempty"`
 	NumberOfDependents *int32 `json:"numberOfDependents,omitempty"`
-	Cancelled *bool `json:"cancelled,omitempty"`
 }
 
 // NewCompletableFuture instantiates a new CompletableFuture object
@@ -73,6 +73,38 @@ func (o *CompletableFuture) HasDone() bool {
 // SetDone gets a reference to the given bool and assigns it to the Done field.
 func (o *CompletableFuture) SetDone(v bool) {
 	o.Done = &v
+}
+
+// GetCancelled returns the Cancelled field value if set, zero value otherwise.
+func (o *CompletableFuture) GetCancelled() bool {
+	if o == nil || IsNil(o.Cancelled) {
+		var ret bool
+		return ret
+	}
+	return *o.Cancelled
+}
+
+// GetCancelledOk returns a tuple with the Cancelled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompletableFuture) GetCancelledOk() (*bool, bool) {
+	if o == nil || IsNil(o.Cancelled) {
+		return nil, false
+	}
+	return o.Cancelled, true
+}
+
+// HasCancelled returns a boolean if a field has been set.
+func (o *CompletableFuture) HasCancelled() bool {
+	if o != nil && !IsNil(o.Cancelled) {
+		return true
+	}
+
+	return false
+}
+
+// SetCancelled gets a reference to the given bool and assigns it to the Cancelled field.
+func (o *CompletableFuture) SetCancelled(v bool) {
+	o.Cancelled = &v
 }
 
 // GetCompletedExceptionally returns the CompletedExceptionally field value if set, zero value otherwise.
@@ -139,38 +171,6 @@ func (o *CompletableFuture) SetNumberOfDependents(v int32) {
 	o.NumberOfDependents = &v
 }
 
-// GetCancelled returns the Cancelled field value if set, zero value otherwise.
-func (o *CompletableFuture) GetCancelled() bool {
-	if o == nil || IsNil(o.Cancelled) {
-		var ret bool
-		return ret
-	}
-	return *o.Cancelled
-}
-
-// GetCancelledOk returns a tuple with the Cancelled field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CompletableFuture) GetCancelledOk() (*bool, bool) {
-	if o == nil || IsNil(o.Cancelled) {
-		return nil, false
-	}
-	return o.Cancelled, true
-}
-
-// HasCancelled returns a boolean if a field has been set.
-func (o *CompletableFuture) HasCancelled() bool {
-	if o != nil && !IsNil(o.Cancelled) {
-		return true
-	}
-
-	return false
-}
-
-// SetCancelled gets a reference to the given bool and assigns it to the Cancelled field.
-func (o *CompletableFuture) SetCancelled(v bool) {
-	o.Cancelled = &v
-}
-
 func (o CompletableFuture) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -184,14 +184,14 @@ func (o CompletableFuture) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Done) {
 		toSerialize["done"] = o.Done
 	}
+	if !IsNil(o.Cancelled) {
+		toSerialize["cancelled"] = o.Cancelled
+	}
 	if !IsNil(o.CompletedExceptionally) {
 		toSerialize["completedExceptionally"] = o.CompletedExceptionally
 	}
 	if !IsNil(o.NumberOfDependents) {
 		toSerialize["numberOfDependents"] = o.NumberOfDependents
-	}
-	if !IsNil(o.Cancelled) {
-		toSerialize["cancelled"] = o.Cancelled
 	}
 	return toSerialize, nil
 }

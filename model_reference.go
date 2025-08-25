@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.13.0
+API version: 3.13.1
 Contact: contact@nuki.io
 */
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &Reference{}
 type Reference struct {
 	BaseRef *Reference `json:"baseRef,omitempty"`
 	SchemeSpecificPart *string `json:"schemeSpecificPart,omitempty"`
-	Relative *bool `json:"relative,omitempty"`
+	Identifier *string `json:"identifier,omitempty"`
 	Absolute *bool `json:"absolute,omitempty"`
 	Path *string `json:"path,omitempty"`
 	Opaque *bool `json:"opaque,omitempty"`
@@ -32,7 +32,7 @@ type Reference struct {
 	Query *string `json:"query,omitempty"`
 	UserInfo *string `json:"userInfo,omitempty"`
 	Extensions *string `json:"extensions,omitempty"`
-	Identifier *string `json:"identifier,omitempty"`
+	Relative *bool `json:"relative,omitempty"`
 	Matrix *string `json:"matrix,omitempty"`
 	MatrixAsForm []Parameter `json:"matrixAsForm,omitempty"`
 	QueryAsForm []Parameter `json:"queryAsForm,omitempty"`
@@ -133,36 +133,36 @@ func (o *Reference) SetSchemeSpecificPart(v string) {
 	o.SchemeSpecificPart = &v
 }
 
-// GetRelative returns the Relative field value if set, zero value otherwise.
-func (o *Reference) GetRelative() bool {
-	if o == nil || IsNil(o.Relative) {
-		var ret bool
+// GetIdentifier returns the Identifier field value if set, zero value otherwise.
+func (o *Reference) GetIdentifier() string {
+	if o == nil || IsNil(o.Identifier) {
+		var ret string
 		return ret
 	}
-	return *o.Relative
+	return *o.Identifier
 }
 
-// GetRelativeOk returns a tuple with the Relative field value if set, nil otherwise
+// GetIdentifierOk returns a tuple with the Identifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Reference) GetRelativeOk() (*bool, bool) {
-	if o == nil || IsNil(o.Relative) {
+func (o *Reference) GetIdentifierOk() (*string, bool) {
+	if o == nil || IsNil(o.Identifier) {
 		return nil, false
 	}
-	return o.Relative, true
+	return o.Identifier, true
 }
 
-// HasRelative returns a boolean if a field has been set.
-func (o *Reference) HasRelative() bool {
-	if o != nil && !IsNil(o.Relative) {
+// HasIdentifier returns a boolean if a field has been set.
+func (o *Reference) HasIdentifier() bool {
+	if o != nil && !IsNil(o.Identifier) {
 		return true
 	}
 
 	return false
 }
 
-// SetRelative gets a reference to the given bool and assigns it to the Relative field.
-func (o *Reference) SetRelative(v bool) {
-	o.Relative = &v
+// SetIdentifier gets a reference to the given string and assigns it to the Identifier field.
+func (o *Reference) SetIdentifier(v string) {
+	o.Identifier = &v
 }
 
 // GetAbsolute returns the Absolute field value if set, zero value otherwise.
@@ -453,36 +453,36 @@ func (o *Reference) SetExtensions(v string) {
 	o.Extensions = &v
 }
 
-// GetIdentifier returns the Identifier field value if set, zero value otherwise.
-func (o *Reference) GetIdentifier() string {
-	if o == nil || IsNil(o.Identifier) {
-		var ret string
+// GetRelative returns the Relative field value if set, zero value otherwise.
+func (o *Reference) GetRelative() bool {
+	if o == nil || IsNil(o.Relative) {
+		var ret bool
 		return ret
 	}
-	return *o.Identifier
+	return *o.Relative
 }
 
-// GetIdentifierOk returns a tuple with the Identifier field value if set, nil otherwise
+// GetRelativeOk returns a tuple with the Relative field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Reference) GetIdentifierOk() (*string, bool) {
-	if o == nil || IsNil(o.Identifier) {
+func (o *Reference) GetRelativeOk() (*bool, bool) {
+	if o == nil || IsNil(o.Relative) {
 		return nil, false
 	}
-	return o.Identifier, true
+	return o.Relative, true
 }
 
-// HasIdentifier returns a boolean if a field has been set.
-func (o *Reference) HasIdentifier() bool {
-	if o != nil && !IsNil(o.Identifier) {
+// HasRelative returns a boolean if a field has been set.
+func (o *Reference) HasRelative() bool {
+	if o != nil && !IsNil(o.Relative) {
 		return true
 	}
 
 	return false
 }
 
-// SetIdentifier gets a reference to the given string and assigns it to the Identifier field.
-func (o *Reference) SetIdentifier(v string) {
-	o.Identifier = &v
+// SetRelative gets a reference to the given bool and assigns it to the Relative field.
+func (o *Reference) SetRelative(v bool) {
+	o.Relative = &v
 }
 
 // GetMatrix returns the Matrix field value if set, zero value otherwise.
@@ -1045,8 +1045,8 @@ func (o Reference) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SchemeSpecificPart) {
 		toSerialize["schemeSpecificPart"] = o.SchemeSpecificPart
 	}
-	if !IsNil(o.Relative) {
-		toSerialize["relative"] = o.Relative
+	if !IsNil(o.Identifier) {
+		toSerialize["identifier"] = o.Identifier
 	}
 	if !IsNil(o.Absolute) {
 		toSerialize["absolute"] = o.Absolute
@@ -1075,8 +1075,8 @@ func (o Reference) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Extensions) {
 		toSerialize["extensions"] = o.Extensions
 	}
-	if !IsNil(o.Identifier) {
-		toSerialize["identifier"] = o.Identifier
+	if !IsNil(o.Relative) {
+		toSerialize["relative"] = o.Relative
 	}
 	if !IsNil(o.Matrix) {
 		toSerialize["matrix"] = o.Matrix
