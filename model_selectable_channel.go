@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.13.1
+API version: 4.0.1
 Contact: contact@nuki.io
 */
 
@@ -20,9 +20,9 @@ var _ MappedNullable = &SelectableChannel{}
 
 // SelectableChannel struct for SelectableChannel
 type SelectableChannel struct {
-	Open *bool `json:"open,omitempty"`
-	Blocking *bool `json:"blocking,omitempty"`
 	Registered *bool `json:"registered,omitempty"`
+	Blocking *bool `json:"blocking,omitempty"`
+	Open *bool `json:"open,omitempty"`
 }
 
 // NewSelectableChannel instantiates a new SelectableChannel object
@@ -40,70 +40,6 @@ func NewSelectableChannel() *SelectableChannel {
 func NewSelectableChannelWithDefaults() *SelectableChannel {
 	this := SelectableChannel{}
 	return &this
-}
-
-// GetOpen returns the Open field value if set, zero value otherwise.
-func (o *SelectableChannel) GetOpen() bool {
-	if o == nil || IsNil(o.Open) {
-		var ret bool
-		return ret
-	}
-	return *o.Open
-}
-
-// GetOpenOk returns a tuple with the Open field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SelectableChannel) GetOpenOk() (*bool, bool) {
-	if o == nil || IsNil(o.Open) {
-		return nil, false
-	}
-	return o.Open, true
-}
-
-// HasOpen returns a boolean if a field has been set.
-func (o *SelectableChannel) HasOpen() bool {
-	if o != nil && !IsNil(o.Open) {
-		return true
-	}
-
-	return false
-}
-
-// SetOpen gets a reference to the given bool and assigns it to the Open field.
-func (o *SelectableChannel) SetOpen(v bool) {
-	o.Open = &v
-}
-
-// GetBlocking returns the Blocking field value if set, zero value otherwise.
-func (o *SelectableChannel) GetBlocking() bool {
-	if o == nil || IsNil(o.Blocking) {
-		var ret bool
-		return ret
-	}
-	return *o.Blocking
-}
-
-// GetBlockingOk returns a tuple with the Blocking field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SelectableChannel) GetBlockingOk() (*bool, bool) {
-	if o == nil || IsNil(o.Blocking) {
-		return nil, false
-	}
-	return o.Blocking, true
-}
-
-// HasBlocking returns a boolean if a field has been set.
-func (o *SelectableChannel) HasBlocking() bool {
-	if o != nil && !IsNil(o.Blocking) {
-		return true
-	}
-
-	return false
-}
-
-// SetBlocking gets a reference to the given bool and assigns it to the Blocking field.
-func (o *SelectableChannel) SetBlocking(v bool) {
-	o.Blocking = &v
 }
 
 // GetRegistered returns the Registered field value if set, zero value otherwise.
@@ -138,6 +74,70 @@ func (o *SelectableChannel) SetRegistered(v bool) {
 	o.Registered = &v
 }
 
+// GetBlocking returns the Blocking field value if set, zero value otherwise.
+func (o *SelectableChannel) GetBlocking() bool {
+	if o == nil || IsNil(o.Blocking) {
+		var ret bool
+		return ret
+	}
+	return *o.Blocking
+}
+
+// GetBlockingOk returns a tuple with the Blocking field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SelectableChannel) GetBlockingOk() (*bool, bool) {
+	if o == nil || IsNil(o.Blocking) {
+		return nil, false
+	}
+	return o.Blocking, true
+}
+
+// HasBlocking returns a boolean if a field has been set.
+func (o *SelectableChannel) HasBlocking() bool {
+	if o != nil && !IsNil(o.Blocking) {
+		return true
+	}
+
+	return false
+}
+
+// SetBlocking gets a reference to the given bool and assigns it to the Blocking field.
+func (o *SelectableChannel) SetBlocking(v bool) {
+	o.Blocking = &v
+}
+
+// GetOpen returns the Open field value if set, zero value otherwise.
+func (o *SelectableChannel) GetOpen() bool {
+	if o == nil || IsNil(o.Open) {
+		var ret bool
+		return ret
+	}
+	return *o.Open
+}
+
+// GetOpenOk returns a tuple with the Open field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SelectableChannel) GetOpenOk() (*bool, bool) {
+	if o == nil || IsNil(o.Open) {
+		return nil, false
+	}
+	return o.Open, true
+}
+
+// HasOpen returns a boolean if a field has been set.
+func (o *SelectableChannel) HasOpen() bool {
+	if o != nil && !IsNil(o.Open) {
+		return true
+	}
+
+	return false
+}
+
+// SetOpen gets a reference to the given bool and assigns it to the Open field.
+func (o *SelectableChannel) SetOpen(v bool) {
+	o.Open = &v
+}
+
 func (o SelectableChannel) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -148,14 +148,14 @@ func (o SelectableChannel) MarshalJSON() ([]byte, error) {
 
 func (o SelectableChannel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Open) {
-		toSerialize["open"] = o.Open
+	if !IsNil(o.Registered) {
+		toSerialize["registered"] = o.Registered
 	}
 	if !IsNil(o.Blocking) {
 		toSerialize["blocking"] = o.Blocking
 	}
-	if !IsNil(o.Registered) {
-		toSerialize["registered"] = o.Registered
+	if !IsNil(o.Open) {
+		toSerialize["open"] = o.Open
 	}
 	return toSerialize, nil
 }

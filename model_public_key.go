@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.13.1
+API version: 4.0.1
 Contact: contact@nuki.io
 */
 
@@ -20,9 +20,9 @@ var _ MappedNullable = &PublicKey{}
 
 // PublicKey struct for PublicKey
 type PublicKey struct {
+	Encoded []string `json:"encoded,omitempty"`
 	Format *string `json:"format,omitempty"`
 	Algorithm *string `json:"algorithm,omitempty"`
-	Encoded []string `json:"encoded,omitempty"`
 }
 
 // NewPublicKey instantiates a new PublicKey object
@@ -40,6 +40,38 @@ func NewPublicKey() *PublicKey {
 func NewPublicKeyWithDefaults() *PublicKey {
 	this := PublicKey{}
 	return &this
+}
+
+// GetEncoded returns the Encoded field value if set, zero value otherwise.
+func (o *PublicKey) GetEncoded() []string {
+	if o == nil || IsNil(o.Encoded) {
+		var ret []string
+		return ret
+	}
+	return o.Encoded
+}
+
+// GetEncodedOk returns a tuple with the Encoded field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PublicKey) GetEncodedOk() ([]string, bool) {
+	if o == nil || IsNil(o.Encoded) {
+		return nil, false
+	}
+	return o.Encoded, true
+}
+
+// HasEncoded returns a boolean if a field has been set.
+func (o *PublicKey) HasEncoded() bool {
+	if o != nil && !IsNil(o.Encoded) {
+		return true
+	}
+
+	return false
+}
+
+// SetEncoded gets a reference to the given []string and assigns it to the Encoded field.
+func (o *PublicKey) SetEncoded(v []string) {
+	o.Encoded = v
 }
 
 // GetFormat returns the Format field value if set, zero value otherwise.
@@ -106,38 +138,6 @@ func (o *PublicKey) SetAlgorithm(v string) {
 	o.Algorithm = &v
 }
 
-// GetEncoded returns the Encoded field value if set, zero value otherwise.
-func (o *PublicKey) GetEncoded() []string {
-	if o == nil || IsNil(o.Encoded) {
-		var ret []string
-		return ret
-	}
-	return o.Encoded
-}
-
-// GetEncodedOk returns a tuple with the Encoded field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PublicKey) GetEncodedOk() ([]string, bool) {
-	if o == nil || IsNil(o.Encoded) {
-		return nil, false
-	}
-	return o.Encoded, true
-}
-
-// HasEncoded returns a boolean if a field has been set.
-func (o *PublicKey) HasEncoded() bool {
-	if o != nil && !IsNil(o.Encoded) {
-		return true
-	}
-
-	return false
-}
-
-// SetEncoded gets a reference to the given []string and assigns it to the Encoded field.
-func (o *PublicKey) SetEncoded(v []string) {
-	o.Encoded = v
-}
-
 func (o PublicKey) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -148,14 +148,14 @@ func (o PublicKey) MarshalJSON() ([]byte, error) {
 
 func (o PublicKey) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Encoded) {
+		toSerialize["encoded"] = o.Encoded
+	}
 	if !IsNil(o.Format) {
 		toSerialize["format"] = o.Format
 	}
 	if !IsNil(o.Algorithm) {
 		toSerialize["algorithm"] = o.Algorithm
-	}
-	if !IsNil(o.Encoded) {
-		toSerialize["encoded"] = o.Encoded
 	}
 	return toSerialize, nil
 }

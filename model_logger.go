@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.13.1
+API version: 4.0.1
 Contact: contact@nuki.io
 */
 
@@ -21,13 +21,13 @@ var _ MappedNullable = &Logger{}
 // Logger struct for Logger
 type Logger struct {
 	Name *string `json:"name,omitempty"`
+	Parent *Logger `json:"parent,omitempty"`
+	Filter map[string]interface{} `json:"filter,omitempty"`
+	Level *Level `json:"level,omitempty"`
+	ResourceBundleName *string `json:"resourceBundleName,omitempty"`
 	Handlers []Handler `json:"handlers,omitempty"`
 	UseParentHandlers *bool `json:"useParentHandlers,omitempty"`
-	Filter map[string]interface{} `json:"filter,omitempty"`
-	Parent *Logger `json:"parent,omitempty"`
 	ResourceBundle *ResourceBundle `json:"resourceBundle,omitempty"`
-	ResourceBundleName *string `json:"resourceBundleName,omitempty"`
-	Level *Level `json:"level,omitempty"`
 }
 
 // NewLogger instantiates a new Logger object
@@ -77,6 +77,134 @@ func (o *Logger) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *Logger) SetName(v string) {
 	o.Name = &v
+}
+
+// GetParent returns the Parent field value if set, zero value otherwise.
+func (o *Logger) GetParent() Logger {
+	if o == nil || IsNil(o.Parent) {
+		var ret Logger
+		return ret
+	}
+	return *o.Parent
+}
+
+// GetParentOk returns a tuple with the Parent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Logger) GetParentOk() (*Logger, bool) {
+	if o == nil || IsNil(o.Parent) {
+		return nil, false
+	}
+	return o.Parent, true
+}
+
+// HasParent returns a boolean if a field has been set.
+func (o *Logger) HasParent() bool {
+	if o != nil && !IsNil(o.Parent) {
+		return true
+	}
+
+	return false
+}
+
+// SetParent gets a reference to the given Logger and assigns it to the Parent field.
+func (o *Logger) SetParent(v Logger) {
+	o.Parent = &v
+}
+
+// GetFilter returns the Filter field value if set, zero value otherwise.
+func (o *Logger) GetFilter() map[string]interface{} {
+	if o == nil || IsNil(o.Filter) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Filter
+}
+
+// GetFilterOk returns a tuple with the Filter field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Logger) GetFilterOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Filter) {
+		return map[string]interface{}{}, false
+	}
+	return o.Filter, true
+}
+
+// HasFilter returns a boolean if a field has been set.
+func (o *Logger) HasFilter() bool {
+	if o != nil && !IsNil(o.Filter) {
+		return true
+	}
+
+	return false
+}
+
+// SetFilter gets a reference to the given map[string]interface{} and assigns it to the Filter field.
+func (o *Logger) SetFilter(v map[string]interface{}) {
+	o.Filter = v
+}
+
+// GetLevel returns the Level field value if set, zero value otherwise.
+func (o *Logger) GetLevel() Level {
+	if o == nil || IsNil(o.Level) {
+		var ret Level
+		return ret
+	}
+	return *o.Level
+}
+
+// GetLevelOk returns a tuple with the Level field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Logger) GetLevelOk() (*Level, bool) {
+	if o == nil || IsNil(o.Level) {
+		return nil, false
+	}
+	return o.Level, true
+}
+
+// HasLevel returns a boolean if a field has been set.
+func (o *Logger) HasLevel() bool {
+	if o != nil && !IsNil(o.Level) {
+		return true
+	}
+
+	return false
+}
+
+// SetLevel gets a reference to the given Level and assigns it to the Level field.
+func (o *Logger) SetLevel(v Level) {
+	o.Level = &v
+}
+
+// GetResourceBundleName returns the ResourceBundleName field value if set, zero value otherwise.
+func (o *Logger) GetResourceBundleName() string {
+	if o == nil || IsNil(o.ResourceBundleName) {
+		var ret string
+		return ret
+	}
+	return *o.ResourceBundleName
+}
+
+// GetResourceBundleNameOk returns a tuple with the ResourceBundleName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Logger) GetResourceBundleNameOk() (*string, bool) {
+	if o == nil || IsNil(o.ResourceBundleName) {
+		return nil, false
+	}
+	return o.ResourceBundleName, true
+}
+
+// HasResourceBundleName returns a boolean if a field has been set.
+func (o *Logger) HasResourceBundleName() bool {
+	if o != nil && !IsNil(o.ResourceBundleName) {
+		return true
+	}
+
+	return false
+}
+
+// SetResourceBundleName gets a reference to the given string and assigns it to the ResourceBundleName field.
+func (o *Logger) SetResourceBundleName(v string) {
+	o.ResourceBundleName = &v
 }
 
 // GetHandlers returns the Handlers field value if set, zero value otherwise.
@@ -143,70 +271,6 @@ func (o *Logger) SetUseParentHandlers(v bool) {
 	o.UseParentHandlers = &v
 }
 
-// GetFilter returns the Filter field value if set, zero value otherwise.
-func (o *Logger) GetFilter() map[string]interface{} {
-	if o == nil || IsNil(o.Filter) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Filter
-}
-
-// GetFilterOk returns a tuple with the Filter field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Logger) GetFilterOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Filter) {
-		return map[string]interface{}{}, false
-	}
-	return o.Filter, true
-}
-
-// HasFilter returns a boolean if a field has been set.
-func (o *Logger) HasFilter() bool {
-	if o != nil && !IsNil(o.Filter) {
-		return true
-	}
-
-	return false
-}
-
-// SetFilter gets a reference to the given map[string]interface{} and assigns it to the Filter field.
-func (o *Logger) SetFilter(v map[string]interface{}) {
-	o.Filter = v
-}
-
-// GetParent returns the Parent field value if set, zero value otherwise.
-func (o *Logger) GetParent() Logger {
-	if o == nil || IsNil(o.Parent) {
-		var ret Logger
-		return ret
-	}
-	return *o.Parent
-}
-
-// GetParentOk returns a tuple with the Parent field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Logger) GetParentOk() (*Logger, bool) {
-	if o == nil || IsNil(o.Parent) {
-		return nil, false
-	}
-	return o.Parent, true
-}
-
-// HasParent returns a boolean if a field has been set.
-func (o *Logger) HasParent() bool {
-	if o != nil && !IsNil(o.Parent) {
-		return true
-	}
-
-	return false
-}
-
-// SetParent gets a reference to the given Logger and assigns it to the Parent field.
-func (o *Logger) SetParent(v Logger) {
-	o.Parent = &v
-}
-
 // GetResourceBundle returns the ResourceBundle field value if set, zero value otherwise.
 func (o *Logger) GetResourceBundle() ResourceBundle {
 	if o == nil || IsNil(o.ResourceBundle) {
@@ -239,70 +303,6 @@ func (o *Logger) SetResourceBundle(v ResourceBundle) {
 	o.ResourceBundle = &v
 }
 
-// GetResourceBundleName returns the ResourceBundleName field value if set, zero value otherwise.
-func (o *Logger) GetResourceBundleName() string {
-	if o == nil || IsNil(o.ResourceBundleName) {
-		var ret string
-		return ret
-	}
-	return *o.ResourceBundleName
-}
-
-// GetResourceBundleNameOk returns a tuple with the ResourceBundleName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Logger) GetResourceBundleNameOk() (*string, bool) {
-	if o == nil || IsNil(o.ResourceBundleName) {
-		return nil, false
-	}
-	return o.ResourceBundleName, true
-}
-
-// HasResourceBundleName returns a boolean if a field has been set.
-func (o *Logger) HasResourceBundleName() bool {
-	if o != nil && !IsNil(o.ResourceBundleName) {
-		return true
-	}
-
-	return false
-}
-
-// SetResourceBundleName gets a reference to the given string and assigns it to the ResourceBundleName field.
-func (o *Logger) SetResourceBundleName(v string) {
-	o.ResourceBundleName = &v
-}
-
-// GetLevel returns the Level field value if set, zero value otherwise.
-func (o *Logger) GetLevel() Level {
-	if o == nil || IsNil(o.Level) {
-		var ret Level
-		return ret
-	}
-	return *o.Level
-}
-
-// GetLevelOk returns a tuple with the Level field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Logger) GetLevelOk() (*Level, bool) {
-	if o == nil || IsNil(o.Level) {
-		return nil, false
-	}
-	return o.Level, true
-}
-
-// HasLevel returns a boolean if a field has been set.
-func (o *Logger) HasLevel() bool {
-	if o != nil && !IsNil(o.Level) {
-		return true
-	}
-
-	return false
-}
-
-// SetLevel gets a reference to the given Level and assigns it to the Level field.
-func (o *Logger) SetLevel(v Level) {
-	o.Level = &v
-}
-
 func (o Logger) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -316,26 +316,26 @@ func (o Logger) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+	if !IsNil(o.Parent) {
+		toSerialize["parent"] = o.Parent
+	}
+	if !IsNil(o.Filter) {
+		toSerialize["filter"] = o.Filter
+	}
+	if !IsNil(o.Level) {
+		toSerialize["level"] = o.Level
+	}
+	if !IsNil(o.ResourceBundleName) {
+		toSerialize["resourceBundleName"] = o.ResourceBundleName
+	}
 	if !IsNil(o.Handlers) {
 		toSerialize["handlers"] = o.Handlers
 	}
 	if !IsNil(o.UseParentHandlers) {
 		toSerialize["useParentHandlers"] = o.UseParentHandlers
 	}
-	if !IsNil(o.Filter) {
-		toSerialize["filter"] = o.Filter
-	}
-	if !IsNil(o.Parent) {
-		toSerialize["parent"] = o.Parent
-	}
 	if !IsNil(o.ResourceBundle) {
 		toSerialize["resourceBundle"] = o.ResourceBundle
-	}
-	if !IsNil(o.ResourceBundleName) {
-		toSerialize["resourceBundleName"] = o.ResourceBundleName
-	}
-	if !IsNil(o.Level) {
-		toSerialize["level"] = o.Level
 	}
 	return toSerialize, nil
 }

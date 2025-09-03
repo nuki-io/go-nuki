@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.13.1
+API version: 4.0.1
 Contact: contact@nuki.io
 */
 
@@ -20,10 +20,10 @@ var _ MappedNullable = &CompletableFutureListApiKey{}
 
 // CompletableFutureListApiKey struct for CompletableFutureListApiKey
 type CompletableFutureListApiKey struct {
-	Done *bool `json:"done,omitempty"`
-	Cancelled *bool `json:"cancelled,omitempty"`
 	CompletedExceptionally *bool `json:"completedExceptionally,omitempty"`
 	NumberOfDependents *int32 `json:"numberOfDependents,omitempty"`
+	Done *bool `json:"done,omitempty"`
+	Cancelled *bool `json:"cancelled,omitempty"`
 }
 
 // NewCompletableFutureListApiKey instantiates a new CompletableFutureListApiKey object
@@ -41,70 +41,6 @@ func NewCompletableFutureListApiKey() *CompletableFutureListApiKey {
 func NewCompletableFutureListApiKeyWithDefaults() *CompletableFutureListApiKey {
 	this := CompletableFutureListApiKey{}
 	return &this
-}
-
-// GetDone returns the Done field value if set, zero value otherwise.
-func (o *CompletableFutureListApiKey) GetDone() bool {
-	if o == nil || IsNil(o.Done) {
-		var ret bool
-		return ret
-	}
-	return *o.Done
-}
-
-// GetDoneOk returns a tuple with the Done field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CompletableFutureListApiKey) GetDoneOk() (*bool, bool) {
-	if o == nil || IsNil(o.Done) {
-		return nil, false
-	}
-	return o.Done, true
-}
-
-// HasDone returns a boolean if a field has been set.
-func (o *CompletableFutureListApiKey) HasDone() bool {
-	if o != nil && !IsNil(o.Done) {
-		return true
-	}
-
-	return false
-}
-
-// SetDone gets a reference to the given bool and assigns it to the Done field.
-func (o *CompletableFutureListApiKey) SetDone(v bool) {
-	o.Done = &v
-}
-
-// GetCancelled returns the Cancelled field value if set, zero value otherwise.
-func (o *CompletableFutureListApiKey) GetCancelled() bool {
-	if o == nil || IsNil(o.Cancelled) {
-		var ret bool
-		return ret
-	}
-	return *o.Cancelled
-}
-
-// GetCancelledOk returns a tuple with the Cancelled field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CompletableFutureListApiKey) GetCancelledOk() (*bool, bool) {
-	if o == nil || IsNil(o.Cancelled) {
-		return nil, false
-	}
-	return o.Cancelled, true
-}
-
-// HasCancelled returns a boolean if a field has been set.
-func (o *CompletableFutureListApiKey) HasCancelled() bool {
-	if o != nil && !IsNil(o.Cancelled) {
-		return true
-	}
-
-	return false
-}
-
-// SetCancelled gets a reference to the given bool and assigns it to the Cancelled field.
-func (o *CompletableFutureListApiKey) SetCancelled(v bool) {
-	o.Cancelled = &v
 }
 
 // GetCompletedExceptionally returns the CompletedExceptionally field value if set, zero value otherwise.
@@ -171,6 +107,70 @@ func (o *CompletableFutureListApiKey) SetNumberOfDependents(v int32) {
 	o.NumberOfDependents = &v
 }
 
+// GetDone returns the Done field value if set, zero value otherwise.
+func (o *CompletableFutureListApiKey) GetDone() bool {
+	if o == nil || IsNil(o.Done) {
+		var ret bool
+		return ret
+	}
+	return *o.Done
+}
+
+// GetDoneOk returns a tuple with the Done field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompletableFutureListApiKey) GetDoneOk() (*bool, bool) {
+	if o == nil || IsNil(o.Done) {
+		return nil, false
+	}
+	return o.Done, true
+}
+
+// HasDone returns a boolean if a field has been set.
+func (o *CompletableFutureListApiKey) HasDone() bool {
+	if o != nil && !IsNil(o.Done) {
+		return true
+	}
+
+	return false
+}
+
+// SetDone gets a reference to the given bool and assigns it to the Done field.
+func (o *CompletableFutureListApiKey) SetDone(v bool) {
+	o.Done = &v
+}
+
+// GetCancelled returns the Cancelled field value if set, zero value otherwise.
+func (o *CompletableFutureListApiKey) GetCancelled() bool {
+	if o == nil || IsNil(o.Cancelled) {
+		var ret bool
+		return ret
+	}
+	return *o.Cancelled
+}
+
+// GetCancelledOk returns a tuple with the Cancelled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CompletableFutureListApiKey) GetCancelledOk() (*bool, bool) {
+	if o == nil || IsNil(o.Cancelled) {
+		return nil, false
+	}
+	return o.Cancelled, true
+}
+
+// HasCancelled returns a boolean if a field has been set.
+func (o *CompletableFutureListApiKey) HasCancelled() bool {
+	if o != nil && !IsNil(o.Cancelled) {
+		return true
+	}
+
+	return false
+}
+
+// SetCancelled gets a reference to the given bool and assigns it to the Cancelled field.
+func (o *CompletableFutureListApiKey) SetCancelled(v bool) {
+	o.Cancelled = &v
+}
+
 func (o CompletableFutureListApiKey) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -181,17 +181,17 @@ func (o CompletableFutureListApiKey) MarshalJSON() ([]byte, error) {
 
 func (o CompletableFutureListApiKey) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Done) {
-		toSerialize["done"] = o.Done
-	}
-	if !IsNil(o.Cancelled) {
-		toSerialize["cancelled"] = o.Cancelled
-	}
 	if !IsNil(o.CompletedExceptionally) {
 		toSerialize["completedExceptionally"] = o.CompletedExceptionally
 	}
 	if !IsNil(o.NumberOfDependents) {
 		toSerialize["numberOfDependents"] = o.NumberOfDependents
+	}
+	if !IsNil(o.Done) {
+		toSerialize["done"] = o.Done
+	}
+	if !IsNil(o.Cancelled) {
+		toSerialize["cancelled"] = o.Cancelled
 	}
 	return toSerialize, nil
 }

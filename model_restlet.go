@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.13.1
+API version: 4.0.1
 Contact: contact@nuki.io
 */
 
@@ -27,8 +27,8 @@ type Restlet struct {
 	Owner *string `json:"owner,omitempty"`
 	Started *bool `json:"started,omitempty"`
 	Logger *Logger `json:"logger,omitempty"`
-	Application *Application `json:"application,omitempty"`
 	Stopped *bool `json:"stopped,omitempty"`
+	Application *Application `json:"application,omitempty"`
 }
 
 // NewRestlet instantiates a new Restlet object
@@ -272,38 +272,6 @@ func (o *Restlet) SetLogger(v Logger) {
 	o.Logger = &v
 }
 
-// GetApplication returns the Application field value if set, zero value otherwise.
-func (o *Restlet) GetApplication() Application {
-	if o == nil || IsNil(o.Application) {
-		var ret Application
-		return ret
-	}
-	return *o.Application
-}
-
-// GetApplicationOk returns a tuple with the Application field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Restlet) GetApplicationOk() (*Application, bool) {
-	if o == nil || IsNil(o.Application) {
-		return nil, false
-	}
-	return o.Application, true
-}
-
-// HasApplication returns a boolean if a field has been set.
-func (o *Restlet) HasApplication() bool {
-	if o != nil && !IsNil(o.Application) {
-		return true
-	}
-
-	return false
-}
-
-// SetApplication gets a reference to the given Application and assigns it to the Application field.
-func (o *Restlet) SetApplication(v Application) {
-	o.Application = &v
-}
-
 // GetStopped returns the Stopped field value if set, zero value otherwise.
 func (o *Restlet) GetStopped() bool {
 	if o == nil || IsNil(o.Stopped) {
@@ -334,6 +302,38 @@ func (o *Restlet) HasStopped() bool {
 // SetStopped gets a reference to the given bool and assigns it to the Stopped field.
 func (o *Restlet) SetStopped(v bool) {
 	o.Stopped = &v
+}
+
+// GetApplication returns the Application field value if set, zero value otherwise.
+func (o *Restlet) GetApplication() Application {
+	if o == nil || IsNil(o.Application) {
+		var ret Application
+		return ret
+	}
+	return *o.Application
+}
+
+// GetApplicationOk returns a tuple with the Application field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Restlet) GetApplicationOk() (*Application, bool) {
+	if o == nil || IsNil(o.Application) {
+		return nil, false
+	}
+	return o.Application, true
+}
+
+// HasApplication returns a boolean if a field has been set.
+func (o *Restlet) HasApplication() bool {
+	if o != nil && !IsNil(o.Application) {
+		return true
+	}
+
+	return false
+}
+
+// SetApplication gets a reference to the given Application and assigns it to the Application field.
+func (o *Restlet) SetApplication(v Application) {
+	o.Application = &v
 }
 
 func (o Restlet) MarshalJSON() ([]byte, error) {
@@ -367,11 +367,11 @@ func (o Restlet) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Logger) {
 		toSerialize["logger"] = o.Logger
 	}
-	if !IsNil(o.Application) {
-		toSerialize["application"] = o.Application
-	}
 	if !IsNil(o.Stopped) {
 		toSerialize["stopped"] = o.Stopped
+	}
+	if !IsNil(o.Application) {
+		toSerialize["application"] = o.Application
 	}
 	return toSerialize, nil
 }

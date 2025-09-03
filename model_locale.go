@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.13.1
+API version: 4.0.1
 Contact: contact@nuki.io
 */
 
@@ -21,19 +21,19 @@ var _ MappedNullable = &Locale{}
 // Locale struct for Locale
 type Locale struct {
 	Language *string `json:"language,omitempty"`
-	Script *string `json:"script,omitempty"`
+	DisplayName *string `json:"displayName,omitempty"`
 	Country *string `json:"country,omitempty"`
 	Variant *string `json:"variant,omitempty"`
-	ExtensionKeys []string `json:"extensionKeys,omitempty"`
+	Script *string `json:"script,omitempty"`
 	UnicodeLocaleAttributes []string `json:"unicodeLocaleAttributes,omitempty"`
 	UnicodeLocaleKeys []string `json:"unicodeLocaleKeys,omitempty"`
-	Iso3Language *string `json:"iso3Language,omitempty"`
-	Iso3Country *string `json:"iso3Country,omitempty"`
 	DisplayLanguage *string `json:"displayLanguage,omitempty"`
 	DisplayScript *string `json:"displayScript,omitempty"`
 	DisplayCountry *string `json:"displayCountry,omitempty"`
 	DisplayVariant *string `json:"displayVariant,omitempty"`
-	DisplayName *string `json:"displayName,omitempty"`
+	ExtensionKeys []string `json:"extensionKeys,omitempty"`
+	Iso3Language *string `json:"iso3Language,omitempty"`
+	Iso3Country *string `json:"iso3Country,omitempty"`
 }
 
 // NewLocale instantiates a new Locale object
@@ -85,36 +85,36 @@ func (o *Locale) SetLanguage(v string) {
 	o.Language = &v
 }
 
-// GetScript returns the Script field value if set, zero value otherwise.
-func (o *Locale) GetScript() string {
-	if o == nil || IsNil(o.Script) {
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
+func (o *Locale) GetDisplayName() string {
+	if o == nil || IsNil(o.DisplayName) {
 		var ret string
 		return ret
 	}
-	return *o.Script
+	return *o.DisplayName
 }
 
-// GetScriptOk returns a tuple with the Script field value if set, nil otherwise
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Locale) GetScriptOk() (*string, bool) {
-	if o == nil || IsNil(o.Script) {
+func (o *Locale) GetDisplayNameOk() (*string, bool) {
+	if o == nil || IsNil(o.DisplayName) {
 		return nil, false
 	}
-	return o.Script, true
+	return o.DisplayName, true
 }
 
-// HasScript returns a boolean if a field has been set.
-func (o *Locale) HasScript() bool {
-	if o != nil && !IsNil(o.Script) {
+// HasDisplayName returns a boolean if a field has been set.
+func (o *Locale) HasDisplayName() bool {
+	if o != nil && !IsNil(o.DisplayName) {
 		return true
 	}
 
 	return false
 }
 
-// SetScript gets a reference to the given string and assigns it to the Script field.
-func (o *Locale) SetScript(v string) {
-	o.Script = &v
+// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
+func (o *Locale) SetDisplayName(v string) {
+	o.DisplayName = &v
 }
 
 // GetCountry returns the Country field value if set, zero value otherwise.
@@ -181,36 +181,36 @@ func (o *Locale) SetVariant(v string) {
 	o.Variant = &v
 }
 
-// GetExtensionKeys returns the ExtensionKeys field value if set, zero value otherwise.
-func (o *Locale) GetExtensionKeys() []string {
-	if o == nil || IsNil(o.ExtensionKeys) {
-		var ret []string
+// GetScript returns the Script field value if set, zero value otherwise.
+func (o *Locale) GetScript() string {
+	if o == nil || IsNil(o.Script) {
+		var ret string
 		return ret
 	}
-	return o.ExtensionKeys
+	return *o.Script
 }
 
-// GetExtensionKeysOk returns a tuple with the ExtensionKeys field value if set, nil otherwise
+// GetScriptOk returns a tuple with the Script field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Locale) GetExtensionKeysOk() ([]string, bool) {
-	if o == nil || IsNil(o.ExtensionKeys) {
+func (o *Locale) GetScriptOk() (*string, bool) {
+	if o == nil || IsNil(o.Script) {
 		return nil, false
 	}
-	return o.ExtensionKeys, true
+	return o.Script, true
 }
 
-// HasExtensionKeys returns a boolean if a field has been set.
-func (o *Locale) HasExtensionKeys() bool {
-	if o != nil && !IsNil(o.ExtensionKeys) {
+// HasScript returns a boolean if a field has been set.
+func (o *Locale) HasScript() bool {
+	if o != nil && !IsNil(o.Script) {
 		return true
 	}
 
 	return false
 }
 
-// SetExtensionKeys gets a reference to the given []string and assigns it to the ExtensionKeys field.
-func (o *Locale) SetExtensionKeys(v []string) {
-	o.ExtensionKeys = v
+// SetScript gets a reference to the given string and assigns it to the Script field.
+func (o *Locale) SetScript(v string) {
+	o.Script = &v
 }
 
 // GetUnicodeLocaleAttributes returns the UnicodeLocaleAttributes field value if set, zero value otherwise.
@@ -275,70 +275,6 @@ func (o *Locale) HasUnicodeLocaleKeys() bool {
 // SetUnicodeLocaleKeys gets a reference to the given []string and assigns it to the UnicodeLocaleKeys field.
 func (o *Locale) SetUnicodeLocaleKeys(v []string) {
 	o.UnicodeLocaleKeys = v
-}
-
-// GetIso3Language returns the Iso3Language field value if set, zero value otherwise.
-func (o *Locale) GetIso3Language() string {
-	if o == nil || IsNil(o.Iso3Language) {
-		var ret string
-		return ret
-	}
-	return *o.Iso3Language
-}
-
-// GetIso3LanguageOk returns a tuple with the Iso3Language field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Locale) GetIso3LanguageOk() (*string, bool) {
-	if o == nil || IsNil(o.Iso3Language) {
-		return nil, false
-	}
-	return o.Iso3Language, true
-}
-
-// HasIso3Language returns a boolean if a field has been set.
-func (o *Locale) HasIso3Language() bool {
-	if o != nil && !IsNil(o.Iso3Language) {
-		return true
-	}
-
-	return false
-}
-
-// SetIso3Language gets a reference to the given string and assigns it to the Iso3Language field.
-func (o *Locale) SetIso3Language(v string) {
-	o.Iso3Language = &v
-}
-
-// GetIso3Country returns the Iso3Country field value if set, zero value otherwise.
-func (o *Locale) GetIso3Country() string {
-	if o == nil || IsNil(o.Iso3Country) {
-		var ret string
-		return ret
-	}
-	return *o.Iso3Country
-}
-
-// GetIso3CountryOk returns a tuple with the Iso3Country field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Locale) GetIso3CountryOk() (*string, bool) {
-	if o == nil || IsNil(o.Iso3Country) {
-		return nil, false
-	}
-	return o.Iso3Country, true
-}
-
-// HasIso3Country returns a boolean if a field has been set.
-func (o *Locale) HasIso3Country() bool {
-	if o != nil && !IsNil(o.Iso3Country) {
-		return true
-	}
-
-	return false
-}
-
-// SetIso3Country gets a reference to the given string and assigns it to the Iso3Country field.
-func (o *Locale) SetIso3Country(v string) {
-	o.Iso3Country = &v
 }
 
 // GetDisplayLanguage returns the DisplayLanguage field value if set, zero value otherwise.
@@ -469,36 +405,100 @@ func (o *Locale) SetDisplayVariant(v string) {
 	o.DisplayVariant = &v
 }
 
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
-func (o *Locale) GetDisplayName() string {
-	if o == nil || IsNil(o.DisplayName) {
-		var ret string
+// GetExtensionKeys returns the ExtensionKeys field value if set, zero value otherwise.
+func (o *Locale) GetExtensionKeys() []string {
+	if o == nil || IsNil(o.ExtensionKeys) {
+		var ret []string
 		return ret
 	}
-	return *o.DisplayName
+	return o.ExtensionKeys
 }
 
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// GetExtensionKeysOk returns a tuple with the ExtensionKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Locale) GetDisplayNameOk() (*string, bool) {
-	if o == nil || IsNil(o.DisplayName) {
+func (o *Locale) GetExtensionKeysOk() ([]string, bool) {
+	if o == nil || IsNil(o.ExtensionKeys) {
 		return nil, false
 	}
-	return o.DisplayName, true
+	return o.ExtensionKeys, true
 }
 
-// HasDisplayName returns a boolean if a field has been set.
-func (o *Locale) HasDisplayName() bool {
-	if o != nil && !IsNil(o.DisplayName) {
+// HasExtensionKeys returns a boolean if a field has been set.
+func (o *Locale) HasExtensionKeys() bool {
+	if o != nil && !IsNil(o.ExtensionKeys) {
 		return true
 	}
 
 	return false
 }
 
-// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
-func (o *Locale) SetDisplayName(v string) {
-	o.DisplayName = &v
+// SetExtensionKeys gets a reference to the given []string and assigns it to the ExtensionKeys field.
+func (o *Locale) SetExtensionKeys(v []string) {
+	o.ExtensionKeys = v
+}
+
+// GetIso3Language returns the Iso3Language field value if set, zero value otherwise.
+func (o *Locale) GetIso3Language() string {
+	if o == nil || IsNil(o.Iso3Language) {
+		var ret string
+		return ret
+	}
+	return *o.Iso3Language
+}
+
+// GetIso3LanguageOk returns a tuple with the Iso3Language field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Locale) GetIso3LanguageOk() (*string, bool) {
+	if o == nil || IsNil(o.Iso3Language) {
+		return nil, false
+	}
+	return o.Iso3Language, true
+}
+
+// HasIso3Language returns a boolean if a field has been set.
+func (o *Locale) HasIso3Language() bool {
+	if o != nil && !IsNil(o.Iso3Language) {
+		return true
+	}
+
+	return false
+}
+
+// SetIso3Language gets a reference to the given string and assigns it to the Iso3Language field.
+func (o *Locale) SetIso3Language(v string) {
+	o.Iso3Language = &v
+}
+
+// GetIso3Country returns the Iso3Country field value if set, zero value otherwise.
+func (o *Locale) GetIso3Country() string {
+	if o == nil || IsNil(o.Iso3Country) {
+		var ret string
+		return ret
+	}
+	return *o.Iso3Country
+}
+
+// GetIso3CountryOk returns a tuple with the Iso3Country field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Locale) GetIso3CountryOk() (*string, bool) {
+	if o == nil || IsNil(o.Iso3Country) {
+		return nil, false
+	}
+	return o.Iso3Country, true
+}
+
+// HasIso3Country returns a boolean if a field has been set.
+func (o *Locale) HasIso3Country() bool {
+	if o != nil && !IsNil(o.Iso3Country) {
+		return true
+	}
+
+	return false
+}
+
+// SetIso3Country gets a reference to the given string and assigns it to the Iso3Country field.
+func (o *Locale) SetIso3Country(v string) {
+	o.Iso3Country = &v
 }
 
 func (o Locale) MarshalJSON() ([]byte, error) {
@@ -514,8 +514,8 @@ func (o Locale) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Language) {
 		toSerialize["language"] = o.Language
 	}
-	if !IsNil(o.Script) {
-		toSerialize["script"] = o.Script
+	if !IsNil(o.DisplayName) {
+		toSerialize["displayName"] = o.DisplayName
 	}
 	if !IsNil(o.Country) {
 		toSerialize["country"] = o.Country
@@ -523,20 +523,14 @@ func (o Locale) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Variant) {
 		toSerialize["variant"] = o.Variant
 	}
-	if !IsNil(o.ExtensionKeys) {
-		toSerialize["extensionKeys"] = o.ExtensionKeys
+	if !IsNil(o.Script) {
+		toSerialize["script"] = o.Script
 	}
 	if !IsNil(o.UnicodeLocaleAttributes) {
 		toSerialize["unicodeLocaleAttributes"] = o.UnicodeLocaleAttributes
 	}
 	if !IsNil(o.UnicodeLocaleKeys) {
 		toSerialize["unicodeLocaleKeys"] = o.UnicodeLocaleKeys
-	}
-	if !IsNil(o.Iso3Language) {
-		toSerialize["iso3Language"] = o.Iso3Language
-	}
-	if !IsNil(o.Iso3Country) {
-		toSerialize["iso3Country"] = o.Iso3Country
 	}
 	if !IsNil(o.DisplayLanguage) {
 		toSerialize["displayLanguage"] = o.DisplayLanguage
@@ -550,8 +544,14 @@ func (o Locale) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DisplayVariant) {
 		toSerialize["displayVariant"] = o.DisplayVariant
 	}
-	if !IsNil(o.DisplayName) {
-		toSerialize["displayName"] = o.DisplayName
+	if !IsNil(o.ExtensionKeys) {
+		toSerialize["extensionKeys"] = o.ExtensionKeys
+	}
+	if !IsNil(o.Iso3Language) {
+		toSerialize["iso3Language"] = o.Iso3Language
+	}
+	if !IsNil(o.Iso3Country) {
+		toSerialize["iso3Country"] = o.Iso3Country
 	}
 	return toSerialize, nil
 }

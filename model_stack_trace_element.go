@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.13.1
+API version: 4.0.1
 Contact: contact@nuki.io
 */
 
@@ -20,6 +20,9 @@ var _ MappedNullable = &StackTraceElement{}
 
 // StackTraceElement struct for StackTraceElement
 type StackTraceElement struct {
+	ClassLoaderName *string `json:"classLoaderName,omitempty"`
+	ModuleName *string `json:"moduleName,omitempty"`
+	ModuleVersion *string `json:"moduleVersion,omitempty"`
 	MethodName *string `json:"methodName,omitempty"`
 	FileName *string `json:"fileName,omitempty"`
 	LineNumber *int32 `json:"lineNumber,omitempty"`
@@ -42,6 +45,102 @@ func NewStackTraceElement() *StackTraceElement {
 func NewStackTraceElementWithDefaults() *StackTraceElement {
 	this := StackTraceElement{}
 	return &this
+}
+
+// GetClassLoaderName returns the ClassLoaderName field value if set, zero value otherwise.
+func (o *StackTraceElement) GetClassLoaderName() string {
+	if o == nil || IsNil(o.ClassLoaderName) {
+		var ret string
+		return ret
+	}
+	return *o.ClassLoaderName
+}
+
+// GetClassLoaderNameOk returns a tuple with the ClassLoaderName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StackTraceElement) GetClassLoaderNameOk() (*string, bool) {
+	if o == nil || IsNil(o.ClassLoaderName) {
+		return nil, false
+	}
+	return o.ClassLoaderName, true
+}
+
+// HasClassLoaderName returns a boolean if a field has been set.
+func (o *StackTraceElement) HasClassLoaderName() bool {
+	if o != nil && !IsNil(o.ClassLoaderName) {
+		return true
+	}
+
+	return false
+}
+
+// SetClassLoaderName gets a reference to the given string and assigns it to the ClassLoaderName field.
+func (o *StackTraceElement) SetClassLoaderName(v string) {
+	o.ClassLoaderName = &v
+}
+
+// GetModuleName returns the ModuleName field value if set, zero value otherwise.
+func (o *StackTraceElement) GetModuleName() string {
+	if o == nil || IsNil(o.ModuleName) {
+		var ret string
+		return ret
+	}
+	return *o.ModuleName
+}
+
+// GetModuleNameOk returns a tuple with the ModuleName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StackTraceElement) GetModuleNameOk() (*string, bool) {
+	if o == nil || IsNil(o.ModuleName) {
+		return nil, false
+	}
+	return o.ModuleName, true
+}
+
+// HasModuleName returns a boolean if a field has been set.
+func (o *StackTraceElement) HasModuleName() bool {
+	if o != nil && !IsNil(o.ModuleName) {
+		return true
+	}
+
+	return false
+}
+
+// SetModuleName gets a reference to the given string and assigns it to the ModuleName field.
+func (o *StackTraceElement) SetModuleName(v string) {
+	o.ModuleName = &v
+}
+
+// GetModuleVersion returns the ModuleVersion field value if set, zero value otherwise.
+func (o *StackTraceElement) GetModuleVersion() string {
+	if o == nil || IsNil(o.ModuleVersion) {
+		var ret string
+		return ret
+	}
+	return *o.ModuleVersion
+}
+
+// GetModuleVersionOk returns a tuple with the ModuleVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StackTraceElement) GetModuleVersionOk() (*string, bool) {
+	if o == nil || IsNil(o.ModuleVersion) {
+		return nil, false
+	}
+	return o.ModuleVersion, true
+}
+
+// HasModuleVersion returns a boolean if a field has been set.
+func (o *StackTraceElement) HasModuleVersion() bool {
+	if o != nil && !IsNil(o.ModuleVersion) {
+		return true
+	}
+
+	return false
+}
+
+// SetModuleVersion gets a reference to the given string and assigns it to the ModuleVersion field.
+func (o *StackTraceElement) SetModuleVersion(v string) {
+	o.ModuleVersion = &v
 }
 
 // GetMethodName returns the MethodName field value if set, zero value otherwise.
@@ -214,6 +313,15 @@ func (o StackTraceElement) MarshalJSON() ([]byte, error) {
 
 func (o StackTraceElement) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ClassLoaderName) {
+		toSerialize["classLoaderName"] = o.ClassLoaderName
+	}
+	if !IsNil(o.ModuleName) {
+		toSerialize["moduleName"] = o.ModuleName
+	}
+	if !IsNil(o.ModuleVersion) {
+		toSerialize["moduleVersion"] = o.ModuleVersion
+	}
 	if !IsNil(o.MethodName) {
 		toSerialize["methodName"] = o.MethodName
 	}

@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.13.1
+API version: 4.0.1
 Contact: contact@nuki.io
 */
 
@@ -24,8 +24,8 @@ type MediaType struct {
 	Name *string `json:"name,omitempty"`
 	Parameters []Parameter `json:"parameters,omitempty"`
 	Parent *MediaType `json:"parent,omitempty"`
-	Concrete *bool `json:"concrete,omitempty"`
 	MainType *string `json:"mainType,omitempty"`
+	Concrete *bool `json:"concrete,omitempty"`
 	SubType *string `json:"subType,omitempty"`
 }
 
@@ -174,38 +174,6 @@ func (o *MediaType) SetParent(v MediaType) {
 	o.Parent = &v
 }
 
-// GetConcrete returns the Concrete field value if set, zero value otherwise.
-func (o *MediaType) GetConcrete() bool {
-	if o == nil || IsNil(o.Concrete) {
-		var ret bool
-		return ret
-	}
-	return *o.Concrete
-}
-
-// GetConcreteOk returns a tuple with the Concrete field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MediaType) GetConcreteOk() (*bool, bool) {
-	if o == nil || IsNil(o.Concrete) {
-		return nil, false
-	}
-	return o.Concrete, true
-}
-
-// HasConcrete returns a boolean if a field has been set.
-func (o *MediaType) HasConcrete() bool {
-	if o != nil && !IsNil(o.Concrete) {
-		return true
-	}
-
-	return false
-}
-
-// SetConcrete gets a reference to the given bool and assigns it to the Concrete field.
-func (o *MediaType) SetConcrete(v bool) {
-	o.Concrete = &v
-}
-
 // GetMainType returns the MainType field value if set, zero value otherwise.
 func (o *MediaType) GetMainType() string {
 	if o == nil || IsNil(o.MainType) {
@@ -236,6 +204,38 @@ func (o *MediaType) HasMainType() bool {
 // SetMainType gets a reference to the given string and assigns it to the MainType field.
 func (o *MediaType) SetMainType(v string) {
 	o.MainType = &v
+}
+
+// GetConcrete returns the Concrete field value if set, zero value otherwise.
+func (o *MediaType) GetConcrete() bool {
+	if o == nil || IsNil(o.Concrete) {
+		var ret bool
+		return ret
+	}
+	return *o.Concrete
+}
+
+// GetConcreteOk returns a tuple with the Concrete field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MediaType) GetConcreteOk() (*bool, bool) {
+	if o == nil || IsNil(o.Concrete) {
+		return nil, false
+	}
+	return o.Concrete, true
+}
+
+// HasConcrete returns a boolean if a field has been set.
+func (o *MediaType) HasConcrete() bool {
+	if o != nil && !IsNil(o.Concrete) {
+		return true
+	}
+
+	return false
+}
+
+// SetConcrete gets a reference to the given bool and assigns it to the Concrete field.
+func (o *MediaType) SetConcrete(v bool) {
+	o.Concrete = &v
 }
 
 // GetSubType returns the SubType field value if set, zero value otherwise.
@@ -292,11 +292,11 @@ func (o MediaType) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Parent) {
 		toSerialize["parent"] = o.Parent
 	}
-	if !IsNil(o.Concrete) {
-		toSerialize["concrete"] = o.Concrete
-	}
 	if !IsNil(o.MainType) {
 		toSerialize["mainType"] = o.MainType
+	}
+	if !IsNil(o.Concrete) {
+		toSerialize["concrete"] = o.Concrete
 	}
 	if !IsNil(o.SubType) {
 		toSerialize["subType"] = o.SubType

@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.13.1
+API version: 4.0.1
 Contact: contact@nuki.io
 */
 
@@ -20,8 +20,8 @@ var _ MappedNullable = &ScheduledExecutorService{}
 
 // ScheduledExecutorService struct for ScheduledExecutorService
 type ScheduledExecutorService struct {
-	Shutdown *bool `json:"shutdown,omitempty"`
 	Terminated *bool `json:"terminated,omitempty"`
+	Shutdown *bool `json:"shutdown,omitempty"`
 }
 
 // NewScheduledExecutorService instantiates a new ScheduledExecutorService object
@@ -39,38 +39,6 @@ func NewScheduledExecutorService() *ScheduledExecutorService {
 func NewScheduledExecutorServiceWithDefaults() *ScheduledExecutorService {
 	this := ScheduledExecutorService{}
 	return &this
-}
-
-// GetShutdown returns the Shutdown field value if set, zero value otherwise.
-func (o *ScheduledExecutorService) GetShutdown() bool {
-	if o == nil || IsNil(o.Shutdown) {
-		var ret bool
-		return ret
-	}
-	return *o.Shutdown
-}
-
-// GetShutdownOk returns a tuple with the Shutdown field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ScheduledExecutorService) GetShutdownOk() (*bool, bool) {
-	if o == nil || IsNil(o.Shutdown) {
-		return nil, false
-	}
-	return o.Shutdown, true
-}
-
-// HasShutdown returns a boolean if a field has been set.
-func (o *ScheduledExecutorService) HasShutdown() bool {
-	if o != nil && !IsNil(o.Shutdown) {
-		return true
-	}
-
-	return false
-}
-
-// SetShutdown gets a reference to the given bool and assigns it to the Shutdown field.
-func (o *ScheduledExecutorService) SetShutdown(v bool) {
-	o.Shutdown = &v
 }
 
 // GetTerminated returns the Terminated field value if set, zero value otherwise.
@@ -105,6 +73,38 @@ func (o *ScheduledExecutorService) SetTerminated(v bool) {
 	o.Terminated = &v
 }
 
+// GetShutdown returns the Shutdown field value if set, zero value otherwise.
+func (o *ScheduledExecutorService) GetShutdown() bool {
+	if o == nil || IsNil(o.Shutdown) {
+		var ret bool
+		return ret
+	}
+	return *o.Shutdown
+}
+
+// GetShutdownOk returns a tuple with the Shutdown field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ScheduledExecutorService) GetShutdownOk() (*bool, bool) {
+	if o == nil || IsNil(o.Shutdown) {
+		return nil, false
+	}
+	return o.Shutdown, true
+}
+
+// HasShutdown returns a boolean if a field has been set.
+func (o *ScheduledExecutorService) HasShutdown() bool {
+	if o != nil && !IsNil(o.Shutdown) {
+		return true
+	}
+
+	return false
+}
+
+// SetShutdown gets a reference to the given bool and assigns it to the Shutdown field.
+func (o *ScheduledExecutorService) SetShutdown(v bool) {
+	o.Shutdown = &v
+}
+
 func (o ScheduledExecutorService) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -115,11 +115,11 @@ func (o ScheduledExecutorService) MarshalJSON() ([]byte, error) {
 
 func (o ScheduledExecutorService) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Shutdown) {
-		toSerialize["shutdown"] = o.Shutdown
-	}
 	if !IsNil(o.Terminated) {
 		toSerialize["terminated"] = o.Terminated
+	}
+	if !IsNil(o.Shutdown) {
+		toSerialize["shutdown"] = o.Shutdown
 	}
 	return toSerialize, nil
 }

@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.13.1
+API version: 4.0.1
 Contact: contact@nuki.io
 */
 
@@ -21,8 +21,8 @@ var _ MappedNullable = &ResourceBundle{}
 // ResourceBundle struct for ResourceBundle
 type ResourceBundle struct {
 	Locale *Locale `json:"locale,omitempty"`
-	BaseBundleName *string `json:"baseBundleName,omitempty"`
 	Keys map[string]interface{} `json:"keys,omitempty"`
+	BaseBundleName *string `json:"baseBundleName,omitempty"`
 }
 
 // NewResourceBundle instantiates a new ResourceBundle object
@@ -74,38 +74,6 @@ func (o *ResourceBundle) SetLocale(v Locale) {
 	o.Locale = &v
 }
 
-// GetBaseBundleName returns the BaseBundleName field value if set, zero value otherwise.
-func (o *ResourceBundle) GetBaseBundleName() string {
-	if o == nil || IsNil(o.BaseBundleName) {
-		var ret string
-		return ret
-	}
-	return *o.BaseBundleName
-}
-
-// GetBaseBundleNameOk returns a tuple with the BaseBundleName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ResourceBundle) GetBaseBundleNameOk() (*string, bool) {
-	if o == nil || IsNil(o.BaseBundleName) {
-		return nil, false
-	}
-	return o.BaseBundleName, true
-}
-
-// HasBaseBundleName returns a boolean if a field has been set.
-func (o *ResourceBundle) HasBaseBundleName() bool {
-	if o != nil && !IsNil(o.BaseBundleName) {
-		return true
-	}
-
-	return false
-}
-
-// SetBaseBundleName gets a reference to the given string and assigns it to the BaseBundleName field.
-func (o *ResourceBundle) SetBaseBundleName(v string) {
-	o.BaseBundleName = &v
-}
-
 // GetKeys returns the Keys field value if set, zero value otherwise.
 func (o *ResourceBundle) GetKeys() map[string]interface{} {
 	if o == nil || IsNil(o.Keys) {
@@ -138,6 +106,38 @@ func (o *ResourceBundle) SetKeys(v map[string]interface{}) {
 	o.Keys = v
 }
 
+// GetBaseBundleName returns the BaseBundleName field value if set, zero value otherwise.
+func (o *ResourceBundle) GetBaseBundleName() string {
+	if o == nil || IsNil(o.BaseBundleName) {
+		var ret string
+		return ret
+	}
+	return *o.BaseBundleName
+}
+
+// GetBaseBundleNameOk returns a tuple with the BaseBundleName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ResourceBundle) GetBaseBundleNameOk() (*string, bool) {
+	if o == nil || IsNil(o.BaseBundleName) {
+		return nil, false
+	}
+	return o.BaseBundleName, true
+}
+
+// HasBaseBundleName returns a boolean if a field has been set.
+func (o *ResourceBundle) HasBaseBundleName() bool {
+	if o != nil && !IsNil(o.BaseBundleName) {
+		return true
+	}
+
+	return false
+}
+
+// SetBaseBundleName gets a reference to the given string and assigns it to the BaseBundleName field.
+func (o *ResourceBundle) SetBaseBundleName(v string) {
+	o.BaseBundleName = &v
+}
+
 func (o ResourceBundle) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -151,11 +151,11 @@ func (o ResourceBundle) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Locale) {
 		toSerialize["locale"] = o.Locale
 	}
-	if !IsNil(o.BaseBundleName) {
-		toSerialize["baseBundleName"] = o.BaseBundleName
-	}
 	if !IsNil(o.Keys) {
 		toSerialize["keys"] = o.Keys
+	}
+	if !IsNil(o.BaseBundleName) {
+		toSerialize["baseBundleName"] = o.BaseBundleName
 	}
 	return toSerialize, nil
 }

@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.13.1
+API version: 4.0.1
 Contact: contact@nuki.io
 */
 
@@ -34,15 +34,15 @@ type Representation struct {
 	ExpirationDate *time.Time `json:"expirationDate,omitempty"`
 	Range *Range `json:"range,omitempty"`
 	Size *int64 `json:"size,omitempty"`
-	Stream map[string]interface{} `json:"stream,omitempty"`
 	Empty *bool `json:"empty,omitempty"`
-	Transient *bool `json:"transient,omitempty"`
 	Channel *ReadableByteChannel `json:"channel,omitempty"`
-	Reader map[string]interface{} `json:"reader,omitempty"`
+	Transient *bool `json:"transient,omitempty"`
 	Text *string `json:"text,omitempty"`
-	Registration *SelectionRegistration `json:"registration,omitempty"`
-	Selectable *bool `json:"selectable,omitempty"`
+	Reader map[string]interface{} `json:"reader,omitempty"`
 	AvailableSize *int64 `json:"availableSize,omitempty"`
+	Registration *SelectionRegistration `json:"registration,omitempty"`
+	Stream map[string]interface{} `json:"stream,omitempty"`
+	Selectable *bool `json:"selectable,omitempty"`
 }
 
 // NewRepresentation instantiates a new Representation object
@@ -478,38 +478,6 @@ func (o *Representation) SetSize(v int64) {
 	o.Size = &v
 }
 
-// GetStream returns the Stream field value if set, zero value otherwise.
-func (o *Representation) GetStream() map[string]interface{} {
-	if o == nil || IsNil(o.Stream) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Stream
-}
-
-// GetStreamOk returns a tuple with the Stream field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Representation) GetStreamOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Stream) {
-		return map[string]interface{}{}, false
-	}
-	return o.Stream, true
-}
-
-// HasStream returns a boolean if a field has been set.
-func (o *Representation) HasStream() bool {
-	if o != nil && !IsNil(o.Stream) {
-		return true
-	}
-
-	return false
-}
-
-// SetStream gets a reference to the given map[string]interface{} and assigns it to the Stream field.
-func (o *Representation) SetStream(v map[string]interface{}) {
-	o.Stream = v
-}
-
 // GetEmpty returns the Empty field value if set, zero value otherwise.
 func (o *Representation) GetEmpty() bool {
 	if o == nil || IsNil(o.Empty) {
@@ -540,38 +508,6 @@ func (o *Representation) HasEmpty() bool {
 // SetEmpty gets a reference to the given bool and assigns it to the Empty field.
 func (o *Representation) SetEmpty(v bool) {
 	o.Empty = &v
-}
-
-// GetTransient returns the Transient field value if set, zero value otherwise.
-func (o *Representation) GetTransient() bool {
-	if o == nil || IsNil(o.Transient) {
-		var ret bool
-		return ret
-	}
-	return *o.Transient
-}
-
-// GetTransientOk returns a tuple with the Transient field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Representation) GetTransientOk() (*bool, bool) {
-	if o == nil || IsNil(o.Transient) {
-		return nil, false
-	}
-	return o.Transient, true
-}
-
-// HasTransient returns a boolean if a field has been set.
-func (o *Representation) HasTransient() bool {
-	if o != nil && !IsNil(o.Transient) {
-		return true
-	}
-
-	return false
-}
-
-// SetTransient gets a reference to the given bool and assigns it to the Transient field.
-func (o *Representation) SetTransient(v bool) {
-	o.Transient = &v
 }
 
 // GetChannel returns the Channel field value if set, zero value otherwise.
@@ -606,36 +542,36 @@ func (o *Representation) SetChannel(v ReadableByteChannel) {
 	o.Channel = &v
 }
 
-// GetReader returns the Reader field value if set, zero value otherwise.
-func (o *Representation) GetReader() map[string]interface{} {
-	if o == nil || IsNil(o.Reader) {
-		var ret map[string]interface{}
+// GetTransient returns the Transient field value if set, zero value otherwise.
+func (o *Representation) GetTransient() bool {
+	if o == nil || IsNil(o.Transient) {
+		var ret bool
 		return ret
 	}
-	return o.Reader
+	return *o.Transient
 }
 
-// GetReaderOk returns a tuple with the Reader field value if set, nil otherwise
+// GetTransientOk returns a tuple with the Transient field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Representation) GetReaderOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Reader) {
-		return map[string]interface{}{}, false
+func (o *Representation) GetTransientOk() (*bool, bool) {
+	if o == nil || IsNil(o.Transient) {
+		return nil, false
 	}
-	return o.Reader, true
+	return o.Transient, true
 }
 
-// HasReader returns a boolean if a field has been set.
-func (o *Representation) HasReader() bool {
-	if o != nil && !IsNil(o.Reader) {
+// HasTransient returns a boolean if a field has been set.
+func (o *Representation) HasTransient() bool {
+	if o != nil && !IsNil(o.Transient) {
 		return true
 	}
 
 	return false
 }
 
-// SetReader gets a reference to the given map[string]interface{} and assigns it to the Reader field.
-func (o *Representation) SetReader(v map[string]interface{}) {
-	o.Reader = v
+// SetTransient gets a reference to the given bool and assigns it to the Transient field.
+func (o *Representation) SetTransient(v bool) {
+	o.Transient = &v
 }
 
 // GetText returns the Text field value if set, zero value otherwise.
@@ -670,68 +606,36 @@ func (o *Representation) SetText(v string) {
 	o.Text = &v
 }
 
-// GetRegistration returns the Registration field value if set, zero value otherwise.
-func (o *Representation) GetRegistration() SelectionRegistration {
-	if o == nil || IsNil(o.Registration) {
-		var ret SelectionRegistration
+// GetReader returns the Reader field value if set, zero value otherwise.
+func (o *Representation) GetReader() map[string]interface{} {
+	if o == nil || IsNil(o.Reader) {
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Registration
+	return o.Reader
 }
 
-// GetRegistrationOk returns a tuple with the Registration field value if set, nil otherwise
+// GetReaderOk returns a tuple with the Reader field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Representation) GetRegistrationOk() (*SelectionRegistration, bool) {
-	if o == nil || IsNil(o.Registration) {
-		return nil, false
+func (o *Representation) GetReaderOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Reader) {
+		return map[string]interface{}{}, false
 	}
-	return o.Registration, true
+	return o.Reader, true
 }
 
-// HasRegistration returns a boolean if a field has been set.
-func (o *Representation) HasRegistration() bool {
-	if o != nil && !IsNil(o.Registration) {
+// HasReader returns a boolean if a field has been set.
+func (o *Representation) HasReader() bool {
+	if o != nil && !IsNil(o.Reader) {
 		return true
 	}
 
 	return false
 }
 
-// SetRegistration gets a reference to the given SelectionRegistration and assigns it to the Registration field.
-func (o *Representation) SetRegistration(v SelectionRegistration) {
-	o.Registration = &v
-}
-
-// GetSelectable returns the Selectable field value if set, zero value otherwise.
-func (o *Representation) GetSelectable() bool {
-	if o == nil || IsNil(o.Selectable) {
-		var ret bool
-		return ret
-	}
-	return *o.Selectable
-}
-
-// GetSelectableOk returns a tuple with the Selectable field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Representation) GetSelectableOk() (*bool, bool) {
-	if o == nil || IsNil(o.Selectable) {
-		return nil, false
-	}
-	return o.Selectable, true
-}
-
-// HasSelectable returns a boolean if a field has been set.
-func (o *Representation) HasSelectable() bool {
-	if o != nil && !IsNil(o.Selectable) {
-		return true
-	}
-
-	return false
-}
-
-// SetSelectable gets a reference to the given bool and assigns it to the Selectable field.
-func (o *Representation) SetSelectable(v bool) {
-	o.Selectable = &v
+// SetReader gets a reference to the given map[string]interface{} and assigns it to the Reader field.
+func (o *Representation) SetReader(v map[string]interface{}) {
+	o.Reader = v
 }
 
 // GetAvailableSize returns the AvailableSize field value if set, zero value otherwise.
@@ -764,6 +668,102 @@ func (o *Representation) HasAvailableSize() bool {
 // SetAvailableSize gets a reference to the given int64 and assigns it to the AvailableSize field.
 func (o *Representation) SetAvailableSize(v int64) {
 	o.AvailableSize = &v
+}
+
+// GetRegistration returns the Registration field value if set, zero value otherwise.
+func (o *Representation) GetRegistration() SelectionRegistration {
+	if o == nil || IsNil(o.Registration) {
+		var ret SelectionRegistration
+		return ret
+	}
+	return *o.Registration
+}
+
+// GetRegistrationOk returns a tuple with the Registration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Representation) GetRegistrationOk() (*SelectionRegistration, bool) {
+	if o == nil || IsNil(o.Registration) {
+		return nil, false
+	}
+	return o.Registration, true
+}
+
+// HasRegistration returns a boolean if a field has been set.
+func (o *Representation) HasRegistration() bool {
+	if o != nil && !IsNil(o.Registration) {
+		return true
+	}
+
+	return false
+}
+
+// SetRegistration gets a reference to the given SelectionRegistration and assigns it to the Registration field.
+func (o *Representation) SetRegistration(v SelectionRegistration) {
+	o.Registration = &v
+}
+
+// GetStream returns the Stream field value if set, zero value otherwise.
+func (o *Representation) GetStream() map[string]interface{} {
+	if o == nil || IsNil(o.Stream) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Stream
+}
+
+// GetStreamOk returns a tuple with the Stream field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Representation) GetStreamOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Stream) {
+		return map[string]interface{}{}, false
+	}
+	return o.Stream, true
+}
+
+// HasStream returns a boolean if a field has been set.
+func (o *Representation) HasStream() bool {
+	if o != nil && !IsNil(o.Stream) {
+		return true
+	}
+
+	return false
+}
+
+// SetStream gets a reference to the given map[string]interface{} and assigns it to the Stream field.
+func (o *Representation) SetStream(v map[string]interface{}) {
+	o.Stream = v
+}
+
+// GetSelectable returns the Selectable field value if set, zero value otherwise.
+func (o *Representation) GetSelectable() bool {
+	if o == nil || IsNil(o.Selectable) {
+		var ret bool
+		return ret
+	}
+	return *o.Selectable
+}
+
+// GetSelectableOk returns a tuple with the Selectable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Representation) GetSelectableOk() (*bool, bool) {
+	if o == nil || IsNil(o.Selectable) {
+		return nil, false
+	}
+	return o.Selectable, true
+}
+
+// HasSelectable returns a boolean if a field has been set.
+func (o *Representation) HasSelectable() bool {
+	if o != nil && !IsNil(o.Selectable) {
+		return true
+	}
+
+	return false
+}
+
+// SetSelectable gets a reference to the given bool and assigns it to the Selectable field.
+func (o *Representation) SetSelectable(v bool) {
+	o.Selectable = &v
 }
 
 func (o Representation) MarshalJSON() ([]byte, error) {
@@ -815,32 +815,32 @@ func (o Representation) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Size) {
 		toSerialize["size"] = o.Size
 	}
-	if !IsNil(o.Stream) {
-		toSerialize["stream"] = o.Stream
-	}
 	if !IsNil(o.Empty) {
 		toSerialize["empty"] = o.Empty
-	}
-	if !IsNil(o.Transient) {
-		toSerialize["transient"] = o.Transient
 	}
 	if !IsNil(o.Channel) {
 		toSerialize["channel"] = o.Channel
 	}
-	if !IsNil(o.Reader) {
-		toSerialize["reader"] = o.Reader
+	if !IsNil(o.Transient) {
+		toSerialize["transient"] = o.Transient
 	}
 	if !IsNil(o.Text) {
 		toSerialize["text"] = o.Text
 	}
-	if !IsNil(o.Registration) {
-		toSerialize["registration"] = o.Registration
-	}
-	if !IsNil(o.Selectable) {
-		toSerialize["selectable"] = o.Selectable
+	if !IsNil(o.Reader) {
+		toSerialize["reader"] = o.Reader
 	}
 	if !IsNil(o.AvailableSize) {
 		toSerialize["availableSize"] = o.AvailableSize
+	}
+	if !IsNil(o.Registration) {
+		toSerialize["registration"] = o.Registration
+	}
+	if !IsNil(o.Stream) {
+		toSerialize["stream"] = o.Stream
+	}
+	if !IsNil(o.Selectable) {
+		toSerialize["selectable"] = o.Selectable
 	}
 	return toSerialize, nil
 }

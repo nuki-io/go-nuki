@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 3.13.1
+API version: 4.0.1
 Contact: contact@nuki.io
 */
 
@@ -48,8 +48,8 @@ type Request struct {
 	ResourceRef *Reference `json:"resourceRef,omitempty"`
 	RootRef *Reference `json:"rootRef,omitempty"`
 	Confidential *bool `json:"confidential,omitempty"`
-	Asynchronous *bool `json:"asynchronous,omitempty"`
 	EntityAvailable *bool `json:"entityAvailable,omitempty"`
+	Asynchronous *bool `json:"asynchronous,omitempty"`
 	ExpectingResponse *bool `json:"expectingResponse,omitempty"`
 	Synchronous *bool `json:"synchronous,omitempty"`
 	Headers []Header `json:"headers,omitempty"`
@@ -937,38 +937,6 @@ func (o *Request) SetConfidential(v bool) {
 	o.Confidential = &v
 }
 
-// GetAsynchronous returns the Asynchronous field value if set, zero value otherwise.
-func (o *Request) GetAsynchronous() bool {
-	if o == nil || IsNil(o.Asynchronous) {
-		var ret bool
-		return ret
-	}
-	return *o.Asynchronous
-}
-
-// GetAsynchronousOk returns a tuple with the Asynchronous field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Request) GetAsynchronousOk() (*bool, bool) {
-	if o == nil || IsNil(o.Asynchronous) {
-		return nil, false
-	}
-	return o.Asynchronous, true
-}
-
-// HasAsynchronous returns a boolean if a field has been set.
-func (o *Request) HasAsynchronous() bool {
-	if o != nil && !IsNil(o.Asynchronous) {
-		return true
-	}
-
-	return false
-}
-
-// SetAsynchronous gets a reference to the given bool and assigns it to the Asynchronous field.
-func (o *Request) SetAsynchronous(v bool) {
-	o.Asynchronous = &v
-}
-
 // GetEntityAvailable returns the EntityAvailable field value if set, zero value otherwise.
 func (o *Request) GetEntityAvailable() bool {
 	if o == nil || IsNil(o.EntityAvailable) {
@@ -999,6 +967,38 @@ func (o *Request) HasEntityAvailable() bool {
 // SetEntityAvailable gets a reference to the given bool and assigns it to the EntityAvailable field.
 func (o *Request) SetEntityAvailable(v bool) {
 	o.EntityAvailable = &v
+}
+
+// GetAsynchronous returns the Asynchronous field value if set, zero value otherwise.
+func (o *Request) GetAsynchronous() bool {
+	if o == nil || IsNil(o.Asynchronous) {
+		var ret bool
+		return ret
+	}
+	return *o.Asynchronous
+}
+
+// GetAsynchronousOk returns a tuple with the Asynchronous field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Request) GetAsynchronousOk() (*bool, bool) {
+	if o == nil || IsNil(o.Asynchronous) {
+		return nil, false
+	}
+	return o.Asynchronous, true
+}
+
+// HasAsynchronous returns a boolean if a field has been set.
+func (o *Request) HasAsynchronous() bool {
+	if o != nil && !IsNil(o.Asynchronous) {
+		return true
+	}
+
+	return false
+}
+
+// SetAsynchronous gets a reference to the given bool and assigns it to the Asynchronous field.
+func (o *Request) SetAsynchronous(v bool) {
+	o.Asynchronous = &v
 }
 
 // GetExpectingResponse returns the ExpectingResponse field value if set, zero value otherwise.
@@ -1220,11 +1220,11 @@ func (o Request) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Confidential) {
 		toSerialize["confidential"] = o.Confidential
 	}
-	if !IsNil(o.Asynchronous) {
-		toSerialize["asynchronous"] = o.Asynchronous
-	}
 	if !IsNil(o.EntityAvailable) {
 		toSerialize["entityAvailable"] = o.EntityAvailable
+	}
+	if !IsNil(o.Asynchronous) {
+		toSerialize["asynchronous"] = o.Asynchronous
 	}
 	if !IsNil(o.ExpectingResponse) {
 		toSerialize["expectingResponse"] = o.ExpectingResponse
