@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.0.1
+API version: 4.1.0
 Contact: contact@nuki.io
 */
 
@@ -30,6 +30,7 @@ type ShsSubscription struct {
 	IsInGracePeriod *bool `json:"isInGracePeriod,omitempty"`
 	IsGracePeriodWarningDismissed *bool `json:"isGracePeriodWarningDismissed,omitempty"`
 	GracePeriodWarningEmailSent *bool `json:"gracePeriodWarningEmailSent,omitempty"`
+	ContractId *string `json:"contractId,omitempty"`
 }
 
 // NewShsSubscription instantiates a new ShsSubscription object
@@ -337,6 +338,38 @@ func (o *ShsSubscription) SetGracePeriodWarningEmailSent(v bool) {
 	o.GracePeriodWarningEmailSent = &v
 }
 
+// GetContractId returns the ContractId field value if set, zero value otherwise.
+func (o *ShsSubscription) GetContractId() string {
+	if o == nil || IsNil(o.ContractId) {
+		var ret string
+		return ret
+	}
+	return *o.ContractId
+}
+
+// GetContractIdOk returns a tuple with the ContractId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ShsSubscription) GetContractIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ContractId) {
+		return nil, false
+	}
+	return o.ContractId, true
+}
+
+// HasContractId returns a boolean if a field has been set.
+func (o *ShsSubscription) HasContractId() bool {
+	if o != nil && !IsNil(o.ContractId) {
+		return true
+	}
+
+	return false
+}
+
+// SetContractId gets a reference to the given string and assigns it to the ContractId field.
+func (o *ShsSubscription) SetContractId(v string) {
+	o.ContractId = &v
+}
+
 func (o ShsSubscription) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -373,6 +406,9 @@ func (o ShsSubscription) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.GracePeriodWarningEmailSent) {
 		toSerialize["gracePeriodWarningEmailSent"] = o.GracePeriodWarningEmailSent
+	}
+	if !IsNil(o.ContractId) {
+		toSerialize["contractId"] = o.ContractId
 	}
 	return toSerialize, nil
 }

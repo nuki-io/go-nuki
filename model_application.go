@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.0.1
+API version: 4.1.0
 Contact: contact@nuki.io
 */
 
@@ -42,8 +42,8 @@ type Application struct {
 	DecoderService *DecoderService `json:"decoderService,omitempty"`
 	EncoderService *EncoderService `json:"encoderService,omitempty"`
 	Logger *Logger `json:"logger,omitempty"`
-	Stopped *bool `json:"stopped,omitempty"`
 	Application *Application `json:"application,omitempty"`
+	Stopped *bool `json:"stopped,omitempty"`
 }
 
 // NewApplication instantiates a new Application object
@@ -767,38 +767,6 @@ func (o *Application) SetLogger(v Logger) {
 	o.Logger = &v
 }
 
-// GetStopped returns the Stopped field value if set, zero value otherwise.
-func (o *Application) GetStopped() bool {
-	if o == nil || IsNil(o.Stopped) {
-		var ret bool
-		return ret
-	}
-	return *o.Stopped
-}
-
-// GetStoppedOk returns a tuple with the Stopped field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Application) GetStoppedOk() (*bool, bool) {
-	if o == nil || IsNil(o.Stopped) {
-		return nil, false
-	}
-	return o.Stopped, true
-}
-
-// HasStopped returns a boolean if a field has been set.
-func (o *Application) HasStopped() bool {
-	if o != nil && !IsNil(o.Stopped) {
-		return true
-	}
-
-	return false
-}
-
-// SetStopped gets a reference to the given bool and assigns it to the Stopped field.
-func (o *Application) SetStopped(v bool) {
-	o.Stopped = &v
-}
-
 // GetApplication returns the Application field value if set, zero value otherwise.
 func (o *Application) GetApplication() Application {
 	if o == nil || IsNil(o.Application) {
@@ -829,6 +797,38 @@ func (o *Application) HasApplication() bool {
 // SetApplication gets a reference to the given Application and assigns it to the Application field.
 func (o *Application) SetApplication(v Application) {
 	o.Application = &v
+}
+
+// GetStopped returns the Stopped field value if set, zero value otherwise.
+func (o *Application) GetStopped() bool {
+	if o == nil || IsNil(o.Stopped) {
+		var ret bool
+		return ret
+	}
+	return *o.Stopped
+}
+
+// GetStoppedOk returns a tuple with the Stopped field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Application) GetStoppedOk() (*bool, bool) {
+	if o == nil || IsNil(o.Stopped) {
+		return nil, false
+	}
+	return o.Stopped, true
+}
+
+// HasStopped returns a boolean if a field has been set.
+func (o *Application) HasStopped() bool {
+	if o != nil && !IsNil(o.Stopped) {
+		return true
+	}
+
+	return false
+}
+
+// SetStopped gets a reference to the given bool and assigns it to the Stopped field.
+func (o *Application) SetStopped(v bool) {
+	o.Stopped = &v
 }
 
 func (o Application) MarshalJSON() ([]byte, error) {
@@ -907,11 +907,11 @@ func (o Application) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Logger) {
 		toSerialize["logger"] = o.Logger
 	}
-	if !IsNil(o.Stopped) {
-		toSerialize["stopped"] = o.Stopped
-	}
 	if !IsNil(o.Application) {
 		toSerialize["application"] = o.Application
+	}
+	if !IsNil(o.Stopped) {
+		toSerialize["stopped"] = o.Stopped
 	}
 	return toSerialize, nil
 }
