@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.1.0
+API version: 4.2.0
 Contact: contact@nuki.io
 */
 
@@ -39,10 +39,10 @@ type ClientInfo struct {
 	Principals []Principal `json:"principals,omitempty"`
 	Roles []Role `json:"roles,omitempty"`
 	User *User `json:"user,omitempty"`
-	UpstreamAddress *string `json:"upstreamAddress,omitempty"`
 	AgentName *string `json:"agentName,omitempty"`
 	AgentVersion *string `json:"agentVersion,omitempty"`
 	MainAgentProduct *Product `json:"mainAgentProduct,omitempty"`
+	UpstreamAddress *string `json:"upstreamAddress,omitempty"`
 }
 
 // NewClientInfo instantiates a new ClientInfo object
@@ -670,38 +670,6 @@ func (o *ClientInfo) SetUser(v User) {
 	o.User = &v
 }
 
-// GetUpstreamAddress returns the UpstreamAddress field value if set, zero value otherwise.
-func (o *ClientInfo) GetUpstreamAddress() string {
-	if o == nil || IsNil(o.UpstreamAddress) {
-		var ret string
-		return ret
-	}
-	return *o.UpstreamAddress
-}
-
-// GetUpstreamAddressOk returns a tuple with the UpstreamAddress field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ClientInfo) GetUpstreamAddressOk() (*string, bool) {
-	if o == nil || IsNil(o.UpstreamAddress) {
-		return nil, false
-	}
-	return o.UpstreamAddress, true
-}
-
-// HasUpstreamAddress returns a boolean if a field has been set.
-func (o *ClientInfo) HasUpstreamAddress() bool {
-	if o != nil && !IsNil(o.UpstreamAddress) {
-		return true
-	}
-
-	return false
-}
-
-// SetUpstreamAddress gets a reference to the given string and assigns it to the UpstreamAddress field.
-func (o *ClientInfo) SetUpstreamAddress(v string) {
-	o.UpstreamAddress = &v
-}
-
 // GetAgentName returns the AgentName field value if set, zero value otherwise.
 func (o *ClientInfo) GetAgentName() string {
 	if o == nil || IsNil(o.AgentName) {
@@ -798,6 +766,38 @@ func (o *ClientInfo) SetMainAgentProduct(v Product) {
 	o.MainAgentProduct = &v
 }
 
+// GetUpstreamAddress returns the UpstreamAddress field value if set, zero value otherwise.
+func (o *ClientInfo) GetUpstreamAddress() string {
+	if o == nil || IsNil(o.UpstreamAddress) {
+		var ret string
+		return ret
+	}
+	return *o.UpstreamAddress
+}
+
+// GetUpstreamAddressOk returns a tuple with the UpstreamAddress field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ClientInfo) GetUpstreamAddressOk() (*string, bool) {
+	if o == nil || IsNil(o.UpstreamAddress) {
+		return nil, false
+	}
+	return o.UpstreamAddress, true
+}
+
+// HasUpstreamAddress returns a boolean if a field has been set.
+func (o *ClientInfo) HasUpstreamAddress() bool {
+	if o != nil && !IsNil(o.UpstreamAddress) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpstreamAddress gets a reference to the given string and assigns it to the UpstreamAddress field.
+func (o *ClientInfo) SetUpstreamAddress(v string) {
+	o.UpstreamAddress = &v
+}
+
 func (o ClientInfo) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -865,9 +865,6 @@ func (o ClientInfo) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.User) {
 		toSerialize["user"] = o.User
 	}
-	if !IsNil(o.UpstreamAddress) {
-		toSerialize["upstreamAddress"] = o.UpstreamAddress
-	}
 	if !IsNil(o.AgentName) {
 		toSerialize["agentName"] = o.AgentName
 	}
@@ -876,6 +873,9 @@ func (o ClientInfo) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.MainAgentProduct) {
 		toSerialize["mainAgentProduct"] = o.MainAgentProduct
+	}
+	if !IsNil(o.UpstreamAddress) {
+		toSerialize["upstreamAddress"] = o.UpstreamAddress
 	}
 	return toSerialize, nil
 }

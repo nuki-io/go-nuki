@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.1.0
+API version: 4.2.0
 Contact: contact@nuki.io
 */
 
@@ -28,10 +28,10 @@ type MetadataService struct {
 	DefaultLanguage *Language `json:"defaultLanguage,omitempty"`
 	DefaultMediaType *MediaType `json:"defaultMediaType,omitempty"`
 	AllEncodingExtensionNames []string `json:"allEncodingExtensionNames,omitempty"`
+	AllCharacterSetExtensionNames []string `json:"allCharacterSetExtensionNames,omitempty"`
 	AllExtensionNames []string `json:"allExtensionNames,omitempty"`
 	AllLanguageExtensionNames []string `json:"allLanguageExtensionNames,omitempty"`
 	AllMediaTypeExtensionNames []string `json:"allMediaTypeExtensionNames,omitempty"`
-	AllCharacterSetExtensionNames []string `json:"allCharacterSetExtensionNames,omitempty"`
 	Stopped *bool `json:"stopped,omitempty"`
 }
 
@@ -308,6 +308,38 @@ func (o *MetadataService) SetAllEncodingExtensionNames(v []string) {
 	o.AllEncodingExtensionNames = v
 }
 
+// GetAllCharacterSetExtensionNames returns the AllCharacterSetExtensionNames field value if set, zero value otherwise.
+func (o *MetadataService) GetAllCharacterSetExtensionNames() []string {
+	if o == nil || IsNil(o.AllCharacterSetExtensionNames) {
+		var ret []string
+		return ret
+	}
+	return o.AllCharacterSetExtensionNames
+}
+
+// GetAllCharacterSetExtensionNamesOk returns a tuple with the AllCharacterSetExtensionNames field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetadataService) GetAllCharacterSetExtensionNamesOk() ([]string, bool) {
+	if o == nil || IsNil(o.AllCharacterSetExtensionNames) {
+		return nil, false
+	}
+	return o.AllCharacterSetExtensionNames, true
+}
+
+// HasAllCharacterSetExtensionNames returns a boolean if a field has been set.
+func (o *MetadataService) HasAllCharacterSetExtensionNames() bool {
+	if o != nil && !IsNil(o.AllCharacterSetExtensionNames) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllCharacterSetExtensionNames gets a reference to the given []string and assigns it to the AllCharacterSetExtensionNames field.
+func (o *MetadataService) SetAllCharacterSetExtensionNames(v []string) {
+	o.AllCharacterSetExtensionNames = v
+}
+
 // GetAllExtensionNames returns the AllExtensionNames field value if set, zero value otherwise.
 func (o *MetadataService) GetAllExtensionNames() []string {
 	if o == nil || IsNil(o.AllExtensionNames) {
@@ -404,38 +436,6 @@ func (o *MetadataService) SetAllMediaTypeExtensionNames(v []string) {
 	o.AllMediaTypeExtensionNames = v
 }
 
-// GetAllCharacterSetExtensionNames returns the AllCharacterSetExtensionNames field value if set, zero value otherwise.
-func (o *MetadataService) GetAllCharacterSetExtensionNames() []string {
-	if o == nil || IsNil(o.AllCharacterSetExtensionNames) {
-		var ret []string
-		return ret
-	}
-	return o.AllCharacterSetExtensionNames
-}
-
-// GetAllCharacterSetExtensionNamesOk returns a tuple with the AllCharacterSetExtensionNames field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MetadataService) GetAllCharacterSetExtensionNamesOk() ([]string, bool) {
-	if o == nil || IsNil(o.AllCharacterSetExtensionNames) {
-		return nil, false
-	}
-	return o.AllCharacterSetExtensionNames, true
-}
-
-// HasAllCharacterSetExtensionNames returns a boolean if a field has been set.
-func (o *MetadataService) HasAllCharacterSetExtensionNames() bool {
-	if o != nil && !IsNil(o.AllCharacterSetExtensionNames) {
-		return true
-	}
-
-	return false
-}
-
-// SetAllCharacterSetExtensionNames gets a reference to the given []string and assigns it to the AllCharacterSetExtensionNames field.
-func (o *MetadataService) SetAllCharacterSetExtensionNames(v []string) {
-	o.AllCharacterSetExtensionNames = v
-}
-
 // GetStopped returns the Stopped field value if set, zero value otherwise.
 func (o *MetadataService) GetStopped() bool {
 	if o == nil || IsNil(o.Stopped) {
@@ -502,6 +502,9 @@ func (o MetadataService) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AllEncodingExtensionNames) {
 		toSerialize["allEncodingExtensionNames"] = o.AllEncodingExtensionNames
 	}
+	if !IsNil(o.AllCharacterSetExtensionNames) {
+		toSerialize["allCharacterSetExtensionNames"] = o.AllCharacterSetExtensionNames
+	}
 	if !IsNil(o.AllExtensionNames) {
 		toSerialize["allExtensionNames"] = o.AllExtensionNames
 	}
@@ -510,9 +513,6 @@ func (o MetadataService) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.AllMediaTypeExtensionNames) {
 		toSerialize["allMediaTypeExtensionNames"] = o.AllMediaTypeExtensionNames
-	}
-	if !IsNil(o.AllCharacterSetExtensionNames) {
-		toSerialize["allCharacterSetExtensionNames"] = o.AllCharacterSetExtensionNames
 	}
 	if !IsNil(o.Stopped) {
 		toSerialize["stopped"] = o.Stopped

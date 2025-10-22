@@ -10,7 +10,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://nuki.io/en/service/nukis-terms-of-use-apis/
   title: Nuki API
-  version: 4.1.0
+  version: 4.2.0
 servers:
 - url: /
 tags:
@@ -5010,12 +5010,12 @@ components:
               value: value
             - name: name
               value: value
+            hostIdentifier: hostIdentifier
             matrixAsForm:
             - name: name
               value: value
             - name: name
               value: value
-            hostIdentifier: hostIdentifier
             scheme: scheme
             extensionsAsArray:
             - extensionsAsArray
@@ -5102,16 +5102,16 @@ components:
           items:
             $ref: '#/components/schemas/Service'
           type: array
-        statusService:
-          $ref: '#/components/schemas/StatusService'
         connegService:
           $ref: '#/components/schemas/ConnegService'
-        metadataService:
-          $ref: '#/components/schemas/MetadataService'
         converterService:
           $ref: '#/components/schemas/ConverterService'
+        metadataService:
+          $ref: '#/components/schemas/MetadataService'
         rangeService:
           $ref: '#/components/schemas/RangeService'
+        statusService:
+          $ref: '#/components/schemas/StatusService'
         taskService:
           $ref: '#/components/schemas/TaskService'
         tunnelService:
@@ -5348,14 +5348,14 @@ components:
           type: array
         user:
           $ref: '#/components/schemas/User'
-        upstreamAddress:
-          type: string
         agentName:
           type: string
         agentVersion:
           type: string
         mainAgentProduct:
           $ref: '#/components/schemas/Product'
+        upstreamAddress:
+          type: string
       type: object
     Company:
       example:
@@ -5816,12 +5816,12 @@ components:
                   value: value
                 - name: name
                   value: value
+                hostIdentifier: hostIdentifier
                 matrixAsForm:
                 - name: name
                   value: value
                 - name: name
                   value: value
-                hostIdentifier: hostIdentifier
                 scheme: scheme
                 extensionsAsArray:
                 - extensionsAsArray
@@ -6268,12 +6268,12 @@ components:
                   value: value
                 - name: name
                   value: value
+                hostIdentifier: hostIdentifier
                 matrixAsForm:
                 - name: name
                   value: value
                 - name: name
                   value: value
-                hostIdentifier: hostIdentifier
                 scheme: scheme
                 extensionsAsArray:
                 - extensionsAsArray
@@ -7036,6 +7036,10 @@ components:
           items:
             type: string
           type: array
+        allCharacterSetExtensionNames:
+          items:
+            type: string
+          type: array
         allExtensionNames:
           items:
             type: string
@@ -7045,10 +7049,6 @@ components:
             type: string
           type: array
         allMediaTypeExtensionNames:
-          items:
-            type: string
-          type: array
-        allCharacterSetExtensionNames:
           items:
             type: string
           type: array
@@ -7668,12 +7668,12 @@ components:
           value: value
         - name: name
           value: value
+        hostIdentifier: hostIdentifier
         matrixAsForm:
         - name: name
           value: value
         - name: name
           value: value
-        hostIdentifier: hostIdentifier
         scheme: scheme
         extensionsAsArray:
         - extensionsAsArray
@@ -7706,38 +7706,28 @@ components:
       properties:
         baseRef:
           $ref: '#/components/schemas/Reference'
-        scheme:
-          type: string
-        fragment:
-          type: string
-        userInfo:
-          type: string
-        path:
-          type: string
-        query:
-          type: string
         absolute:
           type: boolean
+        scheme:
+          type: string
         opaque:
           type: boolean
         authority:
           type: string
         relative:
           type: boolean
+        query:
+          type: string
+        path:
+          type: string
+        userInfo:
+          type: string
         schemeSpecificPart:
+          type: string
+        fragment:
           type: string
         extensions:
           type: string
-        matrix:
-          type: string
-        matrixAsForm:
-          items:
-            $ref: '#/components/schemas/Parameter'
-          type: array
-        queryAsForm:
-          items:
-            $ref: '#/components/schemas/Parameter'
-          type: array
         extensionsAsArray:
           items:
             type: string
@@ -7773,6 +7763,16 @@ components:
           type: boolean
         identifier:
           type: string
+        matrix:
+          type: string
+        matrixAsForm:
+          items:
+            $ref: '#/components/schemas/Parameter'
+          type: array
+        queryAsForm:
+          items:
+            $ref: '#/components/schemas/Parameter'
+          type: array
       type: object
     Representation:
       properties:
@@ -7901,15 +7901,15 @@ components:
           $ref: '#/components/schemas/Reference'
         rootRef:
           $ref: '#/components/schemas/Reference'
-        confidential:
+        asynchronous:
           type: boolean
         entityAvailable:
-          type: boolean
-        asynchronous:
           type: boolean
         expectingResponse:
           type: boolean
         synchronous:
+          type: boolean
+        confidential:
           type: boolean
         entityAsText:
           type: string
@@ -8070,9 +8070,9 @@ components:
           $ref: '#/components/schemas/Status'
         final:
           type: boolean
-        confidential:
-          type: boolean
         provisional:
+          type: boolean
+        confidential:
           type: boolean
         entityAvailable:
           type: boolean
@@ -8412,12 +8412,12 @@ components:
                 value: value
               - name: name
                 value: value
+              hostIdentifier: hostIdentifier
               matrixAsForm:
               - name: name
                 value: value
               - name: name
                 value: value
-              hostIdentifier: hostIdentifier
               scheme: scheme
               extensionsAsArray:
               - extensionsAsArray
@@ -8963,12 +8963,12 @@ components:
                     value: value
                   - name: name
                     value: value
+                  hostIdentifier: hostIdentifier
                   matrixAsForm:
                   - name: name
                     value: value
                   - name: name
                     value: value
-                  hostIdentifier: hostIdentifier
                   scheme: scheme
                   extensionsAsArray:
                   - extensionsAsArray
@@ -9415,12 +9415,12 @@ components:
                     value: value
                   - name: name
                     value: value
+                  hostIdentifier: hostIdentifier
                   matrixAsForm:
                   - name: name
                     value: value
                   - name: name
                     value: value
-                  hostIdentifier: hostIdentifier
                   scheme: scheme
                   extensionsAsArray:
                   - extensionsAsArray
@@ -11418,12 +11418,6 @@ components:
           type: boolean
         success:
           type: boolean
-        serverError:
-          type: boolean
-        connectorError:
-          type: boolean
-        clientError:
-          type: boolean
         globalError:
           type: boolean
         informational:
@@ -11431,6 +11425,12 @@ components:
         redirection:
           type: boolean
         recoverableError:
+          type: boolean
+        serverError:
+          type: boolean
+        connectorError:
+          type: boolean
+        clientError:
           type: boolean
       type: object
     StatusService:
@@ -11511,12 +11511,12 @@ components:
             value: value
           - name: name
             value: value
+          hostIdentifier: hostIdentifier
           matrixAsForm:
           - name: name
             value: value
           - name: name
             value: value
-          hostIdentifier: hostIdentifier
           scheme: scheme
           extensionsAsArray:
           - extensionsAsArray

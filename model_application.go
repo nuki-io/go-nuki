@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.1.0
+API version: 4.2.0
 Contact: contact@nuki.io
 */
 
@@ -31,11 +31,11 @@ type Application struct {
 	OutboundRoot *Restlet `json:"outboundRoot,omitempty"`
 	Roles []Role `json:"roles,omitempty"`
 	Services []Service `json:"services,omitempty"`
-	StatusService *StatusService `json:"statusService,omitempty"`
 	ConnegService *ConnegService `json:"connegService,omitempty"`
-	MetadataService *MetadataService `json:"metadataService,omitempty"`
 	ConverterService *ConverterService `json:"converterService,omitempty"`
+	MetadataService *MetadataService `json:"metadataService,omitempty"`
 	RangeService *RangeService `json:"rangeService,omitempty"`
+	StatusService *StatusService `json:"statusService,omitempty"`
 	TaskService *TaskService `json:"taskService,omitempty"`
 	TunnelService *TunnelService `json:"tunnelService,omitempty"`
 	ConnectorService *ConnectorService `json:"connectorService,omitempty"`
@@ -415,38 +415,6 @@ func (o *Application) SetServices(v []Service) {
 	o.Services = v
 }
 
-// GetStatusService returns the StatusService field value if set, zero value otherwise.
-func (o *Application) GetStatusService() StatusService {
-	if o == nil || IsNil(o.StatusService) {
-		var ret StatusService
-		return ret
-	}
-	return *o.StatusService
-}
-
-// GetStatusServiceOk returns a tuple with the StatusService field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Application) GetStatusServiceOk() (*StatusService, bool) {
-	if o == nil || IsNil(o.StatusService) {
-		return nil, false
-	}
-	return o.StatusService, true
-}
-
-// HasStatusService returns a boolean if a field has been set.
-func (o *Application) HasStatusService() bool {
-	if o != nil && !IsNil(o.StatusService) {
-		return true
-	}
-
-	return false
-}
-
-// SetStatusService gets a reference to the given StatusService and assigns it to the StatusService field.
-func (o *Application) SetStatusService(v StatusService) {
-	o.StatusService = &v
-}
-
 // GetConnegService returns the ConnegService field value if set, zero value otherwise.
 func (o *Application) GetConnegService() ConnegService {
 	if o == nil || IsNil(o.ConnegService) {
@@ -477,38 +445,6 @@ func (o *Application) HasConnegService() bool {
 // SetConnegService gets a reference to the given ConnegService and assigns it to the ConnegService field.
 func (o *Application) SetConnegService(v ConnegService) {
 	o.ConnegService = &v
-}
-
-// GetMetadataService returns the MetadataService field value if set, zero value otherwise.
-func (o *Application) GetMetadataService() MetadataService {
-	if o == nil || IsNil(o.MetadataService) {
-		var ret MetadataService
-		return ret
-	}
-	return *o.MetadataService
-}
-
-// GetMetadataServiceOk returns a tuple with the MetadataService field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Application) GetMetadataServiceOk() (*MetadataService, bool) {
-	if o == nil || IsNil(o.MetadataService) {
-		return nil, false
-	}
-	return o.MetadataService, true
-}
-
-// HasMetadataService returns a boolean if a field has been set.
-func (o *Application) HasMetadataService() bool {
-	if o != nil && !IsNil(o.MetadataService) {
-		return true
-	}
-
-	return false
-}
-
-// SetMetadataService gets a reference to the given MetadataService and assigns it to the MetadataService field.
-func (o *Application) SetMetadataService(v MetadataService) {
-	o.MetadataService = &v
 }
 
 // GetConverterService returns the ConverterService field value if set, zero value otherwise.
@@ -543,6 +479,38 @@ func (o *Application) SetConverterService(v ConverterService) {
 	o.ConverterService = &v
 }
 
+// GetMetadataService returns the MetadataService field value if set, zero value otherwise.
+func (o *Application) GetMetadataService() MetadataService {
+	if o == nil || IsNil(o.MetadataService) {
+		var ret MetadataService
+		return ret
+	}
+	return *o.MetadataService
+}
+
+// GetMetadataServiceOk returns a tuple with the MetadataService field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Application) GetMetadataServiceOk() (*MetadataService, bool) {
+	if o == nil || IsNil(o.MetadataService) {
+		return nil, false
+	}
+	return o.MetadataService, true
+}
+
+// HasMetadataService returns a boolean if a field has been set.
+func (o *Application) HasMetadataService() bool {
+	if o != nil && !IsNil(o.MetadataService) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadataService gets a reference to the given MetadataService and assigns it to the MetadataService field.
+func (o *Application) SetMetadataService(v MetadataService) {
+	o.MetadataService = &v
+}
+
 // GetRangeService returns the RangeService field value if set, zero value otherwise.
 func (o *Application) GetRangeService() RangeService {
 	if o == nil || IsNil(o.RangeService) {
@@ -573,6 +541,38 @@ func (o *Application) HasRangeService() bool {
 // SetRangeService gets a reference to the given RangeService and assigns it to the RangeService field.
 func (o *Application) SetRangeService(v RangeService) {
 	o.RangeService = &v
+}
+
+// GetStatusService returns the StatusService field value if set, zero value otherwise.
+func (o *Application) GetStatusService() StatusService {
+	if o == nil || IsNil(o.StatusService) {
+		var ret StatusService
+		return ret
+	}
+	return *o.StatusService
+}
+
+// GetStatusServiceOk returns a tuple with the StatusService field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Application) GetStatusServiceOk() (*StatusService, bool) {
+	if o == nil || IsNil(o.StatusService) {
+		return nil, false
+	}
+	return o.StatusService, true
+}
+
+// HasStatusService returns a boolean if a field has been set.
+func (o *Application) HasStatusService() bool {
+	if o != nil && !IsNil(o.StatusService) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatusService gets a reference to the given StatusService and assigns it to the StatusService field.
+func (o *Application) SetStatusService(v StatusService) {
+	o.StatusService = &v
 }
 
 // GetTaskService returns the TaskService field value if set, zero value otherwise.
@@ -874,20 +874,20 @@ func (o Application) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Services) {
 		toSerialize["services"] = o.Services
 	}
-	if !IsNil(o.StatusService) {
-		toSerialize["statusService"] = o.StatusService
-	}
 	if !IsNil(o.ConnegService) {
 		toSerialize["connegService"] = o.ConnegService
-	}
-	if !IsNil(o.MetadataService) {
-		toSerialize["metadataService"] = o.MetadataService
 	}
 	if !IsNil(o.ConverterService) {
 		toSerialize["converterService"] = o.ConverterService
 	}
+	if !IsNil(o.MetadataService) {
+		toSerialize["metadataService"] = o.MetadataService
+	}
 	if !IsNil(o.RangeService) {
 		toSerialize["rangeService"] = o.RangeService
+	}
+	if !IsNil(o.StatusService) {
+		toSerialize["statusService"] = o.StatusService
 	}
 	if !IsNil(o.TaskService) {
 		toSerialize["taskService"] = o.TaskService
