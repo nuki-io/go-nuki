@@ -10,7 +10,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://nuki.io/en/service/nukis-terms-of-use-apis/
   title: Nuki API
-  version: 4.2.0
+  version: 4.3.0
 servers:
 - url: /
 tags:
@@ -7318,13 +7318,13 @@ components:
         date:
           format: date-time
           type: string
-        machineIdentifier:
-          format: int32
-          type: integer
         processIdentifier:
           format: int32
           type: integer
         timeSecond:
+          format: int32
+          type: integer
+        machineIdentifier:
           format: int32
           type: integer
       type: object
