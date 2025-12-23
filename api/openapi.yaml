@@ -10,7 +10,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://nuki.io/en/service/nukis-terms-of-use-apis/
   title: Nuki API
-  version: 4.3.0
+  version: 4.4.1
 servers:
 - url: /
 tags:
@@ -4037,9 +4037,9 @@ components:
           type: boolean
         hasCustomAccessTimes:
           type: boolean
-        currentlyIssuingAuth:
-          type: boolean
         currentlyRevokingAuth:
+          type: boolean
+        currentlyIssuingAuth:
           type: boolean
       required:
       - accountId
@@ -5010,12 +5010,12 @@ components:
               value: value
             - name: name
               value: value
-            hostIdentifier: hostIdentifier
             matrixAsForm:
             - name: name
               value: value
             - name: name
               value: value
+            hostIdentifier: hostIdentifier
             scheme: scheme
             extensionsAsArray:
             - extensionsAsArray
@@ -5102,16 +5102,16 @@ components:
           items:
             $ref: '#/components/schemas/Service'
           type: array
-        connegService:
-          $ref: '#/components/schemas/ConnegService'
-        converterService:
-          $ref: '#/components/schemas/ConverterService'
-        metadataService:
-          $ref: '#/components/schemas/MetadataService'
-        rangeService:
-          $ref: '#/components/schemas/RangeService'
         statusService:
           $ref: '#/components/schemas/StatusService'
+        connegService:
+          $ref: '#/components/schemas/ConnegService'
+        metadataService:
+          $ref: '#/components/schemas/MetadataService'
+        converterService:
+          $ref: '#/components/schemas/ConverterService'
+        rangeService:
+          $ref: '#/components/schemas/RangeService'
         taskService:
           $ref: '#/components/schemas/TaskService'
         tunnelService:
@@ -5348,14 +5348,14 @@ components:
           type: array
         user:
           $ref: '#/components/schemas/User'
+        upstreamAddress:
+          type: string
         agentName:
           type: string
         agentVersion:
           type: string
         mainAgentProduct:
           $ref: '#/components/schemas/Product'
-        upstreamAddress:
-          type: string
       type: object
     Company:
       example:
@@ -5816,12 +5816,12 @@ components:
                   value: value
                 - name: name
                   value: value
-                hostIdentifier: hostIdentifier
                 matrixAsForm:
                 - name: name
                   value: value
                 - name: name
                   value: value
+                hostIdentifier: hostIdentifier
                 scheme: scheme
                 extensionsAsArray:
                 - extensionsAsArray
@@ -6268,12 +6268,12 @@ components:
                   value: value
                 - name: name
                   value: value
-                hostIdentifier: hostIdentifier
                 matrixAsForm:
                 - name: name
                   value: value
                 - name: name
                   value: value
+                hostIdentifier: hostIdentifier
                 scheme: scheme
                 extensionsAsArray:
                 - extensionsAsArray
@@ -7318,13 +7318,13 @@ components:
         date:
           format: date-time
           type: string
+        machineIdentifier:
+          format: int32
+          type: integer
         processIdentifier:
           format: int32
           type: integer
         timeSecond:
-          format: int32
-          type: integer
-        machineIdentifier:
           format: int32
           type: integer
       type: object
@@ -7668,12 +7668,12 @@ components:
           value: value
         - name: name
           value: value
-        hostIdentifier: hostIdentifier
         matrixAsForm:
         - name: name
           value: value
         - name: name
           value: value
+        hostIdentifier: hostIdentifier
         scheme: scheme
         extensionsAsArray:
         - extensionsAsArray
@@ -7728,6 +7728,16 @@ components:
           type: string
         extensions:
           type: string
+        matrix:
+          type: string
+        matrixAsForm:
+          items:
+            $ref: '#/components/schemas/Parameter'
+          type: array
+        queryAsForm:
+          items:
+            $ref: '#/components/schemas/Parameter'
+          type: array
         extensionsAsArray:
           items:
             type: string
@@ -7763,16 +7773,6 @@ components:
           type: boolean
         identifier:
           type: string
-        matrix:
-          type: string
-        matrixAsForm:
-          items:
-            $ref: '#/components/schemas/Parameter'
-          type: array
-        queryAsForm:
-          items:
-            $ref: '#/components/schemas/Parameter'
-          type: array
       type: object
     Representation:
       properties:
@@ -7901,6 +7901,8 @@ components:
           $ref: '#/components/schemas/Reference'
         rootRef:
           $ref: '#/components/schemas/Reference'
+        confidential:
+          type: boolean
         asynchronous:
           type: boolean
         entityAvailable:
@@ -7908,8 +7910,6 @@ components:
         expectingResponse:
           type: boolean
         synchronous:
-          type: boolean
-        confidential:
           type: boolean
         entityAsText:
           type: string
@@ -8070,9 +8070,9 @@ components:
           $ref: '#/components/schemas/Status'
         final:
           type: boolean
-        provisional:
-          type: boolean
         confidential:
+          type: boolean
+        provisional:
           type: boolean
         entityAvailable:
           type: boolean
@@ -8412,12 +8412,12 @@ components:
                 value: value
               - name: name
                 value: value
-              hostIdentifier: hostIdentifier
               matrixAsForm:
               - name: name
                 value: value
               - name: name
                 value: value
+              hostIdentifier: hostIdentifier
               scheme: scheme
               extensionsAsArray:
               - extensionsAsArray
@@ -8963,12 +8963,12 @@ components:
                     value: value
                   - name: name
                     value: value
-                  hostIdentifier: hostIdentifier
                   matrixAsForm:
                   - name: name
                     value: value
                   - name: name
                     value: value
+                  hostIdentifier: hostIdentifier
                   scheme: scheme
                   extensionsAsArray:
                   - extensionsAsArray
@@ -9415,12 +9415,12 @@ components:
                     value: value
                   - name: name
                     value: value
-                  hostIdentifier: hostIdentifier
                   matrixAsForm:
                   - name: name
                     value: value
                   - name: name
                     value: value
+                  hostIdentifier: hostIdentifier
                   scheme: scheme
                   extensionsAsArray:
                   - extensionsAsArray
@@ -11418,6 +11418,12 @@ components:
           type: boolean
         success:
           type: boolean
+        serverError:
+          type: boolean
+        connectorError:
+          type: boolean
+        clientError:
+          type: boolean
         globalError:
           type: boolean
         informational:
@@ -11425,12 +11431,6 @@ components:
         redirection:
           type: boolean
         recoverableError:
-          type: boolean
-        serverError:
-          type: boolean
-        connectorError:
-          type: boolean
-        clientError:
           type: boolean
       type: object
     StatusService:
@@ -11511,12 +11511,12 @@ components:
             value: value
           - name: name
             value: value
-          hostIdentifier: hostIdentifier
           matrixAsForm:
           - name: name
             value: value
           - name: name
             value: value
+          hostIdentifier: hostIdentifier
           scheme: scheme
           extensionsAsArray:
           - extensionsAsArray

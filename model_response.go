@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.3.0
+API version: 4.4.1
 Contact: contact@nuki.io
 */
 
@@ -50,8 +50,8 @@ type Response struct {
 	ServerInfo *ServerInfo `json:"serverInfo,omitempty"`
 	Status *Status `json:"status,omitempty"`
 	Final *bool `json:"final,omitempty"`
-	Provisional *bool `json:"provisional,omitempty"`
 	Confidential *bool `json:"confidential,omitempty"`
+	Provisional *bool `json:"provisional,omitempty"`
 	EntityAvailable *bool `json:"entityAvailable,omitempty"`
 	EntityAsText *string `json:"entityAsText,omitempty"`
 	Headers []Header `json:"headers,omitempty"`
@@ -1002,38 +1002,6 @@ func (o *Response) SetFinal(v bool) {
 	o.Final = &v
 }
 
-// GetProvisional returns the Provisional field value if set, zero value otherwise.
-func (o *Response) GetProvisional() bool {
-	if o == nil || IsNil(o.Provisional) {
-		var ret bool
-		return ret
-	}
-	return *o.Provisional
-}
-
-// GetProvisionalOk returns a tuple with the Provisional field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Response) GetProvisionalOk() (*bool, bool) {
-	if o == nil || IsNil(o.Provisional) {
-		return nil, false
-	}
-	return o.Provisional, true
-}
-
-// HasProvisional returns a boolean if a field has been set.
-func (o *Response) HasProvisional() bool {
-	if o != nil && !IsNil(o.Provisional) {
-		return true
-	}
-
-	return false
-}
-
-// SetProvisional gets a reference to the given bool and assigns it to the Provisional field.
-func (o *Response) SetProvisional(v bool) {
-	o.Provisional = &v
-}
-
 // GetConfidential returns the Confidential field value if set, zero value otherwise.
 func (o *Response) GetConfidential() bool {
 	if o == nil || IsNil(o.Confidential) {
@@ -1064,6 +1032,38 @@ func (o *Response) HasConfidential() bool {
 // SetConfidential gets a reference to the given bool and assigns it to the Confidential field.
 func (o *Response) SetConfidential(v bool) {
 	o.Confidential = &v
+}
+
+// GetProvisional returns the Provisional field value if set, zero value otherwise.
+func (o *Response) GetProvisional() bool {
+	if o == nil || IsNil(o.Provisional) {
+		var ret bool
+		return ret
+	}
+	return *o.Provisional
+}
+
+// GetProvisionalOk returns a tuple with the Provisional field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Response) GetProvisionalOk() (*bool, bool) {
+	if o == nil || IsNil(o.Provisional) {
+		return nil, false
+	}
+	return o.Provisional, true
+}
+
+// HasProvisional returns a boolean if a field has been set.
+func (o *Response) HasProvisional() bool {
+	if o != nil && !IsNil(o.Provisional) {
+		return true
+	}
+
+	return false
+}
+
+// SetProvisional gets a reference to the given bool and assigns it to the Provisional field.
+func (o *Response) SetProvisional(v bool) {
+	o.Provisional = &v
 }
 
 // GetEntityAvailable returns the EntityAvailable field value if set, zero value otherwise.
@@ -1259,11 +1259,11 @@ func (o Response) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Final) {
 		toSerialize["final"] = o.Final
 	}
-	if !IsNil(o.Provisional) {
-		toSerialize["provisional"] = o.Provisional
-	}
 	if !IsNil(o.Confidential) {
 		toSerialize["confidential"] = o.Confidential
+	}
+	if !IsNil(o.Provisional) {
+		toSerialize["provisional"] = o.Provisional
 	}
 	if !IsNil(o.EntityAvailable) {
 		toSerialize["entityAvailable"] = o.EntityAvailable

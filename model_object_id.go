@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.3.0
+API version: 4.4.1
 Contact: contact@nuki.io
 */
 
@@ -25,9 +25,9 @@ type ObjectId struct {
 	Counter *int32 `json:"counter,omitempty"`
 	Time *int64 `json:"time,omitempty"`
 	Date *time.Time `json:"date,omitempty"`
+	MachineIdentifier *int32 `json:"machineIdentifier,omitempty"`
 	ProcessIdentifier *int32 `json:"processIdentifier,omitempty"`
 	TimeSecond *int32 `json:"timeSecond,omitempty"`
-	MachineIdentifier *int32 `json:"machineIdentifier,omitempty"`
 }
 
 // NewObjectId instantiates a new ObjectId object
@@ -175,6 +175,38 @@ func (o *ObjectId) SetDate(v time.Time) {
 	o.Date = &v
 }
 
+// GetMachineIdentifier returns the MachineIdentifier field value if set, zero value otherwise.
+func (o *ObjectId) GetMachineIdentifier() int32 {
+	if o == nil || IsNil(o.MachineIdentifier) {
+		var ret int32
+		return ret
+	}
+	return *o.MachineIdentifier
+}
+
+// GetMachineIdentifierOk returns a tuple with the MachineIdentifier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObjectId) GetMachineIdentifierOk() (*int32, bool) {
+	if o == nil || IsNil(o.MachineIdentifier) {
+		return nil, false
+	}
+	return o.MachineIdentifier, true
+}
+
+// HasMachineIdentifier returns a boolean if a field has been set.
+func (o *ObjectId) HasMachineIdentifier() bool {
+	if o != nil && !IsNil(o.MachineIdentifier) {
+		return true
+	}
+
+	return false
+}
+
+// SetMachineIdentifier gets a reference to the given int32 and assigns it to the MachineIdentifier field.
+func (o *ObjectId) SetMachineIdentifier(v int32) {
+	o.MachineIdentifier = &v
+}
+
 // GetProcessIdentifier returns the ProcessIdentifier field value if set, zero value otherwise.
 func (o *ObjectId) GetProcessIdentifier() int32 {
 	if o == nil || IsNil(o.ProcessIdentifier) {
@@ -239,38 +271,6 @@ func (o *ObjectId) SetTimeSecond(v int32) {
 	o.TimeSecond = &v
 }
 
-// GetMachineIdentifier returns the MachineIdentifier field value if set, zero value otherwise.
-func (o *ObjectId) GetMachineIdentifier() int32 {
-	if o == nil || IsNil(o.MachineIdentifier) {
-		var ret int32
-		return ret
-	}
-	return *o.MachineIdentifier
-}
-
-// GetMachineIdentifierOk returns a tuple with the MachineIdentifier field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ObjectId) GetMachineIdentifierOk() (*int32, bool) {
-	if o == nil || IsNil(o.MachineIdentifier) {
-		return nil, false
-	}
-	return o.MachineIdentifier, true
-}
-
-// HasMachineIdentifier returns a boolean if a field has been set.
-func (o *ObjectId) HasMachineIdentifier() bool {
-	if o != nil && !IsNil(o.MachineIdentifier) {
-		return true
-	}
-
-	return false
-}
-
-// SetMachineIdentifier gets a reference to the given int32 and assigns it to the MachineIdentifier field.
-func (o *ObjectId) SetMachineIdentifier(v int32) {
-	o.MachineIdentifier = &v
-}
-
 func (o ObjectId) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -293,14 +293,14 @@ func (o ObjectId) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Date) {
 		toSerialize["date"] = o.Date
 	}
+	if !IsNil(o.MachineIdentifier) {
+		toSerialize["machineIdentifier"] = o.MachineIdentifier
+	}
 	if !IsNil(o.ProcessIdentifier) {
 		toSerialize["processIdentifier"] = o.ProcessIdentifier
 	}
 	if !IsNil(o.TimeSecond) {
 		toSerialize["timeSecond"] = o.TimeSecond
-	}
-	if !IsNil(o.MachineIdentifier) {
-		toSerialize["machineIdentifier"] = o.MachineIdentifier
 	}
 	return toSerialize, nil
 }
