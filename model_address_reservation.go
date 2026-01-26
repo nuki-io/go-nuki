@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.4.1
+API version: 4.5.0
 Contact: contact@nuki.io
 */
 
@@ -58,8 +58,8 @@ type AddressReservation struct {
 	IsCurrentlyIssuingAuth bool `json:"isCurrentlyIssuingAuth"`
 	IsCurrentlyRevokingAuth bool `json:"isCurrentlyRevokingAuth"`
 	HasCustomAccessTimes bool `json:"hasCustomAccessTimes"`
-	CurrentlyRevokingAuth *bool `json:"currentlyRevokingAuth,omitempty"`
 	CurrentlyIssuingAuth *bool `json:"currentlyIssuingAuth,omitempty"`
+	CurrentlyRevokingAuth *bool `json:"currentlyRevokingAuth,omitempty"`
 }
 
 type _AddressReservation AddressReservation
@@ -577,38 +577,6 @@ func (o *AddressReservation) SetHasCustomAccessTimes(v bool) {
 	o.HasCustomAccessTimes = v
 }
 
-// GetCurrentlyRevokingAuth returns the CurrentlyRevokingAuth field value if set, zero value otherwise.
-func (o *AddressReservation) GetCurrentlyRevokingAuth() bool {
-	if o == nil || IsNil(o.CurrentlyRevokingAuth) {
-		var ret bool
-		return ret
-	}
-	return *o.CurrentlyRevokingAuth
-}
-
-// GetCurrentlyRevokingAuthOk returns a tuple with the CurrentlyRevokingAuth field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AddressReservation) GetCurrentlyRevokingAuthOk() (*bool, bool) {
-	if o == nil || IsNil(o.CurrentlyRevokingAuth) {
-		return nil, false
-	}
-	return o.CurrentlyRevokingAuth, true
-}
-
-// HasCurrentlyRevokingAuth returns a boolean if a field has been set.
-func (o *AddressReservation) HasCurrentlyRevokingAuth() bool {
-	if o != nil && !IsNil(o.CurrentlyRevokingAuth) {
-		return true
-	}
-
-	return false
-}
-
-// SetCurrentlyRevokingAuth gets a reference to the given bool and assigns it to the CurrentlyRevokingAuth field.
-func (o *AddressReservation) SetCurrentlyRevokingAuth(v bool) {
-	o.CurrentlyRevokingAuth = &v
-}
-
 // GetCurrentlyIssuingAuth returns the CurrentlyIssuingAuth field value if set, zero value otherwise.
 func (o *AddressReservation) GetCurrentlyIssuingAuth() bool {
 	if o == nil || IsNil(o.CurrentlyIssuingAuth) {
@@ -639,6 +607,38 @@ func (o *AddressReservation) HasCurrentlyIssuingAuth() bool {
 // SetCurrentlyIssuingAuth gets a reference to the given bool and assigns it to the CurrentlyIssuingAuth field.
 func (o *AddressReservation) SetCurrentlyIssuingAuth(v bool) {
 	o.CurrentlyIssuingAuth = &v
+}
+
+// GetCurrentlyRevokingAuth returns the CurrentlyRevokingAuth field value if set, zero value otherwise.
+func (o *AddressReservation) GetCurrentlyRevokingAuth() bool {
+	if o == nil || IsNil(o.CurrentlyRevokingAuth) {
+		var ret bool
+		return ret
+	}
+	return *o.CurrentlyRevokingAuth
+}
+
+// GetCurrentlyRevokingAuthOk returns a tuple with the CurrentlyRevokingAuth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AddressReservation) GetCurrentlyRevokingAuthOk() (*bool, bool) {
+	if o == nil || IsNil(o.CurrentlyRevokingAuth) {
+		return nil, false
+	}
+	return o.CurrentlyRevokingAuth, true
+}
+
+// HasCurrentlyRevokingAuth returns a boolean if a field has been set.
+func (o *AddressReservation) HasCurrentlyRevokingAuth() bool {
+	if o != nil && !IsNil(o.CurrentlyRevokingAuth) {
+		return true
+	}
+
+	return false
+}
+
+// SetCurrentlyRevokingAuth gets a reference to the given bool and assigns it to the CurrentlyRevokingAuth field.
+func (o *AddressReservation) SetCurrentlyRevokingAuth(v bool) {
+	o.CurrentlyRevokingAuth = &v
 }
 
 func (o AddressReservation) MarshalJSON() ([]byte, error) {
@@ -676,11 +676,11 @@ func (o AddressReservation) ToMap() (map[string]interface{}, error) {
 	toSerialize["isCurrentlyIssuingAuth"] = o.IsCurrentlyIssuingAuth
 	toSerialize["isCurrentlyRevokingAuth"] = o.IsCurrentlyRevokingAuth
 	toSerialize["hasCustomAccessTimes"] = o.HasCustomAccessTimes
-	if !IsNil(o.CurrentlyRevokingAuth) {
-		toSerialize["currentlyRevokingAuth"] = o.CurrentlyRevokingAuth
-	}
 	if !IsNil(o.CurrentlyIssuingAuth) {
 		toSerialize["currentlyIssuingAuth"] = o.CurrentlyIssuingAuth
+	}
+	if !IsNil(o.CurrentlyRevokingAuth) {
+		toSerialize["currentlyRevokingAuth"] = o.CurrentlyRevokingAuth
 	}
 	return toSerialize, nil
 }

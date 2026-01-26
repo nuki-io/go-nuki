@@ -10,7 +10,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://nuki.io/en/service/nukis-terms-of-use-apis/
   title: Nuki API
-  version: 4.4.1
+  version: 4.5.0
 servers:
 - url: /
 tags:
@@ -4037,9 +4037,9 @@ components:
           type: boolean
         hasCustomAccessTimes:
           type: boolean
-        currentlyRevokingAuth:
-          type: boolean
         currentlyIssuingAuth:
+          type: boolean
+        currentlyRevokingAuth:
           type: boolean
       required:
       - accountId
@@ -5031,8 +5031,8 @@ components:
             hostDomain: hostDomain
             relativePart: relativePart
             hostPort: 0
-            targetRef: null
             identifier: identifier
+            targetRef: null
             opaque: true
             remainingPart: remainingPart
             query: query
@@ -5124,10 +5124,10 @@ components:
           $ref: '#/components/schemas/EncoderService'
         logger:
           $ref: '#/components/schemas/Logger'
-        application:
-          $ref: '#/components/schemas/Application'
         stopped:
           type: boolean
+        application:
+          $ref: '#/components/schemas/Application'
       type: object
     AuthenticationInfo:
       properties:
@@ -5837,8 +5837,8 @@ components:
                 hostDomain: hostDomain
                 relativePart: relativePart
                 hostPort: 0
-                targetRef: null
                 identifier: identifier
+                targetRef: null
                 opaque: true
                 remainingPart: remainingPart
                 query: query
@@ -6289,8 +6289,8 @@ components:
                 hostDomain: hostDomain
                 relativePart: relativePart
                 hostPort: 0
-                targetRef: null
                 identifier: identifier
+                targetRef: null
                 opaque: true
                 remainingPart: remainingPart
                 query: query
@@ -7689,8 +7689,8 @@ components:
         hostDomain: hostDomain
         relativePart: relativePart
         hostPort: 0
-        targetRef: null
         identifier: identifier
+        targetRef: null
         opaque: true
         remainingPart: remainingPart
         query: query
@@ -7727,6 +7727,8 @@ components:
         fragment:
           type: string
         extensions:
+          type: string
+        identifier:
           type: string
         matrix:
           type: string
@@ -7771,8 +7773,6 @@ components:
           $ref: '#/components/schemas/Reference'
         hierarchical:
           type: boolean
-        identifier:
-          type: string
       type: object
     Representation:
       properties:
@@ -7911,12 +7911,12 @@ components:
           type: boolean
         synchronous:
           type: boolean
-        entityAsText:
-          type: string
         headers:
           items:
             $ref: '#/components/schemas/Header'
           type: array
+        entityAsText:
+          type: string
       type: object
     ReservationAccessTimesUpdate:
       example:
@@ -8074,14 +8074,14 @@ components:
           type: boolean
         provisional:
           type: boolean
-        entityAvailable:
-          type: boolean
-        entityAsText:
-          type: string
         headers:
           items:
             $ref: '#/components/schemas/Header'
           type: array
+        entityAvailable:
+          type: boolean
+        entityAsText:
+          type: string
       type: object
     Restlet:
       example:
@@ -8433,8 +8433,8 @@ components:
               hostDomain: hostDomain
               relativePart: relativePart
               hostPort: 0
-              targetRef: null
               identifier: identifier
+              targetRef: null
               opaque: true
               remainingPart: remainingPart
               query: query
@@ -8548,10 +8548,10 @@ components:
           type: boolean
         logger:
           $ref: '#/components/schemas/Logger'
-        application:
-          $ref: '#/components/schemas/Application'
         stopped:
           type: boolean
+        application:
+          $ref: '#/components/schemas/Application'
       type: object
     Role:
       example:
@@ -8984,8 +8984,8 @@ components:
                   hostDomain: hostDomain
                   relativePart: relativePart
                   hostPort: 0
-                  targetRef: null
                   identifier: identifier
+                  targetRef: null
                   opaque: true
                   remainingPart: remainingPart
                   query: query
@@ -9436,8 +9436,8 @@ components:
                   hostDomain: hostDomain
                   relativePart: relativePart
                   hostPort: 0
-                  targetRef: null
                   identifier: identifier
+                  targetRef: null
                   opaque: true
                   remainingPart: remainingPart
                   query: query
@@ -11532,8 +11532,8 @@ components:
           hostDomain: hostDomain
           relativePart: relativePart
           hostPort: 0
-          targetRef: null
           identifier: identifier
+          targetRef: null
           opaque: true
           remainingPart: remainingPart
           query: query
