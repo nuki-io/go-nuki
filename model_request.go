@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.5.0
+API version: 4.6.0
 Contact: contact@nuki.io
 */
 
@@ -52,8 +52,8 @@ type Request struct {
 	EntityAvailable *bool `json:"entityAvailable,omitempty"`
 	ExpectingResponse *bool `json:"expectingResponse,omitempty"`
 	Synchronous *bool `json:"synchronous,omitempty"`
-	Headers []Header `json:"headers,omitempty"`
 	EntityAsText *string `json:"entityAsText,omitempty"`
+	Headers []Header `json:"headers,omitempty"`
 }
 
 // NewRequest instantiates a new Request object
@@ -1065,38 +1065,6 @@ func (o *Request) SetSynchronous(v bool) {
 	o.Synchronous = &v
 }
 
-// GetHeaders returns the Headers field value if set, zero value otherwise.
-func (o *Request) GetHeaders() []Header {
-	if o == nil || IsNil(o.Headers) {
-		var ret []Header
-		return ret
-	}
-	return o.Headers
-}
-
-// GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Request) GetHeadersOk() ([]Header, bool) {
-	if o == nil || IsNil(o.Headers) {
-		return nil, false
-	}
-	return o.Headers, true
-}
-
-// HasHeaders returns a boolean if a field has been set.
-func (o *Request) HasHeaders() bool {
-	if o != nil && !IsNil(o.Headers) {
-		return true
-	}
-
-	return false
-}
-
-// SetHeaders gets a reference to the given []Header and assigns it to the Headers field.
-func (o *Request) SetHeaders(v []Header) {
-	o.Headers = v
-}
-
 // GetEntityAsText returns the EntityAsText field value if set, zero value otherwise.
 func (o *Request) GetEntityAsText() string {
 	if o == nil || IsNil(o.EntityAsText) {
@@ -1127,6 +1095,38 @@ func (o *Request) HasEntityAsText() bool {
 // SetEntityAsText gets a reference to the given string and assigns it to the EntityAsText field.
 func (o *Request) SetEntityAsText(v string) {
 	o.EntityAsText = &v
+}
+
+// GetHeaders returns the Headers field value if set, zero value otherwise.
+func (o *Request) GetHeaders() []Header {
+	if o == nil || IsNil(o.Headers) {
+		var ret []Header
+		return ret
+	}
+	return o.Headers
+}
+
+// GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Request) GetHeadersOk() ([]Header, bool) {
+	if o == nil || IsNil(o.Headers) {
+		return nil, false
+	}
+	return o.Headers, true
+}
+
+// HasHeaders returns a boolean if a field has been set.
+func (o *Request) HasHeaders() bool {
+	if o != nil && !IsNil(o.Headers) {
+		return true
+	}
+
+	return false
+}
+
+// SetHeaders gets a reference to the given []Header and assigns it to the Headers field.
+func (o *Request) SetHeaders(v []Header) {
+	o.Headers = v
 }
 
 func (o Request) MarshalJSON() ([]byte, error) {
@@ -1232,11 +1232,11 @@ func (o Request) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Synchronous) {
 		toSerialize["synchronous"] = o.Synchronous
 	}
-	if !IsNil(o.Headers) {
-		toSerialize["headers"] = o.Headers
-	}
 	if !IsNil(o.EntityAsText) {
 		toSerialize["entityAsText"] = o.EntityAsText
+	}
+	if !IsNil(o.Headers) {
+		toSerialize["headers"] = o.Headers
 	}
 	return toSerialize, nil
 }

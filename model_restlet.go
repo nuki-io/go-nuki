@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.5.0
+API version: 4.6.0
 Contact: contact@nuki.io
 */
 
@@ -27,8 +27,8 @@ type Restlet struct {
 	Owner *string `json:"owner,omitempty"`
 	Started *bool `json:"started,omitempty"`
 	Logger *Logger `json:"logger,omitempty"`
-	Stopped *bool `json:"stopped,omitempty"`
 	Application *Application `json:"application,omitempty"`
+	Stopped *bool `json:"stopped,omitempty"`
 }
 
 // NewRestlet instantiates a new Restlet object
@@ -272,38 +272,6 @@ func (o *Restlet) SetLogger(v Logger) {
 	o.Logger = &v
 }
 
-// GetStopped returns the Stopped field value if set, zero value otherwise.
-func (o *Restlet) GetStopped() bool {
-	if o == nil || IsNil(o.Stopped) {
-		var ret bool
-		return ret
-	}
-	return *o.Stopped
-}
-
-// GetStoppedOk returns a tuple with the Stopped field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Restlet) GetStoppedOk() (*bool, bool) {
-	if o == nil || IsNil(o.Stopped) {
-		return nil, false
-	}
-	return o.Stopped, true
-}
-
-// HasStopped returns a boolean if a field has been set.
-func (o *Restlet) HasStopped() bool {
-	if o != nil && !IsNil(o.Stopped) {
-		return true
-	}
-
-	return false
-}
-
-// SetStopped gets a reference to the given bool and assigns it to the Stopped field.
-func (o *Restlet) SetStopped(v bool) {
-	o.Stopped = &v
-}
-
 // GetApplication returns the Application field value if set, zero value otherwise.
 func (o *Restlet) GetApplication() Application {
 	if o == nil || IsNil(o.Application) {
@@ -334,6 +302,38 @@ func (o *Restlet) HasApplication() bool {
 // SetApplication gets a reference to the given Application and assigns it to the Application field.
 func (o *Restlet) SetApplication(v Application) {
 	o.Application = &v
+}
+
+// GetStopped returns the Stopped field value if set, zero value otherwise.
+func (o *Restlet) GetStopped() bool {
+	if o == nil || IsNil(o.Stopped) {
+		var ret bool
+		return ret
+	}
+	return *o.Stopped
+}
+
+// GetStoppedOk returns a tuple with the Stopped field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Restlet) GetStoppedOk() (*bool, bool) {
+	if o == nil || IsNil(o.Stopped) {
+		return nil, false
+	}
+	return o.Stopped, true
+}
+
+// HasStopped returns a boolean if a field has been set.
+func (o *Restlet) HasStopped() bool {
+	if o != nil && !IsNil(o.Stopped) {
+		return true
+	}
+
+	return false
+}
+
+// SetStopped gets a reference to the given bool and assigns it to the Stopped field.
+func (o *Restlet) SetStopped(v bool) {
+	o.Stopped = &v
 }
 
 func (o Restlet) MarshalJSON() ([]byte, error) {
@@ -367,11 +367,11 @@ func (o Restlet) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Logger) {
 		toSerialize["logger"] = o.Logger
 	}
-	if !IsNil(o.Stopped) {
-		toSerialize["stopped"] = o.Stopped
-	}
 	if !IsNil(o.Application) {
 		toSerialize["application"] = o.Application
+	}
+	if !IsNil(o.Stopped) {
+		toSerialize["stopped"] = o.Stopped
 	}
 	return toSerialize, nil
 }
