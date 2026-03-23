@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.6.2
+API version: 4.7.0
 Contact: contact@nuki.io
 */
 

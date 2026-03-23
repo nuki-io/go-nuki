@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.6.2
+API version: 4.7.0
 Contact: contact@nuki.io
 */
 
@@ -27,13 +27,13 @@ type Status struct {
 	Uri *string `json:"uri,omitempty"`
 	Error *bool `json:"error,omitempty"`
 	Success *bool `json:"success,omitempty"`
-	ServerError *bool `json:"serverError,omitempty"`
-	ConnectorError *bool `json:"connectorError,omitempty"`
-	ClientError *bool `json:"clientError,omitempty"`
 	GlobalError *bool `json:"globalError,omitempty"`
 	Informational *bool `json:"informational,omitempty"`
 	Redirection *bool `json:"redirection,omitempty"`
 	RecoverableError *bool `json:"recoverableError,omitempty"`
+	ServerError *bool `json:"serverError,omitempty"`
+	ConnectorError *bool `json:"connectorError,omitempty"`
+	ClientError *bool `json:"clientError,omitempty"`
 }
 
 // NewStatus instantiates a new Status object
@@ -277,102 +277,6 @@ func (o *Status) SetSuccess(v bool) {
 	o.Success = &v
 }
 
-// GetServerError returns the ServerError field value if set, zero value otherwise.
-func (o *Status) GetServerError() bool {
-	if o == nil || IsNil(o.ServerError) {
-		var ret bool
-		return ret
-	}
-	return *o.ServerError
-}
-
-// GetServerErrorOk returns a tuple with the ServerError field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Status) GetServerErrorOk() (*bool, bool) {
-	if o == nil || IsNil(o.ServerError) {
-		return nil, false
-	}
-	return o.ServerError, true
-}
-
-// HasServerError returns a boolean if a field has been set.
-func (o *Status) HasServerError() bool {
-	if o != nil && !IsNil(o.ServerError) {
-		return true
-	}
-
-	return false
-}
-
-// SetServerError gets a reference to the given bool and assigns it to the ServerError field.
-func (o *Status) SetServerError(v bool) {
-	o.ServerError = &v
-}
-
-// GetConnectorError returns the ConnectorError field value if set, zero value otherwise.
-func (o *Status) GetConnectorError() bool {
-	if o == nil || IsNil(o.ConnectorError) {
-		var ret bool
-		return ret
-	}
-	return *o.ConnectorError
-}
-
-// GetConnectorErrorOk returns a tuple with the ConnectorError field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Status) GetConnectorErrorOk() (*bool, bool) {
-	if o == nil || IsNil(o.ConnectorError) {
-		return nil, false
-	}
-	return o.ConnectorError, true
-}
-
-// HasConnectorError returns a boolean if a field has been set.
-func (o *Status) HasConnectorError() bool {
-	if o != nil && !IsNil(o.ConnectorError) {
-		return true
-	}
-
-	return false
-}
-
-// SetConnectorError gets a reference to the given bool and assigns it to the ConnectorError field.
-func (o *Status) SetConnectorError(v bool) {
-	o.ConnectorError = &v
-}
-
-// GetClientError returns the ClientError field value if set, zero value otherwise.
-func (o *Status) GetClientError() bool {
-	if o == nil || IsNil(o.ClientError) {
-		var ret bool
-		return ret
-	}
-	return *o.ClientError
-}
-
-// GetClientErrorOk returns a tuple with the ClientError field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Status) GetClientErrorOk() (*bool, bool) {
-	if o == nil || IsNil(o.ClientError) {
-		return nil, false
-	}
-	return o.ClientError, true
-}
-
-// HasClientError returns a boolean if a field has been set.
-func (o *Status) HasClientError() bool {
-	if o != nil && !IsNil(o.ClientError) {
-		return true
-	}
-
-	return false
-}
-
-// SetClientError gets a reference to the given bool and assigns it to the ClientError field.
-func (o *Status) SetClientError(v bool) {
-	o.ClientError = &v
-}
-
 // GetGlobalError returns the GlobalError field value if set, zero value otherwise.
 func (o *Status) GetGlobalError() bool {
 	if o == nil || IsNil(o.GlobalError) {
@@ -501,6 +405,102 @@ func (o *Status) SetRecoverableError(v bool) {
 	o.RecoverableError = &v
 }
 
+// GetServerError returns the ServerError field value if set, zero value otherwise.
+func (o *Status) GetServerError() bool {
+	if o == nil || IsNil(o.ServerError) {
+		var ret bool
+		return ret
+	}
+	return *o.ServerError
+}
+
+// GetServerErrorOk returns a tuple with the ServerError field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Status) GetServerErrorOk() (*bool, bool) {
+	if o == nil || IsNil(o.ServerError) {
+		return nil, false
+	}
+	return o.ServerError, true
+}
+
+// HasServerError returns a boolean if a field has been set.
+func (o *Status) HasServerError() bool {
+	if o != nil && !IsNil(o.ServerError) {
+		return true
+	}
+
+	return false
+}
+
+// SetServerError gets a reference to the given bool and assigns it to the ServerError field.
+func (o *Status) SetServerError(v bool) {
+	o.ServerError = &v
+}
+
+// GetConnectorError returns the ConnectorError field value if set, zero value otherwise.
+func (o *Status) GetConnectorError() bool {
+	if o == nil || IsNil(o.ConnectorError) {
+		var ret bool
+		return ret
+	}
+	return *o.ConnectorError
+}
+
+// GetConnectorErrorOk returns a tuple with the ConnectorError field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Status) GetConnectorErrorOk() (*bool, bool) {
+	if o == nil || IsNil(o.ConnectorError) {
+		return nil, false
+	}
+	return o.ConnectorError, true
+}
+
+// HasConnectorError returns a boolean if a field has been set.
+func (o *Status) HasConnectorError() bool {
+	if o != nil && !IsNil(o.ConnectorError) {
+		return true
+	}
+
+	return false
+}
+
+// SetConnectorError gets a reference to the given bool and assigns it to the ConnectorError field.
+func (o *Status) SetConnectorError(v bool) {
+	o.ConnectorError = &v
+}
+
+// GetClientError returns the ClientError field value if set, zero value otherwise.
+func (o *Status) GetClientError() bool {
+	if o == nil || IsNil(o.ClientError) {
+		var ret bool
+		return ret
+	}
+	return *o.ClientError
+}
+
+// GetClientErrorOk returns a tuple with the ClientError field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Status) GetClientErrorOk() (*bool, bool) {
+	if o == nil || IsNil(o.ClientError) {
+		return nil, false
+	}
+	return o.ClientError, true
+}
+
+// HasClientError returns a boolean if a field has been set.
+func (o *Status) HasClientError() bool {
+	if o != nil && !IsNil(o.ClientError) {
+		return true
+	}
+
+	return false
+}
+
+// SetClientError gets a reference to the given bool and assigns it to the ClientError field.
+func (o *Status) SetClientError(v bool) {
+	o.ClientError = &v
+}
+
 func (o Status) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -532,15 +532,6 @@ func (o Status) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Success) {
 		toSerialize["success"] = o.Success
 	}
-	if !IsNil(o.ServerError) {
-		toSerialize["serverError"] = o.ServerError
-	}
-	if !IsNil(o.ConnectorError) {
-		toSerialize["connectorError"] = o.ConnectorError
-	}
-	if !IsNil(o.ClientError) {
-		toSerialize["clientError"] = o.ClientError
-	}
 	if !IsNil(o.GlobalError) {
 		toSerialize["globalError"] = o.GlobalError
 	}
@@ -552,6 +543,15 @@ func (o Status) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.RecoverableError) {
 		toSerialize["recoverableError"] = o.RecoverableError
+	}
+	if !IsNil(o.ServerError) {
+		toSerialize["serverError"] = o.ServerError
+	}
+	if !IsNil(o.ConnectorError) {
+		toSerialize["connectorError"] = o.ConnectorError
+	}
+	if !IsNil(o.ClientError) {
+		toSerialize["clientError"] = o.ClientError
 	}
 	return toSerialize, nil
 }

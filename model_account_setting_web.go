@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.6.2
+API version: 4.7.0
 Contact: contact@nuki.io
 */
 
@@ -26,6 +26,8 @@ type AccountSettingWeb struct {
 	DeviceSortType *string `json:"deviceSortType,omitempty"`
 	// If true, Nuki Club info is dismissed and no banner is shown
 	NukiClubDismissed *bool `json:"nukiClubDismissed,omitempty"`
+	// Additional generic settings. Key/Value Pair, key consists of a prefix (DNS subdomain) and a name (can contains alphanumeric characters with dashes, underscores and dots in between) separated by a dash (\"/\")
+	Annotations map[string]map[string]interface{} `json:"annotations,omitempty"`
 	// List of removed staled devices
 	RemovedStaledDevices []StaleDevice `json:"removedStaledDevices,omitempty"`
 	// List of marked staled devices
@@ -145,6 +147,38 @@ func (o *AccountSettingWeb) SetNukiClubDismissed(v bool) {
 	o.NukiClubDismissed = &v
 }
 
+// GetAnnotations returns the Annotations field value if set, zero value otherwise.
+func (o *AccountSettingWeb) GetAnnotations() map[string]map[string]interface{} {
+	if o == nil || IsNil(o.Annotations) {
+		var ret map[string]map[string]interface{}
+		return ret
+	}
+	return o.Annotations
+}
+
+// GetAnnotationsOk returns a tuple with the Annotations field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AccountSettingWeb) GetAnnotationsOk() (map[string]map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Annotations) {
+		return map[string]map[string]interface{}{}, false
+	}
+	return o.Annotations, true
+}
+
+// HasAnnotations returns a boolean if a field has been set.
+func (o *AccountSettingWeb) HasAnnotations() bool {
+	if o != nil && !IsNil(o.Annotations) {
+		return true
+	}
+
+	return false
+}
+
+// SetAnnotations gets a reference to the given map[string]map[string]interface{} and assigns it to the Annotations field.
+func (o *AccountSettingWeb) SetAnnotations(v map[string]map[string]interface{}) {
+	o.Annotations = v
+}
+
 // GetRemovedStaledDevices returns the RemovedStaledDevices field value if set, zero value otherwise.
 func (o *AccountSettingWeb) GetRemovedStaledDevices() []StaleDevice {
 	if o == nil || IsNil(o.RemovedStaledDevices) {
@@ -227,6 +261,9 @@ func (o AccountSettingWeb) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.NukiClubDismissed) {
 		toSerialize["nukiClubDismissed"] = o.NukiClubDismissed
+	}
+	if !IsNil(o.Annotations) {
+		toSerialize["annotations"] = o.Annotations
 	}
 	if !IsNil(o.RemovedStaledDevices) {
 		toSerialize["removedStaledDevices"] = o.RemovedStaledDevices

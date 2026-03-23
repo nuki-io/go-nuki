@@ -10,7 +10,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://nuki.io/en/service/nukis-terms-of-use-apis/
   title: Nuki API
-  version: 4.6.2
+  version: 4.7.0
 servers:
 - url: /
 tags:
@@ -3546,6 +3546,7 @@ components:
             name: name
           deviceViewType: LIST
           nukiClubDismissed: true
+          annotations: "{\"web.nuki.io/nfcBannerDismissed\": true}"
           deviceSortType: FAVOURITES_FIRST
       properties:
         web:
@@ -3569,6 +3570,7 @@ components:
           name: name
         deviceViewType: LIST
         nukiClubDismissed: true
+        annotations: "{\"web.nuki.io/nfcBannerDismissed\": true}"
         deviceSortType: FAVOURITES_FIRST
       properties:
         deviceViewType:
@@ -3588,6 +3590,16 @@ components:
         nukiClubDismissed:
           description: "If true, Nuki Club info is dismissed and no banner is shown"
           type: boolean
+        annotations:
+          additionalProperties:
+            properties: {}
+            type: object
+          description: "Additional generic settings. Key/Value Pair, key consists\
+            \ of a prefix (DNS subdomain) and a name (can contains alphanumeric characters\
+            \ with dashes, underscores and dots in between) separated by a dash (\"\
+            /\")"
+          example: "{\"web.nuki.io/nfcBannerDismissed\": true}"
+          type: object
         removedStaledDevices:
           description: List of removed staled devices
           items:
@@ -5010,12 +5022,12 @@ components:
               value: value
             - name: name
               value: value
+            hostIdentifier: hostIdentifier
             matrixAsForm:
             - name: name
               value: value
             - name: name
               value: value
-            hostIdentifier: hostIdentifier
             scheme: scheme
             extensionsAsArray:
             - extensionsAsArray
@@ -5102,16 +5114,16 @@ components:
           items:
             $ref: '#/components/schemas/Service'
           type: array
-        statusService:
-          $ref: '#/components/schemas/StatusService'
         connegService:
           $ref: '#/components/schemas/ConnegService'
-        metadataService:
-          $ref: '#/components/schemas/MetadataService'
         converterService:
           $ref: '#/components/schemas/ConverterService'
+        metadataService:
+          $ref: '#/components/schemas/MetadataService'
         rangeService:
           $ref: '#/components/schemas/RangeService'
+        statusService:
+          $ref: '#/components/schemas/StatusService'
         taskService:
           $ref: '#/components/schemas/TaskService'
         tunnelService:
@@ -5348,14 +5360,14 @@ components:
           type: array
         user:
           $ref: '#/components/schemas/User'
-        upstreamAddress:
-          type: string
         agentName:
           type: string
         agentVersion:
           type: string
         mainAgentProduct:
           $ref: '#/components/schemas/Product'
+        upstreamAddress:
+          type: string
       type: object
     Company:
       example:
@@ -5816,12 +5828,12 @@ components:
                   value: value
                 - name: name
                   value: value
+                hostIdentifier: hostIdentifier
                 matrixAsForm:
                 - name: name
                   value: value
                 - name: name
                   value: value
-                hostIdentifier: hostIdentifier
                 scheme: scheme
                 extensionsAsArray:
                 - extensionsAsArray
@@ -6268,12 +6280,12 @@ components:
                   value: value
                 - name: name
                   value: value
+                hostIdentifier: hostIdentifier
                 matrixAsForm:
                 - name: name
                   value: value
                 - name: name
                   value: value
-                hostIdentifier: hostIdentifier
                 scheme: scheme
                 extensionsAsArray:
                 - extensionsAsArray
@@ -7668,12 +7680,12 @@ components:
           value: value
         - name: name
           value: value
+        hostIdentifier: hostIdentifier
         matrixAsForm:
         - name: name
           value: value
         - name: name
           value: value
-        hostIdentifier: hostIdentifier
         scheme: scheme
         extensionsAsArray:
         - extensionsAsArray
@@ -7728,16 +7740,6 @@ components:
           type: string
         extensions:
           type: string
-        matrix:
-          type: string
-        matrixAsForm:
-          items:
-            $ref: '#/components/schemas/Parameter'
-          type: array
-        queryAsForm:
-          items:
-            $ref: '#/components/schemas/Parameter'
-          type: array
         extensionsAsArray:
           items:
             type: string
@@ -7773,6 +7775,16 @@ components:
           type: boolean
         identifier:
           type: string
+        matrix:
+          type: string
+        matrixAsForm:
+          items:
+            $ref: '#/components/schemas/Parameter'
+          type: array
+        queryAsForm:
+          items:
+            $ref: '#/components/schemas/Parameter'
+          type: array
       type: object
     Representation:
       properties:
@@ -7901,8 +7913,6 @@ components:
           $ref: '#/components/schemas/Reference'
         rootRef:
           $ref: '#/components/schemas/Reference'
-        confidential:
-          type: boolean
         asynchronous:
           type: boolean
         entityAvailable:
@@ -7910,6 +7920,8 @@ components:
         expectingResponse:
           type: boolean
         synchronous:
+          type: boolean
+        confidential:
           type: boolean
         entityAsText:
           type: string
@@ -8070,9 +8082,9 @@ components:
           $ref: '#/components/schemas/Status'
         final:
           type: boolean
-        confidential:
-          type: boolean
         provisional:
+          type: boolean
+        confidential:
           type: boolean
         entityAvailable:
           type: boolean
@@ -8412,12 +8424,12 @@ components:
                 value: value
               - name: name
                 value: value
+              hostIdentifier: hostIdentifier
               matrixAsForm:
               - name: name
                 value: value
               - name: name
                 value: value
-              hostIdentifier: hostIdentifier
               scheme: scheme
               extensionsAsArray:
               - extensionsAsArray
@@ -8963,12 +8975,12 @@ components:
                     value: value
                   - name: name
                     value: value
+                  hostIdentifier: hostIdentifier
                   matrixAsForm:
                   - name: name
                     value: value
                   - name: name
                     value: value
-                  hostIdentifier: hostIdentifier
                   scheme: scheme
                   extensionsAsArray:
                   - extensionsAsArray
@@ -9415,12 +9427,12 @@ components:
                     value: value
                   - name: name
                     value: value
+                  hostIdentifier: hostIdentifier
                   matrixAsForm:
                   - name: name
                     value: value
                   - name: name
                     value: value
-                  hostIdentifier: hostIdentifier
                   scheme: scheme
                   extensionsAsArray:
                   - extensionsAsArray
@@ -11131,17 +11143,16 @@ components:
           type: integer
         trigger:
           description: "The trigger: 0 .. system, 1 .. manual, 2 .. button, 3 .. automatic,\
-            \ 4 .. web, 5 .. app, 6 .. auto lock, 7 .. accessory, 255 .. keypad"
+            \ 4 .. web, 5 .. app, 6 .. auto lock, 7 .. accessory, 253 .. keypad error,\
+            \ 254 .. nuki mode, 255 .. keypad"
           format: int32
           maximum: 255
           minimum: 0
           type: integer
         state:
-          description: "The completion state: 0 .. Success, 1 .. Motor blocked, 2\
-            \ .. Canceled, 3 .. Too recent, 4 .. Busy, 5 .. Low motor voltage, 6 ..\
-            \ Clutch failure, 7 .. Motor power failure, 8 .. Incomplete, 9 .. Rejected,\
-            \ 10 .. Rejected night mode, 224 .. Invalid Code, 225 .. Invalid Fingerprint,\
-            \ 226 .. Invalid NFC Tag, 254 .. Other error, 255 .. Unknown error"
+          description: |-
+            The completion state: 0 .. Success, 1 .. Motor blocked, 2 .. Canceled, 3 .. Too recent, 4 .. Busy, 5 .. Low motor voltage, 6 .. Clutch failure, 7 .. Motor power failure, 8 .. Incomplete, 9 .. Rejected, 10 .. Rejected night mode, 224 .. Invalid Code, 225 .. Invalid Fingerprint, 226 .. Invalid NFC Tag, 254 .. Other error, 255 .. Unknown error
+            For source=3 and trigger=253 the following states are used: 0 .. Access document revoked, 1 .. Send NFC failed, 2 .. Control flow, 3 .. Command time expired, 7 .. Invalid data content, 37 .. Invalid access rights, 255 .. Unknown
           format: int32
           maximum: 255
           minimum: 1
@@ -11418,12 +11429,6 @@ components:
           type: boolean
         success:
           type: boolean
-        serverError:
-          type: boolean
-        connectorError:
-          type: boolean
-        clientError:
-          type: boolean
         globalError:
           type: boolean
         informational:
@@ -11431,6 +11436,12 @@ components:
         redirection:
           type: boolean
         recoverableError:
+          type: boolean
+        serverError:
+          type: boolean
+        connectorError:
+          type: boolean
+        clientError:
           type: boolean
       type: object
     StatusService:
@@ -11511,12 +11522,12 @@ components:
             value: value
           - name: name
             value: value
+          hostIdentifier: hostIdentifier
           matrixAsForm:
           - name: name
             value: value
           - name: name
             value: value
-          hostIdentifier: hostIdentifier
           scheme: scheme
           extensionsAsArray:
           - extensionsAsArray
