@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.7.0
+API version: 4.9.0
 Contact: contact@nuki.io
 */
 
@@ -326,11 +326,18 @@ type ApiGetSmartlockAuthsRequest struct {
 	ApiService *SmartlockAuthAPIService
 	smartlockId int32
 	types *string
+	includeEmail *bool
 }
 
 // Filter for smartlock authorization&#39;s types (comma-separated eg: 0,2,3)
 func (r ApiGetSmartlockAuthsRequest) Types(types string) ApiGetSmartlockAuthsRequest {
 	r.types = &types
+	return r
+}
+
+// Indicates if email should be included in the response
+func (r ApiGetSmartlockAuthsRequest) IncludeEmail(includeEmail bool) ApiGetSmartlockAuthsRequest {
+	r.includeEmail = &includeEmail
 	return r
 }
 
@@ -377,6 +384,9 @@ func (a *SmartlockAuthAPIService) GetSmartlockAuthsExecute(r ApiGetSmartlockAuth
 
 	if r.types != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "types", r.types, "", "")
+	}
+	if r.includeEmail != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "includeEmail", r.includeEmail, "", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

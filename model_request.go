@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.7.0
+API version: 4.9.0
 Contact: contact@nuki.io
 */
 
@@ -47,13 +47,13 @@ type Request struct {
 	ReferrerRef *Reference `json:"referrerRef,omitempty"`
 	ResourceRef *Reference `json:"resourceRef,omitempty"`
 	RootRef *Reference `json:"rootRef,omitempty"`
+	Confidential *bool `json:"confidential,omitempty"`
 	Asynchronous *bool `json:"asynchronous,omitempty"`
 	EntityAvailable *bool `json:"entityAvailable,omitempty"`
 	ExpectingResponse *bool `json:"expectingResponse,omitempty"`
 	Synchronous *bool `json:"synchronous,omitempty"`
-	Confidential *bool `json:"confidential,omitempty"`
-	EntityAsText *string `json:"entityAsText,omitempty"`
 	Headers []Header `json:"headers,omitempty"`
+	EntityAsText *string `json:"entityAsText,omitempty"`
 }
 
 // NewRequest instantiates a new Request object
@@ -905,6 +905,38 @@ func (o *Request) SetRootRef(v Reference) {
 	o.RootRef = &v
 }
 
+// GetConfidential returns the Confidential field value if set, zero value otherwise.
+func (o *Request) GetConfidential() bool {
+	if o == nil || IsNil(o.Confidential) {
+		var ret bool
+		return ret
+	}
+	return *o.Confidential
+}
+
+// GetConfidentialOk returns a tuple with the Confidential field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Request) GetConfidentialOk() (*bool, bool) {
+	if o == nil || IsNil(o.Confidential) {
+		return nil, false
+	}
+	return o.Confidential, true
+}
+
+// HasConfidential returns a boolean if a field has been set.
+func (o *Request) HasConfidential() bool {
+	if o != nil && !IsNil(o.Confidential) {
+		return true
+	}
+
+	return false
+}
+
+// SetConfidential gets a reference to the given bool and assigns it to the Confidential field.
+func (o *Request) SetConfidential(v bool) {
+	o.Confidential = &v
+}
+
 // GetAsynchronous returns the Asynchronous field value if set, zero value otherwise.
 func (o *Request) GetAsynchronous() bool {
 	if o == nil || IsNil(o.Asynchronous) {
@@ -1033,36 +1065,36 @@ func (o *Request) SetSynchronous(v bool) {
 	o.Synchronous = &v
 }
 
-// GetConfidential returns the Confidential field value if set, zero value otherwise.
-func (o *Request) GetConfidential() bool {
-	if o == nil || IsNil(o.Confidential) {
-		var ret bool
+// GetHeaders returns the Headers field value if set, zero value otherwise.
+func (o *Request) GetHeaders() []Header {
+	if o == nil || IsNil(o.Headers) {
+		var ret []Header
 		return ret
 	}
-	return *o.Confidential
+	return o.Headers
 }
 
-// GetConfidentialOk returns a tuple with the Confidential field value if set, nil otherwise
+// GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Request) GetConfidentialOk() (*bool, bool) {
-	if o == nil || IsNil(o.Confidential) {
+func (o *Request) GetHeadersOk() ([]Header, bool) {
+	if o == nil || IsNil(o.Headers) {
 		return nil, false
 	}
-	return o.Confidential, true
+	return o.Headers, true
 }
 
-// HasConfidential returns a boolean if a field has been set.
-func (o *Request) HasConfidential() bool {
-	if o != nil && !IsNil(o.Confidential) {
+// HasHeaders returns a boolean if a field has been set.
+func (o *Request) HasHeaders() bool {
+	if o != nil && !IsNil(o.Headers) {
 		return true
 	}
 
 	return false
 }
 
-// SetConfidential gets a reference to the given bool and assigns it to the Confidential field.
-func (o *Request) SetConfidential(v bool) {
-	o.Confidential = &v
+// SetHeaders gets a reference to the given []Header and assigns it to the Headers field.
+func (o *Request) SetHeaders(v []Header) {
+	o.Headers = v
 }
 
 // GetEntityAsText returns the EntityAsText field value if set, zero value otherwise.
@@ -1095,38 +1127,6 @@ func (o *Request) HasEntityAsText() bool {
 // SetEntityAsText gets a reference to the given string and assigns it to the EntityAsText field.
 func (o *Request) SetEntityAsText(v string) {
 	o.EntityAsText = &v
-}
-
-// GetHeaders returns the Headers field value if set, zero value otherwise.
-func (o *Request) GetHeaders() []Header {
-	if o == nil || IsNil(o.Headers) {
-		var ret []Header
-		return ret
-	}
-	return o.Headers
-}
-
-// GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Request) GetHeadersOk() ([]Header, bool) {
-	if o == nil || IsNil(o.Headers) {
-		return nil, false
-	}
-	return o.Headers, true
-}
-
-// HasHeaders returns a boolean if a field has been set.
-func (o *Request) HasHeaders() bool {
-	if o != nil && !IsNil(o.Headers) {
-		return true
-	}
-
-	return false
-}
-
-// SetHeaders gets a reference to the given []Header and assigns it to the Headers field.
-func (o *Request) SetHeaders(v []Header) {
-	o.Headers = v
 }
 
 func (o Request) MarshalJSON() ([]byte, error) {
@@ -1217,6 +1217,9 @@ func (o Request) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RootRef) {
 		toSerialize["rootRef"] = o.RootRef
 	}
+	if !IsNil(o.Confidential) {
+		toSerialize["confidential"] = o.Confidential
+	}
 	if !IsNil(o.Asynchronous) {
 		toSerialize["asynchronous"] = o.Asynchronous
 	}
@@ -1229,14 +1232,11 @@ func (o Request) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Synchronous) {
 		toSerialize["synchronous"] = o.Synchronous
 	}
-	if !IsNil(o.Confidential) {
-		toSerialize["confidential"] = o.Confidential
+	if !IsNil(o.Headers) {
+		toSerialize["headers"] = o.Headers
 	}
 	if !IsNil(o.EntityAsText) {
 		toSerialize["entityAsText"] = o.EntityAsText
-	}
-	if !IsNil(o.Headers) {
-		toSerialize["headers"] = o.Headers
 	}
 	return toSerialize, nil
 }

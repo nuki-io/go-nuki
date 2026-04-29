@@ -10,7 +10,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://nuki.io/en/service/nukis-terms-of-use-apis/
   title: Nuki API
-  version: 4.7.0
+  version: 4.9.0
 servers:
 - url: /
 tags:
@@ -2849,6 +2849,11 @@ paths:
         name: types
         schema:
           type: string
+      - description: Indicates if email should be included in the response
+        in: query
+        name: includeEmail
+        schema:
+          type: boolean
       responses:
         "200":
           content:
@@ -4730,7 +4735,7 @@ components:
             - name: name
               value: value
           stopped: true
-          minimumSize: 5
+          minimumSize: 1
           context: null
           started: true
           ignoredMediaTypes:
@@ -5022,12 +5027,12 @@ components:
               value: value
             - name: name
               value: value
-            hostIdentifier: hostIdentifier
             matrixAsForm:
             - name: name
               value: value
             - name: name
               value: value
+            hostIdentifier: hostIdentifier
             scheme: scheme
             extensionsAsArray:
             - extensionsAsArray
@@ -5043,8 +5048,8 @@ components:
             hostDomain: hostDomain
             relativePart: relativePart
             hostPort: 0
-            targetRef: null
             identifier: identifier
+            targetRef: null
             opaque: true
             remainingPart: remainingPart
             query: query
@@ -5075,7 +5080,7 @@ components:
           shutdownAllowed: true
           stopped: true
           context: null
-          corePoolSize: 1
+          corePoolSize: 5
           started: true
           enabled: true
           terminated: true
@@ -5114,16 +5119,18 @@ components:
           items:
             $ref: '#/components/schemas/Service'
           type: array
-        connegService:
-          $ref: '#/components/schemas/ConnegService'
-        converterService:
-          $ref: '#/components/schemas/ConverterService'
-        metadataService:
-          $ref: '#/components/schemas/MetadataService'
-        rangeService:
-          $ref: '#/components/schemas/RangeService'
         statusService:
           $ref: '#/components/schemas/StatusService'
+        connegService:
+          $ref: '#/components/schemas/ConnegService'
+        metadataService:
+          $ref: '#/components/schemas/MetadataService'
+        converterService:
+          $ref: '#/components/schemas/ConverterService'
+        encoderService:
+          $ref: '#/components/schemas/EncoderService'
+        rangeService:
+          $ref: '#/components/schemas/RangeService'
         taskService:
           $ref: '#/components/schemas/TaskService'
         tunnelService:
@@ -5132,14 +5139,12 @@ components:
           $ref: '#/components/schemas/ConnectorService'
         decoderService:
           $ref: '#/components/schemas/DecoderService'
-        encoderService:
-          $ref: '#/components/schemas/EncoderService'
         logger:
           $ref: '#/components/schemas/Logger'
-        application:
-          $ref: '#/components/schemas/Application'
         stopped:
           type: boolean
+        application:
+          $ref: '#/components/schemas/Application'
       type: object
     AuthenticationInfo:
       properties:
@@ -5360,14 +5365,14 @@ components:
           type: array
         user:
           $ref: '#/components/schemas/User'
+        upstreamAddress:
+          type: string
         agentName:
           type: string
         agentVersion:
           type: string
         mainAgentProduct:
           $ref: '#/components/schemas/Product'
-        upstreamAddress:
-          type: string
       type: object
     Company:
       example:
@@ -5536,7 +5541,7 @@ components:
                 - name: name
                   value: value
               stopped: true
-              minimumSize: 5
+              minimumSize: 1
               context: null
               started: true
               ignoredMediaTypes:
@@ -5828,12 +5833,12 @@ components:
                   value: value
                 - name: name
                   value: value
-                hostIdentifier: hostIdentifier
                 matrixAsForm:
                 - name: name
                   value: value
                 - name: name
                   value: value
+                hostIdentifier: hostIdentifier
                 scheme: scheme
                 extensionsAsArray:
                 - extensionsAsArray
@@ -5849,8 +5854,8 @@ components:
                 hostDomain: hostDomain
                 relativePart: relativePart
                 hostPort: 0
-                targetRef: null
                 identifier: identifier
+                targetRef: null
                 opaque: true
                 remainingPart: remainingPart
                 query: query
@@ -5881,7 +5886,7 @@ components:
               shutdownAllowed: true
               stopped: true
               context: null
-              corePoolSize: 1
+              corePoolSize: 5
               started: true
               enabled: true
               terminated: true
@@ -5988,7 +5993,7 @@ components:
                 - name: name
                   value: value
               stopped: true
-              minimumSize: 5
+              minimumSize: 1
               context: null
               started: true
               ignoredMediaTypes:
@@ -6280,12 +6285,12 @@ components:
                   value: value
                 - name: name
                   value: value
-                hostIdentifier: hostIdentifier
                 matrixAsForm:
                 - name: name
                   value: value
                 - name: name
                   value: value
+                hostIdentifier: hostIdentifier
                 scheme: scheme
                 extensionsAsArray:
                 - extensionsAsArray
@@ -6301,8 +6306,8 @@ components:
                 hostDomain: hostDomain
                 relativePart: relativePart
                 hostPort: 0
-                targetRef: null
                 identifier: identifier
+                targetRef: null
                 opaque: true
                 remainingPart: remainingPart
                 query: query
@@ -6333,7 +6338,7 @@ components:
               shutdownAllowed: true
               stopped: true
               context: null
-              corePoolSize: 1
+              corePoolSize: 5
               started: true
               enabled: true
               terminated: true
@@ -6643,7 +6648,7 @@ components:
           - name: name
             value: value
         stopped: true
-        minimumSize: 5
+        minimumSize: 1
         context: null
         started: true
         ignoredMediaTypes:
@@ -7680,12 +7685,12 @@ components:
           value: value
         - name: name
           value: value
-        hostIdentifier: hostIdentifier
         matrixAsForm:
         - name: name
           value: value
         - name: name
           value: value
+        hostIdentifier: hostIdentifier
         scheme: scheme
         extensionsAsArray:
         - extensionsAsArray
@@ -7701,8 +7706,8 @@ components:
         hostDomain: hostDomain
         relativePart: relativePart
         hostPort: 0
-        targetRef: null
         identifier: identifier
+        targetRef: null
         opaque: true
         remainingPart: remainingPart
         query: query
@@ -7740,6 +7745,18 @@ components:
           type: string
         extensions:
           type: string
+        identifier:
+          type: string
+        matrix:
+          type: string
+        matrixAsForm:
+          items:
+            $ref: '#/components/schemas/Parameter'
+          type: array
+        queryAsForm:
+          items:
+            $ref: '#/components/schemas/Parameter'
+          type: array
         extensionsAsArray:
           items:
             type: string
@@ -7773,18 +7790,6 @@ components:
           $ref: '#/components/schemas/Reference'
         hierarchical:
           type: boolean
-        identifier:
-          type: string
-        matrix:
-          type: string
-        matrixAsForm:
-          items:
-            $ref: '#/components/schemas/Parameter'
-          type: array
-        queryAsForm:
-          items:
-            $ref: '#/components/schemas/Parameter'
-          type: array
       type: object
     Representation:
       properties:
@@ -7913,6 +7918,8 @@ components:
           $ref: '#/components/schemas/Reference'
         rootRef:
           $ref: '#/components/schemas/Reference'
+        confidential:
+          type: boolean
         asynchronous:
           type: boolean
         entityAvailable:
@@ -7921,14 +7928,12 @@ components:
           type: boolean
         synchronous:
           type: boolean
-        confidential:
-          type: boolean
-        entityAsText:
-          type: string
         headers:
           items:
             $ref: '#/components/schemas/Header'
           type: array
+        entityAsText:
+          type: string
       type: object
     ReservationAccessTimesUpdate:
       example:
@@ -8082,18 +8087,18 @@ components:
           $ref: '#/components/schemas/Status'
         final:
           type: boolean
-        provisional:
-          type: boolean
         confidential:
           type: boolean
-        entityAvailable:
+        provisional:
           type: boolean
-        entityAsText:
-          type: string
         headers:
           items:
             $ref: '#/components/schemas/Header'
           type: array
+        entityAvailable:
+          type: boolean
+        entityAsText:
+          type: string
       type: object
     Restlet:
       example:
@@ -8132,7 +8137,7 @@ components:
               - name: name
                 value: value
             stopped: true
-            minimumSize: 5
+            minimumSize: 1
             context: null
             started: true
             ignoredMediaTypes:
@@ -8424,12 +8429,12 @@ components:
                 value: value
               - name: name
                 value: value
-              hostIdentifier: hostIdentifier
               matrixAsForm:
               - name: name
                 value: value
               - name: name
                 value: value
+              hostIdentifier: hostIdentifier
               scheme: scheme
               extensionsAsArray:
               - extensionsAsArray
@@ -8445,8 +8450,8 @@ components:
               hostDomain: hostDomain
               relativePart: relativePart
               hostPort: 0
-              targetRef: null
               identifier: identifier
+              targetRef: null
               opaque: true
               remainingPart: remainingPart
               query: query
@@ -8477,7 +8482,7 @@ components:
             shutdownAllowed: true
             stopped: true
             context: null
-            corePoolSize: 1
+            corePoolSize: 5
             started: true
             enabled: true
             terminated: true
@@ -8560,10 +8565,10 @@ components:
           type: boolean
         logger:
           $ref: '#/components/schemas/Logger'
-        application:
-          $ref: '#/components/schemas/Application'
         stopped:
           type: boolean
+        application:
+          $ref: '#/components/schemas/Application'
       type: object
     Role:
       example:
@@ -8683,7 +8688,7 @@ components:
                   - name: name
                     value: value
                 stopped: true
-                minimumSize: 5
+                minimumSize: 1
                 context: null
                 started: true
                 ignoredMediaTypes:
@@ -8975,12 +8980,12 @@ components:
                     value: value
                   - name: name
                     value: value
-                  hostIdentifier: hostIdentifier
                   matrixAsForm:
                   - name: name
                     value: value
                   - name: name
                     value: value
+                  hostIdentifier: hostIdentifier
                   scheme: scheme
                   extensionsAsArray:
                   - extensionsAsArray
@@ -8996,8 +9001,8 @@ components:
                   hostDomain: hostDomain
                   relativePart: relativePart
                   hostPort: 0
-                  targetRef: null
                   identifier: identifier
+                  targetRef: null
                   opaque: true
                   remainingPart: remainingPart
                   query: query
@@ -9028,7 +9033,7 @@ components:
                 shutdownAllowed: true
                 stopped: true
                 context: null
-                corePoolSize: 1
+                corePoolSize: 5
                 started: true
                 enabled: true
                 terminated: true
@@ -9135,7 +9140,7 @@ components:
                   - name: name
                     value: value
                 stopped: true
-                minimumSize: 5
+                minimumSize: 1
                 context: null
                 started: true
                 ignoredMediaTypes:
@@ -9427,12 +9432,12 @@ components:
                     value: value
                   - name: name
                     value: value
-                  hostIdentifier: hostIdentifier
                   matrixAsForm:
                   - name: name
                     value: value
                   - name: name
                     value: value
+                  hostIdentifier: hostIdentifier
                   scheme: scheme
                   extensionsAsArray:
                   - extensionsAsArray
@@ -9448,8 +9453,8 @@ components:
                   hostDomain: hostDomain
                   relativePart: relativePart
                   hostPort: 0
-                  targetRef: null
                   identifier: identifier
+                  targetRef: null
                   opaque: true
                   remainingPart: remainingPart
                   query: query
@@ -9480,7 +9485,7 @@ components:
                 shutdownAllowed: true
                 stopped: true
                 context: null
-                corePoolSize: 1
+                corePoolSize: 5
                 started: true
                 enabled: true
                 terminated: true
@@ -11429,6 +11434,12 @@ components:
           type: boolean
         success:
           type: boolean
+        serverError:
+          type: boolean
+        connectorError:
+          type: boolean
+        clientError:
+          type: boolean
         globalError:
           type: boolean
         informational:
@@ -11436,12 +11447,6 @@ components:
         redirection:
           type: boolean
         recoverableError:
-          type: boolean
-        serverError:
-          type: boolean
-        connectorError:
-          type: boolean
-        clientError:
           type: boolean
       type: object
     StatusService:
@@ -11522,12 +11527,12 @@ components:
             value: value
           - name: name
             value: value
-          hostIdentifier: hostIdentifier
           matrixAsForm:
           - name: name
             value: value
           - name: name
             value: value
+          hostIdentifier: hostIdentifier
           scheme: scheme
           extensionsAsArray:
           - extensionsAsArray
@@ -11543,8 +11548,8 @@ components:
           hostDomain: hostDomain
           relativePart: relativePart
           hostPort: 0
-          targetRef: null
           identifier: identifier
+          targetRef: null
           opaque: true
           remainingPart: remainingPart
           query: query
@@ -11601,7 +11606,7 @@ components:
         shutdownAllowed: true
         stopped: true
         context: null
-        corePoolSize: 1
+        corePoolSize: 5
         started: true
         enabled: true
         terminated: true
