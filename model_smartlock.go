@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.9.0
+API version: 4.10.0
 Contact: contact@nuki.io
 */
 
@@ -27,7 +27,7 @@ type Smartlock struct {
 	SmartlockId int64 `json:"smartlockId"`
 	// The account id
 	AccountId int32 `json:"accountId"`
-	// The type: 0 .. keyturner, 1 .. box, 2 .. opener, 3 .. smartdoor, 4 .. smartlock 3.0/4. Gen
+	// The type: 0 .. Smartlock 1/2, 1 .. Box, 2 .. Opener, 3 .. Smartdoor, 4 .. Smartlock 3/4, 5 .. Smartlock 5
 	Type int32 `json:"type"`
 	// The lock mechanism used in the smart door lock: 1 .. MyEVO, 2 .. KFV Genius (only for type = 3)
 	LmType *int32 `json:"lmType,omitempty"`

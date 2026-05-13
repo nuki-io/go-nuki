@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.9.0
+API version: 4.10.0
 Contact: contact@nuki.io
 */
 
@@ -42,10 +42,10 @@ func (r ApiActionSmartlockActionAdvancedRequest) Execute() (*AdvancedConfirmatio
 }
 
 /*
-ActionSmartlockActionAdvanced Smartlock Action with Callback
+ActionSmartlockActionAdvanced Lock & unlock a smartlock with callback
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
+ @param smartlockId The smartlock ID
  @return ApiActionSmartlockActionAdvancedRequest
 */
 func (a *AdvancedApiAPIService) ActionSmartlockActionAdvanced(ctx context.Context, smartlockId string) ApiActionSmartlockActionAdvancedRequest {
@@ -352,7 +352,7 @@ func (r ApiGetWebhookLogsRequest) Execute() ([]WebhookLog, *http.Response, error
 GetWebhookLogs Get a list of webhook logs (descending)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param apiKeyId The api key id
+ @param apiKeyId The API key ID
  @return ApiGetWebhookLogsRequest
 */
 func (a *AdvancedApiAPIService) GetWebhookLogs(ctx context.Context, apiKeyId int32) ApiGetWebhookLogsRequest {
@@ -462,7 +462,7 @@ func (r ApiPostLockSmartlockLockActionAdvancedRequest) Execute() (*AdvancedConfi
 PostLockSmartlockLockActionAdvanced Lock a smartlock
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
+ @param smartlockId The smartlock ID
  @return ApiPostLockSmartlockLockActionAdvancedRequest
 */
 func (a *AdvancedApiAPIService) PostLockSmartlockLockActionAdvanced(ctx context.Context, smartlockId string) ApiPostLockSmartlockLockActionAdvancedRequest {
@@ -563,7 +563,7 @@ func (r ApiPostLockSmartlockUnlockActionAdvancedRequest) Execute() (*AdvancedCon
 PostLockSmartlockUnlockActionAdvanced Unlock a smartlock
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
+ @param smartlockId The smartlock ID
  @return ApiPostLockSmartlockUnlockActionAdvancedRequest
 */
 func (a *AdvancedApiAPIService) PostLockSmartlockUnlockActionAdvanced(ctx context.Context, smartlockId string) ApiPostLockSmartlockUnlockActionAdvancedRequest {
@@ -776,7 +776,7 @@ func (r ApiPutSmartlockAuthsAdvancedRequest) Execute() (*AdvancedConfirmationRes
 }
 
 /*
-PutSmartlockAuthsAdvanced Creates asynchronous smartlock authorizations
+PutSmartlockAuthsAdvanced Create smartlock authorizations asynchronously
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPutSmartlockAuthsAdvancedRequest

@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.9.0
+API version: 4.10.0
 Contact: contact@nuki.io
 */
 
@@ -140,7 +140,7 @@ func (r ApiDeleteAccountOtpRequest) Execute() (*http.Response, error) {
 }
 
 /*
-DeleteAccountOtp Disables one time password for an account
+DeleteAccountOtp Disable one-time password for an account
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiDeleteAccountOtpRequest
@@ -313,10 +313,10 @@ func (r ApiDeleteAccountSubRequest) Execute() (*http.Response, error) {
 }
 
 /*
-DeleteAccountSub Delete an sub account
+DeleteAccountSub Delete a sub account
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param accountId The account id
+ @param accountId The account ID
  @return ApiDeleteAccountSubRequest
 */
 func (a *AccountAPIService) DeleteAccountSub(ctx context.Context, accountId int32) ApiDeleteAccountSubRequest {
@@ -683,10 +683,10 @@ func (r ApiGetAccountSubRequest) Execute() (*Account, *http.Response, error) {
 }
 
 /*
-GetAccountSub Get an sub account
+GetAccountSub Get a sub account
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param accountId The account id
+ @param accountId The account ID
  @return ApiGetAccountSubRequest
 */
 func (a *AccountAPIService) GetAccountSub(ctx context.Context, accountId int32) ApiGetAccountSubRequest {
@@ -790,7 +790,7 @@ func (r ApiGetAccountSubsRequest) Execute() (*Account, *http.Response, error) {
 }
 
 /*
-GetAccountSubs Get an list of sub accounts
+GetAccountSubs Get a list of sub accounts
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetAccountSubsRequest
@@ -994,7 +994,7 @@ func (r ApiPostAccountEmailChangeRequest) Execute() (*http.Response, error) {
 }
 
 /*
-PostAccountEmailChange Triggers the email change verification email
+PostAccountEmailChange Trigger the email change verification email
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPostAccountEmailChangeRequest
@@ -1085,7 +1085,7 @@ func (r ApiPostAccountEmailVerifyRequest) Execute() (*http.Response, error) {
 }
 
 /*
-PostAccountEmailVerify Triggers the email change verification email
+PostAccountEmailVerify Trigger the email change verification email
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPostAccountEmailVerifyRequest
@@ -1178,7 +1178,7 @@ func (r ApiPostAccountOtpRequest) Execute() (*http.Response, error) {
 }
 
 /*
-PostAccountOtp Enables one time password for an account
+PostAccountOtp Enable one-time password for an account
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPostAccountOtpRequest
@@ -1375,10 +1375,10 @@ func (r ApiPostAccountSubRequest) Execute() (*http.Response, error) {
 }
 
 /*
-PostAccountSub Update an sub account
+PostAccountSub Update a sub account
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param accountId The account id
+ @param accountId The account ID
  @return ApiPostAccountSubRequest
 */
 func (a *AccountAPIService) PostAccountSub(ctx context.Context, accountId int32) ApiPostAccountSubRequest {
@@ -1580,7 +1580,7 @@ func (r ApiPutAccountOtpRequest) Execute() (string, *http.Response, error) {
 }
 
 /*
-PutAccountOtp Create an one time password secret
+PutAccountOtp Create a one-time password secret
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPutAccountOtpRequest
@@ -1793,7 +1793,7 @@ func (r ApiPutAccountSubsRequest) Execute() (*MyAccount, *http.Response, error) 
 }
 
 /*
-PutAccountSubs Create an sub account
+PutAccountSubs Create a sub account
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPutAccountSubsRequest

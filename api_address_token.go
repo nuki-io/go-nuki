@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.9.0
+API version: 4.10.0
 Contact: contact@nuki.io
 */
 
@@ -35,10 +35,10 @@ func (r ApiGetAddressTokenRequest) Execute() (*AddressTokenInfo, *http.Response,
 }
 
 /*
-GetAddressToken Gives some info about address token
+GetAddressToken Get info about an address token
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The token id
+ @param id The token ID
  @return ApiGetAddressTokenRequest
 */
 func (a *AddressTokenAPIService) GetAddressToken(ctx context.Context, id string) ApiGetAddressTokenRequest {
@@ -136,10 +136,10 @@ func (r ApiGetAddressTokenRedeemRequest) Execute() (*AddressToken, *http.Respons
 }
 
 /*
-GetAddressTokenRedeem Gives an redeemed address token
+GetAddressTokenRedeem Get a redeemed address token
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The token id
+ @param id The token ID
  @return ApiGetAddressTokenRedeemRequest
 */
 func (a *AddressTokenAPIService) GetAddressTokenRedeem(ctx context.Context, id string) ApiGetAddressTokenRedeemRequest {
@@ -240,7 +240,7 @@ func (r ApiGetAddressTokensRequest) Execute() ([]AddressToken, *http.Response, e
 GetAddressTokens Get a list of address tokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param addressId The address id
+ @param addressId The address ID
  @return ApiGetAddressTokensRequest
 */
 func (a *AddressTokenAPIService) GetAddressTokens(ctx context.Context, addressId int32) ApiGetAddressTokensRequest {
@@ -334,7 +334,7 @@ type ApiPostAddressTokenRedeemRequest struct {
 	email *bool
 }
 
-// If false no email will be send
+// If false, no email will be sent
 func (r ApiPostAddressTokenRedeemRequest) Email(email bool) ApiPostAddressTokenRedeemRequest {
 	r.email = &email
 	return r
@@ -345,10 +345,10 @@ func (r ApiPostAddressTokenRedeemRequest) Execute() (*http.Response, error) {
 }
 
 /*
-PostAddressTokenRedeem Redeems an address token
+PostAddressTokenRedeem Redeem an address token
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The token id
+ @param id The token ID
  @return ApiPostAddressTokenRedeemRequest
 */
 func (a *AddressTokenAPIService) PostAddressTokenRedeem(ctx context.Context, id string) ApiPostAddressTokenRedeemRequest {

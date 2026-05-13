@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.9.0
+API version: 4.10.0
 Contact: contact@nuki.io
 */
 
@@ -35,10 +35,10 @@ func (r ApiDeleteAccountUserRequest) Execute() (*http.Response, error) {
 }
 
 /*
-DeleteAccountUser Deletes asynchronous an account user
+DeleteAccountUser Delete an account user asynchronously
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param accountUserId The account user id
+ @param accountUserId The account user ID
  @return ApiDeleteAccountUserRequest
 */
 func (a *AccountUserAPIService) DeleteAccountUser(ctx context.Context, accountUserId int32) ApiDeleteAccountUserRequest {
@@ -128,7 +128,7 @@ func (r ApiGetAccountUserRequest) Execute() (*AccountUser, *http.Response, error
 GetAccountUser Get an account user
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param accountUserId The account user id
+ @param accountUserId The account user ID
  @return ApiGetAccountUserRequest
 */
 func (a *AccountUserAPIService) GetAccountUser(ctx context.Context, accountUserId int32) ApiGetAccountUserRequest {
@@ -246,7 +246,7 @@ func (r ApiGetAccountUsersRequest) Execute() ([]AccountUser, *http.Response, err
 }
 
 /*
-GetAccountUsers Get an list of account users
+GetAccountUsers Get a list of account users
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetAccountUsersRequest
@@ -363,7 +363,7 @@ func (r ApiPostAccountUserRequest) Execute() (*AccountUser, *http.Response, erro
 PostAccountUser Update an account user
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param accountUserId The account user id
+ @param accountUserId The account user ID
  @return ApiPostAccountUserRequest
 */
 func (a *AccountUserAPIService) PostAccountUser(ctx context.Context, accountUserId int32) ApiPostAccountUserRequest {

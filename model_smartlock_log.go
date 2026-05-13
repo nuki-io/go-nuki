@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.9.0
+API version: 4.10.0
 Contact: contact@nuki.io
 */
 
@@ -27,7 +27,7 @@ type SmartlockLog struct {
 	Id string `json:"id"`
 	// The smartlock id
 	SmartlockId int64 `json:"smartlockId"`
-	// The device type: 0 .. smartlock and box, 2 .. opener, 3 .. smartdoor
+	// The device type: 0 .. Smartlock 1/2 + Box, 2 .. Opener, 3 .. Smartdoor, 4 .. Smartlock 3/4, 5 .. Smartlock 5
 	DeviceType int32 `json:"deviceType"`
 	// The id of the linked account user
 	AccountUserId *int32 `json:"accountUserId,omitempty"`

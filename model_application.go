@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.9.0
+API version: 4.10.0
 Contact: contact@nuki.io
 */
 
@@ -35,12 +35,12 @@ type Application struct {
 	ConnegService *ConnegService `json:"connegService,omitempty"`
 	MetadataService *MetadataService `json:"metadataService,omitempty"`
 	ConverterService *ConverterService `json:"converterService,omitempty"`
-	EncoderService *EncoderService `json:"encoderService,omitempty"`
 	RangeService *RangeService `json:"rangeService,omitempty"`
 	TaskService *TaskService `json:"taskService,omitempty"`
 	TunnelService *TunnelService `json:"tunnelService,omitempty"`
 	ConnectorService *ConnectorService `json:"connectorService,omitempty"`
 	DecoderService *DecoderService `json:"decoderService,omitempty"`
+	EncoderService *EncoderService `json:"encoderService,omitempty"`
 	Logger *Logger `json:"logger,omitempty"`
 	Stopped *bool `json:"stopped,omitempty"`
 	Application *Application `json:"application,omitempty"`
@@ -543,38 +543,6 @@ func (o *Application) SetConverterService(v ConverterService) {
 	o.ConverterService = &v
 }
 
-// GetEncoderService returns the EncoderService field value if set, zero value otherwise.
-func (o *Application) GetEncoderService() EncoderService {
-	if o == nil || IsNil(o.EncoderService) {
-		var ret EncoderService
-		return ret
-	}
-	return *o.EncoderService
-}
-
-// GetEncoderServiceOk returns a tuple with the EncoderService field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Application) GetEncoderServiceOk() (*EncoderService, bool) {
-	if o == nil || IsNil(o.EncoderService) {
-		return nil, false
-	}
-	return o.EncoderService, true
-}
-
-// HasEncoderService returns a boolean if a field has been set.
-func (o *Application) HasEncoderService() bool {
-	if o != nil && !IsNil(o.EncoderService) {
-		return true
-	}
-
-	return false
-}
-
-// SetEncoderService gets a reference to the given EncoderService and assigns it to the EncoderService field.
-func (o *Application) SetEncoderService(v EncoderService) {
-	o.EncoderService = &v
-}
-
 // GetRangeService returns the RangeService field value if set, zero value otherwise.
 func (o *Application) GetRangeService() RangeService {
 	if o == nil || IsNil(o.RangeService) {
@@ -735,6 +703,38 @@ func (o *Application) SetDecoderService(v DecoderService) {
 	o.DecoderService = &v
 }
 
+// GetEncoderService returns the EncoderService field value if set, zero value otherwise.
+func (o *Application) GetEncoderService() EncoderService {
+	if o == nil || IsNil(o.EncoderService) {
+		var ret EncoderService
+		return ret
+	}
+	return *o.EncoderService
+}
+
+// GetEncoderServiceOk returns a tuple with the EncoderService field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Application) GetEncoderServiceOk() (*EncoderService, bool) {
+	if o == nil || IsNil(o.EncoderService) {
+		return nil, false
+	}
+	return o.EncoderService, true
+}
+
+// HasEncoderService returns a boolean if a field has been set.
+func (o *Application) HasEncoderService() bool {
+	if o != nil && !IsNil(o.EncoderService) {
+		return true
+	}
+
+	return false
+}
+
+// SetEncoderService gets a reference to the given EncoderService and assigns it to the EncoderService field.
+func (o *Application) SetEncoderService(v EncoderService) {
+	o.EncoderService = &v
+}
+
 // GetLogger returns the Logger field value if set, zero value otherwise.
 func (o *Application) GetLogger() Logger {
 	if o == nil || IsNil(o.Logger) {
@@ -886,9 +886,6 @@ func (o Application) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ConverterService) {
 		toSerialize["converterService"] = o.ConverterService
 	}
-	if !IsNil(o.EncoderService) {
-		toSerialize["encoderService"] = o.EncoderService
-	}
 	if !IsNil(o.RangeService) {
 		toSerialize["rangeService"] = o.RangeService
 	}
@@ -903,6 +900,9 @@ func (o Application) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.DecoderService) {
 		toSerialize["decoderService"] = o.DecoderService
+	}
+	if !IsNil(o.EncoderService) {
+		toSerialize["encoderService"] = o.EncoderService
 	}
 	if !IsNil(o.Logger) {
 		toSerialize["logger"] = o.Logger

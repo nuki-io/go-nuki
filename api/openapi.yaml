@@ -10,7 +10,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://nuki.io/en/service/nukis-terms-of-use-apis/
   title: Nuki API
-  version: 4.9.0
+  version: 4.10.0
 servers:
 - url: /
 tags:
@@ -86,13 +86,13 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Invalid E-Mail address or name supplied
+          description: Invalid email address or name supplied
         "401":
           content: {}
           description: Not authorized
         "409":
           content: {}
-          description: E-Mail address already exists
+          description: Email address already exists
       security:
       - oauth:
         - account
@@ -126,7 +126,7 @@ paths:
       security:
       - oauth:
         - account
-      summary: Triggers the email change verification email
+      summary: Trigger the email change verification email
       tags:
       - Account
       x-codegen-request-body-name: body
@@ -149,7 +149,7 @@ paths:
       security:
       - oauth:
         - account
-      summary: Triggers the email change verification email
+      summary: Trigger the email change verification email
       tags:
       - Account
   /account/integration:
@@ -214,7 +214,7 @@ paths:
       security:
       - oauth:
         - account
-      summary: Disables one time password for an account
+      summary: Disable one-time password for an account
       tags:
       - Account
     post:
@@ -232,17 +232,17 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: One time password empty
+          description: One-time password empty
         "401":
           content: {}
-          description: Not authorized or one time password wrong
+          description: Not authorized or one-time password wrong
         "429":
           content: {}
           description: Too many failed attempts
       security:
       - oauth:
         - account
-      summary: Enables one time password for an account
+      summary: Enable one-time password for an account
       tags:
       - Account
       x-codegen-request-body-name: body
@@ -257,11 +257,11 @@ paths:
           description: Ok
         "405":
           content: {}
-          description: One time password is already enabled
+          description: One-time password is already enabled
       security:
       - oauth:
         - account
-      summary: Create an one time password secret
+      summary: Create a one-time password secret
       tags:
       - Account
   /account/password/reset:
@@ -348,7 +348,7 @@ paths:
           description: successful operation
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
@@ -381,7 +381,7 @@ paths:
       security:
       - oauth:
         - account
-      summary: Get an list of sub accounts
+      summary: Get a list of sub accounts
       tags:
       - Account
     put:
@@ -406,7 +406,7 @@ paths:
       security:
       - oauth:
         - account
-      summary: Create an sub account
+      summary: Create a sub account
       tags:
       - Account
       x-codegen-request-body-name: body
@@ -414,7 +414,7 @@ paths:
     delete:
       operationId: DeleteAccountSub
       parameters:
-      - description: The account id
+      - description: The account ID
         in: path
         name: accountId
         required: true
@@ -430,13 +430,13 @@ paths:
       security:
       - oauth:
         - account
-      summary: Delete an sub account
+      summary: Delete a sub account
       tags:
       - Account
     get:
       operationId: GetAccountSub
       parameters:
-      - description: The account id
+      - description: The account ID
         in: path
         name: accountId
         required: true
@@ -455,13 +455,13 @@ paths:
       security:
       - oauth:
         - account
-      summary: Get an sub account
+      summary: Get a sub account
       tags:
       - Account
     post:
       operationId: PostAccountSub
       parameters:
-      - description: The account id
+      - description: The account ID
         in: path
         name: accountId
         required: true
@@ -486,11 +486,11 @@ paths:
           description: Not authorized
         "409":
           content: {}
-          description: E-Mail address already exists
+          description: Email address already exists
       security:
       - oauth:
         - account
-      summary: Update an sub account
+      summary: Update a sub account
       tags:
       - Account
       x-codegen-request-body-name: body
@@ -528,7 +528,7 @@ paths:
       - oauth:
         - account
         - smartlock.auth
-      summary: Get an list of account users
+      summary: Get a list of account users
       tags:
       - AccountUser
     put:
@@ -549,7 +549,7 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Invalid E-Mail address or name supplied
+          description: Invalid email address or name supplied
       security:
       - oauth:
         - account
@@ -562,7 +562,7 @@ paths:
     delete:
       operationId: DeleteAccountUser
       parameters:
-      - description: The account user id
+      - description: The account user ID
         in: path
         name: accountUserId
         required: true
@@ -582,13 +582,13 @@ paths:
       - oauth:
         - account
         - smartlock.auth
-      summary: Deletes asynchronous an account user
+      summary: Delete an account user asynchronously
       tags:
       - AccountUser
     get:
       operationId: GetAccountUser
       parameters:
-      - description: The account user id
+      - description: The account user ID
         in: path
         name: accountUserId
         required: true
@@ -614,7 +614,7 @@ paths:
     post:
       operationId: PostAccountUser
       parameters:
-      - description: The account user id
+      - description: The account user ID
         in: path
         name: accountUserId
         required: true
@@ -639,13 +639,13 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Invalid E-Mail address or name supplied
+          description: Invalid email address or name supplied
         "401":
           content: {}
           description: Not authorized
         "409":
           content: {}
-          description: E-Mail address already exists
+          description: Email address already exists
       security:
       - oauth:
         - account
@@ -693,7 +693,7 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
@@ -705,7 +705,7 @@ paths:
     get:
       operationId: GetAddressToken
       parameters:
-      - description: The token id
+      - description: The token ID
         in: path
         name: id
         required: true
@@ -726,14 +726,14 @@ paths:
           description: Token not found
       security:
       - api_key: []
-      summary: Gives some info about address token
+      summary: Get info about an address token
       tags:
       - AddressToken
   /address/token/{id}/redeem:
     get:
       operationId: GetAddressTokenRedeem
       parameters:
-      - description: The token id
+      - description: The token ID
         in: path
         name: id
         required: true
@@ -755,19 +755,19 @@ paths:
       security:
       - oauth:
         - account
-      summary: Gives an redeemed address token
+      summary: Get a redeemed address token
       tags:
       - AddressToken
     post:
       operationId: PostAddressTokenRedeem
       parameters:
-      - description: The token id
+      - description: The token ID
         in: path
         name: id
         required: true
         schema:
           type: string
-      - description: If false no email will be send
+      - description: "If false, no email will be sent"
         in: query
         name: email
         schema:
@@ -788,14 +788,14 @@ paths:
       security:
       - oauth:
         - account
-      summary: Redeems an address token
+      summary: Redeem an address token
       tags:
       - AddressToken
   /address/{addressId}:
     delete:
       operationId: DeleteAddress
       parameters:
-      - description: The address id
+      - description: The address ID
         in: path
         name: addressId
         required: true
@@ -817,7 +817,7 @@ paths:
     post:
       operationId: PostAddress
       parameters:
-      - description: The address id
+      - description: The address ID
         in: path
         name: addressId
         required: true
@@ -836,7 +836,7 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
@@ -854,7 +854,7 @@ paths:
     get:
       operationId: GetAddressReservations
       parameters:
-      - description: The address id
+      - description: The address ID
         in: path
         name: addressId
         required: true
@@ -882,13 +882,13 @@ paths:
     post:
       operationId: PostAddressReservationIssue
       parameters:
-      - description: The address id
+      - description: The address ID
         in: path
         name: addressId
         required: true
         schema:
           type: integer
-      - description: The address reservation id
+      - description: The address reservation ID
         in: path
         name: id
         required: true
@@ -900,7 +900,7 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
@@ -914,13 +914,13 @@ paths:
     post:
       operationId: PostAddressReservationRevoke
       parameters:
-      - description: The address id
+      - description: The address ID
         in: path
         name: addressId
         required: true
         schema:
           type: integer
-      - description: The address reservation id
+      - description: The address reservation ID
         in: path
         name: id
         required: true
@@ -932,7 +932,7 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
@@ -946,13 +946,13 @@ paths:
     post:
       operationId: PostReservationAccessTimesUpdate
       parameters:
-      - description: The address id
+      - description: The address ID
         in: path
         name: addressId
         required: true
         schema:
           type: integer
-      - description: The reservation id
+      - description: The reservation ID
         in: path
         name: id
         required: true
@@ -971,7 +971,7 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
@@ -986,7 +986,7 @@ paths:
     get:
       operationId: GetAddressTokens
       parameters:
-      - description: The address id
+      - description: The address ID
         in: path
         name: addressId
         required: true
@@ -1003,7 +1003,7 @@ paths:
           description: successful operation
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
@@ -1014,7 +1014,7 @@ paths:
     delete:
       operationId: DeleteAddressUnits
       parameters:
-      - description: The address id
+      - description: The address ID
         in: path
         name: addressId
         required: true
@@ -1051,14 +1051,14 @@ paths:
       security:
       - oauth:
         - account
-      summary: Deletes address units asynchronously
+      summary: Delete address units asynchronously
       tags:
       - Address
       x-codegen-request-body-name: body
     get:
       operationId: GetAddressUnits
       parameters:
-      - description: The address id
+      - description: The address ID
         in: path
         name: addressId
         required: true
@@ -1075,7 +1075,7 @@ paths:
           description: successful operation
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
@@ -1088,7 +1088,7 @@ paths:
     put:
       operationId: PutAddressUnits
       parameters:
-      - description: The address id
+      - description: The address ID
         in: path
         name: addressId
         required: true
@@ -1110,7 +1110,7 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
@@ -1128,13 +1128,13 @@ paths:
     delete:
       operationId: DeleteAddressUnit
       parameters:
-      - description: The address id
+      - description: The address ID
         in: path
         name: addressId
         required: true
         schema:
           type: integer
-      - description: The address unit id
+      - description: The address unit ID
         in: path
         name: id
         required: true
@@ -1204,7 +1204,7 @@ paths:
           description: successful operation
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
@@ -1262,7 +1262,7 @@ paths:
       security:
       - oauth:
         - account
-      summary: Get a list of api keys
+      summary: Get a list of API keys
       tags:
       - ApiKey
     put:
@@ -1283,14 +1283,14 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
       security:
       - oauth:
         - account
-      summary: Create an api key
+      summary: Create an API key
       tags:
       - ApiKey
       x-codegen-request-body-name: body
@@ -1298,7 +1298,7 @@ paths:
     delete:
       operationId: DeleteApiKey
       parameters:
-      - description: The api key id
+      - description: The API key ID
         in: path
         name: apiKeyId
         required: true
@@ -1314,13 +1314,13 @@ paths:
       security:
       - oauth:
         - account
-      summary: Delete an api key
+      summary: Delete an API key
       tags:
       - ApiKey
     post:
       operationId: PostApiKey
       parameters:
-      - description: The api key id
+      - description: The API key ID
         in: path
         name: apiKeyId
         required: true
@@ -1346,7 +1346,7 @@ paths:
       security:
       - oauth:
         - account
-      summary: Update an api key
+      summary: Update an API key
       tags:
       - ApiKey
       x-codegen-request-body-name: body
@@ -1354,7 +1354,7 @@ paths:
     delete:
       operationId: DeleteApiKeyAdvanced
       parameters:
-      - description: The api key id
+      - description: The API key ID
         in: path
         name: apiKeyId
         required: true
@@ -1370,13 +1370,13 @@ paths:
       security:
       - oauth:
         - account
-      summary: Delete an advanced api key
+      summary: Delete an advanced API key
       tags:
       - ApiKey
     get:
       operationId: GetApiKeyAdvanced
       parameters:
-      - description: The api key id
+      - description: The API key ID
         in: path
         name: apiKeyId
         required: true
@@ -1401,13 +1401,13 @@ paths:
       security:
       - oauth:
         - account
-      summary: Get an advanced api key
+      summary: Get an advanced API key
       tags:
       - ApiKey
     post:
       operationId: PostApiKeyAdvanced
       parameters:
-      - description: The api key id
+      - description: The API key ID
         in: path
         name: apiKeyId
         required: true
@@ -1426,21 +1426,21 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
       security:
       - oauth:
         - account
-      summary: Update an advanced api key
+      summary: Update an advanced API key
       tags:
       - ApiKey
       x-codegen-request-body-name: body
     put:
       operationId: PutApiKeyAdvanced
       parameters:
-      - description: The api key id
+      - description: The API key ID
         in: path
         name: apiKeyId
         required: true
@@ -1459,14 +1459,14 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
       security:
       - oauth:
         - account
-      summary: Create an advanced api key
+      summary: Create an advanced API key
       tags:
       - ApiKey
       x-codegen-request-body-name: body
@@ -1474,7 +1474,7 @@ paths:
     post:
       operationId: PostApiKeyAdvancedReactivate
       parameters:
-      - description: The api key id
+      - description: The API key ID
         in: path
         name: apiKeyId
         required: true
@@ -1486,21 +1486,21 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
       security:
       - oauth:
         - account
-      summary: Reactivates a deactivated advanced webhook integration
+      summary: Reactivate a deactivated advanced webhook integration
       tags:
       - ApiKey
   /api/key/{apiKeyId}/token:
     get:
       operationId: GetApiKeyTokens
       parameters:
-      - description: The api key id
+      - description: The API key ID
         in: path
         name: apiKeyId
         required: true
@@ -1521,13 +1521,13 @@ paths:
       security:
       - oauth:
         - account
-      summary: Get a list of api key tokens
+      summary: Get a list of API key tokens
       tags:
       - ApiKey
     put:
       operationId: PutApiKeyTokens
       parameters:
-      - description: The api key id
+      - description: The API key ID
         in: path
         name: apiKeyId
         required: true
@@ -1549,14 +1549,14 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
       security:
       - oauth:
         - account
-      summary: Create an api key token
+      summary: Create an API key token
       tags:
       - ApiKey
       x-codegen-request-body-name: body
@@ -1564,13 +1564,13 @@ paths:
     delete:
       operationId: DeleteApiKeyToken
       parameters:
-      - description: The api key id
+      - description: The API key ID
         in: path
         name: apiKeyId
         required: true
         schema:
           type: integer
-      - description: The api key token id
+      - description: The API key token ID
         in: path
         name: id
         required: true
@@ -1586,19 +1586,19 @@ paths:
       security:
       - oauth:
         - account
-      summary: Delete an api key token
+      summary: Delete an API key token
       tags:
       - ApiKey
     post:
       operationId: PostApiKeyToken
       parameters:
-      - description: The api key id
+      - description: The API key ID
         in: path
         name: apiKeyId
         required: true
         schema:
           type: integer
-      - description: The api key token id
+      - description: The API key token ID
         in: path
         name: id
         required: true
@@ -1624,7 +1624,7 @@ paths:
       security:
       - oauth:
         - account
-      summary: Update an api key token
+      summary: Update an API key token
       tags:
       - ApiKey
       x-codegen-request-body-name: body
@@ -1632,7 +1632,7 @@ paths:
     get:
       operationId: GetWebhookLogs
       parameters:
-      - description: The api key id
+      - description: The API key ID
         in: path
         name: apiKeyId
         required: true
@@ -1690,7 +1690,7 @@ paths:
       security:
       - oauth:
         - smartlock.config
-      summary: Updates the web config for a group of smartlocks
+      summary: Update the web config for a group of smartlocks
       tags:
       - Smartlock
       x-codegen-request-body-name: body
@@ -1714,7 +1714,7 @@ paths:
           description: Not allowed
       security:
       - oauth: []
-      summary: Get an list of companies
+      summary: Get a list of companies
       tags:
       - Company
   /notification:
@@ -1762,7 +1762,7 @@ paths:
           description: successful operation
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
@@ -1992,7 +1992,7 @@ paths:
     get:
       operationId: GetService
       parameters:
-      - description: The service id
+      - description: The service ID
         in: path
         name: serviceId
         required: true
@@ -2018,7 +2018,7 @@ paths:
     post:
       operationId: PostServiceLink
       parameters:
-      - description: The service id
+      - description: The service ID
         in: path
         name: serviceId
         required: true
@@ -2033,21 +2033,21 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
       security:
       - oauth:
         - account
-      summary: Links a service
+      summary: Link a service
       tags:
       - Service
   /service/{serviceId}/sync:
     post:
       operationId: PostServiceSync
       parameters:
-      - description: The service id
+      - description: The service ID
         in: path
         name: serviceId
         required: true
@@ -2059,21 +2059,21 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
       security:
       - oauth:
         - account
-      summary: Syncs a service
+      summary: Sync a service
       tags:
       - Service
   /service/{serviceId}/unlink:
     post:
       operationId: PostServiceUnlink
       parameters:
-      - description: The service id
+      - description: The service ID
         in: path
         name: serviceId
         required: true
@@ -2085,14 +2085,14 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
       security:
       - oauth:
         - account
-      summary: Unlinks a service
+      summary: Unlink a service
       tags:
       - Service
   /smartlock:
@@ -2159,7 +2159,7 @@ paths:
       security:
       - oauth:
         - smartlock.auth
-      summary: Deletes smartlock authorizations asynchronously
+      summary: Delete smartlock authorizations asynchronously
       tags:
       - SmartlockAuth
       x-codegen-request-body-name: body
@@ -2229,7 +2229,7 @@ paths:
       security:
       - oauth:
         - smartlock.auth
-      summary: Updates smartlock authorizations asynchronously
+      summary: Update smartlock authorizations asynchronously
       tags:
       - SmartlockAuth
       x-codegen-request-body-name: body
@@ -2251,7 +2251,7 @@ paths:
           description: Bad parameter
         "402":
           content: {}
-          description: Account not payed
+          description: Account not paid
         "409":
           content: {}
           description: Parameter conflicts
@@ -2261,7 +2261,7 @@ paths:
       security:
       - oauth:
         - smartlock.auth
-      summary: Creates asynchronous smartlock authorizations
+      summary: Create smartlock authorizations asynchronously
       tags:
       - SmartlockAuth
       x-codegen-request-body-name: body
@@ -2287,7 +2287,7 @@ paths:
           description: Bad parameter
         "402":
           content: {}
-          description: Account not payed
+          description: Account not paid
         "409":
           content: {}
           description: Parameter conflicts
@@ -2297,7 +2297,7 @@ paths:
       security:
       - oauth:
         - smartlock.auth
-      summary: Creates asynchronous smartlock authorizations
+      summary: Create smartlock authorizations asynchronously
       tags:
       - AdvancedApi
       x-codegen-request-body-name: body
@@ -2402,7 +2402,7 @@ paths:
     delete:
       operationId: DeleteSmartlock
       parameters:
-      - description: The smartlock id
+      - description: The smartlock ID
         in: path
         name: smartlockId
         required: true
@@ -2430,7 +2430,7 @@ paths:
     get:
       operationId: GetSmartlock
       parameters:
-      - description: The smartlock id
+      - description: The smartlock ID
         in: path
         name: smartlockId
         required: true
@@ -2462,7 +2462,7 @@ paths:
     post:
       operationId: PostSmartlock
       parameters:
-      - description: The smartlock id
+      - description: The smartlock ID
         in: path
         name: smartlockId
         required: true
@@ -2499,7 +2499,7 @@ paths:
     post:
       operationId: PostSmartlockAction
       parameters:
-      - description: The smartlock id
+      - description: The smartlock ID
         in: path
         name: smartlockId
         required: true
@@ -2518,13 +2518,13 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
         "402":
           content: {}
-          description: Account not payed
+          description: Account not paid
       security:
       - oauth:
         - smartlock.action
@@ -2536,7 +2536,7 @@ paths:
     post:
       operationId: ActionSmartlockActionAdvanced
       parameters:
-      - description: The smartlock id
+      - description: The smartlock ID
         in: path
         name: smartlockId
         required: true
@@ -2561,7 +2561,7 @@ paths:
           description: Bad parameter
         "402":
           content: {}
-          description: Account not payed
+          description: Account not paid
         "409":
           content: {}
           description: Parameter conflicts
@@ -2571,7 +2571,7 @@ paths:
       security:
       - oauth:
         - smartlock.action
-      summary: Smartlock Action with Callback
+      summary: Lock & unlock a smartlock with callback
       tags:
       - AdvancedApi
       x-codegen-request-body-name: body
@@ -2579,7 +2579,7 @@ paths:
     post:
       operationId: PostLockSmartlockLockAction
       parameters:
-      - description: The smartlock id
+      - description: The smartlock ID
         in: path
         name: smartlockId
         required: true
@@ -2591,7 +2591,7 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
@@ -2608,7 +2608,7 @@ paths:
     post:
       operationId: PostLockSmartlockLockActionAdvanced
       parameters:
-      - description: The smartlock id
+      - description: The smartlock ID
         in: path
         name: smartlockId
         required: true
@@ -2623,7 +2623,7 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
@@ -2640,7 +2640,7 @@ paths:
     post:
       operationId: PostUnlockSmartlockUnlockAction
       parameters:
-      - description: The smartlock id
+      - description: The smartlock ID
         in: path
         name: smartlockId
         required: true
@@ -2652,7 +2652,7 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
@@ -2669,7 +2669,7 @@ paths:
     post:
       operationId: PostLockSmartlockUnlockActionAdvanced
       parameters:
-      - description: The smartlock id
+      - description: The smartlock ID
         in: path
         name: smartlockId
         required: true
@@ -2684,7 +2684,7 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
@@ -2701,7 +2701,7 @@ paths:
     post:
       operationId: PostSmartlockAdminPin
       parameters:
-      - description: The smartlock id
+      - description: The smartlock ID
         in: path
         name: smartlockId
         required: true
@@ -2727,7 +2727,7 @@ paths:
       security:
       - oauth:
         - smartlock.config
-      summary: Updates a smartlock admin pin
+      summary: Update a smartlock admin PIN
       tags:
       - Smartlock
       x-codegen-request-body-name: body
@@ -2735,7 +2735,7 @@ paths:
     post:
       operationId: PostSmartlockAdvancedConfig
       parameters:
-      - description: The smartlock id
+      - description: The smartlock ID
         in: path
         name: smartlockId
         required: true
@@ -2761,7 +2761,7 @@ paths:
       security:
       - oauth:
         - smartlock.config
-      summary: Updates a smartlock advanced config
+      summary: Update a smartlock advanced config
       tags:
       - Smartlock
       x-codegen-request-body-name: body
@@ -2769,7 +2769,7 @@ paths:
     post:
       operationId: PostSmartlockOpenerAdvancedConfig
       parameters:
-      - description: The smartlock (opener) id
+      - description: The smartlock (opener) ID
         in: path
         name: smartlockId
         required: true
@@ -2795,7 +2795,7 @@ paths:
       security:
       - oauth:
         - smartlock.config
-      summary: Updates an opener advanced config
+      summary: Update an opener advanced config
       tags:
       - Smartlock
       x-codegen-request-body-name: body
@@ -2803,7 +2803,7 @@ paths:
     post:
       operationId: PostSmartdoorAdvancedConfig
       parameters:
-      - description: The smartdoor id
+      - description: The smartdoor ID
         in: path
         name: smartlockId
         required: true
@@ -2829,7 +2829,7 @@ paths:
       security:
       - oauth:
         - smartlock.config
-      summary: Updates a smartdoor advanced config
+      summary: Update a smartdoor advanced config
       tags:
       - Smartlock
       x-codegen-request-body-name: body
@@ -2837,7 +2837,7 @@ paths:
     get:
       operationId: GetSmartlockAuths
       parameters:
-      - description: The smartlock id
+      - description: The smartlock ID
         in: path
         name: smartlockId
         required: true
@@ -2878,7 +2878,7 @@ paths:
     put:
       operationId: PutSmartlockAuths
       parameters:
-      - description: The smartlock id
+      - description: The smartlock ID
         in: path
         name: smartlockId
         required: true
@@ -2900,7 +2900,7 @@ paths:
           description: Bad parameter
         "402":
           content: {}
-          description: Account not payed
+          description: Account not paid
         "409":
           content: {}
           description: Parameter conflicts
@@ -2910,7 +2910,7 @@ paths:
       security:
       - oauth:
         - smartlock.auth
-      summary: Creates asynchronous a smartlock authorization
+      summary: Create a smartlock authorization asynchronously
       tags:
       - SmartlockAuth
       x-codegen-request-body-name: body
@@ -2918,7 +2918,7 @@ paths:
     post:
       operationId: PostSmartlockAuthWithSharedKey
       parameters:
-      - description: The smartlock id
+      - description: The smartlock ID
         in: path
         name: smartlockId
         required: true
@@ -2948,7 +2948,7 @@ paths:
           description: Forbidden
         "404":
           content: {}
-          description: Id not found
+          description: Not found
       security:
       - oauth:
         - smartlock.auth
@@ -2960,13 +2960,13 @@ paths:
     delete:
       operationId: DeleteSmartlockAuth
       parameters:
-      - description: The smartlock id
+      - description: The smartlock ID
         in: path
         name: smartlockId
         required: true
         schema:
           type: integer
-      - description: The smartlock authorization unique id
+      - description: The smartlock authorization unique ID
         in: path
         name: id
         required: true
@@ -2988,19 +2988,19 @@ paths:
       security:
       - oauth:
         - smartlock.auth
-      summary: Deletes asynchronous a smartlock authorization
+      summary: Delete a smartlock authorization asynchronously
       tags:
       - SmartlockAuth
     get:
       operationId: GetSmartlockAuth
       parameters:
-      - description: The smartlock id
+      - description: The smartlock ID
         in: path
         name: smartlockId
         required: true
         schema:
           type: integer
-      - description: The smartlock auth unique id
+      - description: The smartlock auth unique ID
         in: path
         name: id
         required: true
@@ -3028,13 +3028,13 @@ paths:
     post:
       operationId: PostSmartlockAuth
       parameters:
-      - description: The smartlock id
+      - description: The smartlock ID
         in: path
         name: smartlockId
         required: true
         schema:
           type: integer
-      - description: The smartlock authorization unique id
+      - description: The smartlock authorization unique ID
         in: path
         name: id
         required: true
@@ -3069,7 +3069,7 @@ paths:
       security:
       - oauth:
         - smartlock.auth
-      summary: Updates asynchronous a smartlock authorization
+      summary: Update a smartlock authorization asynchronously
       tags:
       - SmartlockAuth
       x-codegen-request-body-name: body
@@ -3077,7 +3077,7 @@ paths:
     post:
       operationId: PostSmartlockConfig
       parameters:
-      - description: The smartlock id
+      - description: The smartlock ID
         in: path
         name: smartlockId
         required: true
@@ -3103,7 +3103,7 @@ paths:
       security:
       - oauth:
         - smartlock.config
-      summary: Updates a smartlock config
+      summary: Update a smartlock config
       tags:
       - Smartlock
       x-codegen-request-body-name: body
@@ -3111,7 +3111,7 @@ paths:
     get:
       operationId: GetSmartlockLogs
       parameters:
-      - description: The smartlock id
+      - description: The smartlock ID
         in: path
         name: smartlockId
         required: true
@@ -3175,7 +3175,7 @@ paths:
     post:
       operationId: PostSmartlockSync
       parameters:
-      - description: The smartlock id
+      - description: The smartlock ID
         in: path
         name: smartlockId
         required: true
@@ -3187,21 +3187,21 @@ paths:
           description: Ok
         "400":
           content: {}
-          description: Bad Parameter
+          description: Bad parameter
         "401":
           content: {}
           description: Not authorized
       security:
       - oauth:
         - smartlock.action
-      summary: Syncs a smartlock
+      summary: Sync a smartlock
       tags:
       - Smartlock
   /smartlock/{smartlockId}/web/config:
     post:
       operationId: PostSmartlockWebConfig
       parameters:
-      - description: The smartlock id
+      - description: The smartlock ID
         in: path
         name: smartlockId
         required: true
@@ -3227,7 +3227,7 @@ paths:
       security:
       - oauth:
         - smartlock.config
-      summary: Updates a smartlock web config
+      summary: Update a smartlock web config
       tags:
       - Smartlock
       x-codegen-request-body-name: body
@@ -4735,7 +4735,7 @@ components:
             - name: name
               value: value
           stopped: true
-          minimumSize: 1
+          minimumSize: 5
           context: null
           started: true
           ignoredMediaTypes:
@@ -5080,7 +5080,7 @@ components:
           shutdownAllowed: true
           stopped: true
           context: null
-          corePoolSize: 5
+          corePoolSize: 1
           started: true
           enabled: true
           terminated: true
@@ -5127,8 +5127,6 @@ components:
           $ref: '#/components/schemas/MetadataService'
         converterService:
           $ref: '#/components/schemas/ConverterService'
-        encoderService:
-          $ref: '#/components/schemas/EncoderService'
         rangeService:
           $ref: '#/components/schemas/RangeService'
         taskService:
@@ -5139,6 +5137,8 @@ components:
           $ref: '#/components/schemas/ConnectorService'
         decoderService:
           $ref: '#/components/schemas/DecoderService'
+        encoderService:
+          $ref: '#/components/schemas/EncoderService'
         logger:
           $ref: '#/components/schemas/Logger'
         stopped:
@@ -5541,7 +5541,7 @@ components:
                 - name: name
                   value: value
               stopped: true
-              minimumSize: 1
+              minimumSize: 5
               context: null
               started: true
               ignoredMediaTypes:
@@ -5886,7 +5886,7 @@ components:
               shutdownAllowed: true
               stopped: true
               context: null
-              corePoolSize: 5
+              corePoolSize: 1
               started: true
               enabled: true
               terminated: true
@@ -5993,7 +5993,7 @@ components:
                 - name: name
                   value: value
               stopped: true
-              minimumSize: 1
+              minimumSize: 5
               context: null
               started: true
               ignoredMediaTypes:
@@ -6338,7 +6338,7 @@ components:
               shutdownAllowed: true
               stopped: true
               context: null
-              corePoolSize: 5
+              corePoolSize: 1
               started: true
               enabled: true
               terminated: true
@@ -6648,7 +6648,7 @@ components:
           - name: name
             value: value
         stopped: true
-        minimumSize: 1
+        minimumSize: 5
         context: null
         started: true
         ignoredMediaTypes:
@@ -7335,13 +7335,13 @@ components:
         date:
           format: date-time
           type: string
-        machineIdentifier:
-          format: int32
-          type: integer
         processIdentifier:
           format: int32
           type: integer
         timeSecond:
+          format: int32
+          type: integer
+        machineIdentifier:
           format: int32
           type: integer
       type: object
@@ -8137,7 +8137,7 @@ components:
               - name: name
                 value: value
             stopped: true
-            minimumSize: 1
+            minimumSize: 5
             context: null
             started: true
             ignoredMediaTypes:
@@ -8482,7 +8482,7 @@ components:
             shutdownAllowed: true
             stopped: true
             context: null
-            corePoolSize: 5
+            corePoolSize: 1
             started: true
             enabled: true
             terminated: true
@@ -8688,7 +8688,7 @@ components:
                   - name: name
                     value: value
                 stopped: true
-                minimumSize: 1
+                minimumSize: 5
                 context: null
                 started: true
                 ignoredMediaTypes:
@@ -9033,7 +9033,7 @@ components:
                 shutdownAllowed: true
                 stopped: true
                 context: null
-                corePoolSize: 5
+                corePoolSize: 1
                 started: true
                 enabled: true
                 terminated: true
@@ -9140,7 +9140,7 @@ components:
                   - name: name
                     value: value
                 stopped: true
-                minimumSize: 1
+                minimumSize: 5
                 context: null
                 started: true
                 ignoredMediaTypes:
@@ -9485,7 +9485,7 @@ components:
                 shutdownAllowed: true
                 stopped: true
                 context: null
-                corePoolSize: 5
+                corePoolSize: 1
                 started: true
                 enabled: true
                 terminated: true
@@ -9850,8 +9850,8 @@ components:
           format: int32
           type: integer
         type:
-          description: "The type: 0 .. keyturner, 1 .. box, 2 .. opener, 3 .. smartdoor,\
-            \ 4 .. smartlock 3.0/4. Gen"
+          description: "The type: 0 .. Smartlock 1/2, 1 .. Box, 2 .. Opener, 3 ..\
+            \ Smartdoor, 4 .. Smartlock 3/4, 5 .. Smartlock 5"
           format: int32
           type: integer
         lmType:
@@ -11116,12 +11116,14 @@ components:
           format: int64
           type: integer
         deviceType:
-          description: "The device type: 0 .. smartlock and box, 2 .. opener, 3 ..\
-            \ smartdoor"
+          description: "The device type: 0 .. Smartlock 1/2 + Box, 2 .. Opener, 3\
+            \ .. Smartdoor, 4 .. Smartlock 3/4, 5 .. Smartlock 5"
           enum:
           - 0
           - 2
           - 3
+          - 4
+          - 5
           format: int32
           type: integer
         accountUserId:
@@ -11606,7 +11608,7 @@ components:
         shutdownAllowed: true
         stopped: true
         context: null
-        corePoolSize: 5
+        corePoolSize: 1
         started: true
         enabled: true
         terminated: true

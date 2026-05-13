@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.9.0
+API version: 4.10.0
 Contact: contact@nuki.io
 */
 
@@ -38,7 +38,7 @@ func (r ApiGetServiceRequest) Execute() (*Service, *http.Response, error) {
 GetService Get a service
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param serviceId The service id
+ @param serviceId The service ID
  @return ApiGetServiceRequest
 */
 func (a *ServiceAPIService) GetService(ctx context.Context, serviceId string) ApiGetServiceRequest {
@@ -243,10 +243,10 @@ func (r ApiPostServiceLinkRequest) Execute() (string, *http.Response, error) {
 }
 
 /*
-PostServiceLink Links a service
+PostServiceLink Link a service
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param serviceId The service id
+ @param serviceId The service ID
  @return ApiPostServiceLinkRequest
 */
 func (a *ServiceAPIService) PostServiceLink(ctx context.Context, serviceId string) ApiPostServiceLinkRequest {
@@ -344,10 +344,10 @@ func (r ApiPostServiceSyncRequest) Execute() (*http.Response, error) {
 }
 
 /*
-PostServiceSync Syncs a service
+PostServiceSync Sync a service
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param serviceId The service id
+ @param serviceId The service ID
  @return ApiPostServiceSyncRequest
 */
 func (a *ServiceAPIService) PostServiceSync(ctx context.Context, serviceId string) ApiPostServiceSyncRequest {
@@ -434,10 +434,10 @@ func (r ApiPostServiceUnlinkRequest) Execute() (*http.Response, error) {
 }
 
 /*
-PostServiceUnlink Unlinks a service
+PostServiceUnlink Unlink a service
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param serviceId The service id
+ @param serviceId The service ID
  @return ApiPostServiceUnlinkRequest
 */
 func (a *ServiceAPIService) PostServiceUnlink(ctx context.Context, serviceId string) ApiPostServiceUnlinkRequest {

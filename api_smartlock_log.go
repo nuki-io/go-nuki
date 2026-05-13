@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.9.0
+API version: 4.10.0
 Contact: contact@nuki.io
 */
 
@@ -87,7 +87,7 @@ func (r ApiGetSmartlockLogsRequest) Execute() ([]SmartlockLog, *http.Response, e
 GetSmartlockLogs Get a list of smartlock logs
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
+ @param smartlockId The smartlock ID
  @return ApiGetSmartlockLogsRequest
 */
 func (a *SmartlockLogAPIService) GetSmartlockLogs(ctx context.Context, smartlockId int32) ApiGetSmartlockLogsRequest {

@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.9.0
+API version: 4.10.0
 Contact: contact@nuki.io
 */
 
@@ -35,10 +35,10 @@ func (r ApiDeleteApiKeyRequest) Execute() (*http.Response, error) {
 }
 
 /*
-DeleteApiKey Delete an api key
+DeleteApiKey Delete an API key
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param apiKeyId The api key id
+ @param apiKeyId The API key ID
  @return ApiDeleteApiKeyRequest
 */
 func (a *ApiKeyAPIService) DeleteApiKey(ctx context.Context, apiKeyId int32) ApiDeleteApiKeyRequest {
@@ -125,10 +125,10 @@ func (r ApiDeleteApiKeyAdvancedRequest) Execute() (*http.Response, error) {
 }
 
 /*
-DeleteApiKeyAdvanced Delete an advanced api key
+DeleteApiKeyAdvanced Delete an advanced API key
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param apiKeyId The api key id
+ @param apiKeyId The API key ID
  @return ApiDeleteApiKeyAdvancedRequest
 */
 func (a *ApiKeyAPIService) DeleteApiKeyAdvanced(ctx context.Context, apiKeyId int32) ApiDeleteApiKeyAdvancedRequest {
@@ -216,11 +216,11 @@ func (r ApiDeleteApiKeyTokenRequest) Execute() (*http.Response, error) {
 }
 
 /*
-DeleteApiKeyToken Delete an api key token
+DeleteApiKeyToken Delete an API key token
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param apiKeyId The api key id
- @param id The api key token id
+ @param apiKeyId The API key ID
+ @param id The API key token ID
  @return ApiDeleteApiKeyTokenRequest
 */
 func (a *ApiKeyAPIService) DeleteApiKeyToken(ctx context.Context, apiKeyId int32, id string) ApiDeleteApiKeyTokenRequest {
@@ -309,10 +309,10 @@ func (r ApiGetApiKeyAdvancedRequest) Execute() (*AdvancedApiKey, *http.Response,
 }
 
 /*
-GetApiKeyAdvanced Get an advanced api key
+GetApiKeyAdvanced Get an advanced API key
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param apiKeyId The api key id
+ @param apiKeyId The API key ID
  @return ApiGetApiKeyAdvancedRequest
 */
 func (a *ApiKeyAPIService) GetApiKeyAdvanced(ctx context.Context, apiKeyId int32) ApiGetApiKeyAdvancedRequest {
@@ -410,10 +410,10 @@ func (r ApiGetApiKeyTokensRequest) Execute() ([]ApiKeyToken, *http.Response, err
 }
 
 /*
-GetApiKeyTokens Get a list of api key tokens
+GetApiKeyTokens Get a list of API key tokens
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param apiKeyId The api key id
+ @param apiKeyId The API key ID
  @return ApiGetApiKeyTokensRequest
 */
 func (a *ApiKeyAPIService) GetApiKeyTokens(ctx context.Context, apiKeyId int32) ApiGetApiKeyTokensRequest {
@@ -510,7 +510,7 @@ func (r ApiGetApiKeysRequest) Execute() ([]ApiKey, *http.Response, error) {
 }
 
 /*
-GetApiKeys Get a list of api keys
+GetApiKeys Get a list of API keys
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetApiKeysRequest
@@ -615,10 +615,10 @@ func (r ApiPostApiKeyRequest) Execute() (*http.Response, error) {
 }
 
 /*
-PostApiKey Update an api key
+PostApiKey Update an API key
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param apiKeyId The api key id
+ @param apiKeyId The API key ID
  @return ApiPostApiKeyRequest
 */
 func (a *ApiKeyAPIService) PostApiKey(ctx context.Context, apiKeyId int32) ApiPostApiKeyRequest {
@@ -717,10 +717,10 @@ func (r ApiPostApiKeyAdvancedRequest) Execute() (*http.Response, error) {
 }
 
 /*
-PostApiKeyAdvanced Update an advanced api key
+PostApiKeyAdvanced Update an advanced API key
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param apiKeyId The api key id
+ @param apiKeyId The API key ID
  @return ApiPostApiKeyAdvancedRequest
 */
 func (a *ApiKeyAPIService) PostApiKeyAdvanced(ctx context.Context, apiKeyId int32) ApiPostApiKeyAdvancedRequest {
@@ -812,10 +812,10 @@ func (r ApiPostApiKeyAdvancedReactivateRequest) Execute() (*http.Response, error
 }
 
 /*
-PostApiKeyAdvancedReactivate Reactivates a deactivated advanced webhook integration
+PostApiKeyAdvancedReactivate Reactivate a deactivated advanced webhook integration
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param apiKeyId The api key id
+ @param apiKeyId The API key ID
  @return ApiPostApiKeyAdvancedReactivateRequest
 */
 func (a *ApiKeyAPIService) PostApiKeyAdvancedReactivate(ctx context.Context, apiKeyId int32) ApiPostApiKeyAdvancedReactivateRequest {
@@ -910,11 +910,11 @@ func (r ApiPostApiKeyTokenRequest) Execute() (*http.Response, error) {
 }
 
 /*
-PostApiKeyToken Update an api key token
+PostApiKeyToken Update an API key token
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param apiKeyId The api key id
- @param id The api key token id
+ @param apiKeyId The API key ID
+ @param id The API key token ID
  @return ApiPostApiKeyTokenRequest
 */
 func (a *ApiKeyAPIService) PostApiKeyToken(ctx context.Context, apiKeyId int32, id string) ApiPostApiKeyTokenRequest {
@@ -1015,10 +1015,10 @@ func (r ApiPutApiKeyAdvancedRequest) Execute() (*http.Response, error) {
 }
 
 /*
-PutApiKeyAdvanced Create an advanced api key
+PutApiKeyAdvanced Create an advanced API key
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param apiKeyId The api key id
+ @param apiKeyId The API key ID
  @return ApiPutApiKeyAdvancedRequest
 */
 func (a *ApiKeyAPIService) PutApiKeyAdvanced(ctx context.Context, apiKeyId int32) ApiPutApiKeyAdvancedRequest {
@@ -1117,10 +1117,10 @@ func (r ApiPutApiKeyTokensRequest) Execute() (*ApiKeyToken, *http.Response, erro
 }
 
 /*
-PutApiKeyTokens Create an api key token
+PutApiKeyTokens Create an API key token
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param apiKeyId The api key id
+ @param apiKeyId The API key ID
  @return ApiPutApiKeyTokensRequest
 */
 func (a *ApiKeyAPIService) PutApiKeyTokens(ctx context.Context, apiKeyId int32) ApiPutApiKeyTokensRequest {
@@ -1229,7 +1229,7 @@ func (r ApiPutApiKeysRequest) Execute() (*ApiKey, *http.Response, error) {
 }
 
 /*
-PutApiKeys Create an api key
+PutApiKeys Create an API key
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPutApiKeysRequest

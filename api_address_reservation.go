@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.9.0
+API version: 4.10.0
 Contact: contact@nuki.io
 */
 
@@ -38,7 +38,7 @@ func (r ApiGetAddressReservationsRequest) Execute() ([]AddressReservation, *http
 GetAddressReservations Get a list of address reservations
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param addressId The address id
+ @param addressId The address ID
  @return ApiGetAddressReservationsRequest
 */
 func (a *AddressReservationAPIService) GetAddressReservations(ctx context.Context, addressId int32) ApiGetAddressReservationsRequest {
@@ -140,8 +140,8 @@ func (r ApiPostAddressReservationIssueRequest) Execute() (*http.Response, error)
 PostAddressReservationIssue Issues authorizations for an address reservation
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param addressId The address id
- @param id The address reservation id
+ @param addressId The address ID
+ @param id The address reservation ID
  @return ApiPostAddressReservationIssueRequest
 */
 func (a *AddressReservationAPIService) PostAddressReservationIssue(ctx context.Context, addressId int32, id string) ApiPostAddressReservationIssueRequest {
@@ -234,8 +234,8 @@ func (r ApiPostAddressReservationRevokeRequest) Execute() (*http.Response, error
 PostAddressReservationRevoke Revoke authorizations for an address reservation
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param addressId The address id
- @param id The address reservation id
+ @param addressId The address ID
+ @param id The address reservation ID
  @return ApiPostAddressReservationRevokeRequest
 */
 func (a *AddressReservationAPIService) PostAddressReservationRevoke(ctx context.Context, addressId int32, id string) ApiPostAddressReservationRevokeRequest {
@@ -335,8 +335,8 @@ func (r ApiPostReservationAccessTimesUpdateRequest) Execute() (*http.Response, e
 PostReservationAccessTimesUpdate Update access times of a reservation
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param addressId The address id
- @param id The reservation id
+ @param addressId The address ID
+ @param id The reservation ID
  @return ApiPostReservationAccessTimesUpdateRequest
 */
 func (a *AddressReservationAPIService) PostReservationAccessTimesUpdate(ctx context.Context, addressId int32, id string) ApiPostReservationAccessTimesUpdateRequest {

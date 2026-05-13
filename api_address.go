@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.9.0
+API version: 4.10.0
 Contact: contact@nuki.io
 */
 
@@ -38,7 +38,7 @@ func (r ApiDeleteAddressRequest) Execute() (*http.Response, error) {
 DeleteAddress Delete an address
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param addressId The address id
+ @param addressId The address ID
  @return ApiDeleteAddressRequest
 */
 func (a *AddressAPIService) DeleteAddress(ctx context.Context, addressId int32) ApiDeleteAddressRequest {
@@ -129,8 +129,8 @@ func (r ApiDeleteAddressUnitRequest) Execute() (*AdvancedConfirmationResponse, *
 DeleteAddressUnit Delete an address unit
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param addressId The address id
- @param id The address unit id
+ @param addressId The address ID
+ @param id The address unit ID
  @return ApiDeleteAddressUnitRequest
 */
 func (a *AddressAPIService) DeleteAddressUnit(ctx context.Context, addressId int32, id string) ApiDeleteAddressUnitRequest {
@@ -237,10 +237,10 @@ func (r ApiDeleteAddressUnitsRequest) Execute() (*AdvancedConfirmationResponse, 
 }
 
 /*
-DeleteAddressUnits Deletes address units asynchronously
+DeleteAddressUnits Delete address units asynchronously
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param addressId The address id
+ @param addressId The address ID
  @return ApiDeleteAddressUnitsRequest
 */
 func (a *AddressAPIService) DeleteAddressUnits(ctx context.Context, addressId int32) ApiDeleteAddressUnitsRequest {
@@ -346,7 +346,7 @@ func (r ApiGetAddressUnitsRequest) Execute() ([]AddressUnitResponse, *http.Respo
 GetAddressUnits Get a list of address units
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param addressId The address id
+ @param addressId The address ID
  @return ApiGetAddressUnitsRequest
 */
 func (a *AddressAPIService) GetAddressUnits(ctx context.Context, addressId int32) ApiGetAddressUnitsRequest {
@@ -551,7 +551,7 @@ func (r ApiPostAddressRequest) Execute() (*http.Response, error) {
 PostAddress Update an address
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param addressId The address id
+ @param addressId The address ID
  @return ApiPostAddressRequest
 */
 func (a *AddressAPIService) PostAddress(ctx context.Context, addressId int32) ApiPostAddressRequest {
@@ -653,7 +653,7 @@ func (r ApiPutAddressUnitsRequest) Execute() (*AddressUnitResponse, *http.Respon
 PutAddressUnits Create an address unit
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param addressId The address id
+ @param addressId The address ID
  @return ApiPutAddressUnitsRequest
 */
 func (a *AddressAPIService) PutAddressUnits(ctx context.Context, addressId int32) ApiPutAddressUnitsRequest {

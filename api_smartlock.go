@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.9.0
+API version: 4.10.0
 Contact: contact@nuki.io
 */
 
@@ -38,7 +38,7 @@ func (r ApiDeleteSmartlockRequest) Execute() (*http.Response, error) {
 DeleteSmartlock Delete a smartlock
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
+ @param smartlockId The smartlock ID
  @return ApiDeleteSmartlockRequest
 */
 func (a *SmartlockAPIService) DeleteSmartlock(ctx context.Context, smartlockId int32) ApiDeleteSmartlockRequest {
@@ -128,7 +128,7 @@ func (r ApiGetSmartlockRequest) Execute() (*Smartlock, *http.Response, error) {
 GetSmartlock Get a smartlock
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
+ @param smartlockId The smartlock ID
  @return ApiGetSmartlockRequest
 */
 func (a *SmartlockAPIService) GetSmartlock(ctx context.Context, smartlockId int32) ApiGetSmartlockRequest {
@@ -346,7 +346,7 @@ func (r ApiPostLockSmartlockLockActionRequest) Execute() (*http.Response, error)
 PostLockSmartlockLockAction Lock a smartlock
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
+ @param smartlockId The smartlock ID
  @return ApiPostLockSmartlockLockActionRequest
 */
 func (a *SmartlockAPIService) PostLockSmartlockLockAction(ctx context.Context, smartlockId string) ApiPostLockSmartlockLockActionRequest {
@@ -440,10 +440,10 @@ func (r ApiPostSmartdoorAdvancedConfigRequest) Execute() (*http.Response, error)
 }
 
 /*
-PostSmartdoorAdvancedConfig Updates a smartdoor advanced config
+PostSmartdoorAdvancedConfig Update a smartdoor advanced config
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartdoor id
+ @param smartlockId The smartdoor ID
  @return ApiPostSmartdoorAdvancedConfigRequest
 */
 func (a *SmartlockAPIService) PostSmartdoorAdvancedConfig(ctx context.Context, smartlockId int32) ApiPostSmartdoorAdvancedConfigRequest {
@@ -545,7 +545,7 @@ func (r ApiPostSmartlockRequest) Execute() (*http.Response, error) {
 PostSmartlock Update a smartlock
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
+ @param smartlockId The smartlock ID
  @return ApiPostSmartlockRequest
 */
 func (a *SmartlockAPIService) PostSmartlock(ctx context.Context, smartlockId int32) ApiPostSmartlockRequest {
@@ -647,7 +647,7 @@ func (r ApiPostSmartlockActionRequest) Execute() (*http.Response, error) {
 PostSmartlockAction Lock & unlock a smartlock with options
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
+ @param smartlockId The smartlock ID
  @return ApiPostSmartlockActionRequest
 */
 func (a *SmartlockAPIService) PostSmartlockAction(ctx context.Context, smartlockId string) ApiPostSmartlockActionRequest {
@@ -746,10 +746,10 @@ func (r ApiPostSmartlockAdminPinRequest) Execute() (*http.Response, error) {
 }
 
 /*
-PostSmartlockAdminPin Updates a smartlock admin pin
+PostSmartlockAdminPin Update a smartlock admin PIN
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
+ @param smartlockId The smartlock ID
  @return ApiPostSmartlockAdminPinRequest
 */
 func (a *SmartlockAPIService) PostSmartlockAdminPin(ctx context.Context, smartlockId int32) ApiPostSmartlockAdminPinRequest {
@@ -848,10 +848,10 @@ func (r ApiPostSmartlockAdvancedConfigRequest) Execute() (*http.Response, error)
 }
 
 /*
-PostSmartlockAdvancedConfig Updates a smartlock advanced config
+PostSmartlockAdvancedConfig Update a smartlock advanced config
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
+ @param smartlockId The smartlock ID
  @return ApiPostSmartlockAdvancedConfigRequest
 */
 func (a *SmartlockAPIService) PostSmartlockAdvancedConfig(ctx context.Context, smartlockId int32) ApiPostSmartlockAdvancedConfigRequest {
@@ -949,7 +949,7 @@ func (r ApiPostSmartlockBulkWebConfigRequest) Execute() (*http.Response, error) 
 }
 
 /*
-PostSmartlockBulkWebConfig Updates the web config for a group of smartlocks
+PostSmartlockBulkWebConfig Update the web config for a group of smartlocks
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPostSmartlockBulkWebConfigRequest
@@ -1048,10 +1048,10 @@ func (r ApiPostSmartlockConfigRequest) Execute() (*http.Response, error) {
 }
 
 /*
-PostSmartlockConfig Updates a smartlock config
+PostSmartlockConfig Update a smartlock config
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
+ @param smartlockId The smartlock ID
  @return ApiPostSmartlockConfigRequest
 */
 func (a *SmartlockAPIService) PostSmartlockConfig(ctx context.Context, smartlockId int32) ApiPostSmartlockConfigRequest {
@@ -1150,10 +1150,10 @@ func (r ApiPostSmartlockOpenerAdvancedConfigRequest) Execute() (*http.Response, 
 }
 
 /*
-PostSmartlockOpenerAdvancedConfig Updates an opener advanced config
+PostSmartlockOpenerAdvancedConfig Update an opener advanced config
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock (opener) id
+ @param smartlockId The smartlock (opener) ID
  @return ApiPostSmartlockOpenerAdvancedConfigRequest
 */
 func (a *SmartlockAPIService) PostSmartlockOpenerAdvancedConfig(ctx context.Context, smartlockId int32) ApiPostSmartlockOpenerAdvancedConfigRequest {
@@ -1245,10 +1245,10 @@ func (r ApiPostSmartlockSyncRequest) Execute() (*http.Response, error) {
 }
 
 /*
-PostSmartlockSync Syncs a smartlock
+PostSmartlockSync Sync a smartlock
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
+ @param smartlockId The smartlock ID
  @return ApiPostSmartlockSyncRequest
 */
 func (a *SmartlockAPIService) PostSmartlockSync(ctx context.Context, smartlockId string) ApiPostSmartlockSyncRequest {
@@ -1342,10 +1342,10 @@ func (r ApiPostSmartlockWebConfigRequest) Execute() (*http.Response, error) {
 }
 
 /*
-PostSmartlockWebConfig Updates a smartlock web config
+PostSmartlockWebConfig Update a smartlock web config
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
+ @param smartlockId The smartlock ID
  @return ApiPostSmartlockWebConfigRequest
 */
 func (a *SmartlockAPIService) PostSmartlockWebConfig(ctx context.Context, smartlockId int32) ApiPostSmartlockWebConfigRequest {
@@ -1440,7 +1440,7 @@ func (r ApiPostUnlockSmartlockUnlockActionRequest) Execute() (*http.Response, er
 PostUnlockSmartlockUnlockAction Unlock a smartlock
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param smartlockId The smartlock id
+ @param smartlockId The smartlock ID
  @return ApiPostUnlockSmartlockUnlockActionRequest
 */
 func (a *SmartlockAPIService) PostUnlockSmartlockUnlockAction(ctx context.Context, smartlockId string) ApiPostUnlockSmartlockUnlockActionRequest {

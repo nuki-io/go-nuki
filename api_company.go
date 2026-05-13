@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.9.0
+API version: 4.10.0
 Contact: contact@nuki.io
 */
 
@@ -33,7 +33,7 @@ func (r ApiGetCompaniesRequest) Execute() ([]Company, *http.Response, error) {
 }
 
 /*
-GetCompanies Get an list of companies
+GetCompanies Get a list of companies
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetCompaniesRequest
