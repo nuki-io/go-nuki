@@ -10,7 +10,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://nuki.io/en/service/nukis-terms-of-use-apis/
   title: Nuki API
-  version: 4.13.0
+  version: 4.13.1
 servers:
 - url: /
 tags:
@@ -7049,6 +7049,14 @@ components:
           $ref: '#/components/schemas/Language'
         defaultMediaType:
           $ref: '#/components/schemas/MediaType'
+        allEncodingExtensionNames:
+          items:
+            type: string
+          type: array
+        allCharacterSetExtensionNames:
+          items:
+            type: string
+          type: array
         allExtensionNames:
           items:
             type: string
@@ -7058,14 +7066,6 @@ components:
             type: string
           type: array
         allMediaTypeExtensionNames:
-          items:
-            type: string
-          type: array
-        allCharacterSetExtensionNames:
-          items:
-            type: string
-          type: array
-        allEncodingExtensionNames:
           items:
             type: string
           type: array
