@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.14.0
+API version: 4.15.0
 Contact: contact@nuki.io
 */
 
@@ -32,7 +32,9 @@ type Reference struct {
 	SchemeSpecificPart *string `json:"schemeSpecificPart,omitempty"`
 	Fragment *string `json:"fragment,omitempty"`
 	Extensions *string `json:"extensions,omitempty"`
-	Identifier *string `json:"identifier,omitempty"`
+	Matrix *string `json:"matrix,omitempty"`
+	MatrixAsForm []Parameter `json:"matrixAsForm,omitempty"`
+	QueryAsForm []Parameter `json:"queryAsForm,omitempty"`
 	ExtensionsAsArray []string `json:"extensionsAsArray,omitempty"`
 	HierarchicalPart *string `json:"hierarchicalPart,omitempty"`
 	HostDomain *string `json:"hostDomain,omitempty"`
@@ -47,9 +49,7 @@ type Reference struct {
 	Segments []string `json:"segments,omitempty"`
 	TargetRef *Reference `json:"targetRef,omitempty"`
 	Hierarchical *bool `json:"hierarchical,omitempty"`
-	Matrix *string `json:"matrix,omitempty"`
-	MatrixAsForm []Parameter `json:"matrixAsForm,omitempty"`
-	QueryAsForm []Parameter `json:"queryAsForm,omitempty"`
+	Identifier *string `json:"identifier,omitempty"`
 }
 
 // NewReference instantiates a new Reference object
@@ -453,36 +453,100 @@ func (o *Reference) SetExtensions(v string) {
 	o.Extensions = &v
 }
 
-// GetIdentifier returns the Identifier field value if set, zero value otherwise.
-func (o *Reference) GetIdentifier() string {
-	if o == nil || IsNil(o.Identifier) {
+// GetMatrix returns the Matrix field value if set, zero value otherwise.
+func (o *Reference) GetMatrix() string {
+	if o == nil || IsNil(o.Matrix) {
 		var ret string
 		return ret
 	}
-	return *o.Identifier
+	return *o.Matrix
 }
 
-// GetIdentifierOk returns a tuple with the Identifier field value if set, nil otherwise
+// GetMatrixOk returns a tuple with the Matrix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Reference) GetIdentifierOk() (*string, bool) {
-	if o == nil || IsNil(o.Identifier) {
+func (o *Reference) GetMatrixOk() (*string, bool) {
+	if o == nil || IsNil(o.Matrix) {
 		return nil, false
 	}
-	return o.Identifier, true
+	return o.Matrix, true
 }
 
-// HasIdentifier returns a boolean if a field has been set.
-func (o *Reference) HasIdentifier() bool {
-	if o != nil && !IsNil(o.Identifier) {
+// HasMatrix returns a boolean if a field has been set.
+func (o *Reference) HasMatrix() bool {
+	if o != nil && !IsNil(o.Matrix) {
 		return true
 	}
 
 	return false
 }
 
-// SetIdentifier gets a reference to the given string and assigns it to the Identifier field.
-func (o *Reference) SetIdentifier(v string) {
-	o.Identifier = &v
+// SetMatrix gets a reference to the given string and assigns it to the Matrix field.
+func (o *Reference) SetMatrix(v string) {
+	o.Matrix = &v
+}
+
+// GetMatrixAsForm returns the MatrixAsForm field value if set, zero value otherwise.
+func (o *Reference) GetMatrixAsForm() []Parameter {
+	if o == nil || IsNil(o.MatrixAsForm) {
+		var ret []Parameter
+		return ret
+	}
+	return o.MatrixAsForm
+}
+
+// GetMatrixAsFormOk returns a tuple with the MatrixAsForm field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Reference) GetMatrixAsFormOk() ([]Parameter, bool) {
+	if o == nil || IsNil(o.MatrixAsForm) {
+		return nil, false
+	}
+	return o.MatrixAsForm, true
+}
+
+// HasMatrixAsForm returns a boolean if a field has been set.
+func (o *Reference) HasMatrixAsForm() bool {
+	if o != nil && !IsNil(o.MatrixAsForm) {
+		return true
+	}
+
+	return false
+}
+
+// SetMatrixAsForm gets a reference to the given []Parameter and assigns it to the MatrixAsForm field.
+func (o *Reference) SetMatrixAsForm(v []Parameter) {
+	o.MatrixAsForm = v
+}
+
+// GetQueryAsForm returns the QueryAsForm field value if set, zero value otherwise.
+func (o *Reference) GetQueryAsForm() []Parameter {
+	if o == nil || IsNil(o.QueryAsForm) {
+		var ret []Parameter
+		return ret
+	}
+	return o.QueryAsForm
+}
+
+// GetQueryAsFormOk returns a tuple with the QueryAsForm field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Reference) GetQueryAsFormOk() ([]Parameter, bool) {
+	if o == nil || IsNil(o.QueryAsForm) {
+		return nil, false
+	}
+	return o.QueryAsForm, true
+}
+
+// HasQueryAsForm returns a boolean if a field has been set.
+func (o *Reference) HasQueryAsForm() bool {
+	if o != nil && !IsNil(o.QueryAsForm) {
+		return true
+	}
+
+	return false
+}
+
+// SetQueryAsForm gets a reference to the given []Parameter and assigns it to the QueryAsForm field.
+func (o *Reference) SetQueryAsForm(v []Parameter) {
+	o.QueryAsForm = v
 }
 
 // GetExtensionsAsArray returns the ExtensionsAsArray field value if set, zero value otherwise.
@@ -933,100 +997,36 @@ func (o *Reference) SetHierarchical(v bool) {
 	o.Hierarchical = &v
 }
 
-// GetMatrix returns the Matrix field value if set, zero value otherwise.
-func (o *Reference) GetMatrix() string {
-	if o == nil || IsNil(o.Matrix) {
+// GetIdentifier returns the Identifier field value if set, zero value otherwise.
+func (o *Reference) GetIdentifier() string {
+	if o == nil || IsNil(o.Identifier) {
 		var ret string
 		return ret
 	}
-	return *o.Matrix
+	return *o.Identifier
 }
 
-// GetMatrixOk returns a tuple with the Matrix field value if set, nil otherwise
+// GetIdentifierOk returns a tuple with the Identifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Reference) GetMatrixOk() (*string, bool) {
-	if o == nil || IsNil(o.Matrix) {
+func (o *Reference) GetIdentifierOk() (*string, bool) {
+	if o == nil || IsNil(o.Identifier) {
 		return nil, false
 	}
-	return o.Matrix, true
+	return o.Identifier, true
 }
 
-// HasMatrix returns a boolean if a field has been set.
-func (o *Reference) HasMatrix() bool {
-	if o != nil && !IsNil(o.Matrix) {
+// HasIdentifier returns a boolean if a field has been set.
+func (o *Reference) HasIdentifier() bool {
+	if o != nil && !IsNil(o.Identifier) {
 		return true
 	}
 
 	return false
 }
 
-// SetMatrix gets a reference to the given string and assigns it to the Matrix field.
-func (o *Reference) SetMatrix(v string) {
-	o.Matrix = &v
-}
-
-// GetMatrixAsForm returns the MatrixAsForm field value if set, zero value otherwise.
-func (o *Reference) GetMatrixAsForm() []Parameter {
-	if o == nil || IsNil(o.MatrixAsForm) {
-		var ret []Parameter
-		return ret
-	}
-	return o.MatrixAsForm
-}
-
-// GetMatrixAsFormOk returns a tuple with the MatrixAsForm field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Reference) GetMatrixAsFormOk() ([]Parameter, bool) {
-	if o == nil || IsNil(o.MatrixAsForm) {
-		return nil, false
-	}
-	return o.MatrixAsForm, true
-}
-
-// HasMatrixAsForm returns a boolean if a field has been set.
-func (o *Reference) HasMatrixAsForm() bool {
-	if o != nil && !IsNil(o.MatrixAsForm) {
-		return true
-	}
-
-	return false
-}
-
-// SetMatrixAsForm gets a reference to the given []Parameter and assigns it to the MatrixAsForm field.
-func (o *Reference) SetMatrixAsForm(v []Parameter) {
-	o.MatrixAsForm = v
-}
-
-// GetQueryAsForm returns the QueryAsForm field value if set, zero value otherwise.
-func (o *Reference) GetQueryAsForm() []Parameter {
-	if o == nil || IsNil(o.QueryAsForm) {
-		var ret []Parameter
-		return ret
-	}
-	return o.QueryAsForm
-}
-
-// GetQueryAsFormOk returns a tuple with the QueryAsForm field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Reference) GetQueryAsFormOk() ([]Parameter, bool) {
-	if o == nil || IsNil(o.QueryAsForm) {
-		return nil, false
-	}
-	return o.QueryAsForm, true
-}
-
-// HasQueryAsForm returns a boolean if a field has been set.
-func (o *Reference) HasQueryAsForm() bool {
-	if o != nil && !IsNil(o.QueryAsForm) {
-		return true
-	}
-
-	return false
-}
-
-// SetQueryAsForm gets a reference to the given []Parameter and assigns it to the QueryAsForm field.
-func (o *Reference) SetQueryAsForm(v []Parameter) {
-	o.QueryAsForm = v
+// SetIdentifier gets a reference to the given string and assigns it to the Identifier field.
+func (o *Reference) SetIdentifier(v string) {
+	o.Identifier = &v
 }
 
 func (o Reference) MarshalJSON() ([]byte, error) {
@@ -1075,8 +1075,14 @@ func (o Reference) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Extensions) {
 		toSerialize["extensions"] = o.Extensions
 	}
-	if !IsNil(o.Identifier) {
-		toSerialize["identifier"] = o.Identifier
+	if !IsNil(o.Matrix) {
+		toSerialize["matrix"] = o.Matrix
+	}
+	if !IsNil(o.MatrixAsForm) {
+		toSerialize["matrixAsForm"] = o.MatrixAsForm
+	}
+	if !IsNil(o.QueryAsForm) {
+		toSerialize["queryAsForm"] = o.QueryAsForm
 	}
 	if !IsNil(o.ExtensionsAsArray) {
 		toSerialize["extensionsAsArray"] = o.ExtensionsAsArray
@@ -1120,14 +1126,8 @@ func (o Reference) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Hierarchical) {
 		toSerialize["hierarchical"] = o.Hierarchical
 	}
-	if !IsNil(o.Matrix) {
-		toSerialize["matrix"] = o.Matrix
-	}
-	if !IsNil(o.MatrixAsForm) {
-		toSerialize["matrixAsForm"] = o.MatrixAsForm
-	}
-	if !IsNil(o.QueryAsForm) {
-		toSerialize["queryAsForm"] = o.QueryAsForm
+	if !IsNil(o.Identifier) {
+		toSerialize["identifier"] = o.Identifier
 	}
 	return toSerialize, nil
 }
