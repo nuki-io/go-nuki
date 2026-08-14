@@ -10,7 +10,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://nuki.io/en/service/nukis-terms-of-use-apis/
   title: Nuki API
-  version: 4.15.0
+  version: 4.17.0
 servers:
 - url: /
 tags:
@@ -1343,6 +1343,10 @@ paths:
         "401":
           content: {}
           description: Not authorized
+        "503":
+          content: {}
+          description: The change was stored but could not be propagated to the authorization
+            server. Retry the request.
       security:
       - oauth:
         - account
@@ -5027,12 +5031,12 @@ components:
               value: value
             - name: name
               value: value
+            hostIdentifier: hostIdentifier
             matrixAsForm:
             - name: name
               value: value
             - name: name
               value: value
-            hostIdentifier: hostIdentifier
             scheme: scheme
             extensionsAsArray:
             - extensionsAsArray
@@ -5119,16 +5123,16 @@ components:
           items:
             $ref: '#/components/schemas/Service'
           type: array
-        statusService:
-          $ref: '#/components/schemas/StatusService'
         connegService:
           $ref: '#/components/schemas/ConnegService'
-        metadataService:
-          $ref: '#/components/schemas/MetadataService'
         converterService:
           $ref: '#/components/schemas/ConverterService'
+        metadataService:
+          $ref: '#/components/schemas/MetadataService'
         rangeService:
           $ref: '#/components/schemas/RangeService'
+        statusService:
+          $ref: '#/components/schemas/StatusService'
         taskService:
           $ref: '#/components/schemas/TaskService'
         tunnelService:
@@ -5365,14 +5369,14 @@ components:
           type: array
         user:
           $ref: '#/components/schemas/User'
-        upstreamAddress:
-          type: string
         agentName:
           type: string
         agentVersion:
           type: string
         mainAgentProduct:
           $ref: '#/components/schemas/Product'
+        upstreamAddress:
+          type: string
       type: object
     Company:
       example:
@@ -5833,12 +5837,12 @@ components:
                   value: value
                 - name: name
                   value: value
+                hostIdentifier: hostIdentifier
                 matrixAsForm:
                 - name: name
                   value: value
                 - name: name
                   value: value
-                hostIdentifier: hostIdentifier
                 scheme: scheme
                 extensionsAsArray:
                 - extensionsAsArray
@@ -6285,12 +6289,12 @@ components:
                   value: value
                 - name: name
                   value: value
+                hostIdentifier: hostIdentifier
                 matrixAsForm:
                 - name: name
                   value: value
                 - name: name
                   value: value
-                hostIdentifier: hostIdentifier
                 scheme: scheme
                 extensionsAsArray:
                 - extensionsAsArray
@@ -7049,11 +7053,11 @@ components:
           $ref: '#/components/schemas/Language'
         defaultMediaType:
           $ref: '#/components/schemas/MediaType'
-        allCharacterSetExtensionNames:
+        allEncodingExtensionNames:
           items:
             type: string
           type: array
-        allEncodingExtensionNames:
+        allCharacterSetExtensionNames:
           items:
             type: string
           type: array
@@ -7685,12 +7689,12 @@ components:
           value: value
         - name: name
           value: value
+        hostIdentifier: hostIdentifier
         matrixAsForm:
         - name: name
           value: value
         - name: name
           value: value
-        hostIdentifier: hostIdentifier
         scheme: scheme
         extensionsAsArray:
         - extensionsAsArray
@@ -7745,16 +7749,6 @@ components:
           type: string
         extensions:
           type: string
-        matrix:
-          type: string
-        matrixAsForm:
-          items:
-            $ref: '#/components/schemas/Parameter'
-          type: array
-        queryAsForm:
-          items:
-            $ref: '#/components/schemas/Parameter'
-          type: array
         extensionsAsArray:
           items:
             type: string
@@ -7790,6 +7784,16 @@ components:
           type: boolean
         identifier:
           type: string
+        matrix:
+          type: string
+        matrixAsForm:
+          items:
+            $ref: '#/components/schemas/Parameter'
+          type: array
+        queryAsForm:
+          items:
+            $ref: '#/components/schemas/Parameter'
+          type: array
       type: object
     Representation:
       properties:
@@ -7834,6 +7838,8 @@ components:
           type: boolean
         text:
           type: string
+        stream:
+          type: object
         reader:
           type: object
         availableSize:
@@ -7841,8 +7847,6 @@ components:
           type: integer
         registration:
           $ref: '#/components/schemas/SelectionRegistration'
-        stream:
-          type: object
         selectable:
           type: boolean
       type: object
@@ -7918,8 +7922,6 @@ components:
           $ref: '#/components/schemas/Reference'
         rootRef:
           $ref: '#/components/schemas/Reference'
-        confidential:
-          type: boolean
         asynchronous:
           type: boolean
         entityAvailable:
@@ -7927,6 +7929,8 @@ components:
         expectingResponse:
           type: boolean
         synchronous:
+          type: boolean
+        confidential:
           type: boolean
         entityAsText:
           type: string
@@ -8087,9 +8091,9 @@ components:
           $ref: '#/components/schemas/Status'
         final:
           type: boolean
-        confidential:
-          type: boolean
         provisional:
+          type: boolean
+        confidential:
           type: boolean
         entityAvailable:
           type: boolean
@@ -8429,12 +8433,12 @@ components:
                 value: value
               - name: name
                 value: value
+              hostIdentifier: hostIdentifier
               matrixAsForm:
               - name: name
                 value: value
               - name: name
                 value: value
-              hostIdentifier: hostIdentifier
               scheme: scheme
               extensionsAsArray:
               - extensionsAsArray
@@ -8980,12 +8984,12 @@ components:
                     value: value
                   - name: name
                     value: value
+                  hostIdentifier: hostIdentifier
                   matrixAsForm:
                   - name: name
                     value: value
                   - name: name
                     value: value
-                  hostIdentifier: hostIdentifier
                   scheme: scheme
                   extensionsAsArray:
                   - extensionsAsArray
@@ -9432,12 +9436,12 @@ components:
                     value: value
                   - name: name
                     value: value
+                  hostIdentifier: hostIdentifier
                   matrixAsForm:
                   - name: name
                     value: value
                   - name: name
                     value: value
-                  hostIdentifier: hostIdentifier
                   scheme: scheme
                   extensionsAsArray:
                   - extensionsAsArray
@@ -11436,12 +11440,6 @@ components:
           type: boolean
         success:
           type: boolean
-        serverError:
-          type: boolean
-        connectorError:
-          type: boolean
-        clientError:
-          type: boolean
         globalError:
           type: boolean
         informational:
@@ -11449,6 +11447,12 @@ components:
         redirection:
           type: boolean
         recoverableError:
+          type: boolean
+        serverError:
+          type: boolean
+        connectorError:
+          type: boolean
+        clientError:
           type: boolean
       type: object
     StatusService:
@@ -11529,12 +11533,12 @@ components:
             value: value
           - name: name
             value: value
+          hostIdentifier: hostIdentifier
           matrixAsForm:
           - name: name
             value: value
           - name: name
             value: value
-          hostIdentifier: hostIdentifier
           scheme: scheme
           extensionsAsArray:
           - extensionsAsArray
