@@ -261,7 +261,6 @@ func (o *AccountSubCreate) UnmarshalJSON(data []byte) (err error) {
 	varAccountSubCreate := _AccountSubCreate{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAccountSubCreate)
 
 	if err != nil {

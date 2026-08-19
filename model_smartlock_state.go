@@ -535,7 +535,6 @@ func (o *SmartlockState) UnmarshalJSON(data []byte) (err error) {
 	varSmartlockState := _SmartlockState{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSmartlockState)
 
 	if err != nil {

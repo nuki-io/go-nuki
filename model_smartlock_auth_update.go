@@ -443,7 +443,6 @@ func (o *SmartlockAuthUpdate) UnmarshalJSON(data []byte) (err error) {
 	varSmartlockAuthUpdate := _SmartlockAuthUpdate{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSmartlockAuthUpdate)
 
 	if err != nil {

@@ -446,7 +446,6 @@ func (o *WebhookLog) UnmarshalJSON(data []byte) (err error) {
 	varWebhookLog := _WebhookLog{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varWebhookLog)
 
 	if err != nil {

@@ -332,7 +332,6 @@ func (o *SmartlockAuthWithSharedKeyCreate) UnmarshalJSON(data []byte) (err error
 	varSmartlockAuthWithSharedKeyCreate := _SmartlockAuthWithSharedKeyCreate{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSmartlockAuthWithSharedKeyCreate)
 
 	if err != nil {

@@ -378,7 +378,6 @@ func (o *AdvancedApiKeyCreate) UnmarshalJSON(data []byte) (err error) {
 	varAdvancedApiKeyCreate := _AdvancedApiKeyCreate{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAdvancedApiKeyCreate)
 
 	if err != nil {

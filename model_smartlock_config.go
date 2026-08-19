@@ -1060,7 +1060,6 @@ func (o *SmartlockConfig) UnmarshalJSON(data []byte) (err error) {
 	varSmartlockConfig := _SmartlockConfig{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSmartlockConfig)
 
 	if err != nil {

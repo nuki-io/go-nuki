@@ -138,7 +138,6 @@ func (o *AdvancedApiKeyUpdate) UnmarshalJSON(data []byte) (err error) {
 	varAdvancedApiKeyUpdate := _AdvancedApiKeyUpdate{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAdvancedApiKeyUpdate)
 
 	if err != nil {

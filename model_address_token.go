@@ -300,7 +300,6 @@ func (o *AddressToken) UnmarshalJSON(data []byte) (err error) {
 	varAddressToken := _AddressToken{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAddressToken)
 
 	if err != nil {

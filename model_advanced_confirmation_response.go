@@ -146,7 +146,6 @@ func (o *AdvancedConfirmationResponse) UnmarshalJSON(data []byte) (err error) {
 	varAdvancedConfirmationResponse := _AdvancedConfirmationResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAdvancedConfirmationResponse)
 
 	if err != nil {

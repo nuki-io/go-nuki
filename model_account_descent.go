@@ -109,7 +109,6 @@ func (o *AccountDescent) UnmarshalJSON(data []byte) (err error) {
 	varAccountDescent := _AccountDescent{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAccountDescent)
 
 	if err != nil {

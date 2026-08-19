@@ -725,7 +725,6 @@ func (o *AddressReservation) UnmarshalJSON(data []byte) (err error) {
 	varAddressReservation := _AddressReservation{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAddressReservation)
 
 	if err != nil {

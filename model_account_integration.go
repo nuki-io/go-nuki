@@ -678,7 +678,6 @@ func (o *AccountIntegration) UnmarshalJSON(data []byte) (err error) {
 	varAccountIntegration := _AccountIntegration{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAccountIntegration)
 
 	if err != nil {

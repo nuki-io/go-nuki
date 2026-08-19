@@ -109,7 +109,6 @@ func (o *SmartlockAdminPinUpdate) UnmarshalJSON(data []byte) (err error) {
 	varSmartlockAdminPinUpdate := _SmartlockAdminPinUpdate{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSmartlockAdminPinUpdate)
 
 	if err != nil {

@@ -212,7 +212,6 @@ func (o *DecentralWebhook) UnmarshalJSON(data []byte) (err error) {
 	varDecentralWebhook := _DecentralWebhook{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varDecentralWebhook)
 
 	if err != nil {

@@ -109,7 +109,6 @@ func (o *AccountEmailChange) UnmarshalJSON(data []byte) (err error) {
 	varAccountEmailChange := _AccountEmailChange{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAccountEmailChange)
 
 	if err != nil {

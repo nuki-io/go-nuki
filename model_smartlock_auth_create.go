@@ -472,7 +472,6 @@ func (o *SmartlockAuthCreate) UnmarshalJSON(data []byte) (err error) {
 	varSmartlockAuthCreate := _SmartlockAuthCreate{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSmartlockAuthCreate)
 
 	if err != nil {

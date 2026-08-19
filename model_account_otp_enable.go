@@ -109,7 +109,6 @@ func (o *AccountOtpEnable) UnmarshalJSON(data []byte) (err error) {
 	varAccountOtpEnable := _AccountOtpEnable{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAccountOtpEnable)
 
 	if err != nil {

@@ -213,7 +213,6 @@ func (o *WebhookMessage) UnmarshalJSON(data []byte) (err error) {
 	varWebhookMessage := _WebhookMessage{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varWebhookMessage)
 
 	if err != nil {

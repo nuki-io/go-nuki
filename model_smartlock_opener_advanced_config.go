@@ -742,7 +742,6 @@ func (o *SmartlockOpenerAdvancedConfig) UnmarshalJSON(data []byte) (err error) {
 	varSmartlockOpenerAdvancedConfig := _SmartlockOpenerAdvancedConfig{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSmartlockOpenerAdvancedConfig)
 
 	if err != nil {

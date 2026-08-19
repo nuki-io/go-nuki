@@ -212,7 +212,6 @@ func (o *AccountUserCreate) UnmarshalJSON(data []byte) (err error) {
 	varAccountUserCreate := _AccountUserCreate{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAccountUserCreate)
 
 	if err != nil {

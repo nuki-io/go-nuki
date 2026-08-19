@@ -138,7 +138,6 @@ func (o *OpenerIntercomBrand) UnmarshalJSON(data []byte) (err error) {
 	varOpenerIntercomBrand := _OpenerIntercomBrand{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varOpenerIntercomBrand)
 
 	if err != nil {

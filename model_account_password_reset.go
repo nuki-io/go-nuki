@@ -144,7 +144,6 @@ func (o *AccountPasswordReset) UnmarshalJSON(data []byte) (err error) {
 	varAccountPasswordReset := _AccountPasswordReset{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAccountPasswordReset)
 
 	if err != nil {

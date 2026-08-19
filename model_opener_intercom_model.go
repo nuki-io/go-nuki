@@ -561,7 +561,6 @@ func (o *OpenerIntercomModel) UnmarshalJSON(data []byte) (err error) {
 	varOpenerIntercomModel := _OpenerIntercomModel{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varOpenerIntercomModel)
 
 	if err != nil {
