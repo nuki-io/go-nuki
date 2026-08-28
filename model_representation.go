@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.17.0
+API version: 4.18.0
 Contact: contact@nuki.io
 */
 
@@ -38,10 +38,10 @@ type Representation struct {
 	Channel *ReadableByteChannel `json:"channel,omitempty"`
 	Transient *bool `json:"transient,omitempty"`
 	Text *string `json:"text,omitempty"`
-	Stream map[string]interface{} `json:"stream,omitempty"`
 	Reader map[string]interface{} `json:"reader,omitempty"`
 	AvailableSize *int64 `json:"availableSize,omitempty"`
 	Registration *SelectionRegistration `json:"registration,omitempty"`
+	Stream map[string]interface{} `json:"stream,omitempty"`
 	Selectable *bool `json:"selectable,omitempty"`
 }
 
@@ -606,38 +606,6 @@ func (o *Representation) SetText(v string) {
 	o.Text = &v
 }
 
-// GetStream returns the Stream field value if set, zero value otherwise.
-func (o *Representation) GetStream() map[string]interface{} {
-	if o == nil || IsNil(o.Stream) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Stream
-}
-
-// GetStreamOk returns a tuple with the Stream field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Representation) GetStreamOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Stream) {
-		return map[string]interface{}{}, false
-	}
-	return o.Stream, true
-}
-
-// HasStream returns a boolean if a field has been set.
-func (o *Representation) HasStream() bool {
-	if o != nil && !IsNil(o.Stream) {
-		return true
-	}
-
-	return false
-}
-
-// SetStream gets a reference to the given map[string]interface{} and assigns it to the Stream field.
-func (o *Representation) SetStream(v map[string]interface{}) {
-	o.Stream = v
-}
-
 // GetReader returns the Reader field value if set, zero value otherwise.
 func (o *Representation) GetReader() map[string]interface{} {
 	if o == nil || IsNil(o.Reader) {
@@ -734,6 +702,38 @@ func (o *Representation) SetRegistration(v SelectionRegistration) {
 	o.Registration = &v
 }
 
+// GetStream returns the Stream field value if set, zero value otherwise.
+func (o *Representation) GetStream() map[string]interface{} {
+	if o == nil || IsNil(o.Stream) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Stream
+}
+
+// GetStreamOk returns a tuple with the Stream field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Representation) GetStreamOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Stream) {
+		return map[string]interface{}{}, false
+	}
+	return o.Stream, true
+}
+
+// HasStream returns a boolean if a field has been set.
+func (o *Representation) HasStream() bool {
+	if o != nil && !IsNil(o.Stream) {
+		return true
+	}
+
+	return false
+}
+
+// SetStream gets a reference to the given map[string]interface{} and assigns it to the Stream field.
+func (o *Representation) SetStream(v map[string]interface{}) {
+	o.Stream = v
+}
+
 // GetSelectable returns the Selectable field value if set, zero value otherwise.
 func (o *Representation) GetSelectable() bool {
 	if o == nil || IsNil(o.Selectable) {
@@ -827,9 +827,6 @@ func (o Representation) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Text) {
 		toSerialize["text"] = o.Text
 	}
-	if !IsNil(o.Stream) {
-		toSerialize["stream"] = o.Stream
-	}
 	if !IsNil(o.Reader) {
 		toSerialize["reader"] = o.Reader
 	}
@@ -838,6 +835,9 @@ func (o Representation) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Registration) {
 		toSerialize["registration"] = o.Registration
+	}
+	if !IsNil(o.Stream) {
+		toSerialize["stream"] = o.Stream
 	}
 	if !IsNil(o.Selectable) {
 		toSerialize["selectable"] = o.Selectable

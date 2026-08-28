@@ -10,7 +10,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://nuki.io/en/service/nukis-terms-of-use-apis/
   title: Nuki API
-  version: 4.17.0
+  version: 4.18.0
 servers:
 - url: /
 tags:
@@ -7838,8 +7838,6 @@ components:
           type: boolean
         text:
           type: string
-        stream:
-          type: object
         reader:
           type: object
         availableSize:
@@ -7847,6 +7845,8 @@ components:
           type: integer
         registration:
           $ref: '#/components/schemas/SelectionRegistration'
+        stream:
+          type: object
         selectable:
           type: boolean
       type: object
