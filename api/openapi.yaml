@@ -10,7 +10,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://nuki.io/en/service/nukis-terms-of-use-apis/
   title: Nuki API
-  version: 4.19.1
+  version: 4.20.0
 servers:
 - url: /
 tags:
@@ -4279,7 +4279,9 @@ components:
         status: INACTIVE
       properties:
         name:
-          description: The name of the company for which you apply for access
+          description: The name of the company for which you apply for access. Only
+            the first 17 characters of your integration's name will be visible in
+            the device's activity log.
           type: string
         country:
           description: The country of the headquarter or the country where you are
@@ -4383,7 +4385,9 @@ components:
         webhookUrl: webhookUrl
       properties:
         name:
-          description: The name of the company for which you apply for access
+          description: The name of the company for which you apply for access. Only
+            the first 17 characters of your integration's name will be visible in
+            the device's activity log.
           type: string
         country:
           description: The country of the headquarter or the country where you are
@@ -5031,12 +5035,12 @@ components:
               value: value
             - name: name
               value: value
-            hostIdentifier: hostIdentifier
             matrixAsForm:
             - name: name
               value: value
             - name: name
               value: value
+            hostIdentifier: hostIdentifier
             scheme: scheme
             extensionsAsArray:
             - extensionsAsArray
@@ -5052,8 +5056,8 @@ components:
             hostDomain: hostDomain
             relativePart: relativePart
             hostPort: 0
-            targetRef: null
             identifier: identifier
+            targetRef: null
             opaque: true
             remainingPart: remainingPart
             query: query
@@ -5123,16 +5127,16 @@ components:
           items:
             $ref: '#/components/schemas/Service'
           type: array
-        connegService:
-          $ref: '#/components/schemas/ConnegService'
-        converterService:
-          $ref: '#/components/schemas/ConverterService'
-        metadataService:
-          $ref: '#/components/schemas/MetadataService'
-        rangeService:
-          $ref: '#/components/schemas/RangeService'
         statusService:
           $ref: '#/components/schemas/StatusService'
+        connegService:
+          $ref: '#/components/schemas/ConnegService'
+        metadataService:
+          $ref: '#/components/schemas/MetadataService'
+        converterService:
+          $ref: '#/components/schemas/ConverterService'
+        rangeService:
+          $ref: '#/components/schemas/RangeService'
         taskService:
           $ref: '#/components/schemas/TaskService'
         tunnelService:
@@ -5145,10 +5149,10 @@ components:
           $ref: '#/components/schemas/EncoderService'
         logger:
           $ref: '#/components/schemas/Logger'
-        application:
-          $ref: '#/components/schemas/Application'
         stopped:
           type: boolean
+        application:
+          $ref: '#/components/schemas/Application'
       type: object
     AuthenticationInfo:
       properties:
@@ -5369,14 +5373,14 @@ components:
           type: array
         user:
           $ref: '#/components/schemas/User'
+        upstreamAddress:
+          type: string
         agentName:
           type: string
         agentVersion:
           type: string
         mainAgentProduct:
           $ref: '#/components/schemas/Product'
-        upstreamAddress:
-          type: string
       type: object
     Company:
       example:
@@ -5837,12 +5841,12 @@ components:
                   value: value
                 - name: name
                   value: value
-                hostIdentifier: hostIdentifier
                 matrixAsForm:
                 - name: name
                   value: value
                 - name: name
                   value: value
+                hostIdentifier: hostIdentifier
                 scheme: scheme
                 extensionsAsArray:
                 - extensionsAsArray
@@ -5858,8 +5862,8 @@ components:
                 hostDomain: hostDomain
                 relativePart: relativePart
                 hostPort: 0
-                targetRef: null
                 identifier: identifier
+                targetRef: null
                 opaque: true
                 remainingPart: remainingPart
                 query: query
@@ -6289,12 +6293,12 @@ components:
                   value: value
                 - name: name
                   value: value
-                hostIdentifier: hostIdentifier
                 matrixAsForm:
                 - name: name
                   value: value
                 - name: name
                   value: value
+                hostIdentifier: hostIdentifier
                 scheme: scheme
                 extensionsAsArray:
                 - extensionsAsArray
@@ -6310,8 +6314,8 @@ components:
                 hostDomain: hostDomain
                 relativePart: relativePart
                 hostPort: 0
-                targetRef: null
                 identifier: identifier
+                targetRef: null
                 opaque: true
                 remainingPart: remainingPart
                 query: query
@@ -7053,19 +7057,19 @@ components:
           $ref: '#/components/schemas/Language'
         defaultMediaType:
           $ref: '#/components/schemas/MediaType'
-        allCharacterSetExtensionNames:
-          items:
-            type: string
-          type: array
         allEncodingExtensionNames:
           items:
             type: string
           type: array
-        allLanguageExtensionNames:
+        allCharacterSetExtensionNames:
           items:
             type: string
           type: array
         allExtensionNames:
+          items:
+            type: string
+          type: array
+        allLanguageExtensionNames:
           items:
             type: string
           type: array
@@ -7689,12 +7693,12 @@ components:
           value: value
         - name: name
           value: value
-        hostIdentifier: hostIdentifier
         matrixAsForm:
         - name: name
           value: value
         - name: name
           value: value
+        hostIdentifier: hostIdentifier
         scheme: scheme
         extensionsAsArray:
         - extensionsAsArray
@@ -7710,8 +7714,8 @@ components:
         hostDomain: hostDomain
         relativePart: relativePart
         hostPort: 0
-        targetRef: null
         identifier: identifier
+        targetRef: null
         opaque: true
         remainingPart: remainingPart
         query: query
@@ -7749,6 +7753,18 @@ components:
           type: string
         extensions:
           type: string
+        identifier:
+          type: string
+        matrix:
+          type: string
+        matrixAsForm:
+          items:
+            $ref: '#/components/schemas/Parameter'
+          type: array
+        queryAsForm:
+          items:
+            $ref: '#/components/schemas/Parameter'
+          type: array
         extensionsAsArray:
           items:
             type: string
@@ -7782,18 +7798,6 @@ components:
           $ref: '#/components/schemas/Reference'
         hierarchical:
           type: boolean
-        identifier:
-          type: string
-        matrix:
-          type: string
-        matrixAsForm:
-          items:
-            $ref: '#/components/schemas/Parameter'
-          type: array
-        queryAsForm:
-          items:
-            $ref: '#/components/schemas/Parameter'
-          type: array
       type: object
     Representation:
       properties:
@@ -7922,6 +7926,8 @@ components:
           $ref: '#/components/schemas/Reference'
         rootRef:
           $ref: '#/components/schemas/Reference'
+        confidential:
+          type: boolean
         asynchronous:
           type: boolean
         entityAvailable:
@@ -7930,14 +7936,12 @@ components:
           type: boolean
         synchronous:
           type: boolean
-        confidential:
-          type: boolean
-        entityAsText:
-          type: string
         headers:
           items:
             $ref: '#/components/schemas/Header'
           type: array
+        entityAsText:
+          type: string
       type: object
     ReservationAccessTimesUpdate:
       example:
@@ -8091,18 +8095,18 @@ components:
           $ref: '#/components/schemas/Status'
         final:
           type: boolean
-        provisional:
-          type: boolean
         confidential:
           type: boolean
-        entityAvailable:
+        provisional:
           type: boolean
-        entityAsText:
-          type: string
         headers:
           items:
             $ref: '#/components/schemas/Header'
           type: array
+        entityAvailable:
+          type: boolean
+        entityAsText:
+          type: string
       type: object
     Restlet:
       example:
@@ -8433,12 +8437,12 @@ components:
                 value: value
               - name: name
                 value: value
-              hostIdentifier: hostIdentifier
               matrixAsForm:
               - name: name
                 value: value
               - name: name
                 value: value
+              hostIdentifier: hostIdentifier
               scheme: scheme
               extensionsAsArray:
               - extensionsAsArray
@@ -8454,8 +8458,8 @@ components:
               hostDomain: hostDomain
               relativePart: relativePart
               hostPort: 0
-              targetRef: null
               identifier: identifier
+              targetRef: null
               opaque: true
               remainingPart: remainingPart
               query: query
@@ -8569,10 +8573,10 @@ components:
           type: boolean
         logger:
           $ref: '#/components/schemas/Logger'
-        application:
-          $ref: '#/components/schemas/Application'
         stopped:
           type: boolean
+        application:
+          $ref: '#/components/schemas/Application'
       type: object
     Role:
       example:
@@ -8984,12 +8988,12 @@ components:
                     value: value
                   - name: name
                     value: value
-                  hostIdentifier: hostIdentifier
                   matrixAsForm:
                   - name: name
                     value: value
                   - name: name
                     value: value
+                  hostIdentifier: hostIdentifier
                   scheme: scheme
                   extensionsAsArray:
                   - extensionsAsArray
@@ -9005,8 +9009,8 @@ components:
                   hostDomain: hostDomain
                   relativePart: relativePart
                   hostPort: 0
-                  targetRef: null
                   identifier: identifier
+                  targetRef: null
                   opaque: true
                   remainingPart: remainingPart
                   query: query
@@ -9436,12 +9440,12 @@ components:
                     value: value
                   - name: name
                     value: value
-                  hostIdentifier: hostIdentifier
                   matrixAsForm:
                   - name: name
                     value: value
                   - name: name
                     value: value
+                  hostIdentifier: hostIdentifier
                   scheme: scheme
                   extensionsAsArray:
                   - extensionsAsArray
@@ -9457,8 +9461,8 @@ components:
                   hostDomain: hostDomain
                   relativePart: relativePart
                   hostPort: 0
-                  targetRef: null
                   identifier: identifier
+                  targetRef: null
                   opaque: true
                   remainingPart: remainingPart
                   query: query
@@ -9690,7 +9694,7 @@ components:
         type: 1
         error: error
         authId: 5
-        serverState: 0
+        serverState: 1
         adminPinState: 0
         keyturner: true
         smartdoorAdvancedConfig:
@@ -9708,7 +9712,7 @@ components:
           singleButtonPressAction: 6
           batteryType: 9
         operationId: operationId
-        hardwareVersion: 3
+        hardwareVersion: 0
         webConfig:
           dismissedLiftUpHandleWarning:
           - 6
@@ -9716,20 +9720,21 @@ components:
           batteryWarningPerMailEnabled: true
         state:
           doorState: 154
-          ringToOpenTimer: 54077
+          ringToOpenTimer: 29226
           keypadBatteryCritical: true
           trigger: 4
           ringToOpenEnd: 2000-01-23T04:56:07.000+00:00
           batteryCritical: true
           mode: 3
           lastAction: 2
+          keypadMountingState: 210
           batteryCharge: 48
           operationId: operationId
           state: 13
           doorsensorBatteryCritical: true
           batteryCharging: true
           nightMode: true
-        firmwareVersion: 4
+        firmwareVersion: 3
         previousSubscriptions:
         - updateDate: 2000-01-23T04:56:07.000+00:00
           shsSubscriptionType: BUSINESS
@@ -9812,8 +9817,8 @@ components:
           singleButtonPressAction: 6
           batteryType: 6
         name: name
-        mountingVariant: 8
-        region: 1
+        mountingVariant: 6
+        region: 8
         favorite: true
         config:
           keypadPaired: true
@@ -10567,13 +10572,14 @@ components:
     Smartlock.State:
       example:
         doorState: 154
-        ringToOpenTimer: 54077
+        ringToOpenTimer: 29226
         keypadBatteryCritical: true
         trigger: 4
         ringToOpenEnd: 2000-01-23T04:56:07.000+00:00
         batteryCritical: true
         mode: 3
         lastAction: 2
+        keypadMountingState: 210
         batteryCharge: 48
         operationId: operationId
         state: 13
@@ -10641,6 +10647,14 @@ components:
           description: "The door state: 0 .. unavailable/not paired, 1 .. deactivated,\
             \ 2 .. door closed, 3 .. door opened, 4 .. door state unknown, 5 .. calibrating,\
             \ 16 .. uncalibrated, 240 .. removed, 255 .. unknown"
+          format: int32
+          maximum: 255
+          minimum: 0
+          type: integer
+        keypadMountingState:
+          description: "The keypad mounting state: 0 .. unknown/disabled/n.a., 1 ..\
+            \ mounted, 2 .. moved (dismounted), 255 .. error (theft detection) (only\
+            \ available for supported devices)"
           format: int32
           maximum: 255
           minimum: 0
@@ -11440,6 +11454,12 @@ components:
           type: boolean
         success:
           type: boolean
+        serverError:
+          type: boolean
+        connectorError:
+          type: boolean
+        clientError:
+          type: boolean
         globalError:
           type: boolean
         informational:
@@ -11447,12 +11467,6 @@ components:
         redirection:
           type: boolean
         recoverableError:
-          type: boolean
-        serverError:
-          type: boolean
-        connectorError:
-          type: boolean
-        clientError:
           type: boolean
       type: object
     StatusService:
@@ -11533,12 +11547,12 @@ components:
             value: value
           - name: name
             value: value
-          hostIdentifier: hostIdentifier
           matrixAsForm:
           - name: name
             value: value
           - name: name
             value: value
+          hostIdentifier: hostIdentifier
           scheme: scheme
           extensionsAsArray:
           - extensionsAsArray
@@ -11554,8 +11568,8 @@ components:
           hostDomain: hostDomain
           relativePart: relativePart
           hostPort: 0
-          targetRef: null
           identifier: identifier
+          targetRef: null
           opaque: true
           remainingPart: remainingPart
           query: query

@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.19.1
+API version: 4.20.0
 Contact: contact@nuki.io
 */
 
@@ -43,6 +43,8 @@ type SmartlockState struct {
 	DoorsensorBatteryCritical *bool `json:"doorsensorBatteryCritical,omitempty"`
 	// The door state: 0 .. unavailable/not paired, 1 .. deactivated, 2 .. door closed, 3 .. door opened, 4 .. door state unknown, 5 .. calibrating, 16 .. uncalibrated, 240 .. removed, 255 .. unknown
 	DoorState int32 `json:"doorState"`
+	// The keypad mounting state: 0 .. unknown/disabled/n.a., 1 .. mounted, 2 .. moved (dismounted), 255 .. error (theft detection) (only available for supported devices)
+	KeypadMountingState *int32 `json:"keypadMountingState,omitempty"`
 	// [deprecated] Remaining ring to open time; 0 if ring to open is not active (type=2 only)
 	RingToOpenTimer int32 `json:"ringToOpenTimer"`
 	// End date of ring to open timeout; null if ring to open is not active (type=2 only)
@@ -352,6 +354,38 @@ func (o *SmartlockState) SetDoorState(v int32) {
 	o.DoorState = v
 }
 
+// GetKeypadMountingState returns the KeypadMountingState field value if set, zero value otherwise.
+func (o *SmartlockState) GetKeypadMountingState() int32 {
+	if o == nil || IsNil(o.KeypadMountingState) {
+		var ret int32
+		return ret
+	}
+	return *o.KeypadMountingState
+}
+
+// GetKeypadMountingStateOk returns a tuple with the KeypadMountingState field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SmartlockState) GetKeypadMountingStateOk() (*int32, bool) {
+	if o == nil || IsNil(o.KeypadMountingState) {
+		return nil, false
+	}
+	return o.KeypadMountingState, true
+}
+
+// HasKeypadMountingState returns a boolean if a field has been set.
+func (o *SmartlockState) HasKeypadMountingState() bool {
+	if o != nil && !IsNil(o.KeypadMountingState) {
+		return true
+	}
+
+	return false
+}
+
+// SetKeypadMountingState gets a reference to the given int32 and assigns it to the KeypadMountingState field.
+func (o *SmartlockState) SetKeypadMountingState(v int32) {
+	o.KeypadMountingState = &v
+}
+
 // GetRingToOpenTimer returns the RingToOpenTimer field value
 func (o *SmartlockState) GetRingToOpenTimer() int32 {
 	if o == nil {
@@ -492,6 +526,9 @@ func (o SmartlockState) ToMap() (map[string]interface{}, error) {
 		toSerialize["doorsensorBatteryCritical"] = o.DoorsensorBatteryCritical
 	}
 	toSerialize["doorState"] = o.DoorState
+	if !IsNil(o.KeypadMountingState) {
+		toSerialize["keypadMountingState"] = o.KeypadMountingState
+	}
 	toSerialize["ringToOpenTimer"] = o.RingToOpenTimer
 	if !IsNil(o.RingToOpenEnd) {
 		toSerialize["ringToOpenEnd"] = o.RingToOpenEnd

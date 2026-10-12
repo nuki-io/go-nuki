@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.19.1
+API version: 4.20.0
 Contact: contact@nuki.io
 */
 
@@ -23,7 +23,7 @@ var _ MappedNullable = &AdvancedApiKey{}
 
 // AdvancedApiKey struct for AdvancedApiKey
 type AdvancedApiKey struct {
-	// The name of the company for which you apply for access
+	// The name of the company for which you apply for access. Only the first 17 characters of your integration's name will be visible in the device's activity log.
 	Name string `json:"name"`
 	// The country of the headquarter or the country where you are mainly doing business in
 	Country string `json:"country"`
