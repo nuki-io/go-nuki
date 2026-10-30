@@ -10,7 +10,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://nuki.io/en/service/nukis-terms-of-use-apis/
   title: Nuki API
-  version: 4.23.0
+  version: 4.25.0
 servers:
 - url: /
 tags:
@@ -5056,8 +5056,8 @@ components:
             hostDomain: hostDomain
             relativePart: relativePart
             hostPort: 0
-            targetRef: null
             identifier: identifier
+            targetRef: null
             opaque: true
             remainingPart: remainingPart
             query: query
@@ -5135,8 +5135,6 @@ components:
           $ref: '#/components/schemas/MetadataService'
         converterService:
           $ref: '#/components/schemas/ConverterService'
-        rangeService:
-          $ref: '#/components/schemas/RangeService'
         taskService:
           $ref: '#/components/schemas/TaskService'
         tunnelService:
@@ -5147,12 +5145,14 @@ components:
           $ref: '#/components/schemas/DecoderService'
         encoderService:
           $ref: '#/components/schemas/EncoderService'
+        rangeService:
+          $ref: '#/components/schemas/RangeService'
         logger:
           $ref: '#/components/schemas/Logger'
-        application:
-          $ref: '#/components/schemas/Application'
         stopped:
           type: boolean
+        application:
+          $ref: '#/components/schemas/Application'
       type: object
     AuthenticationInfo:
       properties:
@@ -5862,8 +5862,8 @@ components:
                 hostDomain: hostDomain
                 relativePart: relativePart
                 hostPort: 0
-                targetRef: null
                 identifier: identifier
+                targetRef: null
                 opaque: true
                 remainingPart: remainingPart
                 query: query
@@ -6314,8 +6314,8 @@ components:
                 hostDomain: hostDomain
                 relativePart: relativePart
                 hostPort: 0
-                targetRef: null
                 identifier: identifier
+                targetRef: null
                 opaque: true
                 remainingPart: remainingPart
                 query: query
@@ -7061,10 +7061,6 @@ components:
           items:
             type: string
           type: array
-        allCharacterSetExtensionNames:
-          items:
-            type: string
-          type: array
         allExtensionNames:
           items:
             type: string
@@ -7074,6 +7070,10 @@ components:
             type: string
           type: array
         allMediaTypeExtensionNames:
+          items:
+            type: string
+          type: array
+        allCharacterSetExtensionNames:
           items:
             type: string
           type: array
@@ -7714,8 +7714,8 @@ components:
         hostDomain: hostDomain
         relativePart: relativePart
         hostPort: 0
-        targetRef: null
         identifier: identifier
+        targetRef: null
         opaque: true
         remainingPart: remainingPart
         query: query
@@ -7752,6 +7752,8 @@ components:
         fragment:
           type: string
         extensions:
+          type: string
+        identifier:
           type: string
         matrix:
           type: string
@@ -7796,8 +7798,6 @@ components:
           $ref: '#/components/schemas/Reference'
         hierarchical:
           type: boolean
-        identifier:
-          type: string
       type: object
     Representation:
       properties:
@@ -7936,12 +7936,12 @@ components:
           type: boolean
         synchronous:
           type: boolean
-        entityAsText:
-          type: string
         headers:
           items:
             $ref: '#/components/schemas/Header'
           type: array
+        entityAsText:
+          type: string
       type: object
     ReservationAccessTimesUpdate:
       example:
@@ -8099,14 +8099,14 @@ components:
           type: boolean
         provisional:
           type: boolean
-        entityAvailable:
-          type: boolean
-        entityAsText:
-          type: string
         headers:
           items:
             $ref: '#/components/schemas/Header'
           type: array
+        entityAvailable:
+          type: boolean
+        entityAsText:
+          type: string
       type: object
     Restlet:
       example:
@@ -8458,8 +8458,8 @@ components:
               hostDomain: hostDomain
               relativePart: relativePart
               hostPort: 0
-              targetRef: null
               identifier: identifier
+              targetRef: null
               opaque: true
               remainingPart: remainingPart
               query: query
@@ -8573,10 +8573,10 @@ components:
           type: boolean
         logger:
           $ref: '#/components/schemas/Logger'
-        application:
-          $ref: '#/components/schemas/Application'
         stopped:
           type: boolean
+        application:
+          $ref: '#/components/schemas/Application'
       type: object
     Role:
       example:
@@ -9009,8 +9009,8 @@ components:
                   hostDomain: hostDomain
                   relativePart: relativePart
                   hostPort: 0
-                  targetRef: null
                   identifier: identifier
+                  targetRef: null
                   opaque: true
                   remainingPart: remainingPart
                   query: query
@@ -9461,8 +9461,8 @@ components:
                   hostDomain: hostDomain
                   relativePart: relativePart
                   hostPort: 0
-                  targetRef: null
                   identifier: identifier
+                  targetRef: null
                   opaque: true
                   remainingPart: remainingPart
                   query: query
@@ -11568,8 +11568,8 @@ components:
           hostDomain: hostDomain
           relativePart: relativePart
           hostPort: 0
-          targetRef: null
           identifier: identifier
+          targetRef: null
           opaque: true
           remainingPart: remainingPart
           query: query
