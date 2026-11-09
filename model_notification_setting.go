@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.25.0
+API version: 4.26.0
 Contact: contact@nuki.io
 */
 
@@ -24,7 +24,7 @@ var _ MappedNullable = &NotificationSetting{}
 type NotificationSetting struct {
 	// The smartlock ID, if not set all Smart Locks of the account  are enabled for push notifications
 	SmartlockId *int64 `json:"smartlockId,omitempty"`
-	// A set on which push notifications should be triggered: lock, unlock, unlatch, lockngo, open, ring, doorsensor, warnings, smartlock
+	// A set on which push notifications should be triggered: lock, unlock, unlatch, lockngo, open, openSSR2 (second output of a Smart Module), ring, doorsensor, warnings, smartlock
 	TriggerEvents []string `json:"triggerEvents"`
 	// A set of auth IDs to filter push notifications to certain  users or keypads. If no entry push notifications are triggered for all users and keypads
 	AuthIds []string `json:"authIds,omitempty"`

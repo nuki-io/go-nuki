@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.25.0
+API version: 4.26.0
 Contact: contact@nuki.io
 */
 
@@ -43,7 +43,7 @@ type SmartlockState struct {
 	DoorsensorBatteryCritical *bool `json:"doorsensorBatteryCritical,omitempty"`
 	// The door state: 0 .. unavailable/not paired, 1 .. deactivated, 2 .. door closed, 3 .. door opened, 4 .. door state unknown, 5 .. calibrating, 16 .. uncalibrated, 240 .. removed, 255 .. unknown
 	DoorState int32 `json:"doorState"`
-	// The keypad mounting state: 0 .. unknown/disabled/n.a., 1 .. mounted, 2 .. moved (dismounted), 255 .. error (theft detection) (only available for supported devices)
+	// The keypad mounting state: 0 .. unknown/disabled/n.a., 1 .. mounted, 2 .. moved (dismounted), 4 .. theft detection disabled by user, 255 .. error (theft detection) (only available for supported devices)
 	KeypadMountingState *int32 `json:"keypadMountingState,omitempty"`
 	// [deprecated] Remaining ring to open time; 0 if ring to open is not active (type=2 only)
 	RingToOpenTimer int32 `json:"ringToOpenTimer"`
