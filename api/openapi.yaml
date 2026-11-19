@@ -10,7 +10,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: https://nuki.io/en/service/nukis-terms-of-use-apis/
   title: Nuki API
-  version: 4.26.0
+  version: 4.27.0
 servers:
 - url: /
 tags:
@@ -4058,9 +4058,9 @@ components:
           type: boolean
         hasCustomAccessTimes:
           type: boolean
-        currentlyIssuingAuth:
-          type: boolean
         currentlyRevokingAuth:
+          type: boolean
+        currentlyIssuingAuth:
           type: boolean
       required:
       - accountId
@@ -4743,7 +4743,7 @@ components:
             - name: name
               value: value
           stopped: true
-          minimumSize: 0
+          minimumSize: 5
           context: null
           started: true
           ignoredMediaTypes:
@@ -4840,14 +4840,14 @@ components:
         connectorService:
           stopped: true
           clientProtocols:
-          - defaultPort: 1
+          - defaultPort: 6
             name: name
             schemeName: schemeName
             description: description
             technicalName: technicalName
             version: version
             confidential: true
-          - defaultPort: 1
+          - defaultPort: 6
             name: name
             schemeName: schemeName
             description: description
@@ -4857,14 +4857,14 @@ components:
           context: null
           started: true
           serverProtocols:
-          - defaultPort: 1
+          - defaultPort: 6
             name: name
             schemeName: schemeName
             description: description
             technicalName: technicalName
             version: version
             confidential: true
-          - defaultPort: 1
+          - defaultPort: 6
             name: name
             schemeName: schemeName
             description: description
@@ -5023,7 +5023,7 @@ components:
           homeRef:
             userInfo: userInfo
             schemeProtocol:
-              defaultPort: 1
+              defaultPort: 6
               name: name
               schemeName: schemeName
               description: description
@@ -5055,9 +5055,9 @@ components:
             hierarchical: true
             hostDomain: hostDomain
             relativePart: relativePart
-            hostPort: 6
-            targetRef: null
+            hostPort: 0
             identifier: identifier
+            targetRef: null
             opaque: true
             remainingPart: remainingPart
             query: query
@@ -5088,7 +5088,7 @@ components:
           shutdownAllowed: true
           stopped: true
           context: null
-          corePoolSize: 5
+          corePoolSize: 1
           started: true
           enabled: true
           terminated: true
@@ -5133,8 +5133,6 @@ components:
           $ref: '#/components/schemas/ConverterService'
         metadataService:
           $ref: '#/components/schemas/MetadataService'
-        encoderService:
-          $ref: '#/components/schemas/EncoderService'
         rangeService:
           $ref: '#/components/schemas/RangeService'
         statusService:
@@ -5147,12 +5145,14 @@ components:
           $ref: '#/components/schemas/ConnectorService'
         decoderService:
           $ref: '#/components/schemas/DecoderService'
+        encoderService:
+          $ref: '#/components/schemas/EncoderService'
         logger:
           $ref: '#/components/schemas/Logger'
-        application:
-          $ref: '#/components/schemas/Application'
         stopped:
           type: boolean
+        application:
+          $ref: '#/components/schemas/Application'
       type: object
     AuthenticationInfo:
       properties:
@@ -5442,14 +5442,14 @@ components:
       example:
         stopped: true
         clientProtocols:
-        - defaultPort: 1
+        - defaultPort: 6
           name: name
           schemeName: schemeName
           description: description
           technicalName: technicalName
           version: version
           confidential: true
-        - defaultPort: 1
+        - defaultPort: 6
           name: name
           schemeName: schemeName
           description: description
@@ -5459,14 +5459,14 @@ components:
         context: null
         started: true
         serverProtocols:
-        - defaultPort: 1
+        - defaultPort: 6
           name: name
           schemeName: schemeName
           description: description
           technicalName: technicalName
           version: version
           confidential: true
-        - defaultPort: 1
+        - defaultPort: 6
           name: name
           schemeName: schemeName
           description: description
@@ -5549,7 +5549,7 @@ components:
                 - name: name
                   value: value
               stopped: true
-              minimumSize: 0
+              minimumSize: 5
               context: null
               started: true
               ignoredMediaTypes:
@@ -5646,14 +5646,14 @@ components:
             connectorService:
               stopped: true
               clientProtocols:
-              - defaultPort: 1
+              - defaultPort: 6
                 name: name
                 schemeName: schemeName
                 description: description
                 technicalName: technicalName
                 version: version
                 confidential: true
-              - defaultPort: 1
+              - defaultPort: 6
                 name: name
                 schemeName: schemeName
                 description: description
@@ -5663,14 +5663,14 @@ components:
               context: null
               started: true
               serverProtocols:
-              - defaultPort: 1
+              - defaultPort: 6
                 name: name
                 schemeName: schemeName
                 description: description
                 technicalName: technicalName
                 version: version
                 confidential: true
-              - defaultPort: 1
+              - defaultPort: 6
                 name: name
                 schemeName: schemeName
                 description: description
@@ -5829,7 +5829,7 @@ components:
               homeRef:
                 userInfo: userInfo
                 schemeProtocol:
-                  defaultPort: 1
+                  defaultPort: 6
                   name: name
                   schemeName: schemeName
                   description: description
@@ -5861,9 +5861,9 @@ components:
                 hierarchical: true
                 hostDomain: hostDomain
                 relativePart: relativePart
-                hostPort: 6
-                targetRef: null
+                hostPort: 0
                 identifier: identifier
+                targetRef: null
                 opaque: true
                 remainingPart: remainingPart
                 query: query
@@ -5894,7 +5894,7 @@ components:
               shutdownAllowed: true
               stopped: true
               context: null
-              corePoolSize: 5
+              corePoolSize: 1
               started: true
               enabled: true
               terminated: true
@@ -6001,7 +6001,7 @@ components:
                 - name: name
                   value: value
               stopped: true
-              minimumSize: 0
+              minimumSize: 5
               context: null
               started: true
               ignoredMediaTypes:
@@ -6098,14 +6098,14 @@ components:
             connectorService:
               stopped: true
               clientProtocols:
-              - defaultPort: 1
+              - defaultPort: 6
                 name: name
                 schemeName: schemeName
                 description: description
                 technicalName: technicalName
                 version: version
                 confidential: true
-              - defaultPort: 1
+              - defaultPort: 6
                 name: name
                 schemeName: schemeName
                 description: description
@@ -6115,14 +6115,14 @@ components:
               context: null
               started: true
               serverProtocols:
-              - defaultPort: 1
+              - defaultPort: 6
                 name: name
                 schemeName: schemeName
                 description: description
                 technicalName: technicalName
                 version: version
                 confidential: true
-              - defaultPort: 1
+              - defaultPort: 6
                 name: name
                 schemeName: schemeName
                 description: description
@@ -6281,7 +6281,7 @@ components:
               homeRef:
                 userInfo: userInfo
                 schemeProtocol:
-                  defaultPort: 1
+                  defaultPort: 6
                   name: name
                   schemeName: schemeName
                   description: description
@@ -6313,9 +6313,9 @@ components:
                 hierarchical: true
                 hostDomain: hostDomain
                 relativePart: relativePart
-                hostPort: 6
-                targetRef: null
+                hostPort: 0
                 identifier: identifier
+                targetRef: null
                 opaque: true
                 remainingPart: remainingPart
                 query: query
@@ -6346,7 +6346,7 @@ components:
               shutdownAllowed: true
               stopped: true
               context: null
-              corePoolSize: 5
+              corePoolSize: 1
               started: true
               enabled: true
               terminated: true
@@ -6656,7 +6656,7 @@ components:
           - name: name
             value: value
         stopped: true
-        minimumSize: 0
+        minimumSize: 5
         context: null
         started: true
         ignoredMediaTypes:
@@ -7595,7 +7595,7 @@ components:
       type: object
     Protocol:
       example:
-        defaultPort: 1
+        defaultPort: 6
         name: name
         schemeName: schemeName
         description: description
@@ -7682,7 +7682,7 @@ components:
       example:
         userInfo: userInfo
         schemeProtocol:
-          defaultPort: 1
+          defaultPort: 6
           name: name
           schemeName: schemeName
           description: description
@@ -7714,9 +7714,9 @@ components:
         hierarchical: true
         hostDomain: hostDomain
         relativePart: relativePart
-        hostPort: 6
-        targetRef: null
+        hostPort: 0
         identifier: identifier
+        targetRef: null
         opaque: true
         remainingPart: remainingPart
         query: query
@@ -7754,6 +7754,8 @@ components:
           type: string
         extensions:
           type: string
+        identifier:
+          type: string
         extensionsAsArray:
           items:
             type: string
@@ -7787,8 +7789,6 @@ components:
           $ref: '#/components/schemas/Reference'
         hierarchical:
           type: boolean
-        identifier:
-          type: string
         matrix:
           type: string
         matrixAsForm:
@@ -7937,12 +7937,12 @@ components:
           type: boolean
         confidential:
           type: boolean
-        entityAsText:
-          type: string
         headers:
           items:
             $ref: '#/components/schemas/Header'
           type: array
+        entityAsText:
+          type: string
       type: object
     ReservationAccessTimesUpdate:
       example:
@@ -8100,14 +8100,14 @@ components:
           type: boolean
         confidential:
           type: boolean
-        entityAvailable:
-          type: boolean
-        entityAsText:
-          type: string
         headers:
           items:
             $ref: '#/components/schemas/Header'
           type: array
+        entityAvailable:
+          type: boolean
+        entityAsText:
+          type: string
       type: object
     Restlet:
       example:
@@ -8146,7 +8146,7 @@ components:
               - name: name
                 value: value
             stopped: true
-            minimumSize: 0
+            minimumSize: 5
             context: null
             started: true
             ignoredMediaTypes:
@@ -8243,14 +8243,14 @@ components:
           connectorService:
             stopped: true
             clientProtocols:
-            - defaultPort: 1
+            - defaultPort: 6
               name: name
               schemeName: schemeName
               description: description
               technicalName: technicalName
               version: version
               confidential: true
-            - defaultPort: 1
+            - defaultPort: 6
               name: name
               schemeName: schemeName
               description: description
@@ -8260,14 +8260,14 @@ components:
             context: null
             started: true
             serverProtocols:
-            - defaultPort: 1
+            - defaultPort: 6
               name: name
               schemeName: schemeName
               description: description
               technicalName: technicalName
               version: version
               confidential: true
-            - defaultPort: 1
+            - defaultPort: 6
               name: name
               schemeName: schemeName
               description: description
@@ -8426,7 +8426,7 @@ components:
             homeRef:
               userInfo: userInfo
               schemeProtocol:
-                defaultPort: 1
+                defaultPort: 6
                 name: name
                 schemeName: schemeName
                 description: description
@@ -8458,9 +8458,9 @@ components:
               hierarchical: true
               hostDomain: hostDomain
               relativePart: relativePart
-              hostPort: 6
-              targetRef: null
+              hostPort: 0
               identifier: identifier
+              targetRef: null
               opaque: true
               remainingPart: remainingPart
               query: query
@@ -8491,7 +8491,7 @@ components:
             shutdownAllowed: true
             stopped: true
             context: null
-            corePoolSize: 5
+            corePoolSize: 1
             started: true
             enabled: true
             terminated: true
@@ -8574,10 +8574,10 @@ components:
           type: boolean
         logger:
           $ref: '#/components/schemas/Logger'
-        application:
-          $ref: '#/components/schemas/Application'
         stopped:
           type: boolean
+        application:
+          $ref: '#/components/schemas/Application'
       type: object
     Role:
       example:
@@ -8697,7 +8697,7 @@ components:
                   - name: name
                     value: value
                 stopped: true
-                minimumSize: 0
+                minimumSize: 5
                 context: null
                 started: true
                 ignoredMediaTypes:
@@ -8794,14 +8794,14 @@ components:
               connectorService:
                 stopped: true
                 clientProtocols:
-                - defaultPort: 1
+                - defaultPort: 6
                   name: name
                   schemeName: schemeName
                   description: description
                   technicalName: technicalName
                   version: version
                   confidential: true
-                - defaultPort: 1
+                - defaultPort: 6
                   name: name
                   schemeName: schemeName
                   description: description
@@ -8811,14 +8811,14 @@ components:
                 context: null
                 started: true
                 serverProtocols:
-                - defaultPort: 1
+                - defaultPort: 6
                   name: name
                   schemeName: schemeName
                   description: description
                   technicalName: technicalName
                   version: version
                   confidential: true
-                - defaultPort: 1
+                - defaultPort: 6
                   name: name
                   schemeName: schemeName
                   description: description
@@ -8977,7 +8977,7 @@ components:
                 homeRef:
                   userInfo: userInfo
                   schemeProtocol:
-                    defaultPort: 1
+                    defaultPort: 6
                     name: name
                     schemeName: schemeName
                     description: description
@@ -9009,9 +9009,9 @@ components:
                   hierarchical: true
                   hostDomain: hostDomain
                   relativePart: relativePart
-                  hostPort: 6
-                  targetRef: null
+                  hostPort: 0
                   identifier: identifier
+                  targetRef: null
                   opaque: true
                   remainingPart: remainingPart
                   query: query
@@ -9042,7 +9042,7 @@ components:
                 shutdownAllowed: true
                 stopped: true
                 context: null
-                corePoolSize: 5
+                corePoolSize: 1
                 started: true
                 enabled: true
                 terminated: true
@@ -9149,7 +9149,7 @@ components:
                   - name: name
                     value: value
                 stopped: true
-                minimumSize: 0
+                minimumSize: 5
                 context: null
                 started: true
                 ignoredMediaTypes:
@@ -9246,14 +9246,14 @@ components:
               connectorService:
                 stopped: true
                 clientProtocols:
-                - defaultPort: 1
+                - defaultPort: 6
                   name: name
                   schemeName: schemeName
                   description: description
                   technicalName: technicalName
                   version: version
                   confidential: true
-                - defaultPort: 1
+                - defaultPort: 6
                   name: name
                   schemeName: schemeName
                   description: description
@@ -9263,14 +9263,14 @@ components:
                 context: null
                 started: true
                 serverProtocols:
-                - defaultPort: 1
+                - defaultPort: 6
                   name: name
                   schemeName: schemeName
                   description: description
                   technicalName: technicalName
                   version: version
                   confidential: true
-                - defaultPort: 1
+                - defaultPort: 6
                   name: name
                   schemeName: schemeName
                   description: description
@@ -9429,7 +9429,7 @@ components:
                 homeRef:
                   userInfo: userInfo
                   schemeProtocol:
-                    defaultPort: 1
+                    defaultPort: 6
                     name: name
                     schemeName: schemeName
                     description: description
@@ -9461,9 +9461,9 @@ components:
                   hierarchical: true
                   hostDomain: hostDomain
                   relativePart: relativePart
-                  hostPort: 6
-                  targetRef: null
+                  hostPort: 0
                   identifier: identifier
+                  targetRef: null
                   opaque: true
                   remainingPart: remainingPart
                   query: query
@@ -9494,7 +9494,7 @@ components:
                 shutdownAllowed: true
                 stopped: true
                 context: null
-                corePoolSize: 5
+                corePoolSize: 1
                 started: true
                 enabled: true
                 terminated: true
@@ -11107,6 +11107,7 @@ components:
       example:
         deviceType: 6
         date: 2000-01-23T04:56:07.000+00:00
+        logIndex: 2
         trigger: 143
         ajarTimeout: 9
         source: 3
@@ -11205,6 +11206,11 @@ components:
         error:
           description: "In case of any error, it contains the error message"
           type: string
+        logIndex:
+          description: The index of the entry in the activity log of the device. Null
+            for entries stored before the index was recorded
+          format: int32
+          type: integer
       required:
       - action
       - autoUnlock
@@ -11536,7 +11542,7 @@ components:
         homeRef:
           userInfo: userInfo
           schemeProtocol:
-            defaultPort: 1
+            defaultPort: 6
             name: name
             schemeName: schemeName
             description: description
@@ -11568,9 +11574,9 @@ components:
           hierarchical: true
           hostDomain: hostDomain
           relativePart: relativePart
-          hostPort: 6
-          targetRef: null
+          hostPort: 0
           identifier: identifier
+          targetRef: null
           opaque: true
           remainingPart: remainingPart
           query: query
@@ -11627,7 +11633,7 @@ components:
         shutdownAllowed: true
         stopped: true
         context: null
-        corePoolSize: 5
+        corePoolSize: 1
         started: true
         enabled: true
         terminated: true

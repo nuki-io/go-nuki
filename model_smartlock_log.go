@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.26.0
+API version: 4.27.0
 Contact: contact@nuki.io
 */
 
@@ -52,6 +52,8 @@ type SmartlockLog struct {
 	Source *int32 `json:"source,omitempty"`
 	// In case of any error, it contains the error message
 	Error *string `json:"error,omitempty"`
+	// The index of the entry in the activity log of the device. Null for entries stored before the index was recorded
+	LogIndex *int32 `json:"logIndex,omitempty"`
 }
 
 type _SmartlockLog SmartlockLog
@@ -490,6 +492,38 @@ func (o *SmartlockLog) SetError(v string) {
 	o.Error = &v
 }
 
+// GetLogIndex returns the LogIndex field value if set, zero value otherwise.
+func (o *SmartlockLog) GetLogIndex() int32 {
+	if o == nil || IsNil(o.LogIndex) {
+		var ret int32
+		return ret
+	}
+	return *o.LogIndex
+}
+
+// GetLogIndexOk returns a tuple with the LogIndex field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SmartlockLog) GetLogIndexOk() (*int32, bool) {
+	if o == nil || IsNil(o.LogIndex) {
+		return nil, false
+	}
+	return o.LogIndex, true
+}
+
+// HasLogIndex returns a boolean if a field has been set.
+func (o *SmartlockLog) HasLogIndex() bool {
+	if o != nil && !IsNil(o.LogIndex) {
+		return true
+	}
+
+	return false
+}
+
+// SetLogIndex gets a reference to the given int32 and assigns it to the LogIndex field.
+func (o *SmartlockLog) SetLogIndex(v int32) {
+	o.LogIndex = &v
+}
+
 func (o SmartlockLog) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -526,6 +560,9 @@ func (o SmartlockLog) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Error) {
 		toSerialize["error"] = o.Error
+	}
+	if !IsNil(o.LogIndex) {
+		toSerialize["logIndex"] = o.LogIndex
 	}
 	return toSerialize, nil
 }

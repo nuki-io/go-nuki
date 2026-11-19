@@ -3,7 +3,7 @@ Nuki API
 
 The Nuki Web Api
 
-API version: 4.26.0
+API version: 4.27.0
 Contact: contact@nuki.io
 */
 
@@ -34,16 +34,16 @@ type Application struct {
 	ConnegService *ConnegService `json:"connegService,omitempty"`
 	ConverterService *ConverterService `json:"converterService,omitempty"`
 	MetadataService *MetadataService `json:"metadataService,omitempty"`
-	EncoderService *EncoderService `json:"encoderService,omitempty"`
 	RangeService *RangeService `json:"rangeService,omitempty"`
 	StatusService *StatusService `json:"statusService,omitempty"`
 	TaskService *TaskService `json:"taskService,omitempty"`
 	TunnelService *TunnelService `json:"tunnelService,omitempty"`
 	ConnectorService *ConnectorService `json:"connectorService,omitempty"`
 	DecoderService *DecoderService `json:"decoderService,omitempty"`
+	EncoderService *EncoderService `json:"encoderService,omitempty"`
 	Logger *Logger `json:"logger,omitempty"`
-	Application *Application `json:"application,omitempty"`
 	Stopped *bool `json:"stopped,omitempty"`
+	Application *Application `json:"application,omitempty"`
 }
 
 // NewApplication instantiates a new Application object
@@ -511,38 +511,6 @@ func (o *Application) SetMetadataService(v MetadataService) {
 	o.MetadataService = &v
 }
 
-// GetEncoderService returns the EncoderService field value if set, zero value otherwise.
-func (o *Application) GetEncoderService() EncoderService {
-	if o == nil || IsNil(o.EncoderService) {
-		var ret EncoderService
-		return ret
-	}
-	return *o.EncoderService
-}
-
-// GetEncoderServiceOk returns a tuple with the EncoderService field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Application) GetEncoderServiceOk() (*EncoderService, bool) {
-	if o == nil || IsNil(o.EncoderService) {
-		return nil, false
-	}
-	return o.EncoderService, true
-}
-
-// HasEncoderService returns a boolean if a field has been set.
-func (o *Application) HasEncoderService() bool {
-	if o != nil && !IsNil(o.EncoderService) {
-		return true
-	}
-
-	return false
-}
-
-// SetEncoderService gets a reference to the given EncoderService and assigns it to the EncoderService field.
-func (o *Application) SetEncoderService(v EncoderService) {
-	o.EncoderService = &v
-}
-
 // GetRangeService returns the RangeService field value if set, zero value otherwise.
 func (o *Application) GetRangeService() RangeService {
 	if o == nil || IsNil(o.RangeService) {
@@ -735,6 +703,38 @@ func (o *Application) SetDecoderService(v DecoderService) {
 	o.DecoderService = &v
 }
 
+// GetEncoderService returns the EncoderService field value if set, zero value otherwise.
+func (o *Application) GetEncoderService() EncoderService {
+	if o == nil || IsNil(o.EncoderService) {
+		var ret EncoderService
+		return ret
+	}
+	return *o.EncoderService
+}
+
+// GetEncoderServiceOk returns a tuple with the EncoderService field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Application) GetEncoderServiceOk() (*EncoderService, bool) {
+	if o == nil || IsNil(o.EncoderService) {
+		return nil, false
+	}
+	return o.EncoderService, true
+}
+
+// HasEncoderService returns a boolean if a field has been set.
+func (o *Application) HasEncoderService() bool {
+	if o != nil && !IsNil(o.EncoderService) {
+		return true
+	}
+
+	return false
+}
+
+// SetEncoderService gets a reference to the given EncoderService and assigns it to the EncoderService field.
+func (o *Application) SetEncoderService(v EncoderService) {
+	o.EncoderService = &v
+}
+
 // GetLogger returns the Logger field value if set, zero value otherwise.
 func (o *Application) GetLogger() Logger {
 	if o == nil || IsNil(o.Logger) {
@@ -767,38 +767,6 @@ func (o *Application) SetLogger(v Logger) {
 	o.Logger = &v
 }
 
-// GetApplication returns the Application field value if set, zero value otherwise.
-func (o *Application) GetApplication() Application {
-	if o == nil || IsNil(o.Application) {
-		var ret Application
-		return ret
-	}
-	return *o.Application
-}
-
-// GetApplicationOk returns a tuple with the Application field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Application) GetApplicationOk() (*Application, bool) {
-	if o == nil || IsNil(o.Application) {
-		return nil, false
-	}
-	return o.Application, true
-}
-
-// HasApplication returns a boolean if a field has been set.
-func (o *Application) HasApplication() bool {
-	if o != nil && !IsNil(o.Application) {
-		return true
-	}
-
-	return false
-}
-
-// SetApplication gets a reference to the given Application and assigns it to the Application field.
-func (o *Application) SetApplication(v Application) {
-	o.Application = &v
-}
-
 // GetStopped returns the Stopped field value if set, zero value otherwise.
 func (o *Application) GetStopped() bool {
 	if o == nil || IsNil(o.Stopped) {
@@ -829,6 +797,38 @@ func (o *Application) HasStopped() bool {
 // SetStopped gets a reference to the given bool and assigns it to the Stopped field.
 func (o *Application) SetStopped(v bool) {
 	o.Stopped = &v
+}
+
+// GetApplication returns the Application field value if set, zero value otherwise.
+func (o *Application) GetApplication() Application {
+	if o == nil || IsNil(o.Application) {
+		var ret Application
+		return ret
+	}
+	return *o.Application
+}
+
+// GetApplicationOk returns a tuple with the Application field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Application) GetApplicationOk() (*Application, bool) {
+	if o == nil || IsNil(o.Application) {
+		return nil, false
+	}
+	return o.Application, true
+}
+
+// HasApplication returns a boolean if a field has been set.
+func (o *Application) HasApplication() bool {
+	if o != nil && !IsNil(o.Application) {
+		return true
+	}
+
+	return false
+}
+
+// SetApplication gets a reference to the given Application and assigns it to the Application field.
+func (o *Application) SetApplication(v Application) {
+	o.Application = &v
 }
 
 func (o Application) MarshalJSON() ([]byte, error) {
@@ -883,9 +883,6 @@ func (o Application) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.MetadataService) {
 		toSerialize["metadataService"] = o.MetadataService
 	}
-	if !IsNil(o.EncoderService) {
-		toSerialize["encoderService"] = o.EncoderService
-	}
 	if !IsNil(o.RangeService) {
 		toSerialize["rangeService"] = o.RangeService
 	}
@@ -904,14 +901,17 @@ func (o Application) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DecoderService) {
 		toSerialize["decoderService"] = o.DecoderService
 	}
+	if !IsNil(o.EncoderService) {
+		toSerialize["encoderService"] = o.EncoderService
+	}
 	if !IsNil(o.Logger) {
 		toSerialize["logger"] = o.Logger
 	}
-	if !IsNil(o.Application) {
-		toSerialize["application"] = o.Application
-	}
 	if !IsNil(o.Stopped) {
 		toSerialize["stopped"] = o.Stopped
+	}
+	if !IsNil(o.Application) {
+		toSerialize["application"] = o.Application
 	}
 	return toSerialize, nil
 }
